@@ -1,9 +1,12 @@
 ---
 slug: how-i-unlocked-team-trust
 title: >-
+  Specialists to generalists, mid-downturn
+titleDraft: true
+deck: >-
   How I unlocked team trust and performance by redesigning roles
 metaTitle: >-
-  How I unlocked team trust and performance by redesigning roles
+  Specialists to generalists, mid-downturn | Tyler Young
 description: >-
   Restructuring a team of specialists into product design generalists during a downturn, and finding it made the team faster.
 descriptionDraft: true

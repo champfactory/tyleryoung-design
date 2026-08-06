@@ -1,9 +1,12 @@
 ---
 slug: how-i-infused-design-roles-with-product-thinking
 title: >-
+  Product fluency as a design skill
+titleDraft: true
+deck: >-
   How I infused design roles with product thinking to improve strategic impact
 metaTitle: >-
-  How I infused design roles with product thinking to improve strategic impact
+  Product fluency as a design skill | Tyler Young
 description: >-
   Building product fluency into design roles, so planning decisions improved before the first screen was drawn.
 descriptionDraft: true

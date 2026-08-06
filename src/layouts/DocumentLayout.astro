@@ -11,11 +11,16 @@
  */
 import BaseLayout from './BaseLayout.astro';
 import Needs from '../components/Needs.astro';
+import Draft from '../components/Draft.astro';
 
 export type MetaPair = [label: string, value: string];
 
 interface Props {
   title: string;
+  /** the original full sentence, kept under the short title */
+  deck?: string;
+  /** true when the short title is mine, not Tyler's */
+  titleDraft?: boolean;
   metaTitle: string;
   description?: string;
   descriptionDraft?: boolean;
@@ -28,6 +33,8 @@ interface Props {
 
 const {
   title,
+  deck,
+  titleDraft,
   metaTitle,
   description,
   descriptionDraft,
@@ -47,7 +54,8 @@ const {
   <article class="shell doc">
     <header class="head">
       <p class="label">{eyebrow}</p>
-      <h1 class="display">{title}</h1>
+      <h1 class="display">{titleDraft ? <Draft>{title}</Draft> : title}</h1>
+      {deck && <p class="deck">{deck}</p>}
       {
         !description && (
           <p class="meta-warning">
@@ -100,6 +108,15 @@ const {
     /* ch on the heading itself — on the wrapper it resolves against the body's
        19px and clamps a 60px headline to a ~250px column. */
     max-width: 22ch;
+  }
+
+  .doc .deck {
+    margin: 18px 0 0;
+    max-width: 46ch;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--color-ink-3);
+    text-wrap: pretty;
   }
 
   .doc .meta-warning {

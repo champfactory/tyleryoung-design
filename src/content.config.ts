@@ -14,6 +14,10 @@ const essays = defineCollection({
     // Descriptions I drafted. Marked in the built HTML and counted by
     // `npm run needs` until Tyler approves the wording.
     descriptionDraft: z.boolean().optional(),
+    // Retitled by instrument for scannability; the original "How I…" sentence is
+    // kept verbatim as the deck so nothing published is lost.
+    titleDraft: z.boolean().optional(),
+    deck: z.string().optional(),
     // Set where the ported metadata itself looks wrong on the live site.
     // Rendered as a visible warning rather than silently corrected.
     metaWarning: z.string().optional(),

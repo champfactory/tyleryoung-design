@@ -1,9 +1,12 @@
 ---
 slug: how-i-scaled-design-efficiency
 title: >-
+  The design system nobody was told to use
+titleDraft: true
+deck: >-
   How I scaled design efficiency by replacing siloed workflows with a shared design system
 metaTitle: >-
-  How I scaled design efficiency by replacing siloed workflows with a shared design system
+  The design system nobody was told to use | Tyler Young
 description: >-
   A global design system across five business functions and more than 200 components, adopted through usefulness rather than mandate.
 descriptionDraft: true

@@ -1,9 +1,12 @@
 ---
 slug: how-i-shaped-cross-functional-reputation
 title: >-
+  The influence ladder
+titleDraft: true
+deck: >-
   How I shaped cross-functional reputation by tying advancement to planning impact
 metaTitle: >-
-  How I shaped cross-functional reputation by tying advancement to planning impact
+  The influence ladder | Tyler Young
 description: >-
   Rebuilding design career paths to reward cross-functional influence, and changing how the org treated design in planning.
 descriptionDraft: true

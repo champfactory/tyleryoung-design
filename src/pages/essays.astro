@@ -5,6 +5,9 @@ import { essayGroups } from '../data/essayGroups';
 import { stories } from '../data/stories';
 
 const essays = await getCollection('essays');
+const count = essays.length;
+const words = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];
+const spelled = words[count] ?? String(count);
 const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
 
 /** Which story each essay feeds, so the index shows the connection both ways. */
@@ -14,17 +17,17 @@ for (const s of stories) for (const slug of s.leadership) storyFor.set(slug, s);
 
 <BaseLayout
   title="Leadership essays | Tyler Young"
-  description="Nine essays on building design organizations: strategic influence, leadership approach, cross-functional partnership, and systems that scale."
+  description="Seven instruments for building design organizations — scoring models, complexity budgets, thresholds and ladders that made judgment explicit enough to survive without the person who made it."
   descriptionDraft
   current="essays"
 >
   <section class="shell page">
     <p class="label">Leadership writing</p>
-    <h1 class="display">Nine essays on building design organizations</h1>
+    <h1 class="display">{spelled.charAt(0).toUpperCase() + spelled.slice(1)} instruments for building design organizations</h1>
     <p class="lede">
-      These are the long-form versions of what runs underneath the work. Several are
-      folded into the three stories on the homepage — the link back is noted where
-      that's the case.
+      Each of these is the same move the work on the homepage makes: take a judgment
+      that lived in someone's head and make it explicit enough to survive without
+      them. Written years before the thing carrying the judgment was a machine.
     </p>
 
     <div class="groups">
@@ -38,6 +41,7 @@ for (const s of stories) for (const slug of s.leadership) storyFor.set(slug, s);
                 <h2 class="heading" id={`g${i}`}>
                   {group.title}
                 </h2>
+                {group.blurb && <p class="blurb">{group.blurb}</p>}
               </div>
             </div>
 
@@ -121,6 +125,14 @@ for (const s of stories) for (const slug of s.leadership) storyFor.set(slug, s);
   h2 {
     font-size: 26px;
     margin: 0;
+  }
+
+  .blurb {
+    margin: 12px 0 0;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--color-ink-3);
+    max-width: 34ch;
   }
 
   ul {

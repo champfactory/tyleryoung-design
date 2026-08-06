@@ -1,9 +1,12 @@
 ---
 slug: how-i-managed-ux-complexity
 title: >-
+  The complexity budget
+titleDraft: true
+deck: >-
   How I managed UX complexity by championing an org-wide simplicity model
 metaTitle: >-
-  How I managed UX complexity by championing an org-wide simplicity model
+  The complexity budget | Tyler Young
 description: >-
   A complexity budget that made UX friction measurable, so teams could catch scope bloat early and simplify on purpose.
 descriptionDraft: true

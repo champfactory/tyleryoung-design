@@ -1,9 +1,12 @@
 ---
 slug: how-i-translated-design-work
 title: >-
+  Three models that made design legible
+titleDraft: true
+deck: >-
   How I made design proposals legible to the business
 metaTitle: >-
-  How I made design proposals legible to the business | Tyler Young
+  Three models that made design legible | Tyler Young
 description: >-
   Three instruments — a taxonomy of work, a map to business metrics, and a scoring rubric — that together let design argue for investment in the language leadership already used.
 descriptionDraft: true

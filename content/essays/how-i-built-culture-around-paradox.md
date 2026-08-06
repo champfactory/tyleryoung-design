@@ -1,9 +1,12 @@
 ---
 slug: how-i-built-culture-around-paradox
 title: >-
+  The good-enough double standard
+titleDraft: true
+deck: >-
   How I built culture around the “good enough” paradox to hit business targets on schedule
 metaTitle: >-
-  How I built culture around the “good enough” paradox to hit business targets on schedule
+  The good-enough double standard | Tyler Young
 description: >-
   Reframing "good enough" as a strategic threshold, and teaching a design team when to challenge and when to commit.
 descriptionDraft: true
