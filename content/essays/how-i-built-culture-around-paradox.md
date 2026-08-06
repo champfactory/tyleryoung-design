@@ -38,11 +38,3 @@ The team’s identity shifted. Designers no longer saw execution excellence as p
 1. Prioritizing problem definition gave teams permission to question assumptions
 2. Team rigor improved as shared standards clarified scope and delivery criteria
 3. Cross-functional trust increased as design judgment improved decision quality
-
-## Strategic Insight
-
-Strategic clarity protects ROI and prioritizes the right effort:
-
-- Teams maintain ROI by recognizing when effort stops adding value
-- Even strong teams waste effort when the problem is misunderstood
-- Mature teams balance ambition with deliberate restraint

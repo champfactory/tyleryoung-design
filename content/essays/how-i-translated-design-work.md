@@ -7,6 +7,8 @@ metaTitle: >-
 description: >-
   Mapping design work to business metrics so it could shape roadmap and strategic planning discussions instead of reacting to them.
 descriptionDraft: true
+metaWarning: >-
+  Key Outcomes below are word-for-word identical to those on "How I aligned formative vision with business priorities" — both essays ship the same three, on the live site as well as here. They sit next to each other in the same category, so a reader sees it. Tyler differentiates or merges; not guessing at replacements.
 contribution: >-
   Mapped design work to business metrics to inform roadmap and strategic planning decisions
 role: >-
@@ -40,11 +42,3 @@ Design became a credible contributor to strategic planning. Executives began ref
 1. Framed proposals through user value and business levers to earn early trust
 2. Equipped teams to estimate impact by tying design work to strategic outcomes
 3. Earned design a seat in planning by aligning decisions to measurable value
-
-## Strategic Insight
-
-Design earns strategic trust when it translates user insight into investable options:
-
-- Frameworks that map user needs to business levers enable early influence
-- Strategic clarity grows when design weighs tradeoffs—not just proposes features
-- The right work gets built when teams look to user value to drive outcomes

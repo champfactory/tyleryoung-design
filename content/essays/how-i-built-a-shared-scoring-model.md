@@ -38,11 +38,3 @@ Design became a strategic contributor by making business impact visible, improvi
 1. Prioritization shifted from opinions to structured value-based decisions
 2. Design proposals gained credibility by tying impact to business goals
 3. Roadmap reviews accelerated as scoring clarified investment tradeoffs
-
-## Strategic Insight
-
-Design earns lasting influence by clarifying tradeoffs with structured logic:
-
-- Business goals become shared benchmarks for investment value
-- Clear criteria turn subjective opinions into collaborative decisions
-- Measured impact makes design indispensable to prioritization

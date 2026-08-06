@@ -38,12 +38,3 @@ What began as a survival constraint became a structural advantage. Junior design
 3. Improved morale through clarity, autonomy, and visible impact
 4. Enabled organic growth into cross-functional collaboration roles
 5. Extended impact by mentoring new talent in an adjacent region
-
-## Strategic Insight
-
-Strategic clarity improves when team structure adapts to modern constraints:
-
-- Traditional roles slow execution in ambiguous, high-velocity work
-- Shared ownership enables distributed accountability and faster pivots
-- Systems and mentorship extract value from junior talent without slowing down
-- Team design becomes a growth lever—resilient, responsive, and cost-efficient

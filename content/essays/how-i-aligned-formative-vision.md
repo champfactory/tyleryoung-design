@@ -7,6 +7,8 @@ metaTitle: >-
 description: >-
   A shared model for expressing design proposals in business terms, so teams could weigh user value against business impact before committing.
 descriptionDraft: true
+metaWarning: >-
+  Key Outcomes below are word-for-word identical to those on "How I translated design work into business levers" — both essays ship the same three, on the live site as well as here. They sit next to each other in the same category, so a reader sees it. Tyler differentiates or merges; not guessing at replacements.
 contribution: >-
   Introduced a shared model to express design proposals in business-relevant terms by balancing user value against business impact
 role: >-
@@ -42,11 +44,3 @@ Design became a strategic contributor by making business impact visible, improvi
 1. Framed proposals through user value and business levers to earn early trust
 2. Equipped teams to estimate impact by tying design work to strategic outcomes
 3. Earned design a seat in planning by aligning decisions to measurable value
-
-## Strategic Insight
-
-Design earns strategic trust when it translates user insight into investable options:
-
-- Frameworks that map user needs to business levers enable early influence
-- Strategic clarity grows when design weighs tradeoffs—not just proposes features
-- The right work gets built when teams look to user value to drive outcomes

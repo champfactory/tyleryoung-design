@@ -43,11 +43,3 @@ The complexity budget gave teams a credible way to recognize when scope had gone
 2. Standardized how teams evaluated scope, tradeoffs, and user effort
 3. Equipped teams to identify scope bloat and defend reductions with impact
 4. Shifted simplification upstream, reducing late-stage rework and overbuild
-
-## Strategic Insight
-
-Making complexity measurable unlocks earlier, better decisions:
-
-- Simplicity became a shared constraint embedded in planning systems
-- Tradeoffs were weighed by estimated user effort, not visual heuristics
-- Friction became an early-stage lever for shaping and testing scope

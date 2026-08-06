@@ -48,12 +48,3 @@ Design didn’t just join earlier. We changed the shape of planning. Roadmaps re
 1. Design adopted upstream tools and framing habits used by product teams
 2. Last-minute feedback cycles and handoff surprises dropped across delivery
 3. Design earned trust as a planning partner through improved decision inputs
-
-## Strategic Insight
-
-Design teams gain influence when they operate across planning, not downstream:
-
-- Built fluency by framing hypotheses, logic, and tradeoffs before execution
-- Surfaced structural gaps early enough to influence scope and team priorities
-- Replaced linear handoffs with collaborative modeling and shared ownership
-- Made better planning the lever for lifting product quality and delivery speed

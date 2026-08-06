@@ -40,11 +40,3 @@ Designers began showing up in strategy meetings with clarity and conviction. The
 3. Designers grew through real strategy exposure, not just feedback loops
 4. Peer critique built stronger judgment and visible leadership skills
 5. Mentorship advanced clarity, confidence, and promotion readiness
-
-## Strategic Insight
-
-Teams become strategic when fluency shifts from delivery to influence:
-
-- Created a development model tied to influence, not just execution
-- Used peer critique and mentorship to build judgment and confidence
-- Made strategic fluency a promotable skill, not a seniority side effect

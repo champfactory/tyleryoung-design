@@ -46,12 +46,3 @@ Engineering moved faster with fewer blockers. Cross-functional teams built on to
 3. System adoption synced design, engineering, and marketing into shared flows
 4. Rapid prototyping better reflected what shipped in production
 5. The design system became the default starting point for project planning
-
-## Strategic Insight
-
-Systems create scale by changing how teams deliver together:
-
-- Speed comes from solving shared cross-functional pain
-- Trust grows when systems are assumed, not optional
-- Clarity scales when patterns replace interpretation
-- Quality sticks when the system becomes the baseline
