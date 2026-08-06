@@ -5,13 +5,16 @@ import LiveFrame from '../components/LiveFrame.astro';
 import Shot from '../components/Shot.astro';
 import SurfaceLedger from '../components/SurfaceLedger.astro';
 import Needs from '../components/Needs.astro';
+import Draft from '../components/Draft.astro';
 import { stories } from '../data/stories';
 import { REPO } from '../data/site.mjs';
 import { essayGroups } from '../data/essayGroups';
 
-// Ported verbatim from the live site. Do not edit without Tyler.
+// DRAFT — replaces the ported exec sentence at Tyler's request. First person to
+// match the stories, and it now carries the AI-practice claim itself, which is
+// why the separate [NEEDS] marker below it is gone.
 const bioLede =
-  'Tyler Young is a senior design executive who helps companies turn design from a delivery function into a strategic advantage.';
+  'I design software and the systems that generate it. Twenty years leading design organisations, now spent on one question: what an agent is allowed to produce, and who checks it before it ships.';
 const bioRest = [
   'He specializes in aligning product design with business outcomes, scaling high-impact teams, and embedding user-centered thinking into roadmap planning.',
   'His work spans product strategy, systems thinking, and operational rigor — driving measurable impact across growth-stage and enterprise orgs.',
@@ -42,7 +45,8 @@ const references = [
 
 <BaseLayout
   title="Tyler Young | Senior Director of Design"
-  description={bioLede}
+  description="I design software and the systems that generate it — and the constraints that decide what an agent is allowed to produce."
+  descriptionDraft
 >
   <!-- ------------------------------------------------------------- HERO ---
        15-second read: who, what he does now, and three ways in. Nothing else. -->
@@ -50,14 +54,7 @@ const references = [
     <p class="label" data-rise style="--i:0">Senior Director of Design · Portfolio 2026</p>
     <h1 class="display name" data-rise style="--i:1">Tyler Young</h1>
 
-    <p class="lede" data-rise style="--i:2">{bioLede}</p>
-
-    <p class="ai-line" data-rise style="--i:3">
-      <Needs>
-        one sentence on current AI-native practice — the single most load-bearing
-        line on this site. Tyler writes or approves it.
-      </Needs>
-    </p>
+    <p class="lede" data-rise style="--i:2"><Draft>{bioLede}</Draft></p>
 
     <p class="thesis-line" data-rise style="--i:4">
       <a class="thesis" href="/how-i-design-with-ai">
