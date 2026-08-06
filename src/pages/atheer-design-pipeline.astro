@@ -1,0 +1,139 @@
+---
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import CrossLinks from '../components/CrossLinks.astro';
+import Receipt from '../components/Receipt.astro';
+import Needs from '../components/Needs.astro';
+import Draft from '../components/Draft.astro';
+---
+
+<DocumentLayout
+  title="How I replaced an agency handoff process with an AI-native design-to-code pipeline"
+  metaTitle="An AI-native design-to-code pipeline | Tyler Young"
+  eyebrow="AI-Native Practice"
+  current="building"
+  meta={[
+    [
+      'Contribution',
+      'Built and ran a Figma↔Claude Code pipeline producing production React, Tailwind and Storybook components',
+    ],
+    ['Role', 'Director of Design · 90-day engagement · 2026'],
+    ['Scope', 'Design system v0, pipeline design, stakeholder process change'],
+    ['Takeaway', '[NEEDS: Tyler’s one-liner]'],
+  ]}
+>
+  <div class="aside">
+    <p>
+      Open decision — client naming. This page currently avoids naming the company.
+      Name it, or describe it as “an AR / asset-management company”? Tyler’s call.
+    </p>
+  </div>
+
+  <h2>The Challenge</h2>
+  <p>
+    <Draft>
+      An aged brand and an aging design system, with an agency sitting between design
+      intent and shipped UI. Every decision made a round trip through a handoff
+      document. The mandate was to modernize the look and feel and to design the
+      applications that came next.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      The problem was not the agency's craft. It was the distance the work had to
+      travel before anyone could see whether it was right.
+    </Draft>
+  </p>
+
+  <h2>My Response</h2>
+  <p>
+    <Draft>
+      A 90-day plan built around one change: replace the handoff with a pipeline.
+      Figma to Claude Code to React, Tailwind and Storybook, with the design system
+      as the thing that constrains what gets generated.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      Design system v0 came out of real surfaces — the landing page, the context
+      engine, the workflow designer — not from a component wishlist. Stakeholder
+      reviews moved onto working code.
+    </Draft>
+  </p>
+
+  <Receipt
+    label="~/design-system — prompt to rendered component"
+    leftLabel="Instruction"
+    rightLabel="Rendered in Storybook"
+    caption="The loop that replaced the handoff document. Capture pending."
+  >
+    <div slot="left">
+      <Needs block ratio="4 / 3">
+        3–4 stills or a 60–90s capture: prompt in Claude Code → generated component
+        → rendered result in Storybook
+      </Needs>
+    </div>
+    <div slot="right">
+      <Needs block ratio="4 / 3">Storybook screenshot — component grid / library view</Needs>
+    </div>
+  </Receipt>
+
+  <Receipt
+    label="handoff.pdf vs. main@HEAD"
+    leftLabel="Agency-era artifact"
+    rightLabel="Pipeline output"
+    caption="The before/after that makes the argument without a paragraph of process description."
+  >
+    <div slot="left">
+      <Needs block ratio="4 / 3">One agency-era handoff artifact, redacted as needed</Needs>
+    </div>
+    <div slot="right">
+      <Needs block ratio="4 / 3">The equivalent surface, produced through the pipeline</Needs>
+    </div>
+  </Receipt>
+
+  <h2>The Win</h2>
+  <p>
+    <Needs>
+      what actually changed. Honest scale: 90 days, v0, process proved — “stakeholders
+      reviewed working code for the first time” is strong enough without embellishment
+    </Needs>
+  </p>
+
+  <h2>Key Outcomes</h2>
+  <p>
+    <Needs>3–5 real, verifiable statements — no invented metrics</Needs>
+  </p>
+
+  <h2>Strategic Insight</h2>
+  <p>
+    <Draft>
+      The pipeline is the design system's delivery mechanism, not a tool bolted beside
+      it. Reviews on working code collapse the gap between what was drawn and what was
+      understood.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      When exploration costs almost nothing, the constraint moves. It stops being how
+      many options a team can produce and becomes which ones are worth building, and
+      what guardrails they have to respect on the way out.
+    </Draft>
+  </p>
+
+  <div class="aside">
+    <p>
+      Held back pending Tyler's decision: the team-assessment thread (baseline,
+      retain / retrain / replace recommendation). Public, or interview-only?
+    </p>
+  </div>
+
+  <CrossLinks
+    slot="after"
+    label="Related"
+    title="The operating model behind this"
+    links={[
+      { href: '/how-i-design-with-ai', label: 'How I design with AI' },
+      { href: '/word-web', label: 'Word web — the same system shipping a product' },
+    ]}
+  />
+</DocumentLayout>

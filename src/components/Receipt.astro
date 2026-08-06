@@ -1,0 +1,160 @@
+---
+/**
+ * THE SIGNATURE TREATMENT — a dark instrument panel embedded in the document.
+ *
+ * docs/04-style-reference.md sanctions exactly one distinctive move for technical
+ * case studies: "a terminal-to-rendered-component pairing... Design it once,
+ * quietly, and reuse the treatment for any future technical case study."
+ *
+ * This is it. Left pane = the instruction. Right pane = what came back.
+ * Both panes accept anything; the right one usually holds a screenshot.
+ */
+interface Props {
+  label: string;
+  leftLabel?: string;
+  rightLabel?: string;
+  caption?: string;
+}
+const {
+  label,
+  leftLabel = 'Instruction',
+  rightLabel = 'Result',
+  caption,
+} = Astro.props;
+---
+
+<figure class="receipt">
+  <div class="chrome">
+    <span class="dot" aria-hidden="true"></span>
+    <span class="path">{label}</span>
+  </div>
+
+  <div class="panes">
+    <div class="pane pane-left">
+      <p class="pane-label">{leftLabel}</p>
+      <div class="pane-body">
+        <slot name="left" />
+      </div>
+    </div>
+    <div class="pane pane-right">
+      <p class="pane-label">{rightLabel}</p>
+      <div class="pane-body">
+        <slot name="right" />
+      </div>
+    </div>
+  </div>
+
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .receipt {
+    margin: 0 0 32px;
+    background: var(--color-machine);
+    border: 1px solid var(--color-machine);
+    overflow: hidden;
+  }
+
+  .chrome {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--color-machine-rule);
+    background: var(--color-machine-raised);
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-signal);
+    flex: none;
+  }
+
+  .path {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-machine-ink-2);
+  }
+
+  .panes {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .pane {
+    padding: 18px 16px 20px;
+    min-width: 0;
+  }
+
+  .pane-left {
+    border-bottom: 1px solid var(--color-machine-rule);
+  }
+
+  .pane-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-machine-ink-2);
+    margin: 0 0 12px;
+  }
+
+  .pane-body {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--color-machine-ink);
+  }
+
+  .pane-body :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .pane-body :global(pre) {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* dim the shell prompt so the instruction itself carries the weight */
+  .pane-body :global(.cue) {
+    color: var(--color-signal);
+    user-select: none;
+  }
+
+  .pane-body :global(.dim) {
+    color: var(--color-machine-ink-2);
+  }
+
+  figcaption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    color: var(--color-machine-ink-2);
+    padding: 14px 16px;
+    border-top: 1px solid var(--color-machine-rule);
+  }
+
+  @media (min-width: 810px) {
+    .panes {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    }
+
+    .pane-left {
+      border-bottom: 0;
+      border-right: 1px solid var(--color-machine-rule);
+    }
+
+    .pane {
+      padding: 22px 22px 26px;
+    }
+  }
+</style>

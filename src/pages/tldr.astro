@@ -1,0 +1,75 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Needs from '../components/Needs.astro';
+
+const entry = await getEntry('pages', 'tldr');
+if (!entry) throw new Error('content/tldr.md is missing');
+const { Content } = await render(entry);
+---
+
+<BaseLayout title="TL;DR | Tyler Young" description={entry.data.description} current="tldr">
+  <article class="shell doc tldr">
+    <header class="head">
+      <p class="label">Summary</p>
+      <h1 class="display">TL;DR</h1>
+    </header>
+
+    <ul class="summary">
+      {entry.data.summary.map((s) => <li>{s}</li>)}
+    </ul>
+
+    <div class="columns">
+      <aside class="rail" aria-label="Note">
+        <p class="rail-note">
+          Ported from the live site. Whether a fourth block on the AI practice belongs
+          here is still open — <Needs>Tyler decides</Needs>
+        </p>
+      </aside>
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .summary {
+    list-style: none;
+    margin: 40px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+    max-width: 60ch;
+  }
+
+  .summary li {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    font-size: clamp(21px, 3.2vw, 28px);
+    line-height: 1.25;
+    padding-left: 26px;
+    position: relative;
+    text-wrap: balance;
+  }
+
+  .summary li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 16px;
+    height: 1px;
+    background: var(--color-signal);
+  }
+
+  .rail-note {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-3);
+    margin: 0;
+  }
+</style>

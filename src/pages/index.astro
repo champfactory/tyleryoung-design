@@ -1,0 +1,529 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import WorkCard from '../components/WorkCard.astro';
+import Receipt from '../components/Receipt.astro';
+import Needs from '../components/Needs.astro';
+import Draft from '../components/Draft.astro';
+import { essayGroups } from '../data/essayGroups';
+
+const essays = await getCollection('essays');
+const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
+
+// Ported verbatim from the live site. Do not edit without Tyler.
+const bio = [
+  'Tyler Young is a senior design executive who helps companies turn design from a delivery function into a strategic advantage.',
+  'He specializes in aligning product design with business outcomes, scaling high-impact teams, and embedding user-centered thinking into roadmap planning.',
+  'His work spans product strategy, systems thinking, and operational rigor — driving measurable impact across growth-stage and enterprise orgs.',
+];
+
+// Ported verbatim, including the Figma deck URLs.
+const caastle = [
+  {
+    eyebrow: 'Execution Impact',
+    title: 'Fast Find',
+    description:
+      'Replaced filters with expressive inputs. A new UX primitive, built to move faster.',
+    artifacts: [
+      {
+        label: '14 slide deck',
+        href: 'https://www.figma.com/deck/UBBOP8SP5gITdCrqp3jrty/Fast-Find?node-id=4004-207&viewport=501%2C404%2C0.02&t=jGlUNHd3GRNmvQiM-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
+      },
+    ],
+  },
+  {
+    eyebrow: 'Strategic Framing',
+    title: 'One Place',
+    description:
+      'Built conversion UX around perceived proximity to referring site, not just friction.',
+    artifacts: [
+      {
+        label: '14 slide deck',
+        href: 'https://www.figma.com/deck/ToCiSMjR0JI9Y0SoDsBlNC/One-Place?node-id=4004-207&viewport=-63%2C38%2C0.49&t=WBw66U8AtUSdKLG5-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
+      },
+    ],
+  },
+  {
+    eyebrow: 'System Design',
+    title: 'Storefront Builder',
+    description:
+      'Created safe levers for brand expression. Control and creativity, finally in sync.',
+    artifacts: [
+      {
+        label: '15 slide deck',
+        href: 'https://www.figma.com/deck/TxWswaxL97AiA48NWD9e5s/Storefront-Builder?node-id=2005-2&viewport=-42%2C52%2C0.47&t=Chg8rwuX9we4PeCk-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
+      },
+    ],
+  },
+];
+
+const references = [
+  {
+    name: 'Chris Macomber',
+    title: 'VP of Product',
+    quote:
+      'Tyler consistently brought clarity to moments that felt ambiguous or overcomplicated. As Senior Director of Design, he didn’t just advocate for quality—he reframed it in terms of business risk, user value, and strategic opportunity. His ability to structure design tradeoffs gave our team sharper product decisions and faster momentum. I relied on Tyler to cut through ambiguity, rally cross-functional partners, and push us beyond incrementalism. He’s the rare design leader who speaks the language of outcomes and earns trust by making every decision feel intentional and well-weighted.',
+  },
+  {
+    name: 'Arnab Bhattacharya',
+    title: 'Associate VP of Product',
+    quote:
+      'Working with Tyler Young as Sr. Director of Design has been transformative for our product organization. His exceptional feature planning combines strategic vision with practical execution. His approach to design integration eliminated silos and embedded design thinking throughout our product development process. Tyler revolutionized our feedback loops and championed insightful consumer research, reducing design cycles while improving quality significantly. Tyler has been an invaluable partner for our Product team, and I would recommend him for any team looking for a kick-ass UX leader to make things happen.',
+  },
+  {
+    name: 'Jessica Zhu',
+    title: 'Associate VP of Product',
+    quote:
+      'As I led the development of our AI and business intelligence platforms, Tyler was a deeply collaborative partner—someone who brought structure, perspective, and a steadying influence to complex system decisions. Tyler challenged ideas thoughtfully, clarified tradeoffs, and ensured that design contributed meaningfully without overpowering the process. He made our work stronger, more focused, and better connected.',
+  },
+];
+---
+
+<BaseLayout
+  title="Tyler Young | Senior Director of Design"
+  description="[NEEDS: meta description]"
+>
+  <!-- ---------------------------------------------------------------- HERO -->
+  <section class="shell hero">
+    <p class="label" data-rise style="--i:0">Portfolio · 2026</p>
+
+    <h1 class="display name" data-rise style="--i:1">Tyler Young</h1>
+    <p class="display role" data-rise style="--i:2">Senior Director of Design</p>
+
+    <div class="lede" data-rise style="--i:3">
+      {bio.map((p) => <p>{p}</p>)}
+      <p class="ai-slot">
+        <Needs>
+          the one added sentence on current AI-native practice — Tyler writes or
+          approves it. This is the most load-bearing sentence on the page.
+        </Needs>
+      </p>
+    </div>
+
+    <p class="legend" data-rise style="--i:4">
+      <span class="k draft-key">Dotted</span> = draft copy awaiting Tyler's approval.{' '}
+      <span class="k needs-key">NEEDS</span> = missing asset or open decision. Neither
+      ships.
+    </p>
+  </section>
+
+  <!-- -------------------------------------------------- 01 BUILDING WITH AI -->
+  <section class="shell band" aria-labelledby="building">
+    <SectionHead num="01" name="Building with AI" id="building" />
+
+    <div class="stack-lg">
+      <WorkCard
+        lead
+        eyebrow="AI-Native Practice"
+        title="An AI-native design-to-code pipeline"
+        artifacts={[
+          { label: 'Case study', href: '/atheer-design-pipeline' },
+        ]}
+      >
+        <p class="lead-desc">
+          <Draft>
+            Replaced an agency handoff process with a Figma↔Claude Code pipeline
+            producing React, Tailwind and Storybook components. Stakeholders
+            reviewed working code instead of mockups.
+          </Draft>
+        </p>
+
+        <div slot="media">
+          <Receipt
+            label="~/atheer/design-system — the loop, end to end"
+            leftLabel="Instruction"
+            rightLabel="Rendered in Storybook"
+            caption="Placeholder frame. The real pairing goes here once the capture exists."
+          >
+            <div slot="left">
+              <Needs block ratio="4 / 3">
+                3–4 stills or a 60–90s capture: prompt in Claude Code → generated
+                component → rendered result
+              </Needs>
+            </div>
+            <div slot="right">
+              <Needs block ratio="4 / 3">
+                Storybook screenshot — component grid / library view
+              </Needs>
+            </div>
+          </Receipt>
+        </div>
+      </WorkCard>
+
+      <div class="pair">
+        <WorkCard
+          eyebrow="Shipped Product"
+          title="Word web"
+          artifacts={[
+            { label: 'Live product', needs: 'URL + decision to expose', live: true },
+            { label: 'Evaluation study', href: '/word-web' },
+          ]}
+        >
+          <p class="desc-slot">
+            <Draft>
+              Word pages that compose themselves in front of the reader. Designed,
+              built and shipped with a two-person team.
+            </Draft>
+          </p>
+          <p class="sub">
+            Behind it: twelve models judged on quality, cost, latency and format
+            conformance, and a production decision with real money attached.
+          </p>
+        </WorkCard>
+
+        <WorkCard
+          eyebrow="Operating Model"
+          title="How I design with AI"
+          artifacts={[{ label: 'Read the essay', href: '/how-i-design-with-ai' }]}
+        >
+          <p class="desc-slot">
+            <Draft>
+              Feature goals as planning. Company and user values as guardrails.
+              Stack-ranked options as evaluation. The design leader's job moves to
+              judgment and guardrails.
+            </Draft>
+          </p>
+          <p class="sub">
+            The connective thesis above both case studies — same format as the
+            leadership essays below.
+          </p>
+        </WorkCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------ 02 PRODUCT WORK -->
+  <section class="shell band" aria-labelledby="work">
+    <SectionHead num="02" name="Product work" id="work" />
+
+    <div class="stack-lg">
+      <WorkCard
+        lead
+        eyebrow="Data-Dense B2B"
+        title="Field operations"
+        artifacts={[{ label: 'Case study', needs: 'decision on what can be public' }]}
+      >
+        <p class="lead-desc">
+          <Draft>
+            Dealer-network monitoring for a technical support persona. An AI layer
+            that answers "what needs my attention."
+          </Draft>
+        </p>
+        <div slot="media">
+          <Needs block ratio="16 / 9">
+            Which automotive screens can be public — dashboard, metric cards, the AI
+            attention feature. If none: this becomes text-only, or is cut.
+          </Needs>
+        </div>
+      </WorkCard>
+
+      <div class="grid-3">
+        {caastle.map((c) => <WorkCard {...c} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------- 03 LEADERSHIP ESSAYS -->
+  <section class="shell band" aria-labelledby="essays">
+    <SectionHead num="03" name="Leadership essays" id="essays" />
+
+    <div class="groups">
+      {
+        essayGroups.map((group, i) => (
+          <div class="group">
+            <p class="group-num">{String(i + 1).padStart(2, '0')}</p>
+            <div>
+              <p class="eyebrow">{group.eyebrow}</p>
+              <h3 class="heading group-title">{group.title}</h3>
+              <ul class="essay-list">
+                {group.slugs.map((slug) => {
+                  const e = bySlug.get(slug);
+                  return (
+                    <li>
+                      {e ? (
+                        <a class="link" href={`/${slug}`}>
+                          {e.data.title}
+                        </a>
+                      ) : (
+                        <Needs>essay content for {slug}</Needs>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------- 04 REFERENCES -->
+  <section class="shell band" aria-labelledby="refs">
+    <SectionHead num="04" name="Executive references" id="refs" />
+
+    <div class="grid-3 refs">
+      {
+        references.map((r) => (
+          <figure class="ref">
+            <blockquote>{r.quote}</blockquote>
+            <figcaption>
+              <span class="ref-name">{r.name}</span>
+              <span class="ref-title">{r.title}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <p class="note">
+      Headshots are deliberately not carried over yet. On the live site all three
+      share <code>alt="David Sabel"</code>, so the photo↔person mapping needs
+      confirming before the images ship — <Needs>confirm which photo is whom</Needs>.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ------------------------------------------------------------------ hero */
+  .hero {
+    padding-top: 72px;
+    padding-bottom: 20px;
+  }
+
+  .name {
+    font-size: clamp(48px, 11vw, 118px);
+    margin: 18px 0 0;
+  }
+
+  .role {
+    font-size: clamp(20px, 3.4vw, 32px);
+    font-weight: 400;
+    color: var(--color-ink-3);
+    margin: 6px 0 0;
+    letter-spacing: -0.01em;
+  }
+
+  .lede {
+    margin-top: 40px;
+    max-width: 62ch;
+    border-top: 1px solid var(--color-rule);
+    padding-top: 26px;
+  }
+
+  .lede p {
+    margin: 0 0 14px;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  .lede p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-slot {
+    margin-top: 20px !important;
+  }
+
+  .legend {
+    margin: 40px 0 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-3);
+    max-width: 70ch;
+  }
+
+  .k {
+    color: var(--color-ink);
+    padding-bottom: 1px;
+  }
+
+  .draft-key {
+    border-bottom: 1px dotted var(--color-signal);
+  }
+
+  .needs-key {
+    color: var(--color-signal);
+    border-bottom: 1px dashed var(--color-signal);
+  }
+
+  /* --------------------------------------------------------------- sections */
+  .band {
+    padding-top: 88px;
+  }
+
+  .stack-lg {
+    display: grid;
+    gap: 64px;
+  }
+
+  .lead-desc {
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--color-ink-2);
+    margin: 0 0 4px;
+    max-width: 56ch;
+    text-wrap: pretty;
+  }
+
+  .desc-slot {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--color-ink-2);
+    margin: 0;
+    max-width: 50ch;
+    text-wrap: pretty;
+  }
+
+  .sub {
+    margin: 14px 0 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-3);
+    max-width: 46ch;
+  }
+
+  .pair,
+  .grid-3 {
+    display: grid;
+    gap: 40px;
+  }
+
+  /* ----------------------------------------------------------------- essays */
+  .groups {
+    display: grid;
+    gap: 44px;
+  }
+
+  .group {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    padding-top: 22px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .group-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    color: var(--color-signal);
+    margin: 6px 0 0;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    margin: 0 0 8px;
+  }
+
+  .group-title {
+    font-size: 26px;
+    margin: 0 0 18px;
+  }
+
+  .essay-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+
+  .essay-list a {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  /* ------------------------------------------------------------- references */
+  .ref {
+    margin: 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  blockquote {
+    margin: 0 0 18px;
+    font-size: 17px;
+    line-height: 1.62;
+    color: var(--color-ink-2);
+  }
+
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .ref-name,
+  .ref-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .ref-name {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .ref-title {
+    color: var(--color-ink-3);
+  }
+
+  .note {
+    margin: 40px 0 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-3);
+    max-width: 68ch;
+  }
+
+  .note code {
+    color: var(--color-ink);
+  }
+
+  /* ------------------------------------------------------------ breakpoints */
+  @media (min-width: 810px) {
+    .hero {
+      padding-top: 104px;
+    }
+
+    .pair {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
+    }
+
+    .group {
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 32px;
+    }
+
+    .group-title {
+      font-size: 30px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .band {
+      padding-top: 112px;
+    }
+  }
+</style>

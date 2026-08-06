@@ -1,0 +1,19 @@
+# build output
+dist/
+.astro/
+node_modules/
+
+# OS
+.DS_Store
+
+# ---------------------------------------------------------------------------
+# NOT PUBLISHED — internal planning, kept local.
+#
+# The repo is linked from the site's colophon, so anyone evaluating Tyler can
+# read it. These files name target companies, describe positioning strategy,
+# and reference a former employer's circumstances. None of that belongs in a
+# public repo whose entire purpose is to be opened by those companies.
+# ---------------------------------------------------------------------------
+CLAUDE.md
+docs/
+reference/

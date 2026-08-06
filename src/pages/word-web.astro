@@ -1,0 +1,109 @@
+---
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import CrossLinks from '../components/CrossLinks.astro';
+import Needs from '../components/Needs.astro';
+import Draft from '../components/Draft.astro';
+---
+
+<DocumentLayout
+  title="Choosing a model is a design decision with money attached"
+  metaTitle="Word web — model evaluation study | Tyler Young"
+  eyebrow="Shipped Product"
+  current="building"
+  meta={[
+    ['Contribution', 'Designed, built and shipped with a two-person team'],
+    ['Role', 'Design and product · live business'],
+    ['Scope', 'Product design, model evaluation, production decision'],
+    ['Evaluated', 'Twelve models · July 2026'],
+    ['Live', '[NEEDS: URL + decision to expose]'],
+  ]}
+>
+  <div class="aside">
+    <p>
+      Open decisions — the live URL, and the public framing. This is presented as a
+      product and a business, not as children's media. Tyler signs off on the framing
+      before this page ships.
+    </p>
+  </div>
+
+  <h2>What it is</h2>
+  <p>
+    <Draft>
+      Word pages that compose themselves in front of the reader — streaming,
+      cross-linked, generated on request. Launched as a new brand and business.
+    </Draft>
+  </p>
+  <p>
+    <Needs>Tyler confirms the public framing in his own words</Needs>
+  </p>
+
+  <h2>The design problem</h2>
+  <p>
+    <Needs>
+      Tyler's take — 2–3 sentences on designing for content that streams and composes
+      live, where the page does not exist before the reader asks for it
+    </Needs>
+  </p>
+
+  <h2>The model evaluation</h2>
+  <p>
+    <Draft>
+      Twelve models, judged against the incumbent on four axes: quality, cost, latency
+      and format conformance. Read by hand, not scored by another model.
+    </Draft>
+  </p>
+
+  <div class="matrix-slot">
+    <Needs block ratio="16 / 9">
+      The evaluation matrix — table or image, sanitized to Tyler's comfort level.
+      Model names in or out is his call.
+    </Needs>
+  </div>
+
+  <h3>The decision</h3>
+  <p>
+    <Draft>
+      Hands-on reading preferred the incumbent's coverage and overall quality. Several
+      models matched it closely enough on paper, and lost on responsiveness — a page
+      that composes in front of you cannot pause to think. The final call was a
+      three-way trade between price, responsiveness and creative quality, and it
+      resolved toward quality.
+    </Draft>
+  </p>
+
+  <h3>Why it's on this site</h3>
+  <p>
+    <Draft>
+      Model selection is a design decision. It sets the tempo of the interface, the
+      texture of the writing, and the unit economics of the business, and it is made
+      once and lived with. Putting it in a portfolio is only unusual because most
+      design work never had a per-request cost attached.
+    </Draft>
+  </p>
+
+  <div class="aside">
+    <p>
+      Not published, by design: prompts, evaluation criteria detail, and content
+      frameworks. Competitive material for a live business.
+    </p>
+  </div>
+
+  <CrossLinks
+    slot="after"
+    label="Related"
+    title="The system behind this"
+    links={[
+      { href: '/how-i-design-with-ai', label: 'How I design with AI' },
+      {
+        href: '/atheer-design-pipeline',
+        label: 'The design-to-code pipeline this came out of',
+      },
+    ]}
+  />
+</DocumentLayout>
+
+<style>
+  .matrix-slot {
+    margin: 0 0 26px;
+  }
+</style>

@@ -1,0 +1,55 @@
+---
+interface Props {
+  title: string;
+  label?: string;
+  links: { href: string; label: string }[];
+}
+const { title, label = 'More in this group', links } = Astro.props;
+---
+
+{
+  links.length > 0 && (
+    <nav class="shell crosslinks" aria-labelledby="crosslinks-title">
+      <p class="label">{label}</p>
+      <h2 class="heading" id="crosslinks-title">
+        {title}
+      </h2>
+      <ul>
+        {links.map((l) => (
+          <li>
+            <a class="link" href={l.href}>
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<style>
+  .crosslinks {
+    margin-top: 96px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-ink);
+  }
+
+  h2 {
+    font-size: 30px;
+    margin: 8px 0 22px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+    max-width: 70ch;
+  }
+
+  a {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+</style>

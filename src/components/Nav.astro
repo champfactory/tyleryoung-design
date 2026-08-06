@@ -1,0 +1,133 @@
+---
+const { current } = Astro.props as { current?: string };
+---
+
+<header class="nav">
+  <div class="shell inner">
+    <a class="wordmark" href="/">
+      <span class="name">Tyler Young</span>
+      <span class="role">Senior Director of Design</span>
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li>
+          <a href="/#building" aria-current={current === 'building' ? 'page' : undefined}
+            >Building</a
+          >
+        </li>
+        <li>
+          <a href="/tldr" aria-current={current === 'tldr' ? 'page' : undefined}>TL;DR</a>
+        </li>
+        <li><a href="mailto:43tylers@gmail.com">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    border-bottom: 1px solid var(--color-rule);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: color-mix(in srgb, var(--color-paper) 88%, transparent);
+    backdrop-filter: blur(10px);
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-block: 14px;
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--color-ink);
+    flex-wrap: wrap;
+  }
+
+  .name {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .role {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+
+  ul {
+    display: flex;
+    gap: 22px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-ink-2);
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: color 120ms ease, border-color 120ms ease;
+  }
+
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-signal);
+  }
+
+  .inner {
+    min-width: 0;
+  }
+
+  .wordmark,
+  nav {
+    min-width: 0;
+  }
+
+  /* At 390px the wordmark + three links measure wider than the viewport, which
+     pushes the whole document's scrollWidth past the screen. The role line goes
+     first (it's a nicety, not information), then the type tightens. */
+  @media (max-width: 560px) {
+    .role {
+      display: none;
+    }
+
+    .name {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+
+    nav a {
+      font-size: 10px;
+      letter-spacing: 0.05em;
+    }
+
+    ul {
+      gap: 13px;
+    }
+
+    .inner {
+      gap: 12px;
+    }
+  }
+</style>

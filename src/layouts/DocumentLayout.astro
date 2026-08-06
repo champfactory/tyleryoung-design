@@ -1,0 +1,256 @@
+---
+/**
+ * The long-form document: essays and case studies share one anatomy.
+ *
+ * eyebrow · H1 · metadata rail · prose · (optional) cross-links
+ *
+ * The live site's essay anatomy is preserved (docs/02-content-inventory.md says
+ * "preserve exactly — it works"); only the visual register changed. Case studies
+ * use the same shell so a technical piece reads as a sibling of the leadership
+ * essays rather than a bolt-on.
+ */
+import BaseLayout from './BaseLayout.astro';
+import Needs from '../components/Needs.astro';
+
+export type MetaPair = [label: string, value: string];
+
+interface Props {
+  title: string;
+  metaTitle: string;
+  description?: string;
+  eyebrow: string;
+  meta: MetaPair[];
+  current?: string;
+}
+
+const { title, metaTitle, description, eyebrow, meta, current } = Astro.props;
+---
+
+<BaseLayout title={metaTitle} description={description} current={current}>
+  <article class="shell doc">
+    <header class="head">
+      <p class="label">{eyebrow}</p>
+      <h1 class="display">{title}</h1>
+      {
+        !description && (
+          <p class="meta-warning">
+            <Needs>meta description for this page</Needs>
+          </p>
+        )
+      }
+    </header>
+
+    <div class="columns">
+      <aside class="rail" aria-label="Metadata">
+        <dl>
+          {
+            meta.map(([label, value]) => (
+              <div class="row">
+                <dt>{label}</dt>
+                <dd set:html={value} />
+              </div>
+            ))
+          }
+        </dl>
+      </aside>
+
+      <div class="prose">
+        <slot />
+      </div>
+    </div>
+  </article>
+
+  <slot name="after" />
+</BaseLayout>
+
+<style is:global>
+  /* Global rather than scoped: the prose styles have to reach markdown rendered
+     by <Content />, and both essays and hand-authored case studies use them. */
+  .doc {
+    padding-top: 64px;
+  }
+
+  .doc .head .display {
+    font-size: clamp(34px, 6.2vw, 60px);
+    margin: 16px 0 0;
+    /* ch on the heading itself — on the wrapper it resolves against the body's
+       19px and clamps a 60px headline to a ~250px column. */
+    max-width: 22ch;
+  }
+
+  .doc .meta-warning {
+    margin: 20px 0 0;
+  }
+
+  .doc .columns {
+    margin-top: 56px;
+    display: grid;
+    gap: 40px;
+    border-top: 1px solid var(--color-ink);
+    padding-top: 32px;
+  }
+
+  .doc .rail dl {
+    margin: 0;
+    display: grid;
+    gap: 22px;
+  }
+
+  .doc .rail .row {
+    display: grid;
+    gap: 6px;
+  }
+
+  .doc .rail dt {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-signal);
+  }
+
+  .doc .rail dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--color-ink-2);
+  }
+
+  .doc .prose {
+    max-width: 68ch;
+    min-width: 0;
+  }
+
+  .doc .prose > h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    margin: 52px 0 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .doc .prose > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .doc .prose > h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    margin: 34px 0 12px;
+  }
+
+  /* Direct children only. As a descendant selector this out-specifies Astro's
+     scoped component styles and reformats every <p> inside an embedded
+     component — e.g. the Receipt's pane labels. */
+  .doc .prose > p {
+    font-size: 20px;
+    line-height: 1.68;
+    margin: 0 0 22px;
+    text-wrap: pretty;
+  }
+
+  .doc .prose > ol,
+  .doc .prose > ul {
+    margin: 0 0 22px;
+    padding-left: 0;
+    list-style: none;
+    display: grid;
+    gap: 14px;
+    counter-reset: item;
+  }
+
+  .doc .prose > ol > li,
+  .doc .prose > ul > li {
+    font-size: 19px;
+    line-height: 1.6;
+    padding-left: 38px;
+    position: relative;
+    text-wrap: pretty;
+  }
+
+  .doc .prose > ol > li {
+    counter-increment: item;
+  }
+
+  .doc .prose > ol > li::before {
+    content: counter(item, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.42em;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--color-signal);
+  }
+
+  .doc .prose > ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 22px;
+    height: 1px;
+    background: var(--color-rule-strong);
+  }
+
+  .doc .prose > p a,
+  .doc .prose > ul a,
+  .doc .prose > ol a {
+    color: var(--color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-signal);
+  }
+
+  /* a pull-out for facts that are not prose — used by the case studies */
+  .doc .prose .aside {
+    margin: 0 0 22px;
+    padding: 18px 20px;
+    background: var(--color-paper-sunk);
+    border-left: 2px solid var(--color-signal);
+  }
+
+  .doc .prose .aside p {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+    margin: 0;
+    color: var(--color-ink-2);
+  }
+
+  @media (min-width: 810px) {
+    .doc {
+      padding-top: 96px;
+    }
+
+    .doc .columns {
+      grid-template-columns: 200px minmax(0, 1fr);
+      gap: 56px;
+    }
+
+    .doc .rail {
+      position: sticky;
+      top: 96px;
+      align-self: start;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .doc .columns {
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 80px;
+    }
+  }
+</style>

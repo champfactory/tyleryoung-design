@@ -1,0 +1,121 @@
+---
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import CrossLinks from '../components/CrossLinks.astro';
+import Needs from '../components/Needs.astro';
+import Draft from '../components/Draft.astro';
+---
+
+<DocumentLayout
+  title="How I design with AI"
+  metaTitle="How I design with AI | Tyler Young"
+  eyebrow="Operating Model"
+  current="building"
+  meta={[
+    ['Contribution', 'An operating model for directing AI to produce production code'],
+    ['Role', 'Practice — not a single project'],
+    ['Scope', 'Design systems, guardrails, evaluation, handoff'],
+    ['Takeaway', '[NEEDS: Tyler’s one-liner]'],
+  ]}
+>
+  <div class="aside">
+    <p>
+      Entire page is draft copy, written from Tyler's own mapping of his workflow onto
+      agentic patterns. Every sentence is his to rewrite. No claim here asserts a
+      metric, a date, or a scale.
+    </p>
+  </div>
+
+  <p class="opening">
+    <Draft>
+      Designing with AI is not prompting for pictures. It is creating and managing the
+      system the AI builds from.
+    </Draft>
+  </p>
+
+  <h2>Feature goals are planning</h2>
+  <p>
+    <Draft>
+      A goal stated well is a plan the model can execute against. Stated badly, it
+      produces something plausible and wrong, quickly. Most of the work that used to
+      go into specifying screens now goes into specifying intent — what this surface
+      is for, what it must not do, what "done" looks like.
+    </Draft>
+  </p>
+
+  <h2>Company and user values are guardrails</h2>
+  <p>
+    <Draft>
+      Brand guidelines, accessibility floors, and the design system are not
+      documentation any more. They are constraints the output has to satisfy before
+      anyone looks at it. Written down, they hold. Left implicit, they are the first
+      thing to go.
+    </Draft>
+  </p>
+
+  <h2>Stack-ranking options is evaluation</h2>
+  <p>
+    <Draft>
+      When exploration is cheap, the scarce thing is judgment about which option is
+      right. I ask for several, in code, and then do the part that does not scale:
+      read them, rank them, and say why.
+    </Draft>
+  </p>
+
+  <h2>Building options in code is tool use</h2>
+  <p>
+    <Draft>
+      Options come back as working components, not pictures of components. A
+      stakeholder review on a rendered surface ends an argument that a mockup review
+      only postpones.
+    </Draft>
+  </p>
+
+  <h2>Handoff is human-in-the-loop</h2>
+  <p>
+    <Draft>
+      Code goes out with a person's name on it. I read what was produced and shape it;
+      I do not ship what I have not vetted. That is the whole point of the loop, and
+      it is the part that does not get automated.
+    </Draft>
+  </p>
+
+  <h2>What this changes about the job</h2>
+  <p>
+    <Draft>
+      A design leader's leverage used to be production capacity — how much a team
+      could get drawn, reviewed and built. That constraint is loosening. What replaces
+      it is the quality of the system the work comes out of: the guardrails, the
+      evaluation, the standard for what is allowed to ship.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      I am not a frontend engineer, and this is not an argument that designers should
+      become one. It is an argument that the systems designers own now compile.
+    </Draft>
+  </p>
+
+  <p>
+    <Needs>
+      Tyler's closing line — the one sentence he wants a hiring manager to remember
+    </Needs>
+  </p>
+
+  <CrossLinks
+    slot="after"
+    label="Related"
+    title="The system in practice"
+    links={[
+      { href: '/atheer-design-pipeline', label: 'The design-to-code pipeline' },
+      { href: '/word-web', label: 'Word web — the system shipping a product' },
+    ]}
+  />
+</DocumentLayout>
+
+<style>
+  .opening {
+    font-size: 24px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 34px !important;
+  }
+</style>

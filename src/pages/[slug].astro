@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from 'astro:content';
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import CrossLinks from '../components/CrossLinks.astro';
+import { groupForSlug, essayGroups } from '../data/essayGroups';
+
+export async function getStaticPaths() {
+  const essays = await getCollection('essays');
+  return essays.map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+
+const group = groupForSlug(d.slug);
+const groupIndex = group ? essayGroups.indexOf(group) + 1 : 0;
+const siblings = group
+  ? (await getCollection('essays'))
+      .filter((e) => group.slugs.includes(e.data.slug) && e.data.slug !== d.slug)
+      .sort((a, b) => group.slugs.indexOf(a.data.slug) - group.slugs.indexOf(b.data.slug))
+      .map((e) => ({ href: `/${e.data.slug}`, label: e.data.title }))
+  : [];
+---
+
+<DocumentLayout
+  title={d.title}
+  metaTitle={d.metaTitle}
+  description={d.description}
+  eyebrow={group ? `${String(groupIndex).padStart(2, '0')} · ${group.eyebrow}` : 'Essay'}
+  meta={[
+    ['Contribution', d.contribution],
+    ['Role', d.role],
+    ['Scope', d.scope],
+    ['Takeaway', d.takeaway],
+  ]}
+>
+  <Content />
+
+  <CrossLinks slot="after" title={group?.title ?? ''} links={siblings} />
+</DocumentLayout>

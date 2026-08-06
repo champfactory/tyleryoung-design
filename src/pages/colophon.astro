@@ -1,0 +1,239 @@
+---
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import CrossLinks from '../components/CrossLinks.astro';
+import Needs from '../components/Needs.astro';
+import Draft from '../components/Draft.astro';
+import { audit } from '../data/palette.mjs';
+import { REPO, REPO_LABEL } from '../data/site.mjs';
+
+// Computed at build time from the same module the pre-build check runs against.
+// A hand-typed table of passing numbers would be a claim; this is the check.
+const rows = audit();
+const passing = rows.filter((r) => r.pass).length;
+---
+
+<DocumentLayout
+  title="How this site is built"
+  metaTitle="Colophon | Tyler Young"
+  description="What this portfolio is built with, and the checks that run against it on every build."
+  eyebrow="Colophon"
+  meta={[
+    ['Stack', 'Astro · React islands · Tailwind · static output'],
+    ['Client JS', 'None on content pages'],
+    ['Checks', 'Contrast audit · open-items audit · both on every build'],
+    ['Source', `<a href="${REPO}">${REPO_LABEL}</a>`],
+  ]}
+>
+  <p class="opening">
+    <Draft>
+      This page exists because the footer makes a claim, and a claim about how
+      something was built should be checkable.
+    </Draft>
+  </p>
+
+  <h2>What runs on every build</h2>
+  <p>
+    <Draft>
+      Two checks, both written for this site, both in the repo. Neither is a linter
+      someone else wrote — they encode decisions specific to this project, which is
+      the only reason they're worth mentioning.
+    </Draft>
+  </p>
+
+  <h3>Contrast audit</h3>
+  <p>
+    <Draft>
+      Every color pair in the design system, checked at the smallest size it is
+      actually used at. It failed twice while I was building this. Two tokens got
+      darker until it stopped failing.
+    </Draft>
+  </p>
+
+  <div class="table-wrap">
+    <table>
+      <caption class="label">
+        Computed at build time from <code>src/data/palette.mjs</code> — {passing} of {rows.length} pairs passing
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Pair</th>
+          <th scope="col">Ratio</th>
+          <th scope="col">Needs</th>
+          <th scope="col">Used for</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map((r) => (
+            <tr>
+              <td>
+                <span class="swatch" style={`--fg:var(--color-${r.fg});--bg:var(--color-${r.bg})`}>
+                  Aa
+                </span>
+                {r.fg} on {r.bg}
+              </td>
+              <td class="num">{r.ratio.toFixed(2)}</td>
+              <td class="num dim">{r.need.toFixed(2)}</td>
+              <td class="use">{r.use}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Open-items audit</h3>
+  <p>
+    <Draft>
+      Scans the built HTML for every unfinished slot and every passage of copy that
+      hasn't been approved, and reports where each one landed. The list is derived
+      from the build rather than maintained by hand, so it can't quietly go stale
+      the way a checklist does. Run with <code>--strict</code> it fails, which is
+      what makes "no placeholders left" a gate rather than an intention.
+    </Draft>
+  </p>
+
+  <h2>What the old site did</h2>
+  <p>
+    <Draft>
+      Worth stating plainly, because it's the reason the checks exist. The previous
+      site shipped the same alt text on three different people's headshots, no alt
+      attribute at all on nine more images, and
+      <code>&lt;meta name="description" content="Made with Framer"&gt;</code> on every
+      essay page. Its body text sat at 2.6:1 against the background.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      None of that is unusual for a site built in a visual editor. All of it is the
+      kind of thing an engineering culture checks in the first thirty seconds.
+    </Draft>
+  </p>
+
+  <h2>What this site does</h2>
+  <ul>
+    <li>No client JavaScript on content pages — view source and count the script tags</li>
+    <li>One <code>h1</code> per page, headings in order, no skipped levels</li>
+    <li>Real alt text on every image, or no image yet</li>
+    <li>Visible keyboard focus, reduced motion respected, skip link</li>
+    <li>Self-hosted fonts, latin subsets only, no third-party requests</li>
+    <li>Old essay URLs preserved exactly, so existing links survive</li>
+  </ul>
+
+  <h2>What isn't finished</h2>
+  <p>
+    <Draft>
+      The gaps are marked on the pages themselves rather than hidden. Red means an
+      asset or a decision is missing; a dotted underline means the words are mine and
+      haven't been approved yet. Both are meant to be uncomfortable to look at.
+    </Draft>
+  </p>
+  <p>
+    <Needs>
+      Tyler's sign-off on this page before it ships — it describes his working
+      practice, not mine
+    </Needs>
+  </p>
+
+  <CrossLinks
+    slot="after"
+    label="Related"
+    title="The practice behind it"
+    links={[
+      { href: '/how-i-design-with-ai', label: 'How I design with AI' },
+      { href: '/atheer-design-pipeline', label: 'The design-to-code pipeline' },
+    ]}
+  />
+</DocumentLayout>
+
+<style>
+  .opening {
+    font-size: 24px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 34px !important;
+  }
+
+  .table-wrap {
+    margin: 0 0 30px;
+    overflow-x: auto;
+    border: 1px solid var(--color-rule);
+    background: var(--color-paper-raised);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 540px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+  }
+
+  caption {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--color-rule);
+    color: var(--color-ink-3);
+    line-height: 1.6;
+  }
+
+  th {
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 10px;
+    color: var(--color-ink-3);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--color-rule);
+    color: var(--color-ink-2);
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .num {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  .dim {
+    color: var(--color-ink-3);
+  }
+
+  .use {
+    white-space: normal;
+    color: var(--color-ink-3);
+  }
+
+  .swatch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 18px;
+    margin-right: 10px;
+    vertical-align: -4px;
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid var(--color-rule);
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    color: var(--color-ink);
+    background: var(--color-paper-sunk);
+    padding: 1px 5px;
+  }
+</style>

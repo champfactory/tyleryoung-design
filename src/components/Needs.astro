@@ -1,0 +1,86 @@
+---
+/**
+ * A deliberately loud placeholder. CLAUDE.md rule: never fill an empty slot with
+ * plausible content — render a visible [NEEDS: ...] marker instead.
+ *
+ * `block` renders it as a full-width slot where an image/receipt will go, sized
+ * so the layout doesn't shift when the real asset lands.
+ */
+interface Props {
+  block?: boolean;
+  ratio?: string;
+}
+const { block = false, ratio = '16 / 9' } = Astro.props;
+---
+
+{
+  block ? (
+    <div class="needs-block" style={`aspect-ratio:${ratio}`} data-needs>
+      <span class="tag">NEEDS</span>
+      <span class="what">
+        <slot />
+      </span>
+    </div>
+  ) : (
+    <mark class="needs" data-needs>
+      NEEDS: <slot />
+    </mark>
+  )
+}
+
+<style>
+  .needs {
+    display: inline;
+    background: transparent;
+    color: var(--color-signal);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px dashed var(--color-signal);
+    padding-bottom: 1px;
+  }
+
+  .needs-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 10px;
+    width: 100%;
+    padding: 18px;
+    background-color: var(--color-paper-sunk);
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 9px,
+      color-mix(in srgb, var(--color-rule-strong) 40%, transparent) 9px,
+      color-mix(in srgb, var(--color-rule-strong) 40%, transparent) 10px
+    );
+    border: 1px dashed var(--color-rule-strong);
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--color-signal-ink);
+    background: var(--color-signal);
+    padding: 3px 7px;
+  }
+
+  .what {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-ink-2);
+    max-width: 46ch;
+    background-color: var(--color-paper-sunk);
+    box-shadow: 0 0 0 6px var(--color-paper-sunk);
+  }
+</style>

@@ -1,0 +1,17 @@
+---
+/**
+ * CLAUDE.md: "Draft freely, but flag every place where you wrote words he hasn't
+ * approved." This marks copy I wrote or edited. Tyler either approves it (remove
+ * the wrapper) or rewrites it. Nothing here is fact-bearing — no metrics, no
+ * outcomes, no dates. Those live in [NEEDS] slots instead.
+ */
+---
+
+<span class="draft" data-draft><slot /></span>
+
+<style>
+  .draft {
+    border-bottom: 1px dotted color-mix(in srgb, var(--color-signal) 55%, transparent);
+    padding-bottom: 1px;
+  }
+</style>

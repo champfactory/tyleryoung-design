@@ -1,0 +1,246 @@
+@import 'tailwindcss';
+
+/* Latin subsets only download for English content — unicode-range gates the rest. */
+@import '@fontsource-variable/archivo/wght.css';
+@import '@fontsource-variable/newsreader/opsz.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+
+/* ---------------------------------------------------------------------------
+   SPEC SHEET — design system, v1 (2026-08-06)
+
+   The old site was an editorial portfolio: Inter, 900-weight uppercase headings,
+   a blue→violet tile ramp, red pill buttons. It read as "this person presents."
+
+   This one is built to read as "this person builds." The page is a document;
+   the evidence is a machine embedded in it. Three typefaces, each with a job:
+
+     Archivo      structure, headings, UI      — industrial grotesk, wide range
+     Newsreader   long-form prose              — keeps the leadership essays' authority
+     JetBrains Mono  labels, metadata, receipts — the technical layer, everywhere
+
+   The four essay groups are numbered (01–04) rather than color-coded. That drops
+   the old blue→violet ramp entirely — it was the most template-looking element on
+   the old site, and two of its four steps failed contrast (tokens.md §1).
+
+   Every color pair here is validated by scripts/contrast.mjs. Run `npm run contrast`.
+   --------------------------------------------------------------------------- */
+
+@theme {
+  --font-display: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-prose: 'Newsreader Variable', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
+
+  /* paper — warm, not white. white is a browser default; this is a choice. */
+  --color-paper: #f6f4ef;
+  --color-paper-raised: #fcfbf8;
+  --color-paper-sunk: #edeae1;
+
+  /* ink */
+  --color-ink: #1a1a18;
+  --color-ink-2: #55534b;
+  --color-ink-3: #6b6961;
+
+  /* rules — the visible grid */
+  --color-rule: #d0ccbe;
+  --color-rule-strong: #b9b4a6;
+
+  /* machine — dark instrument panels: terminals, code, receipts */
+  --color-machine: #16161a;
+  --color-machine-raised: #202027;
+  --color-machine-rule: #33333d;
+  --color-machine-ink: #e6e4dc;
+  --color-machine-ink-2: #9d9a90;
+
+  /* signal — one accent, used only for things that are live or interactive */
+  --color-signal: #bc3a1e;
+  --color-signal-ink: #ffffff;
+  --color-live: #2f6f4e;
+
+  --spacing-rail: 168px;
+  --breakpoint-md: 810px;
+  --breakpoint-lg: 1200px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    /* very fine grain — warmth without texture-as-decoration */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+    color: var(--color-ink);
+    font-family: var(--font-prose);
+    font-size: 19px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-signal-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* --- the mono technical layer -------------------------------------------- */
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+
+  /* --- structural type ----------------------------------------------------- */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 620;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .heading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  /* --- layout -------------------------------------------------------------- */
+  .shell {
+    max-width: var(--breakpoint-lg);
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  @media (min-width: 810px) {
+    .shell {
+      padding-inline: 40px;
+    }
+  }
+
+  /* A section header: hairline rule, number, label. The visible grid. */
+  .section-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    gap: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-ink);
+    margin-bottom: 44px;
+  }
+
+  .section-head .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    color: var(--color-signal);
+  }
+
+  .section-head .name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+
+  /* --- links --------------------------------------------------------------- */
+  .link {
+    color: var(--color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-rule-strong);
+    transition: border-color 120ms ease, color 120ms ease;
+  }
+
+  .link:hover {
+    color: var(--color-signal);
+    border-bottom-color: var(--color-signal);
+  }
+
+  /* An artifact link — concrete label, arrow, mono. "Live product", "Case study". */
+  .artifact {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--color-ink);
+    transition: color 120ms ease, border-color 120ms ease, gap 120ms ease;
+  }
+
+  .artifact:hover {
+    color: var(--color-signal);
+    border-bottom-color: var(--color-signal);
+    gap: 12px;
+  }
+
+  .artifact[data-live]::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-live);
+    flex: none;
+  }
+}
+
+/* --- page-load reveal: one orchestrated moment, not scattered micro-motion -- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-rise] {
+    animation: rise 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+}
