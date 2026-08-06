@@ -1,0 +1,94 @@
+---
+/**
+ * The leadership strand.
+ *
+ * The nine "How I…" essays used to be their own homepage section, competing with
+ * the work for a first-pass reader. They're stronger folded in: each story carries
+ * the two essays whose substance it demonstrates, with a line on the connection
+ * and a link to the full text for anyone who wants it.
+ *
+ * "What I made possible" rather than "what I designed" — which is what senior
+ * hiring actually screens for.
+ */
+import { getCollection } from 'astro:content';
+import Draft from './Draft.astro';
+
+interface Props {
+  /** essay slug → my one-line note on why it belongs to this story (draft copy) */
+  items: { slug: string; note: string }[];
+}
+const { items } = Astro.props;
+
+const essays = await getCollection('essays');
+const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
+---
+
+<section class="strand" aria-labelledby="strand-title">
+  <p class="label">What it took to lead</p>
+  <h2 class="heading" id="strand-title">The part that wasn't design work</h2>
+
+  <div class="items">
+    {
+      items.map(({ slug, note }) => {
+        const e = bySlug.get(slug);
+        if (!e) return null;
+        return (
+          <article class="item">
+            <p class="note">
+              <Draft>{note}</Draft>
+            </p>
+            <a class="artifact" href={`/${slug}`}>
+              {e.data.title}
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  .strand {
+    max-width: var(--breakpoint-lg);
+    margin: 96px auto 0;
+    padding: 28px 20px 0;
+    border-top: 1px solid var(--color-ink);
+  }
+
+  h2 {
+    font-size: clamp(26px, 3.4vw, 34px);
+    margin: 8px 0 0;
+    max-width: 22ch;
+  }
+
+  .items {
+    margin-top: 36px;
+    display: grid;
+    gap: 34px;
+  }
+
+  .item {
+    padding-top: 20px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .note {
+    margin: 0 0 18px;
+    font-size: 19px;
+    line-height: 1.58;
+    color: var(--color-ink-2);
+    text-wrap: pretty;
+  }
+
+  @media (min-width: 810px) {
+    .strand {
+      padding-inline: 40px;
+    }
+
+    .items {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px;
+    }
+  }
+</style>

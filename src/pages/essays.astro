@@ -1,0 +1,182 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { essayGroups } from '../data/essayGroups';
+import { stories } from '../data/stories';
+
+const essays = await getCollection('essays');
+const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
+
+/** Which story each essay feeds, so the index shows the connection both ways. */
+const storyFor = new Map<string, (typeof stories)[number]>();
+for (const s of stories) for (const slug of s.leadership) storyFor.set(slug, s);
+---
+
+<BaseLayout
+  title="Leadership essays | Tyler Young"
+  description="Nine essays on building design organizations: strategic influence, leadership approach, cross-functional partnership, and systems that scale."
+  descriptionDraft
+  current="essays"
+>
+  <section class="shell page">
+    <p class="label">Leadership writing</p>
+    <h1 class="display">Nine essays on building design organizations</h1>
+    <p class="lede">
+      These are the long-form versions of what runs underneath the work. Several are
+      folded into the three stories on the homepage — the link back is noted where
+      that's the case.
+    </p>
+
+    <div class="groups">
+      {
+        essayGroups.map((group, i) => (
+          <section class="group" aria-labelledby={`g${i}`}>
+            <div class="group-head">
+              <span class="num">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <p class="eyebrow">{group.eyebrow}</p>
+                <h2 class="heading" id={`g${i}`}>
+                  {group.title}
+                </h2>
+              </div>
+            </div>
+
+            <ul>
+              {group.slugs.map((slug) => {
+                const e = bySlug.get(slug);
+                const s = storyFor.get(slug);
+                return e ? (
+                  <li>
+                    <a class="link" href={`/${slug}`}>
+                      {e.data.title}
+                    </a>
+                    {s && (
+                      <span class="feeds">
+                        feeds <a href={s.slug}>{s.eyebrow}</a>
+                      </span>
+                    )}
+                  </li>
+                ) : null;
+              })}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page {
+    padding-top: 88px;
+  }
+
+  h1 {
+    font-size: clamp(32px, 5.2vw, 52px);
+    margin: 16px 0 0;
+    max-width: 20ch;
+  }
+
+  .lede {
+    margin: 26px 0 0;
+    max-width: 56ch;
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--color-ink-2);
+  }
+
+  .groups {
+    margin-top: 64px;
+    display: grid;
+    gap: 52px;
+  }
+
+  .group-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    color: var(--color-signal);
+    margin-top: 6px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    margin: 0 0 6px;
+  }
+
+  h2 {
+    font-size: 26px;
+    margin: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+  }
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 14px;
+  }
+
+  li a.link {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .feeds {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    white-space: nowrap;
+  }
+
+  .feeds a {
+    color: var(--color-signal);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+
+  @media (min-width: 810px) {
+    .group {
+      display: grid;
+      grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+      gap: 40px;
+    }
+
+    .group-head {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .group {
+      padding-top: 20px;
+      border-top: 1px solid var(--color-rule);
+    }
+
+    ul {
+      margin-top: 0;
+    }
+  }
+</style>

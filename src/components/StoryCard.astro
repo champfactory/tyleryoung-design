@@ -1,0 +1,160 @@
+---
+import Draft from './Draft.astro';
+import type { Story } from '../data/stories';
+
+interface Props {
+  story: Story;
+}
+const { story } = Astro.props;
+const { num, eyebrow, claim, outcome, artifacts, draft } = story;
+---
+
+<article class="story">
+  <header class="head">
+    <span class="num">{num}</span>
+    <span class="eyebrow">{eyebrow}</span>
+  </header>
+
+  <div class="body">
+    <h3 class="heading claim">
+      {draft ? <Draft>{claim}</Draft> : claim}
+    </h3>
+    <p class="outcome">
+      {draft ? <Draft>{outcome}</Draft> : outcome}
+    </p>
+
+    <ul class="artifacts">
+      {
+        artifacts.map((a) => (
+          <li>
+            {a.href ? (
+              <a
+                class="artifact"
+                href={a.href}
+                data-live={a.live ? '' : undefined}
+                target={a.href.startsWith('http') ? '_blank' : undefined}
+                rel={a.href.startsWith('http') ? 'noopener' : undefined}
+              >
+                {a.label}
+                <span aria-hidden="true">→</span>
+              </a>
+            ) : (
+              <span class="pending">
+                {a.label} — <em>{a.needs}</em>
+              </span>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="media">
+    <slot name="media" />
+  </div>
+</article>
+
+<style>
+  .story {
+    display: grid;
+    gap: 24px;
+    padding-top: 22px;
+    border-top: 1px solid var(--color-ink);
+  }
+
+  .head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    color: var(--color-signal);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+
+  /* The claim is the 15-second read. It gets headline weight. */
+  .claim {
+    font-size: clamp(28px, 4.4vw, 44px);
+    margin: 0 0 18px;
+    max-width: 20ch;
+  }
+
+  .outcome {
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--color-ink-2);
+    margin: 0;
+    max-width: 52ch;
+    text-wrap: pretty;
+  }
+
+  .artifacts {
+    list-style: none;
+    margin: 26px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 26px;
+  }
+
+  .pending {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    border-bottom: 1px dashed var(--color-rule-strong);
+    padding-bottom: 3px;
+  }
+
+  .pending em {
+    color: var(--color-signal);
+    font-style: normal;
+  }
+
+  .media:empty {
+    display: none;
+  }
+
+  .media :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (min-width: 1000px) {
+    .story {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas:
+        'head  media'
+        'body  media';
+      grid-template-rows: auto 1fr;
+      column-gap: 56px;
+      row-gap: 20px;
+    }
+
+    .head {
+      grid-area: head;
+    }
+    .body {
+      grid-area: body;
+    }
+    .media {
+      grid-area: media;
+    }
+  }
+</style>

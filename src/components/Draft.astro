@@ -14,4 +14,12 @@
     border-bottom: 1px dotted color-mix(in srgb, var(--color-signal) 55%, transparent);
     padding-bottom: 1px;
   }
+
+  /* At headline scale a dotted rule under every line reads as decoration and
+     fights the type. Same signal, much quieter. */
+  :is(h1, h2, h3) .draft {
+    border-bottom-width: 1px;
+    border-bottom-color: color-mix(in srgb, var(--color-signal) 22%, transparent);
+    padding-bottom: 0.06em;
+  }
 </style>
