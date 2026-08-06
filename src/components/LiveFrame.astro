@@ -21,12 +21,19 @@ interface Props {
   title: string;
   /** displayed aspect ratio of the frame */
   ratio?: string;
-  /** smaller = wider logical viewport inside the frame */
+  /**
+   * Smaller = wider logical viewport inside the frame.
+   *
+   * The embedded apps lay out for ~1512px. Logical width is container ÷ scale,
+   * so the scale has to be low enough that the narrowest container still clears
+   * that — otherwise the right-hand column is simply cut off. A story card at a
+   * 1440px window is roughly 660px, and 660 ÷ 0.42 ≈ 1570.
+   */
   scale?: number;
   note?: string;
 }
 
-const { src, host, title, ratio = '16 / 10', scale = 0.5, note } = Astro.props;
+const { src, host, title, ratio = '16 / 10', scale = 0.42, note } = Astro.props;
 const pct = `${100 / scale}%`;
 ---
 
