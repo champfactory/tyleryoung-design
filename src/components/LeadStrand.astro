@@ -1,14 +1,14 @@
 ---
 /**
- * The leadership strand.
+ * The through-line strand.
  *
- * The nine "How I…" essays used to be their own homepage section, competing with
- * the work for a first-pass reader. They're stronger folded in: each story carries
- * the two essays whose substance it demonstrates, with a line on the connection
- * and a link to the full text for anyone who wants it.
+ * NOT titled "what it took to lead." That framing separates leadership from the
+ * work and invites a reader to file the candidate under a role they may not be
+ * hiring for. These essays describe the same move the work above describes —
+ * making a judgment explicit so it holds without you in the room — done a decade
+ * earlier, when the thing carrying the judgment was a team rather than a machine.
  *
- * "What I made possible" rather than "what I designed" — which is what senior
- * hiring actually screens for.
+ * So it reads as continuity of practice, not as a claim on a title.
  */
 import { getCollection } from 'astro:content';
 import Draft from './Draft.astro';
@@ -24,8 +24,8 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
 ---
 
 <section class="strand" aria-labelledby="strand-title">
-  <p class="label">What it took to lead</p>
-  <h2 class="heading" id="strand-title">The part that wasn't design work</h2>
+  <p class="label">Where this comes from</p>
+  <h2 class="heading" id="strand-title">The same move, before the machine</h2>
 
   <div class="items">
     {

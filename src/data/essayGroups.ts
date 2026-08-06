@@ -1,51 +1,44 @@
 /**
- * The four leadership-essay groups, exactly as they exist on the live site.
+ * Seven essays, two groups.
  *
- * Source casing is normalized to sentence case here. The live site's casing is
- * inconsistent ("designing competitive Advantage", "Winning in creative ways"),
- * but the CSS applies `text-transform: uppercase` to both the eyebrow and the
- * group title — so the rendered output is identical either way. See tokens.md §5.
+ * Grouped by what each one *is* — an instrument — rather than by leadership
+ * virtue. Every essay here describes the same move: take a judgment that lived
+ * in someone's head and make it explicit, portable and enforceable. That is the
+ * same move the operating spec makes, a decade later, with a machine on the
+ * other end of it.
+ *
+ * Three essays were merged into one: they described a single system three times
+ * and shared identical sections on the live site. Both retired URLs redirect.
  */
 export type EssayGroup = {
   eyebrow: string;
   title: string;
-  color: string;
+  blurb: string;
   slugs: string[];
 };
 
 export const essayGroups: EssayGroup[] = [
   {
-    eyebrow: 'Strategic influence',
-    title: 'Designing competitive advantage',
-    color: 'var(--color-essay-1)',
+    eyebrow: 'Instruments',
+    title: 'Making judgment explicit',
+    blurb:
+      'A decision rule, written down, that outlives the person who made it. Scoring models, budgets, thresholds, systems.',
     slugs: [
-      'how-i-aligned-formative-vision',
-      'how-i-built-a-shared-scoring-model',
       'how-i-translated-design-work',
-    ],
-  },
-  {
-    eyebrow: 'Leadership approach',
-    title: 'Winning in creative ways',
-    color: 'var(--color-essay-2)',
-    slugs: ['how-i-built-culture-around-paradox', 'how-i-unlocked-team-trust'],
-  },
-  {
-    eyebrow: 'Cross-functional partnership',
-    title: 'Bridging design and product thinking',
-    color: 'var(--color-essay-3)',
-    slugs: [
-      'how-i-scaled-design-efficiency',
-      'how-i-shaped-cross-functional-reputation',
-    ],
-  },
-  {
-    eyebrow: 'Systemic thinking',
-    title: 'Building systems that scale',
-    color: 'var(--color-essay-4)',
-    slugs: [
-      'how-i-infused-design-roles-with-product-thinking',
       'how-i-managed-ux-complexity',
+      'how-i-scaled-design-efficiency',
+      'how-i-built-culture-around-paradox',
+    ],
+  },
+  {
+    eyebrow: 'Teams',
+    title: 'Changing how the work gets done',
+    blurb:
+      'Structure, roles and growth paths rebuilt so the standard holds without anyone enforcing it.',
+    slugs: [
+      'how-i-unlocked-team-trust',
+      'how-i-shaped-cross-functional-reputation',
+      'how-i-infused-design-roles-with-product-thinking',
     ],
   },
 ];

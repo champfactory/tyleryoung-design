@@ -57,6 +57,9 @@ const references = [
         one sentence on current AI-native practice — the single most load-bearing
         line on this site. Tyler writes or approves it.
       </Needs>
+      <a class="thesis" href="/how-i-design-with-ai">
+        How I design with AI <span aria-hidden="true">→</span>
+      </a>
     </p>
 
     <ul class="proof" data-rise style="--i:4">
@@ -198,6 +201,26 @@ const references = [
   .ai-line {
     margin: 26px 0 0;
     max-width: 60ch;
+  }
+
+  /* The connective thesis, in the structure rather than buried two pages down. */
+  .thesis {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-ink);
+    padding-bottom: 3px;
+  }
+
+  .thesis:hover {
+    color: var(--color-signal);
+    border-bottom-color: var(--color-signal);
   }
 
   /* The 15-second layer: every claim on this row is checkable in one click. */

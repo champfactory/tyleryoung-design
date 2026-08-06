@@ -11,4 +11,9 @@ export default defineConfig({
   vite: { plugins: [tailwindcss()] },
   // 'directory' keeps the live site's extensionless URLs (/how-i-... ) intact.
   build: { format: 'directory' },
+  // Two essays merged into one; their published URLs must keep resolving.
+  redirects: {
+    '/how-i-aligned-formative-vision': '/how-i-translated-design-work',
+    '/how-i-built-a-shared-scoring-model': '/how-i-translated-design-work',
+  },
 });

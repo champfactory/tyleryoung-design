@@ -40,9 +40,9 @@ export const stories: Story[] = [
     num: '02',
     slug: '/ops-manager',
     eyebrow: 'Systems + Practice',
-    claim: 'I build the design system, and the machine that builds from it.',
+    claim: 'I build the design systems that machines generate from.',
     outcome:
-      'Paper to Claude Code to React, Tailwind and Storybook, governed by a 1,048-line operating spec. Ninety-six components and fifty-one stories, both the product and its component library deployed and open right now.',
+      'A design system is no longer a library people import from — it is the constraint on what an agent is allowed to produce. Ninety-six components and fifty-one stories, governed by a 1,048-line operating spec, with the product and its library deployed and open right now.',
     leadership: ['how-i-scaled-design-efficiency', 'how-i-built-culture-around-paradox'],
     artifacts: [
       { label: 'Open the product', href: 'https://atheer-next.fly.dev/', live: true },
@@ -55,9 +55,9 @@ export const stories: Story[] = [
     num: '03',
     slug: '/review-loop',
     eyebrow: 'How I Work',
-    claim: 'I put stakeholders in front of running software, and kept the receipts.',
+    claim: 'I put stakeholders in front of code an agent wrote, and kept the receipts.',
     outcome:
-      'Forty-eight itemised notes taken against a live build, and the diff that shows which half was acted on and which was declined. Review a mockup and there is no record; review code and the decision is auditable.',
+      'Forty-eight itemised notes taken against a running build, and the diff showing which half was acted on and which was declined. When generation is cheap, review is the constraint — and reviewing code instead of mockups is what makes the decision auditable at all.',
     leadership: ['how-i-shaped-cross-functional-reputation', 'how-i-translated-design-work'],
     artifacts: [{ label: 'Read the story', href: '/review-loop' }],
     draft: true,
