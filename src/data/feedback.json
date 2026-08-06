@@ -1,0 +1,194 @@
+[
+ {
+  "surface": "Top Nav",
+  "note": "Move \"Importer Control Tower\" from body to top nav heading: \"OASES | Mission Control\""
+ },
+ {
+  "surface": "Top Nav",
+  "note": "Add bookmark icon next to search and app launcher (quick actions: Start new session, Start new job)"
+ },
+ {
+  "surface": "Top Nav",
+  "note": "User profile: Remove \"User settings\" section (shows in Profile & Preferences)"
+ },
+ {
+  "surface": "Top Nav",
+  "note": "User profile: Remove \"Integrations\" under Admin settings"
+ },
+ {
+  "surface": "Top Nav",
+  "note": "User profile: Change \"Billing & Plan\" to \"Billing\""
+ },
+ {
+  "surface": "Top Nav",
+  "note": "App launcher: Instead of square box, take full div width — apps appear inline next to each other"
+ },
+ {
+  "surface": "Overall Body",
+  "note": "Put white body inside a curved wrapper so header color becomes thin border around body (discuss further)"
+ },
+ {
+  "surface": "Home",
+  "note": "Remove anchors bar right-hand side items (clarify functionality first)"
+ },
+ {
+  "surface": "Home",
+  "note": "Remove sub-heading \"Importer Control Tower\""
+ },
+ {
+  "surface": "Home",
+  "note": "Replace \"Network Health Satisfaction\" with greeting: \"Good morning, Metin\""
+ },
+ {
+  "surface": "Home",
+  "note": "Cards: Bring summary numbers to top, lagging indicators to bottom"
+ },
+ {
+  "surface": "Home",
+  "note": "Info icons: Add descriptions (from Varun's proto). If long, add \"Learn more\" CTA with popup"
+ },
+ {
+  "surface": "Home",
+  "note": "Progress visuals: Fix color coding — exceeding target vs falling behind should use different colors (good/bad/needs attention)"
+ },
+ {
+  "surface": "Home",
+  "note": "DSI/VMSI visual: Simplify — current treatment is overkill"
+ },
+ {
+  "surface": "Home",
+  "note": "\"4% vs yesterday\": Keep inline for visual balance after removing graph. Color-code good/bad/needs attention"
+ },
+ {
+  "surface": "Home",
+  "note": "Date picker: Consolidate day/month into single picker. User should pick date/date range"
+ },
+ {
+  "surface": "Home",
+  "note": "Add section separators for readability (cards or divider lines)"
+ },
+ {
+  "surface": "Home",
+  "note": "Remove Brand Health section, keep Retailer Health"
+ },
+ {
+  "surface": "Home",
+  "note": "Replace retailer columns with 4 metric graphs (Support TAT, Warranty TAT, Policy Adherence, Tech Capability). Explore gauges, sliders, other formats. Show target vs current."
+ },
+ {
+  "surface": "Home",
+  "note": "Each graph card: Add \"View details\" action"
+ },
+ {
+  "surface": "Home",
+  "note": "Anchor on At Risk / Healthy / Watch pill style for status across all pages (including Jobs)"
+ },
+ {
+  "surface": "Home",
+  "note": "Rename \"Executive Intervention Queue\" to \"Intervention Queue\""
+ },
+ {
+  "surface": "Home",
+  "note": "Make intervention rows collapsible. Add filters (by status) and expand/collapse all icons"
+ },
+ {
+  "surface": "Home",
+  "note": "Collapsed state: Show Title, Status, Type, Time, CTA"
+ },
+ {
+  "surface": "Ask OASES",
+  "note": "Show greeting instead of blank screen on open"
+ },
+ {
+  "surface": "Ask OASES",
+  "note": "Animate AI \"thinking\" before showing results (gathering info from different apps)"
+ },
+ {
+  "surface": "Ask OASES",
+  "note": "Remove separators between bullets. Keep clean. No CTAs per bullet"
+ },
+ {
+  "surface": "Ask OASES",
+  "note": "After 3rd bullet: Show actions as suggestions. Personable tone, not robotic"
+ },
+ {
+  "surface": "Ask OASES",
+  "note": "Change \"Ask AI\" to \"Ask OASES\". Add + icon for agents/models (LLM interface inspiration)"
+ },
+ {
+  "surface": "Ask OASES",
+  "note": "(Future: Interface will change further — Varun working on ideas next week)"
+ },
+ {
+  "surface": "Jobs",
+  "note": "App launcher says \"Jobs\" — should say \"AIR Jobs\" for consistency"
+ },
+ {
+  "surface": "Jobs",
+  "note": "Add separator line between tab menu and tab content"
+ },
+ {
+  "surface": "Jobs",
+  "note": "Add summary metrics above table: Total Jobs, Open, Paused, Done, Policy Adherence"
+ },
+ {
+  "surface": "Jobs",
+  "note": "Review + icon style (box vs flat) — other icons sit on floor"
+ },
+ {
+  "surface": "Jobs",
+  "note": "Change \"+ Job\" to \"+ New Job\" or \"New Job\""
+ },
+ {
+  "surface": "Jobs",
+  "note": "Add \"+ New Tab\" to tab menu (replaces \"List View\" unless different purpose)"
+ },
+ {
+  "surface": "Jobs",
+  "note": "Add curved border/radius around table"
+ },
+ {
+  "surface": "Jobs",
+  "note": "Add checkboxes to each row"
+ },
+ {
+  "surface": "Jobs",
+  "note": "Fix column header readability"
+ },
+ {
+  "surface": "Jobs",
+  "note": "Add sticky columns (first 3) for horizontal scroll"
+ },
+ {
+  "surface": "Jobs",
+  "note": "Fix data alignment in columns"
+ },
+ {
+  "surface": "Jobs",
+  "note": "Remove AI Summary hover button. Row hover = color change indicating clickable. Click opens right pane"
+ },
+ {
+  "surface": "Jobs",
+  "note": "Right pane content: PM to define"
+ },
+ {
+  "surface": "AiR Sessions",
+  "note": "Remove \"Personal Room 10244\" from top nav. Use \"AiR Sessions\" or \"Sessions\" with app icon"
+ },
+ {
+  "surface": "AiR Sessions",
+  "note": "Remove Settings and Copy Personal Room from top nav (app-specific, move to body)"
+ },
+ {
+  "surface": "AiR Sessions",
+  "note": "Apply all Jobs feedback here too (separator lines, summary metrics, table styling, etc.)"
+ },
+ {
+  "surface": "AiR Sessions",
+  "note": "PM to define right pane for upcoming and completed sessions"
+ },
+ {
+  "surface": "AiR Sessions",
+  "note": "Improve pagination — \"Page 1 of 3\" at bottom not easily discoverable. Explore other patterns"
+ }
+]

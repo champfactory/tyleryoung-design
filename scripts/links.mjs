@@ -99,6 +99,37 @@ for (const f of files) {
 
 console.log(`\n  ${checked} internal link(s) checked across ${files.length} page(s)\n`);
 
+// --- STORY IDS -------------------------------------------------------------
+// Embedded Storybook stories fail silently: a wrong id renders Storybook's own
+// "couldn't find story" panel inside the page, which looks like content and is
+// invisible to the link checker. Validate every embedded id against the live
+// index, so a typo is a build failure rather than something a reader discovers.
+const SB = 'https://atheer-next-storybook.fly.dev';
+const embedded = new Set();
+for (const f of files) {
+  const html = await readFile(f, 'utf8');
+  for (const m of html.matchAll(/iframe\.html\?id=([^&"']+)/g)) embedded.add(m[1]);
+}
+
+let badStories = [];
+if (embedded.size) {
+  try {
+    const res = await fetch(`${SB}/index.json`, { signal: AbortSignal.timeout(15000) });
+    const known = new Set(Object.keys((await res.json()).entries ?? {}));
+    badStories = [...embedded].filter((id) => !known.has(id));
+    console.log(`  ${embedded.size} embedded story id(s) checked against the live library`);
+    if (!badStories.length) console.log('  all embedded story ids resolve\n');
+  } catch {
+    console.log('  (component library unreachable — skipped story id check)\n');
+  }
+}
+
+if (badStories.length) {
+  console.error('  STORY IDS THAT DO NOT EXIST:');
+  for (const b of badStories) console.error(`    ${b}`);
+  console.error('');
+}
+
 const missingLegacy = [];
 for (const l of LEGACY) if (!(await resolves(l))) missingLegacy.push(l);
 
@@ -116,5 +147,5 @@ if (broken.length) {
   console.error('');
 }
 
-if (broken.length || missingLegacy.length) process.exit(1);
+if (broken.length || missingLegacy.length || badStories.length) process.exit(1);
 console.log('  no broken internal links.\n');

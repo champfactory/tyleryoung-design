@@ -1,0 +1,197 @@
+---
+/**
+ * All forty-eight notes, coloured by what happened to them.
+ *
+ * Status is by surface, because that is what the diff proves: four of the six
+ * surfaces had their files changed in the next version, two did not. Within a
+ * reworked surface not every individual note necessarily landed — the caption
+ * says so rather than implying a per-item guarantee the evidence doesn't support.
+ */
+import items from '../data/feedback.json';
+
+/** Surfaces whose component files changed between the two builds. */
+const REWORKED = new Set(['Overall Body', 'Home', 'Jobs', 'AiR Sessions']);
+
+const ORDER = ['Home', 'Jobs', 'AiR Sessions', 'Overall Body', 'Ask OASES', 'Top Nav'];
+const FILES: Record<string, string> = {
+  'Home': 'App.jsx',
+  'Jobs': 'JobsPage.jsx',
+  'AiR Sessions': 'SessionsPage · PastSessionsPage',
+  'Overall Body': 'App.jsx',
+  'Ask OASES': 'AiResponse · Drawer — untouched',
+  'Top Nav': 'NavModal · NavRight — untouched',
+};
+
+const grouped = ORDER.map((surface) => ({
+  surface,
+  reworked: REWORKED.has(surface),
+  file: FILES[surface],
+  notes: items.filter((i: { surface: string }) => i.surface === surface),
+})).filter((g) => g.notes.length);
+
+const done = items.filter((i: { surface: string }) => REWORKED.has(i.surface)).length;
+---
+
+<figure class="table">
+  <div class="head">
+    <span class="key">
+      <span class="swatch on" aria-hidden="true"></span>
+      {done} addressed
+    </span>
+    <span class="key">
+      <span class="swatch off" aria-hidden="true"></span>
+      {items.length - done} not this round
+    </span>
+  </div>
+
+  {
+    grouped.map((g) => (
+      <section class:list={['group', { off: !g.reworked }]}>
+        <p class="surface">
+          <span class="name">{g.surface}</span>
+          <span class="file">{g.file}</span>
+          <span class="count">{g.notes.length}</span>
+        </p>
+        <ul>
+          {g.notes.map((n: { note: string }) => (
+            <li>
+              <span class="dot" aria-hidden="true"></span>
+              {n.note}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+
+  <figcaption>
+    Status is by surface, taken from the diff between the two builds — four had
+    their files changed, two did not. Within a reworked surface not every note
+    necessarily landed; the collapsible rows asked for on Home are an example that
+    did not.
+  </figcaption>
+</figure>
+
+<style>
+  .table {
+    margin: 0 0 40px;
+    border: 1px solid var(--color-rule);
+    background: var(--color-paper-raised);
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--color-rule);
+    background: var(--color-paper-sunk);
+  }
+
+  .key {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-2);
+  }
+
+  .swatch {
+    width: 9px;
+    height: 9px;
+    flex: none;
+  }
+
+  .swatch.on {
+    background: var(--color-signal);
+  }
+
+  .swatch.off {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--color-rule-strong);
+  }
+
+  .group + .group {
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .surface {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0 !important;
+    padding: 14px 16px 8px;
+    font-family: var(--font-mono) !important;
+    font-size: 11px !important;
+    letter-spacing: 0.08em;
+  }
+
+  .name {
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+
+  .file {
+    color: var(--color-ink-3);
+  }
+
+  .count {
+    margin-left: auto;
+    color: var(--color-ink-3);
+  }
+
+  ul {
+    list-style: none;
+    margin: 0 !important;
+    padding: 0 0 12px !important;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 16px minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+    padding: 5px 16px;
+    font-family: var(--font-mono) !important;
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+    letter-spacing: 0.01em;
+    color: var(--color-ink-2) !important;
+  }
+
+  li::before {
+    content: none !important;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    margin-top: 6px;
+    background: var(--color-signal);
+  }
+
+  .off .dot {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--color-rule-strong);
+  }
+
+  .off .name,
+  .off li {
+    color: var(--color-ink-3) !important;
+  }
+
+  figcaption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-3);
+    padding: 14px 16px;
+    border-top: 1px solid var(--color-rule);
+  }
+</style>

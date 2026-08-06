@@ -1,68 +1,93 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import LeadStrand from '../components/LeadStrand.astro';
+import LiveFrame from '../components/LiveFrame.astro';
+import FeedbackTable from '../components/FeedbackTable.astro';
 import Compare from '../components/Compare.astro';
-import SurfaceLedger from '../components/SurfaceLedger.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
 
+const V5 = 'https://metin-oasis-v6.fly.dev/';
+const V6 = 'https://metin-oasis-v7.fly.dev/';
 const R = '/work/review';
-
-/**
- * Figures are countable from the source directories; feedback lines are verbatim
- * from FEEDBACK.md; the before/after strips are screenshots of the two builds
- * running side by side on localhost. Nothing here is reconstructed.
- */
-const counts = [
-  { n: '48', label: 'itemised notes' },
-  { n: '6', label: 'surfaces reviewed' },
-  { n: '394', label: 'lines changed next' },
-  { n: '4', label: 'files touched' },
-];
 ---
 
 <DocumentLayout
   title="Forty-eight notes, and what happened to them"
   metaTitle="The review loop — feedback against a running build | Tyler Young"
-  description="A stakeholder reviewed a running build and wrote forty-eight notes. Here is the before, the notes, and the after — including the half that was declined."
+  description="A stakeholder reviewed a running build and wrote forty-eight notes. Both versions are still deployed, so you can open the before, read the notes, and open the after."
   descriptionDraft
   eyebrow="03 · How I Work"
   meta={[
-    ['Artifact', 'One feedback round · 48 items · 6 surfaces'],
-    ['Response', '4 files · 394 lines, in the next version'],
-    ['Method', 'Review against a running build, not a mockup'],
-    ['Shown', 'Only the regions that changed — client brand and staff excluded'],
+    ['Before', `<a href="${V5}">metin-oasis-v6.fly.dev</a>`],
+    ['After', `<a href="${V6}">metin-oasis-v7.fly.dev</a>`],
+    ['Round', '48 notes · 6 surfaces · one sitting'],
+    ['Response', '4 files · 394 lines'],
   ]}
 >
   <p class="answer">
     <Draft>
-      A stakeholder sat with a running build and wrote forty-eight specific notes,
-      organised by surface. The next version changed four files. Both builds still
-      run, so you can watch the whole exchange — including the half that was turned
-      down.
+      Both versions are still running. Open the one that was reviewed, read what the
+      stakeholder wrote about it, then open what came back. The whole exchange is
+      still on the internet, which is only possible because the review happened
+      against software rather than a picture of it.
     </Draft>
   </p>
 
-  <dl class="counts">
-    {
-      counts.map((c) => (
-        <div>
-          <dt>{c.n}</dt>
-          <dd>{c.label}</dd>
-        </div>
-      ))
-    }
-  </dl>
-
-  <h2>Three notes, and what they did</h2>
+  <h2>What they were given</h2>
   <p>
     <Draft>
-      Nobody writes “fix the colour coding — exceeding target versus falling behind
-      should use different colours” about a picture of a dashboard. You write it
-      after looking at a real one and finding you cannot tell good from bad at a
-      glance.
+      Not a prototype and not a deck — a deployed URL. The stakeholder opened it on
+      their own machine, in their own browser, on their own time, and used it the way
+      they would use anything else.
     </Draft>
   </p>
+
+  <LiveFrame
+    src={V5}
+    host="metin-oasis-v6.fly.dev — the build under review"
+    title="Version five of the operations surface, the build that was reviewed"
+    note="Running now. This is the version the notes below were written against."
+  />
+
+  <h2>What came back</h2>
+  <p>
+    <Draft>
+      Forty-eight notes, organised by surface, written in the register of somebody
+      using software rather than evaluating a proposal. Specific enough to act on
+      without a follow-up meeting: rename this, colour-code that, make the first
+      three columns sticky when the table scrolls sideways.
+    </Draft>
+  </p>
+
+  <FeedbackTable />
+
+  <h2>What I did with them</h2>
+  <p>
+    <Draft>
+      The notes went straight into Claude Code against the same repository the build
+      came from. That is the part that makes this loop fast: the feedback is already
+      written in the vocabulary of the interface, and the agent is working inside a
+      codebase governed by a design system, so “colour-code good and bad differently”
+      resolves to a token rather than to an invention.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      My job in that pass was not typing. It was deciding which of the forty-eight
+      were worth a version, reading what came back against the design system, and
+      refusing the ones that would have cost more than they returned.
+    </Draft>
+  </p>
+  <p>
+    <Needs>
+      Tyler — how this actually ran, in your words. How long the turnaround was, and
+      whether the notes went in as a batch or one surface at a time. I have not
+      described the mechanics because I do not know them.
+    </Needs>
+  </p>
+
+  <h2>Three notes, traced</h2>
 
   <Compare
     note="Progress visuals: Fix color coding — exceeding target vs falling behind should use different colors"
@@ -88,47 +113,34 @@ const counts = [
     after={`${R}/queue-v6.png`}
     beforeAlt="Intervention section heading with a single Filter link floated to its right."
     afterAlt="Intervention Queue heading with a Filter button beneath it and a right-aligned toolbar of three controls for filtering, export and sorting."
-    tell="One filter link became a control group. The collapsible rows in the same note did not land — see below."
+    tell="One filter link became a control group. The collapsible rows in the same note did not land — which is the point of the table above."
   />
 
-  <h2>The half that didn't happen</h2>
+  <h2>What they got back</h2>
   <p>
     <Draft>
-      Five component files were never touched. Every note covering the AI response
-      panel, the drawer, the live session view and both navigation components is
-      still sitting in the file, unactioned.
+      The next version, at its own URL, ready for the next round. Open both and the
+      differences are visible without being told where to look — which is the test a
+      revision should pass.
     </Draft>
   </p>
 
-  <div class="ledger-slot"><SurfaceLedger /></div>
+  <LiveFrame
+    src={V6}
+    host="metin-oasis-v7.fly.dev — the next version"
+    title="Version six of the operations surface, the version that came back"
+    note="Running now. Thirty-six of the forty-eight notes landed here."
+  />
 
   <p>
     <Draft>
-      That is not a failed round. A review produces a queue, not a checklist to be
-      emptied, and someone decided which half was worth a version. What is unusual
-      is that the decision is legible at all. Review a mockup and there is no diff
-      to read — the prioritisation lives in somebody's memory. Review running code
-      and it becomes a record you can audit later, which is exactly what I did to
-      build this page.
+      Twelve notes were not actioned, and that is not a failed round. A review
+      produces a queue, not a checklist to be emptied. What is unusual is that the
+      decision is legible at all — review a mockup and the prioritisation lives in
+      somebody's memory. Review running code and it becomes a record you can audit
+      later, which is exactly what I did to build this page.
     </Draft>
   </p>
-
-  <h2>What happened after</h2>
-  <p>
-    <Needs>
-      Tyler — whether the remaining items were picked up in a later round, and how
-      many rounds this surface went through in total. Six directories is not six
-      review rounds.
-    </Needs>
-  </p>
-
-  <div class="aside">
-    <p>
-      Screens are cropped to the regions that changed. That is the honest framing
-      for a before-and-after, and it keeps the client's brand, staff names and
-      market references outside the frame. The full build is not published.
-    </p>
-  </div>
 
   <LeadStrand
     slot="after"
@@ -139,7 +151,7 @@ const counts = [
       },
       {
         slug: 'how-i-built-culture-around-paradox',
-        note: 'Forty-eight notes and four changed files is a judgement about which half mattered. Knowing which bars are load-bearing and which are vanity is the whole discipline of shipping inside a fixed window.',
+        note: 'Thirty-six of forty-eight is a judgement about which half mattered. Knowing which bars are load-bearing and which are vanity is the whole discipline of shipping inside a fixed window.',
       },
     ]}
   />
@@ -150,46 +162,5 @@ const counts = [
     font-size: 24px !important;
     line-height: 1.52 !important;
     margin-bottom: 36px !important;
-  }
-
-  .counts {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px 20px;
-    margin: 0 0 40px;
-    padding: 24px 0;
-  }
-
-  .counts div {
-    display: grid;
-    gap: 4px;
-  }
-
-  .counts dt {
-    font-family: var(--font-display);
-    font-size: clamp(30px, 5vw, 40px);
-    font-weight: 620;
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-
-  .counts dd {
-    margin: 0;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-ink-3);
-    line-height: 1.5;
-  }
-
-  .ledger-slot {
-    margin: 0 0 34px;
-  }
-
-  @media (min-width: 810px) {
-    .counts {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
   }
 </style>

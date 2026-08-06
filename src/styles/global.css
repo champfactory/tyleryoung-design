@@ -206,13 +206,14 @@
     text-decoration: none;
     padding-bottom: 3px;
     border-bottom: 1px solid var(--color-ink);
-    transition: color 120ms ease, border-color 120ms ease, gap 120ms ease;
+    /* Colour only on hover — nothing moves. A gap or letter-spacing shift
+       nudges the arrow and reflows the label under the cursor. */
+    transition: color 120ms ease, border-color 120ms ease;
   }
 
   .artifact:hover {
     color: var(--color-signal);
     border-bottom-color: var(--color-signal);
-    gap: 12px;
   }
 
   .artifact[data-live]::before {

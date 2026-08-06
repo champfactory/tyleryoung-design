@@ -32,7 +32,7 @@ export const stories: Story[] = [
     claim: 'I design tools for people accountable for work an agent did.',
     outcome:
       'A code-intelligence product whose landing metrics are blast radius, agent hours and token cost — twenty documented states, from first run to tenured use, including the ones usually left to engineering to improvise.',
-    leadership: ['how-i-managed-ux-complexity', 'how-i-infused-design-roles-with-product-thinking'],
+    leadership: ['how-i-managed-ux-complexity', 'how-i-translated-design-work'],
     artifacts: [{ label: 'See the work', href: '/alucify' }],
     draft: true,
   },

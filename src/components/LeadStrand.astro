@@ -31,7 +31,8 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
     {
       items.map(({ slug, note }) => {
         const e = bySlug.get(slug);
-        if (!e) return null;
+        // A merged-away essay would otherwise vanish from the page in silence.
+        if (!e) throw new Error(`LeadStrand: no essay "${slug}" — it was renamed, merged or deleted`);
         return (
           <article class="item">
             <p class="note">

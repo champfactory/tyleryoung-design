@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import StoryCard from '../components/StoryCard.astro';
 import LiveFrame from '../components/LiveFrame.astro';
 import Shot from '../components/Shot.astro';
-import SurfaceLedger from '../components/SurfaceLedger.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
 import { stories } from '../data/stories';
@@ -90,7 +89,12 @@ const references = [
 
     <StoryCard story={stories[2]}>
       <div slot="media">
-        <SurfaceLedger />
+        <LiveFrame
+          src="https://metin-oasis-v6.fly.dev/"
+          host="metin-oasis-v6.fly.dev"
+          title="The operations build that was reviewed, running"
+          note="The build that was reviewed. The next version is at its own URL."
+        />
       </div>
     </StoryCard>
   </section>
