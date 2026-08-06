@@ -4,7 +4,9 @@ title: >-
   How I aligned formative vision with business priorities
 metaTitle: >-
   How I aligned formative vision with business priorities
-# description: [NEEDS: real meta description — live site ships "Made with Framer"]
+description: >-
+  A shared model for expressing design proposals in business terms, so teams could weigh user value against business impact before committing.
+descriptionDraft: true
 contribution: >-
   Introduced a shared model to express design proposals in business-relevant terms by balancing user value against business impact
 role: >-

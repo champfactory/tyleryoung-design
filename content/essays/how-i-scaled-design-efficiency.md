@@ -4,7 +4,9 @@ title: >-
   How I scaled design efficiency by replacing siloed workflows with a shared design system
 metaTitle: >-
   How I scaled design efficiency by replacing siloed workflows with a shared design system
-# description: [NEEDS: real meta description — live site ships "Made with Framer"]
+description: >-
+  A global design system across five business functions and more than 200 components, adopted through usefulness rather than mandate.
+descriptionDraft: true
 contribution: >-
   Led the design and implementation of a global design system that scaled consistent execution across teams
 role: >-

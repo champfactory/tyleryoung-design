@@ -8,7 +8,9 @@ if (!entry) throw new Error('content/tldr.md is missing');
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title="TL;DR | Tyler Young" description={entry.data.description} current="tldr">
+<BaseLayout title="TL;DR | Tyler Young" description={entry.data.description}
+  descriptionDraft={entry.data.descriptionDraft}
+  current="tldr">
   <article class="shell doc tldr">
     <header class="head">
       <p class="label">Summary</p>

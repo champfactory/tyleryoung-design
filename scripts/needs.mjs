@@ -67,7 +67,12 @@ for (const f of files) {
     needs.push({ kind: 'literal', what: text(m[1]) });
   }
 
-  const drafts = [...html.matchAll(/data-draft/g)].length;
+  // meta descriptions I drafted rather than Tyler approving
+  if (html.includes('<!-- DRAFT-META:')) {
+    needs.push({ kind: 'inline', what: 'meta description is drafted, not approved' });
+  }
+
+  const drafts = [...html.matchAll(/data-draft(?!-)/g)].length;
   totalDrafts += drafts;
   totalNeeds += needs.length;
 

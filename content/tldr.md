@@ -1,7 +1,10 @@
 ---
 slug: tldr
 title: TL;DR
-# description: [NEEDS: real meta description — live site ships "Made with Framer"]
+description: >-
+  A short read on how Tyler Young leads design: strategic focus, team development,
+  leadership approach, and the outcomes that followed.
+descriptionDraft: true
 summary:
   - Repositioned design from execution to strategy
   - Built credibility by showing impact early and often

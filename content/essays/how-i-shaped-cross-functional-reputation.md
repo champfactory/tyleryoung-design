@@ -4,7 +4,9 @@ title: >-
   How I shaped cross-functional reputation by tying advancement to planning impact
 metaTitle: >-
   How I shaped cross-functional reputation by tying advancement to planning impact
-# description: [NEEDS: real meta description — live site ships "Made with Framer"]
+description: >-
+  Rebuilding design career paths to reward cross-functional influence, and changing how the org treated design in planning.
+descriptionDraft: true
 contribution: >-
   Rebuilt design career paths to reward cross-functional influence
 role: >-

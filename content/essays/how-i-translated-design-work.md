@@ -4,7 +4,9 @@ title: >-
   How I translated design work into business levers that shaped strategic planning discussions
 metaTitle: >-
   How I translated design work into business levers that shaped strategic planning discussions
-# description: [NEEDS: real meta description — live site ships "Made with Framer"]
+description: >-
+  Mapping design work to business metrics so it could shape roadmap and strategic planning discussions instead of reacting to them.
+descriptionDraft: true
 contribution: >-
   Mapped design work to business metrics to inform roadmap and strategic planning decisions
 role: >-

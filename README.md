@@ -21,8 +21,9 @@ Two audits, both written for this project, both runnable on their own.
 
 ```
 npm run contrast   # every color pair in the system, at the size it is used
+npm run links      # every internal link, plus the previous site's URLs
 npm run needs      # every unfinished slot in the built HTML
-npm run audit      # contrast, then build, then needs
+npm run audit      # all three, around a build
 ```
 
 **`contrast`** reads `src/data/palette.mjs` and checks each declared pair against
@@ -31,6 +32,11 @@ lower for non-informational hairlines. It exits non-zero on failure. It failed
 twice during the initial build; two tokens were darkened until it passed. The
 `/colophon` page renders its output from the same module, so the page cannot
 drift from the check.
+
+**`links`** walks every internal href in the built output and confirms a page
+exists at the other end, including in-page anchors. It also asserts that the ten
+URLs the previous site published still resolve — that promise is only worth
+making if something checks it.
 
 **`needs`** scans built HTML for `data-needs` and `data-draft` markers and reports
 where each one landed, grouped by route. The site marks its own gaps in the

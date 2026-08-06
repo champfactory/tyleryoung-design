@@ -4,7 +4,9 @@ title: >-
   How I built culture around the “good enough” paradox to hit business targets on schedule
 metaTitle: >-
   How I built culture around the “good enough” paradox to hit business targets on schedule
-# description: [NEEDS: real meta description — live site ships "Made with Framer"]
+description: >-
+  Reframing "good enough" as a strategic threshold, and teaching a design team when to challenge and when to commit.
+descriptionDraft: true
 contribution: >-
   Reframed “good enough” as a strategic threshold to reduce waste and improve delivery focus
 role: >-

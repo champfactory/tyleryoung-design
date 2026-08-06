@@ -4,7 +4,9 @@ title: >-
   How I built a shared scoring model to help leadership weigh product investments by ROI
 metaTitle: >-
   How I built a shared scoring model to help leadership weigh product investments by ROI
-# description: [NEEDS: real meta description — live site ships "Made with Framer"]
+description: >-
+  A scoring model that let leadership weigh product investments against each other by ROI, rather than by whoever argued hardest.
+descriptionDraft: true
 contribution: >-
   Introduced a shared scoring model to prioritize proposals based on timely business priorities
 role: >-

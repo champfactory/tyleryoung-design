@@ -4,7 +4,11 @@ title: >-
   How I unlocked team trust and performance by redesigning roles
 metaTitle: >-
   How I unlocked team trust and performance by redesigning roles
-# description: [NEEDS: real meta description — live site ships "Made with Framer"]
+description: >-
+  Restructuring a team of specialists into product design generalists during a downturn, and finding it made the team faster.
+descriptionDraft: true
+metaWarning: >-
+  Contribution and Takeaway below are ported verbatim from the live site, where they describe a design system — but this essay is about restructuring roles. Looks like a copy-paste error on the current site. Tyler corrects; not guessing at replacements.
 contribution: >-
   Built a global design system adopted across four functions, enabling consistent delivery and faster execution at scale
 role: >-

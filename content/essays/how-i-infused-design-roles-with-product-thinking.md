@@ -4,7 +4,9 @@ title: >-
   How I infused design roles with product thinking to improve strategic impact
 metaTitle: >-
   How I infused design roles with product thinking to improve strategic impact
-# description: [NEEDS: real meta description — live site ships "Made with Framer"]
+description: >-
+  Building product fluency into design roles, so planning decisions improved before the first screen was drawn.
+descriptionDraft: true
 contribution: >-
   Integrated product planning models into design workflows to raise strategic impact
 role: >-

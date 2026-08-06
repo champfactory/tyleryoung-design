@@ -6,10 +6,12 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  /** true when the description is copy I drafted, not copy Tyler approved */
+  descriptionDraft?: boolean;
   current?: string;
 }
 
-const { title, description, current } = Astro.props;
+const { title, description, descriptionDraft, current } = Astro.props;
 
 // The live site ships "Made with Framer" on every essay page. Rather than invent
 // copy, emit an obvious marker so the gap shows up in view-source and in an audit.
@@ -22,12 +24,20 @@ const metaDescription = description ?? '[NEEDS: meta description]';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    {
+      descriptionDraft && (
+        <Fragment set:html="<!-- DRAFT-META: description below is drafted, not approved -->" />
+      )
+    }
     <meta name="description" content={metaDescription} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#f6f4ef" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

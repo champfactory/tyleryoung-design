@@ -18,15 +18,32 @@ interface Props {
   title: string;
   metaTitle: string;
   description?: string;
+  descriptionDraft?: boolean;
+  /** shown above the rail where the ported metadata itself looks wrong */
+  metaWarning?: string;
   eyebrow: string;
   meta: MetaPair[];
   current?: string;
 }
 
-const { title, metaTitle, description, eyebrow, meta, current } = Astro.props;
+const {
+  title,
+  metaTitle,
+  description,
+  descriptionDraft,
+  metaWarning,
+  eyebrow,
+  meta,
+  current,
+} = Astro.props;
 ---
 
-<BaseLayout title={metaTitle} description={description} current={current}>
+<BaseLayout
+  title={metaTitle}
+  description={description}
+  descriptionDraft={descriptionDraft}
+  current={current}
+>
   <article class="shell doc">
     <header class="head">
       <p class="label">{eyebrow}</p>
@@ -42,6 +59,13 @@ const { title, metaTitle, description, eyebrow, meta, current } = Astro.props;
 
     <div class="columns">
       <aside class="rail" aria-label="Metadata">
+        {
+          metaWarning && (
+            <p class="meta-flag">
+              <Needs>{metaWarning}</Needs>
+            </p>
+          )
+        }
         <dl>
           {
             meta.map(([label, value]) => (
@@ -88,6 +112,13 @@ const { title, metaTitle, description, eyebrow, meta, current } = Astro.props;
     gap: 40px;
     border-top: 1px solid var(--color-ink);
     padding-top: 32px;
+  }
+
+  .doc .rail .meta-flag {
+    margin: 0 0 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-rule);
+    line-height: 1.9;
   }
 
   .doc .rail dl {

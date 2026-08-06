@@ -1,0 +1,94 @@
+---
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import CrossLinks from '../components/CrossLinks.astro';
+import Needs from '../components/Needs.astro';
+import Draft from '../components/Draft.astro';
+---
+
+<DocumentLayout
+  title="Dealer-network monitoring for a technical support persona"
+  metaTitle="Field operations — data-dense B2B dashboards | Tyler Young"
+  description="Dealer-network monitoring built for a technical support persona, with an AI layer that answers what needs my attention."
+  descriptionDraft
+  eyebrow="Data-Dense B2B"
+  meta={[
+    ['Contribution', '[NEEDS: Tyler’s line — what he owned here]'],
+    ['Role', '[NEEDS: role and dates]'],
+    ['Scope', 'Dashboards, metric cards, AI attention surface'],
+    ['Attribution', 'Atheer engagement'],
+    ['Status', 'Blocked on a decision about what can be shown'],
+  ]}
+>
+  <div class="aside">
+    <p>
+      This page is a shell. Nothing here ships until Tyler decides which screens can
+      be public. If none can, the homepage card becomes text-only or is cut — that is
+      his call, not a default.
+    </p>
+  </div>
+
+  <h2>Why this is on the site</h2>
+  <p>
+    <Draft>
+      Everything else visible here is consumer commerce. This is the one surface that
+      looks like the software a technical buyer actually works in: dense tables, live
+      metrics, a support persona who is monitoring rather than browsing.
+    </Draft>
+  </p>
+
+  <h2>The problem</h2>
+  <p>
+    <Needs>
+      Tyler's framing — what the support persona was actually trying to do, and what
+      made it hard
+    </Needs>
+  </p>
+
+  <h2>The AI attention layer</h2>
+  <p>
+    <Draft>
+      A dashboard that shows everything shows nothing. The design question was not how
+      to display more signal, it was how to answer one question on arrival: what needs
+      my attention right now.
+    </Draft>
+  </p>
+  <p>
+    <Needs>
+      Tyler's account of how the attention feature actually worked, and what it ranked
+      on. No invented mechanics.
+    </Needs>
+  </p>
+
+  <div class="shot">
+    <Needs block ratio="16 / 9">
+      Dashboard overview — the highest-value screen, if it can be shown
+    </Needs>
+  </div>
+
+  <div class="shot">
+    <Needs block ratio="16 / 9">
+      Metric cards and the "what needs my attention" surface
+    </Needs>
+  </div>
+
+  <h2>Outcome</h2>
+  <p>
+    <Needs>3–5 real, verifiable statements — or cut this section entirely</Needs>
+  </p>
+
+  <CrossLinks
+    slot="after"
+    label="Related"
+    title="How this work gets built now"
+    links={[
+      { href: '/atheer-design-pipeline', label: 'The design-to-code pipeline' },
+      { href: '/how-i-design-with-ai', label: 'How I design with AI' },
+    ]}
+  />
+</DocumentLayout>
+
+<style>
+  .shot {
+    margin: 0 0 26px;
+  }
+</style>

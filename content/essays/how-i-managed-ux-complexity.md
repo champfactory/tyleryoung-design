@@ -4,7 +4,9 @@ title: >-
   How I managed UX complexity by championing an org-wide simplicity model
 metaTitle: >-
   How I managed UX complexity by championing an org-wide simplicity model
-# description: [NEEDS: real meta description — live site ships "Made with Framer"]
+description: >-
+  A complexity budget that made UX friction measurable, so teams could catch scope bloat early and simplify on purpose.
+descriptionDraft: true
 contribution: >-
   Introduced a “complexity budget” to reduce UX friction and anchor scope decisions in measurable user effort
 role: >-
