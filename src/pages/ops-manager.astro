@@ -7,6 +7,7 @@ import Needs from '../components/Needs.astro';
 
 const APP = 'https://atheer-next.fly.dev/';
 const SB = 'https://atheer-next-storybook.fly.dev/';
+const PLAN = 'https://atheer-306090.fly.dev/';
 
 /** Status is carried by shape first, so it survives greyscale and small sizes. */
 const shapes = [
@@ -131,6 +132,32 @@ const shapes = [
     </a>
     <a class="artifact" href={APP} data-live target="_blank" rel="noopener">
       Open the product
+      <span aria-hidden="true">→</span>
+    </a>
+  </p>
+
+  <h2>The plan was software too</h2>
+  <p>
+    <Draft>
+      The engagement plan is not a deck. It is a small application the client opens
+      and makes a decision inside: they pick which surface to build first, the choice
+      persists on the server so everyone loads the same plan, and the third phase is
+      assigned whatever is left. It is still running, with the selections they made.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      That is the same instinct as the operating spec, pointed at people instead of
+      an agent — put the constraint where the decision happens rather than in a
+      document somebody has to remember. I did it twice on this engagement; the other
+      was a form that captured three scoping calls before a board demo, each option
+      written with its cost stated.
+    </Draft>
+  </p>
+
+  <p class="artifact-row">
+    <a class="artifact" href={PLAN} data-live target="_blank" rel="noopener">
+      Open the 90-day plan
       <span aria-hidden="true">→</span>
     </a>
   </p>
