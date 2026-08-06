@@ -1,0 +1,162 @@
+---
+/**
+ * God-file line counts across the eight codebases in the drift series.
+ *
+ * Form: magnitude across categories → horizontal bars, linear scale. The 115×
+ * range between the largest and smallest IS the finding, so it is not
+ * log-scaled — that would flatten the point the chart exists to make.
+ *
+ * Colour: a single series, so no categorical palette and no legend. One neutral
+ * ink for all bars; the subject repo carries the accent. The accent-vs-neutral
+ * pair sits at ΔE 6.8 under protanopia, so the highlight is *also* encoded by a
+ * marker glyph and a bolder label — never by colour alone.
+ *
+ * Every bar is direct-labelled: the site ships no client JavaScript, so there is
+ * no hover layer to fall back on. Values must be readable at rest.
+ */
+const rows = [
+  { repo: 'Warp', file: 'workspace/view.rs', lines: 24605, subject: true },
+  { repo: 'Excalidraw', file: 'App.tsx', lines: 13055 },
+  { repo: 'Sentry', file: 'api/urls.py', lines: 3885 },
+  { repo: 'Bitcoin Core', file: 'subprocess.h', lines: 1486, note: 'vendored' },
+  { repo: 'Jenkins', file: 'SlaveComputer.java', lines: 1206 },
+  { repo: 'Consul', file: '“temporary” client', lines: 996 },
+  { repo: 'liquid-dsp', file: 'autoscript.c', lines: 422 },
+  { repo: 'microrealestate', file: 'utils/service.ts', lines: 214, note: 'misfiled' },
+];
+
+const max = Math.max(...rows.map((r) => r.lines));
+const X = 232; // bar origin
+const W = 700; // bar track width
+const ROW = 36;
+const TOP = 30;
+const H = TOP + rows.length * ROW + 16;
+---
+
+<figure class="chart">
+  <svg viewBox={`0 0 1080 ${H}`} role="img" aria-labelledby="gf-t gf-d">
+    <title id="gf-t">Largest single file in each of eight codebases</title>
+    <desc id="gf-d">
+      Horizontal bar chart. Warp's workspace/view.rs is 24,605 lines, Excalidraw's
+      App.tsx 13,055, Sentry's api/urls.py 3,885, Bitcoin Core's vendored
+      subprocess.h 1,486, Jenkins's SlaveComputer.java 1,206, Consul's temporary
+      client 996, liquid-dsp's autoscript.c 422, and microrealestate's misfiled
+      utils/service.ts 214.
+    </desc>
+
+    <text x="0" y="12" class="axis-label">Repository · largest file</text>
+    <text x={X} y="12" class="axis-label">Lines</text>
+
+    {
+      rows.map((r, i) => {
+        const y = TOP + i * ROW;
+        const w = Math.max(3, (r.lines / max) * W);
+        return (
+          <g class:list={[{ subject: r.subject }]}>
+            {r.subject && (
+              <text x="0" y={y + 15} class="marker" aria-hidden="true">
+                ▶
+              </text>
+            )}
+            <text x={r.subject ? 14 : 0} y={y + 15} class="repo">
+              {r.repo}
+            </text>
+            <text x={r.subject ? 14 : 0} y={y + 27} class="file">
+              {r.file}
+              {r.note ? ` · ${r.note}` : ''}
+            </text>
+
+            {/* 2px surface gap below each bar keeps adjacent marks separated */}
+            <rect x={X} y={y + 4} width={w} height="16" rx="3" class="bar" />
+            <text x={X + w + 10} y={y + 16} class="value">
+              {r.lines.toLocaleString('en-US')}
+            </text>
+          </g>
+        );
+      })
+    }
+  </svg>
+
+  <figcaption>
+    Seven of eight had a conventional god-file; microrealestate had the same shape
+    misfiled — a 214-line Express bootstrapper sitting in a folder of 10-line
+    helpers. Linear scale: the 115× spread is the point.
+  </figcaption>
+</figure>
+
+<style>
+  .chart {
+    margin: 0 0 34px;
+    border: 1px solid var(--color-rule);
+    background: var(--color-paper-raised);
+    padding: 20px 20px 0;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .axis-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    fill: var(--color-ink-3);
+  }
+
+  .repo {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    fill: var(--color-ink-2);
+  }
+
+  .file {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    fill: var(--color-ink-3);
+  }
+
+  .value {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    fill: var(--color-ink-2);
+  }
+
+  /* One flat neutral — bar length already encodes magnitude, so colour must not
+     double-encode it. */
+  .bar {
+    fill: var(--color-ink-2);
+  }
+
+  /* Secondary encoding on the highlighted row: glyph + weight, not colour alone. */
+  .subject .bar {
+    fill: var(--color-signal);
+  }
+
+  .subject .repo,
+  .subject .value {
+    fill: var(--color-ink);
+    font-weight: 700;
+  }
+
+  .marker {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    fill: var(--color-signal);
+  }
+
+  figcaption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-3);
+    padding: 16px 0;
+    margin-top: 16px;
+    border-top: 1px solid var(--color-rule);
+  }
+</style>
