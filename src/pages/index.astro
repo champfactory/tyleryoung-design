@@ -57,6 +57,9 @@ const references = [
         one sentence on current AI-native practice — the single most load-bearing
         line on this site. Tyler writes or approves it.
       </Needs>
+    </p>
+
+    <p class="thesis-line" data-rise style="--i:4">
       <a class="thesis" href="/how-i-design-with-ai">
         How I design with AI <span aria-hidden="true">→</span>
       </a>
@@ -203,10 +206,13 @@ const references = [
     max-width: 60ch;
   }
 
+  .thesis-line {
+    margin: 22px 0 0;
+  }
+
   /* The connective thesis, in the structure rather than buried two pages down. */
   .thesis {
     display: inline-block;
-    margin-top: 14px;
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
@@ -228,7 +234,6 @@ const references = [
     list-style: none;
     margin: 40px 0 0;
     padding: 18px 0 0;
-    border-top: 1px solid var(--color-rule);
     display: flex;
     flex-wrap: wrap;
     gap: 10px 28px;
@@ -268,7 +273,6 @@ const references = [
     align-items: baseline;
     gap: 16px;
     padding-top: 14px;
-    border-top: 1px solid var(--color-ink);
     margin-bottom: 40px;
   }
 
@@ -364,7 +368,6 @@ const references = [
   .legend {
     margin: 64px 0 0;
     padding-top: 20px;
-    border-top: 1px solid var(--color-rule);
     font-family: var(--font-mono);
     font-size: 11px;
     line-height: 1.9;
