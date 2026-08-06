@@ -1,0 +1,174 @@
+---
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import LeadStrand from '../components/LeadStrand.astro';
+import Shot from '../components/Shot.astro';
+import Needs from '../components/Needs.astro';
+import Draft from '../components/Draft.astro';
+
+const B = '/work/alucify';
+---
+
+<DocumentLayout
+  title="An interface for supervising work you did not watch happen"
+  metaTitle="Alucify — designing for AI agents working on a codebase | Tyler Young"
+  description="A code-intelligence tool whose primary metrics are blast radius, agent hours and token cost — designed for people accountable for work an agent did."
+  descriptionDraft
+  eyebrow="01 · AI-Native Product"
+  meta={[
+    ['Product', 'Code intelligence — “your code, flows, and intents, unified”'],
+    ['Contribution', '[NEEDS: what Tyler owned here, in his words]'],
+    ['Surface', 'First run through tenured use · 20 documented states'],
+    ['Status', 'Active venture · shown with the founder’s agreement'],
+  ]}
+>
+  <p class="answer">
+    <Draft>
+      When an agent does the work, the human job changes. You are no longer watching
+      it happen — you are arriving afterwards and deciding whether to trust it. This
+      is an interface built for that moment, and its primary metrics say so.
+    </Draft>
+  </p>
+
+  <Shot
+    src={`${B}/dashboard.png`}
+    alt="Alucify dashboard for a project called RBAC v1.1.1, showing artifact status of one integrated, seven critical issues and twelve major issues; coverage analysis at 89 percent overall with three partially covered and one not covered; and impact analysis showing 87 percent blast radius, 240 agent hours and a 5M token cost."
+    state="Tenured user dashboard"
+    caption="Blast radius, agent hours and token cost sit at the same level as coverage. Customer name redacted in the rail."
+    wide
+  />
+
+  <h2>The metrics are the argument</h2>
+  <p>
+    <Draft>
+      Blast radius. Agent hours. Token cost. Those are not vanity numbers — they are
+      the three questions someone actually has when an agent has been let loose on a
+      codebase: how far did this reach, how much work was done, and what did it
+      cost to do. Putting them on the landing surface at the same weight as coverage
+      is a claim about what the product is for.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      Cost as a first-class metric is the part most tools get wrong. It is treated
+      as billing, tucked into a settings page, and therefore never influences a
+      decision. Here it sits next to the outcome it paid for.
+    </Draft>
+  </p>
+
+  <h2>Coverage is a judgement, not a score</h2>
+  <p>
+    <Draft>
+      A single percentage tells you nothing you can act on. The coverage view breaks
+      the number back into the decisions underneath it — each one named, categorised
+      and marked covered, partial or not covered — so the question stops being “is
+      89 per cent good” and becomes “which four things are not covered, and do I
+      care about them.”
+    </Draft>
+  </p>
+
+  <Shot
+    src={`${B}/coverage.png`}
+    alt="Coverage analysis view showing 89 percent overall across 27 total decisions, with 23 fully covered, 3 partially covered and 1 not covered, above a table of named AI decisions each tagged none, partial or covered."
+    state="Coverage analysis"
+    caption="Every row is a specific decision — a gateway type resolution spec, a cache hydration model — not an abstract category."
+    wide
+  />
+
+  <h2>Severity earns the interruption</h2>
+  <p>
+    <Draft>
+      The impact view is where the product is allowed to be loud. A scoped change
+      boundary marked critical, two of five, with its own summary and a breakdown
+      across blast radius, regression risk, data integrity and backward
+      compatibility. Everything else on the surface is quiet so that this can be
+      heard.
+    </Draft>
+  </p>
+
+  <Shot
+    src={`${B}/impact.png`}
+    alt="Impact analysis detail panel for a scoped change boundary marked critical, two of five, with a written summary and severity indicators for blast radius at 30 percent, 56 agent hours, 3M token cost, regression, data integrity and backward compatibility."
+    state="Impact analysis — concept detail"
+    caption="Severity is carried by a badge, a colour and a written summary together, not by colour alone."
+    wide
+  />
+
+  <h2>The states nobody designs</h2>
+  <p>
+    <Draft>
+      Twenty screens, and a good number of them are the ones usually left to
+      engineering to improvise: the integration mid-flight, the audit that has gone
+      stale and needs re-running, the dashboard before anything exists in it. A
+      developer tool is used mostly in these states, not in the populated one.
+    </Draft>
+  </p>
+
+  <div class="pair">
+    <Shot
+      src={`${B}/reaudit.png`}
+      alt="Artifact re-audit view with a full-width orange banner stating the artifact was integrated on a given date, a deprecation notice reading this audit has been deprecated, please re-audit, and a table of six issues tagged critical, major and minor, each paired with a written resolution."
+      state="Deprecated audit"
+      caption="A stale result is stated plainly and paired with the action that fixes it."
+    />
+    <Shot
+      src={`${B}/in-progress.png`}
+      alt="Artifact integration in progress, showing the dashboard skeleton with empty metric slots and a yellow status banner explaining that context is being created and a completion notification will follow by email."
+      state="Integration in progress"
+      caption="The empty state explains what is happening and what will end the wait."
+    />
+  </div>
+
+  <h2>What I owned</h2>
+  <p>
+    <Needs>
+      Tyler — the honest scope line. Same standard applied to word web: concept,
+      direction, design, execution — which of these were yours, in your words.
+    </Needs>
+  </p>
+
+  <div class="aside">
+    <p>
+      Shown with the founder's agreement. The customer name has been redacted from
+      the navigation rail in every screen; the product and its data model are
+      otherwise as designed.
+    </p>
+  </div>
+
+  <LeadStrand
+    slot="after"
+    items={[
+      {
+        slug: 'how-i-managed-ux-complexity',
+        note: 'A tool that reports blast radius and token cost is measuring complexity so a person can act on it. That is the complexity budget, pointed at an agent rather than a design team.',
+      },
+      {
+        slug: 'how-i-infused-design-roles-with-product-thinking',
+        note: 'Choosing which three numbers belong on the landing surface is product work. It decides what the tool is for before a single screen is laid out.',
+      },
+    ]}
+  />
+</DocumentLayout>
+
+<style>
+  .answer {
+    font-size: 24px !important;
+    line-height: 1.52 !important;
+    margin-bottom: 36px !important;
+  }
+
+  .pair {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 34px;
+  }
+
+  .pair :global(.shot) {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 1000px) {
+    .pair {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

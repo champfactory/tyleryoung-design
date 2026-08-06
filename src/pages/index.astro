@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import StoryCard from '../components/StoryCard.astro';
 import LiveFrame from '../components/LiveFrame.astro';
+import Shot from '../components/Shot.astro';
+import SurfaceLedger from '../components/SurfaceLedger.astro';
 import Needs from '../components/Needs.astro';
 import { stories } from '../data/stories';
 import { REPO } from '../data/site.mjs';
@@ -73,11 +75,10 @@ const references = [
 
     <StoryCard story={stories[0]}>
       <div slot="media">
-        <LiveFrame
-          src="https://atheer-next-storybook.fly.dev/iframe.html?id=design-system-tokens--colors&viewMode=story"
-          host="atheer-next-storybook.fly.dev"
-          title="The design system's token page, live"
-          note="The design system's token page — running now, not a screenshot."
+        <Shot
+          src="/work/alucify/dashboard.png"
+          alt="Alucify dashboard showing artifact status, coverage analysis at 89 percent, and impact analysis reporting 87 percent blast radius, 240 agent hours and a 5M token cost."
+          state="Tenured user dashboard"
         />
       </div>
     </StoryCard>
@@ -95,9 +96,7 @@ const references = [
 
     <StoryCard story={stories[2]}>
       <div slot="media">
-        <Needs block ratio="4 / 3">
-          Dashboard overview and the AI attention surface, if they can be public
-        </Needs>
+        <SurfaceLedger />
       </div>
     </StoryCard>
   </section>

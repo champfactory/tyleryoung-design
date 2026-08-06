@@ -1,0 +1,122 @@
+---
+/**
+ * The review round, as a ledger.
+ *
+ * Six surfaces were reviewed. The next version touched four files — the Jobs and
+ * Sessions surfaces — and left five components untouched, so the notes covering
+ * those are still open. Derived by diffing the two source directories, not from
+ * the feedback file's checkboxes, which were never ticked.
+ */
+const surfaces = [
+  { name: 'Jobs', actioned: true, evidence: 'JobsPage.jsx' },
+  { name: 'AiR Sessions', actioned: true, evidence: 'SessionsPage · PastSessionsPage' },
+  { name: 'Overall body', actioned: true, evidence: 'App.jsx' },
+  { name: 'Home', actioned: false, evidence: 'not this round' },
+  { name: 'Ask OASES', actioned: false, evidence: 'AiResponse · Drawer unchanged' },
+  { name: 'Top nav', actioned: false, evidence: 'NavModal · NavRight unchanged' },
+];
+---
+
+<figure class="ledger">
+  <div class="head">
+    <span class="dot" aria-hidden="true"></span>
+    <span>48 notes · 6 surfaces · what happened next</span>
+  </div>
+
+  <ul>
+    {
+      surfaces.map((s) => (
+        <li class:list={[{ done: s.actioned }]}>
+          <span class="mark" aria-hidden="true">{s.actioned ? '■' : '□'}</span>
+          <span class="name">{s.name}</span>
+          <span class="evidence">{s.evidence}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <figcaption>
+    Filled = changed in the next version. Read from the diff, not the checkboxes —
+    those were never ticked.
+  </figcaption>
+</figure>
+
+<style>
+  .ledger {
+    margin: 0;
+    border: 1px solid var(--color-rule);
+    background: var(--color-paper-raised);
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--color-rule);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-2);
+  }
+
+  .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-signal);
+    flex: none;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 6px 0;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr) minmax(0, 1.2fr);
+    align-items: baseline;
+    gap: 10px;
+    padding: 9px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  .mark {
+    color: var(--color-rule-strong);
+  }
+
+  li.done .mark {
+    color: var(--color-signal);
+  }
+
+  .name {
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+
+  li.done .name {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  .evidence {
+    color: var(--color-ink-3);
+    text-align: right;
+  }
+
+  figcaption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-3);
+    padding: 13px 14px;
+    border-top: 1px solid var(--color-rule);
+  }
+</style>

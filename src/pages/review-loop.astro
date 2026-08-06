@@ -1,0 +1,249 @@
+---
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import LeadStrand from '../components/LeadStrand.astro';
+import Receipt from '../components/Receipt.astro';
+import Needs from '../components/Needs.astro';
+import Draft from '../components/Draft.astro';
+import SurfaceLedger from '../components/SurfaceLedger.astro';
+
+/**
+ * Every figure here is countable from the source directories, and every quoted
+ * feedback line is verbatim from FEEDBACK.md. The v5→v6 diff was read directly;
+ * nothing about what "landed" is inferred from the checkboxes, which were all
+ * left unticked.
+ */
+const counts = [
+  { n: '48', label: 'itemised notes' },
+  { n: '6', label: 'surfaces reviewed' },
+  { n: '394', label: 'lines changed next' },
+  { n: '4', label: 'files touched' },
+];
+
+// Verbatim from FEEDBACK.md, one per reviewed surface.
+const notes = [
+  'Add curved border/radius around table',
+  'Rename “Executive Intervention Queue” to “Intervention Queue”',
+  'Progress visuals: Fix color coding — exceeding target vs falling behind should use different colors',
+  'Add summary metrics above table: Total Jobs, Open, Paused, Done, Policy Adherence',
+  'Animate AI “thinking” before showing results (gathering info from different apps)',
+  'Add sticky columns (first 3) for horizontal scroll',
+];
+---
+
+<DocumentLayout
+  title="What a review looks like when the thing being reviewed runs"
+  metaTitle="The review loop — feedback against working software | Tyler Young"
+  description="Forty-eight itemised notes taken against a running build, and the diff that shows exactly which ones were acted on and which were not."
+  descriptionDraft
+  eyebrow="Review Loop"
+  meta={[
+    ['Artifact', 'One feedback round · 48 items · 6 surfaces'],
+    ['Response', '4 files · 394 lines, in the next version'],
+    ['Method', 'Review against a deployed build, not a mockup'],
+    ['Client', '[NEEDS: naming decision — not shown here either way]'],
+  ]}
+>
+  <p class="answer">
+    <Draft>
+      A stakeholder sat with a running build and produced forty-eight specific
+      notes, organised by surface. The next version changed four files and three
+      hundred and ninety-four lines. Both artifacts still exist, so the whole
+      exchange is auditable — including the parts that were not acted on.
+    </Draft>
+  </p>
+
+  <dl class="counts">
+    {
+      counts.map((c) => (
+        <div>
+          <dt>{c.n}</dt>
+          <dd>{c.label}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <h2>The notes are specific because the thing was real</h2>
+  <p>
+    <Draft>
+      Nobody writes “add sticky columns to the first three” about a picture of a
+      table. You write it after trying to scroll one. The register of this feedback
+      is the argument for the method — it is the language of someone using
+      software, not evaluating a proposal.
+    </Draft>
+  </p>
+
+  <ul class="notes">
+    {notes.map((n) => <li>{n}</li>)}
+  </ul>
+  <p class="src">Six of forty-eight, verbatim</p>
+
+  <Receipt
+    label="FEEDBACK.md → the next version"
+    leftLabel="What the reviewer asked for"
+    rightLabel="What changed in the code"
+    caption="Read from the v5→v6 diff directly. The checkboxes in the feedback file were never ticked — the code is the record."
+  >
+    <div slot="left">
+      <pre><span class="dim">## Jobs</span>
+
+- [ ] Add curved border/radius
+      around table
+
+<span class="dim">## Home</span>
+
+- [ ] Rename "Executive Intervention
+      Queue" to "Intervention Queue"
+
+- [ ] Fix color coding — exceeding
+      target vs falling behind should
+      use different colors</pre>
+    </div>
+    <div slot="right">
+      <pre><span class="cue">+</span> borderBottomLeftRadius: 8
+<span class="cue">+</span> borderBottomRightRadius: 8
+  <span class="dim">…8 radius declarations added,
+   none removed</span>
+
+<span class="cue">+</span> label: 'Intervention Queue'
+<span class="cue">-</span> label: 'Executive Intervention…'
+
+<span class="cue">+</span> 'Amber threshold'
+  <span class="dim">…6 colour-threshold changes</span></pre>
+    </div>
+  </Receipt>
+
+  <div class="ledger-slot"><SurfaceLedger /></div>
+
+  <h2>The interesting part is what did not change</h2>
+  <p>
+    <Draft>
+      Five component files were left untouched — the AI response panel, the drawer,
+      the live session view, and both navigation components. The notes covering
+      those surfaces are still sitting in the file, unactioned.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      That is not a failure of the round. A review produces a queue, not a checklist
+      to be emptied, and someone decided which half of it was worth a version. What
+      is unusual is that the decision is legible at all. Review a mockup and there
+      is no diff to read; the prioritisation lives in someone's memory. Review
+      running code and it becomes a record.
+    </Draft>
+  </p>
+
+  <div class="aside">
+    <p>
+      No screens from this build are shown. It carries a named end customer and
+      their dealer network throughout, and has not been sanitised. The feedback
+      lines and the diff excerpts above contain none of it.
+    </p>
+  </div>
+
+  <h2>What happened after</h2>
+  <p>
+    <Needs>
+      Tyler — whether the remaining items were picked up in a later round, and how
+      many rounds this surface went through in total. The directories suggest six
+      versions; that is not the same as six review rounds.
+    </Needs>
+  </p>
+
+  <LeadStrand
+    slot="after"
+    items={[
+      {
+        slug: 'how-i-shaped-cross-functional-reputation',
+        note: 'Reviewing on working code changes what the rest of the org thinks design is for. It is a reputational move before it is a technical one, and it only works if design is already trusted in planning.',
+      },
+      {
+        slug: 'how-i-built-culture-around-paradox',
+        note: 'Forty-eight notes and four changed files is a judgement about which half mattered. Knowing which quality bars are load-bearing is the whole discipline of shipping inside a fixed window.',
+      },
+    ]}
+  />
+</DocumentLayout>
+
+<style>
+  .answer {
+    font-size: 24px !important;
+    line-height: 1.52 !important;
+    margin-bottom: 36px !important;
+  }
+
+  .counts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 20px;
+    margin: 0 0 40px;
+    padding: 24px 0;
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .counts div {
+    display: grid;
+    gap: 4px;
+  }
+
+  .counts dt {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 5vw, 40px);
+    font-weight: 620;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .counts dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    line-height: 1.5;
+  }
+
+  .notes {
+    list-style: none;
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    display: grid;
+    gap: 10px;
+  }
+
+  .notes li {
+    font-family: var(--font-mono) !important;
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    letter-spacing: 0.01em;
+    color: var(--color-ink-2);
+    padding: 10px 14px !important;
+    background: var(--color-paper-sunk);
+    border-left: 2px solid var(--color-rule-strong);
+  }
+
+  .notes li::before {
+    content: none !important;
+  }
+
+  .ledger-slot {
+    margin: 0 0 34px;
+  }
+
+  .src {
+    font-family: var(--font-mono);
+    font-size: 11px !important;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    margin: 0 0 34px !important;
+  }
+
+  @media (min-width: 810px) {
+    .counts {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>
