@@ -1,16 +1,17 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import LeadStrand from '../components/LeadStrand.astro';
-import Receipt from '../components/Receipt.astro';
+import Compare from '../components/Compare.astro';
+import SurfaceLedger from '../components/SurfaceLedger.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
-import SurfaceLedger from '../components/SurfaceLedger.astro';
+
+const R = '/work/review';
 
 /**
- * Every figure here is countable from the source directories, and every quoted
- * feedback line is verbatim from FEEDBACK.md. The v5→v6 diff was read directly;
- * nothing about what "landed" is inferred from the checkboxes, which were all
- * left unticked.
+ * Figures are countable from the source directories; feedback lines are verbatim
+ * from FEEDBACK.md; the before/after strips are screenshots of the two builds
+ * running side by side on localhost. Nothing here is reconstructed.
  */
 const counts = [
   { n: '48', label: 'itemised notes' },
@@ -18,37 +19,27 @@ const counts = [
   { n: '394', label: 'lines changed next' },
   { n: '4', label: 'files touched' },
 ];
-
-// Verbatim from FEEDBACK.md, one per reviewed surface.
-const notes = [
-  'Add curved border/radius around table',
-  'Rename “Executive Intervention Queue” to “Intervention Queue”',
-  'Progress visuals: Fix color coding — exceeding target vs falling behind should use different colors',
-  'Add summary metrics above table: Total Jobs, Open, Paused, Done, Policy Adherence',
-  'Animate AI “thinking” before showing results (gathering info from different apps)',
-  'Add sticky columns (first 3) for horizontal scroll',
-];
 ---
 
 <DocumentLayout
-  title="What a review looks like when the thing being reviewed runs"
-  metaTitle="The review loop — feedback against working software | Tyler Young"
-  description="Forty-eight itemised notes taken against a running build, and the diff that shows exactly which ones were acted on and which were not."
+  title="Forty-eight notes, and what happened to them"
+  metaTitle="The review loop — feedback against a running build | Tyler Young"
+  description="A stakeholder reviewed a running build and wrote forty-eight notes. Here is the before, the notes, and the after — including the half that was declined."
   descriptionDraft
-  eyebrow="Review Loop"
+  eyebrow="03 · How I Work"
   meta={[
     ['Artifact', 'One feedback round · 48 items · 6 surfaces'],
     ['Response', '4 files · 394 lines, in the next version'],
-    ['Method', 'Review against a deployed build, not a mockup'],
-    ['Client', '[NEEDS: naming decision — not shown here either way]'],
+    ['Method', 'Review against a running build, not a mockup'],
+    ['Shown', 'Only the regions that changed — client brand and staff excluded'],
   ]}
 >
   <p class="answer">
     <Draft>
-      A stakeholder sat with a running build and produced forty-eight specific
-      notes, organised by surface. The next version changed four files and three
-      hundred and ninety-four lines. Both artifacts still exist, so the whole
-      exchange is auditable — including the parts that were not acted on.
+      A stakeholder sat with a running build and wrote forty-eight specific notes,
+      organised by surface. The next version changed four files. Both builds still
+      run, so you can watch the whole exchange — including the half that was turned
+      down.
     </Draft>
   </p>
 
@@ -63,103 +54,92 @@ const notes = [
     }
   </dl>
 
-  <h2>The notes are specific because the thing was real</h2>
+  <h2>Three notes, and what they did</h2>
   <p>
     <Draft>
-      Nobody writes “add sticky columns to the first three” about a picture of a
-      table. You write it after trying to scroll one. The register of this feedback
-      is the argument for the method — it is the language of someone using
-      software, not evaluating a proposal.
+      Nobody writes “fix the colour coding — exceeding target versus falling behind
+      should use different colours” about a picture of a dashboard. You write it
+      after looking at a real one and finding you cannot tell good from bad at a
+      glance.
     </Draft>
   </p>
 
-  <ul class="notes">
-    {notes.map((n) => <li>{n}</li>)}
-  </ul>
-  <p class="src">Six of forty-eight, verbatim</p>
+  <Compare
+    note="Progress visuals: Fix color coding — exceeding target vs falling behind should use different colors"
+    before={`${R}/kpis-v5.png`}
+    after={`${R}/kpis-v6.png`}
+    beforeAlt="Four performance cards in a row, all with plain white backgrounds and identical amber value text, so a card 20 percent over target looks the same as one 7 percent short of it."
+    afterAlt="The same four cards, each now carrying a coloured left edge with matching value text — orange, red, teal and amber — so over-target and short-of-target read differently at a glance."
+    tell="Status moved from a uniform amber into four states, carried by a coloured edge as well as by the text."
+  />
 
-  <Receipt
-    label="FEEDBACK.md → the next version"
-    leftLabel="What the reviewer asked for"
-    rightLabel="What changed in the code"
-    caption="Read from the v5→v6 diff directly. The checkboxes in the feedback file were never ticked — the code is the record."
-  >
-    <div slot="left">
-      <pre><span class="dim">## Jobs</span>
+  <Compare
+    note="Rename “Executive Intervention Queue” to “Intervention Queue”"
+    before={`${R}/anchors-v5.png`}
+    after={`${R}/anchors-v6.png`}
+    beforeAlt="Anchor bar reading Key Performance Indicators and Intervention Que, with Queue misspelled."
+    afterAlt="The same anchor bar, now reading Key Performance Indicators and Intervention Queue."
+    tell="The rename also caught a spelling nobody had filed — “Que” had been sitting in the anchor bar the whole time."
+  />
 
-- [ ] Add curved border/radius
-      around table
+  <Compare
+    note="Make intervention rows collapsible. Add filters (by status) and expand/collapse all icons"
+    before={`${R}/queue-v5.png`}
+    after={`${R}/queue-v6.png`}
+    beforeAlt="Intervention section heading with a single Filter link floated to its right."
+    afterAlt="Intervention Queue heading with a Filter button beneath it and a right-aligned toolbar of three controls for filtering, export and sorting."
+    tell="One filter link became a control group. The collapsible rows in the same note did not land — see below."
+  />
 
-<span class="dim">## Home</span>
-
-- [ ] Rename "Executive Intervention
-      Queue" to "Intervention Queue"
-
-- [ ] Fix color coding — exceeding
-      target vs falling behind should
-      use different colors</pre>
-    </div>
-    <div slot="right">
-      <pre><span class="cue">+</span> borderBottomLeftRadius: 8
-<span class="cue">+</span> borderBottomRightRadius: 8
-  <span class="dim">…8 radius declarations added,
-   none removed</span>
-
-<span class="cue">+</span> label: 'Intervention Queue'
-<span class="cue">-</span> label: 'Executive Intervention…'
-
-<span class="cue">+</span> 'Amber threshold'
-  <span class="dim">…6 colour-threshold changes</span></pre>
-    </div>
-  </Receipt>
+  <h2>The half that didn't happen</h2>
+  <p>
+    <Draft>
+      Five component files were never touched. Every note covering the AI response
+      panel, the drawer, the live session view and both navigation components is
+      still sitting in the file, unactioned.
+    </Draft>
+  </p>
 
   <div class="ledger-slot"><SurfaceLedger /></div>
 
-  <h2>The interesting part is what did not change</h2>
   <p>
     <Draft>
-      Five component files were left untouched — the AI response panel, the drawer,
-      the live session view, and both navigation components. The notes covering
-      those surfaces are still sitting in the file, unactioned.
+      That is not a failed round. A review produces a queue, not a checklist to be
+      emptied, and someone decided which half was worth a version. What is unusual
+      is that the decision is legible at all. Review a mockup and there is no diff
+      to read — the prioritisation lives in somebody's memory. Review running code
+      and it becomes a record you can audit later, which is exactly what I did to
+      build this page.
     </Draft>
   </p>
-  <p>
-    <Draft>
-      That is not a failure of the round. A review produces a queue, not a checklist
-      to be emptied, and someone decided which half of it was worth a version. What
-      is unusual is that the decision is legible at all. Review a mockup and there
-      is no diff to read; the prioritisation lives in someone's memory. Review
-      running code and it becomes a record.
-    </Draft>
-  </p>
-
-  <div class="aside">
-    <p>
-      No screens from this build are shown. It carries a named end customer and
-      their dealer network throughout, and has not been sanitised. The feedback
-      lines and the diff excerpts above contain none of it.
-    </p>
-  </div>
 
   <h2>What happened after</h2>
   <p>
     <Needs>
       Tyler — whether the remaining items were picked up in a later round, and how
-      many rounds this surface went through in total. The directories suggest six
-      versions; that is not the same as six review rounds.
+      many rounds this surface went through in total. Six directories is not six
+      review rounds.
     </Needs>
   </p>
+
+  <div class="aside">
+    <p>
+      Screens are cropped to the regions that changed. That is the honest framing
+      for a before-and-after, and it keeps the client's brand, staff names and
+      market references outside the frame. The full build is not published.
+    </p>
+  </div>
 
   <LeadStrand
     slot="after"
     items={[
       {
         slug: 'how-i-shaped-cross-functional-reputation',
-        note: 'Reviewing on working code changes what the rest of the org thinks design is for. It is a reputational move before it is a technical one, and it only works if design is already trusted in planning.',
+        note: 'Putting a stakeholder in front of running code changes what the rest of the org thinks design is for. It is a reputational move before it is a technical one, and it only works if design has already earned the room.',
       },
       {
         slug: 'how-i-built-culture-around-paradox',
-        note: 'Forty-eight notes and four changed files is a judgement about which half mattered. Knowing which quality bars are load-bearing is the whole discipline of shipping inside a fixed window.',
+        note: 'Forty-eight notes and four changed files is a judgement about which half mattered. Knowing which bars are load-bearing and which are vanity is the whole discipline of shipping inside a fixed window.',
       },
     ]}
   />
@@ -203,40 +183,8 @@ const notes = [
     line-height: 1.5;
   }
 
-  .notes {
-    list-style: none;
-    margin: 0 0 10px !important;
-    padding: 0 !important;
-    display: grid;
-    gap: 10px;
-  }
-
-  .notes li {
-    font-family: var(--font-mono) !important;
-    font-size: 13px !important;
-    line-height: 1.6 !important;
-    letter-spacing: 0.01em;
-    color: var(--color-ink-2);
-    padding: 10px 14px !important;
-    background: var(--color-paper-sunk);
-    border-left: 2px solid var(--color-rule-strong);
-  }
-
-  .notes li::before {
-    content: none !important;
-  }
-
   .ledger-slot {
     margin: 0 0 34px;
-  }
-
-  .src {
-    font-family: var(--font-mono);
-    font-size: 11px !important;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--color-ink-3);
-    margin: 0 0 34px !important;
   }
 
   @media (min-width: 810px) {
