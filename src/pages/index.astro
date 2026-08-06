@@ -7,7 +7,6 @@ import SurfaceLedger from '../components/SurfaceLedger.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
 import { stories } from '../data/stories';
-import { REPO } from '../data/site.mjs';
 import { essayGroups } from '../data/essayGroups';
 
 // DRAFT — replaces the ported exec sentence at Tyler's request. First person to
@@ -51,24 +50,16 @@ const references = [
   <!-- ------------------------------------------------------------- HERO ---
        15-second read: who, what he does now, and three ways in. Nothing else. -->
   <section class="shell hero">
-    <p class="label" data-rise style="--i:0">Senior Director of Design · Portfolio 2026</p>
-    <h1 class="display name" data-rise style="--i:1">Tyler Young</h1>
+    <h1 class="display name" data-rise style="--i:0">Tyler Young</h1>
 
-    <p class="lede" data-rise style="--i:2"><Draft>{bioLede}</Draft></p>
+    <p class="lede" data-rise style="--i:1"><Draft>{bioLede}</Draft></p>
 
-    <p class="thesis-line" data-rise style="--i:4">
+    <p class="thesis-line" data-rise style="--i:2">
       <a class="thesis" href="/how-i-design-with-ai">
         How I design with AI <span aria-hidden="true">→</span>
       </a>
     </p>
 
-    <ul class="proof" data-rise style="--i:4">
-      <li><a href="https://atheer-next.fly.dev/" target="_blank" rel="noopener">2 live deployments</a></li>
-      <li><a href="https://atheer-next-storybook.fly.dev/" target="_blank" rel="noopener">96 components · 51 stories</a></li>
-      <li><a href="/atheer-design-pipeline">1,048-line operating spec</a></li>
-      <li><a href={REPO} target="_blank" rel="noopener">This site's source</a></li>
-      <li><a href="/colophon">Audits that run on every build</a></li>
-    </ul>
   </section>
 
   <!-- ----------------------------------------------------------- STORIES ---
@@ -226,33 +217,6 @@ const references = [
     border-bottom-color: var(--color-signal);
   }
 
-  /* The 15-second layer: every claim on this row is checkable in one click. */
-  .proof {
-    list-style: none;
-    margin: 40px 0 0;
-    padding: 18px 0 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 28px;
-  }
-
-  .proof a {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-ink-2);
-    text-decoration: none;
-    border-bottom: 1px solid var(--color-rule-strong);
-    padding-bottom: 3px;
-    transition: color 120ms ease, border-color 120ms ease;
-  }
-
-  .proof a:hover {
-    color: var(--color-signal);
-    border-bottom-color: var(--color-signal);
-  }
 
   /* -------------------------------------------------------------- stories */
   .stories {
