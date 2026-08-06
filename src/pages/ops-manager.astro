@@ -1,0 +1,211 @@
+---
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import LeadStrand from '../components/LeadStrand.astro';
+import StoryFrame from '../components/StoryFrame.astro';
+import Draft from '../components/Draft.astro';
+import Needs from '../components/Needs.astro';
+
+const APP = 'https://atheer-next.fly.dev/';
+const SB = 'https://atheer-next-storybook.fly.dev/';
+
+/** Status is carried by shape first, so it survives greyscale and small sizes. */
+const shapes = [
+  { key: 'square', label: 'Blocked' },
+  { key: 'triangle', label: 'At risk' },
+  { key: 'circle', label: 'On track' },
+];
+---
+
+<DocumentLayout
+  title="Dense operational software, and you can open it right now"
+  metaTitle="Operational software — live product and component library | Tyler Young"
+  description="A working field-operations surface: status carried by shape rather than colour, and a sidebar that surfaces what changed instead of waiting to be clicked."
+  descriptionDraft
+  eyebrow="02 · Data-Dense B2B"
+  meta={[
+    ['Live', `<a href="${APP}">atheer-next.fly.dev</a>`],
+    ['Components', `<a href="${SB}">atheer-next-storybook.fly.dev</a>`],
+    ['Persona', 'Monitors field work all day; arrives resuming, not browsing'],
+    ['Built with', 'Paper↔Claude Code · React · Tailwind · Storybook'],
+  ]}
+>
+  <p class="answer">
+    <Draft>
+      Both links above are running software, not screenshots. The product surface is
+      one; the component library it was assembled from is the other. Everything
+      below is a note on what to look at once you are in them.
+    </Draft>
+  </p>
+
+  <h2>Status is a shape before it is a colour</h2>
+  <p>
+    <Draft>
+      Open the product and look at the sidebar and the job IDs. State is carried by
+      a hollow shape — square, triangle, circle — not by a colour swatch. The same
+      glyph appears on the nav item, the job header and the status column, so the
+      blocked square you notice in the sidebar is the identical mark you find on the
+      row that caused it.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      It survives greyscale, it works at eleven pixels, and it means colour is left
+      free to do something else.
+    </Draft>
+  </p>
+
+  <figure class="fig shapes">
+    <svg viewBox="0 0 372 92" role="img" aria-labelledby="shapes-title">
+      <title id="shapes-title">
+        Three hollow status glyphs: a square for blocked, a triangle for at risk,
+        and a circle for on track
+      </title>
+      {
+        shapes.map((s, i) => {
+          const cx = 62 + i * 124;
+          return (
+            <g>
+              {s.key === 'square' && <rect x={cx - 13} y="20" width="26" height="26" class="glyph" />}
+              {s.key === 'triangle' && (
+                <path d={`M ${cx} 18 L ${cx + 15} 46 L ${cx - 15} 46 Z`} class="glyph" />
+              )}
+              {s.key === 'circle' && <circle cx={cx} cy="33" r="14" class="glyph" />}
+              <text x={cx} y="76" class="glyph-label">{s.label}</text>
+            </g>
+          );
+        })
+      }
+    </svg>
+  </figure>
+
+  <h2>The sidebar reports, it does not just navigate</h2>
+  <p>
+    <Draft>
+      Each application in the nav carries a live line underneath it — a certification
+      expiring tomorrow, a safety step skipped on a numbered job, a rework rate up
+      week over week. Navigation stops being a menu and becomes a set of threads out
+      of today's problem, which means people find capabilities by working rather
+      than by being onboarded to them.
+    </Draft>
+  </p>
+
+  <StoryFrame
+    id="components-sidebar--default"
+    label="Sidebar"
+    source="Paper node IKC-1"
+    height={520}
+    note="Live from the component library. Configurable: active item, labels, subtitle text, status shapes, icons."
+  />
+
+  <h2>Components are earned, not scaffolded</h2>
+  <p>
+    <Draft>
+      Every component in the library traces to a specific node in the design file —
+      the inventory records which one, and what is configurable on each. Nothing was
+      created speculatively. If a component had not appeared in a design, it did not
+      belong in the library.
+    </Draft>
+  </p>
+
+  <StoryFrame
+    id="components-equipmentcard--default"
+    label="EquipmentCard"
+    source="Paper node IRG-1"
+    height={620}
+    note="Title, spec values, section labels and link lists are all configurable; variants cover many links, no image, and two theme palettes."
+  />
+
+  <p>
+    <Draft>
+      The library also carries the token page — colours, typography, spacing, radii,
+      borders and shadows — which is the constraint the whole system generates
+      inside. It is the first thing to open if you want to know whether this was a
+      system or a folder of components.
+    </Draft>
+  </p>
+
+  <p class="artifact-row">
+    <a class="artifact" href={SB} data-live target="_blank" rel="noopener">
+      Open the component library
+      <span aria-hidden="true">→</span>
+    </a>
+    <a class="artifact" href={APP} data-live target="_blank" rel="noopener">
+      Open the product
+      <span aria-hidden="true">→</span>
+    </a>
+  </p>
+
+  <h2>What shipped</h2>
+  <p>
+    <Needs>
+      Tyler — which parts of this reached production and which stayed design. Not
+      guessing at it.
+    </Needs>
+  </p>
+
+  <div class="aside">
+    <p>
+      The data in the live product is invented — the equipment, the sites and the
+      people are not real. A second surface from the same engagement carries a named
+      end customer and is deliberately not published.
+    </p>
+  </div>
+
+  <LeadStrand
+    slot="after"
+    items={[
+      {
+        slug: 'how-i-managed-ux-complexity',
+        note: 'This is the complexity budget applied to one surface. Making friction measurable is what lets a team argue about density with evidence instead of taste, and catch scope bloat while it is still cheap to remove.',
+      },
+      {
+        slug: 'how-i-infused-design-roles-with-product-thinking',
+        note: 'A page built around what a person is trying to resume, rather than what the database contains, starts as product work. Product fluency inside the design team is what makes that research rather than assumption.',
+      },
+    ]}
+  />
+</DocumentLayout>
+
+<style>
+  .answer {
+    font-size: 24px !important;
+    line-height: 1.52 !important;
+    margin-bottom: 36px !important;
+  }
+
+  .fig {
+    margin: 0 0 34px;
+    border: 1px solid var(--color-rule);
+    background: var(--color-paper-raised);
+    padding: 20px;
+  }
+
+  .fig svg {
+    display: block;
+    width: 100%;
+    max-width: 372px;
+    height: auto;
+  }
+
+  .glyph {
+    fill: none;
+    stroke: var(--color-ink);
+    stroke-width: 2;
+  }
+
+  .glyph-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    fill: var(--color-ink-3);
+    text-anchor: middle;
+  }
+
+  .artifact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 26px;
+    margin: 30px 0 0 !important;
+  }
+</style>

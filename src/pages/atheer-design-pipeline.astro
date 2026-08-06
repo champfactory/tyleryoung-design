@@ -4,105 +4,186 @@ import LeadStrand from '../components/LeadStrand.astro';
 import Receipt from '../components/Receipt.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
+
+// Every figure below is countable from the source repository. Nothing estimated.
+const counts = [
+  { n: '96', label: 'React components' },
+  { n: '51', label: 'Storybook stories' },
+  { n: '19', label: 'deployed applications' },
+  { n: '6', label: 'rounds of review on running software' },
+];
 ---
 
 <DocumentLayout
   title="I replaced an agency handoff process with a pipeline that returns working code"
   metaTitle="An AI-native design-to-code pipeline | Tyler Young"
-  description="Replacing an agency handoff process with a Figma-to-Claude-Code pipeline producing production React, Tailwind and Storybook components."
+  description="Replacing an agency handoff process with a Paper-to-Claude-Code pipeline producing production React, Tailwind and Storybook components."
   descriptionDraft
   eyebrow="01 · AI-Native Practice"
   meta={[
     ['Role', 'Director of Design · 90-day engagement · 2026'],
-    ['Built', 'Design system v0 · Figma↔Claude Code pipeline'],
-    ['Stack', 'React · Tailwind · Storybook'],
-    ['Outcome', '[NEEDS: Tyler’s one-liner]'],
+    ['Built', 'Design system v0 · Paper↔Claude Code pipeline'],
+    ['Stack', 'React · Tailwind · Storybook · Vite · Fly.io'],
+    ['Governed by', 'A 1,048-line operating spec'],
   ]}
 >
   <p class="answer">
     <Draft>
       An agency sat between design intent and shipped UI, and every decision made a
       round trip through a handoff document. I replaced the document with a pipeline:
-      Figma to Claude Code to React, Tailwind and Storybook, with the design system
+      Paper to Claude Code to React, Tailwind and Storybook, with the design system
       as the constraint on what could be generated. Stakeholder reviews moved onto
       running components.
     </Draft>
   </p>
 
+  <dl class="counts">
+    {
+      counts.map((c) => (
+        <div>
+          <dt>{c.n}</dt>
+          <dd>{c.label}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <h2>The system is the artifact</h2>
+  <p>
+    <Draft>
+      The pipeline is not a tool I used. It is a document I wrote — an operating
+      spec that lets an autonomous agent build inside a real codebase without
+      supervision it cannot safely be given. It is the design system in the sense
+      that matters: the thing that decides what is allowed to exist.
+    </Draft>
+  </p>
+
   <Receipt
-    label="~/design-system — prompt to rendered component"
-    leftLabel="Instruction"
-    rightLabel="Rendered in Storybook"
-    caption="The loop that replaced the handoff document."
+    label="workflow/CLAUDE.md — operating spec, 1,048 lines"
+    leftLabel="On where my expertise ends"
+    rightLabel="On what design judgment is worth automating"
+    caption="Excerpts, verbatim. The full spec covers project boundaries, filesystem safety, secrets, deploy rules, and an explicit allowed / disallowed autonomy list."
   >
     <div slot="left">
-      <Needs block ratio="4 / 3">
-        3–4 stills or a 60–90s capture: prompt in Claude Code → generated component
-        → rendered result
-      </Needs>
+      <pre><span class="dim">## Operating Context</span>
+
+The user is a designer,
+not a security engineer.
+
+The user cannot reliably evaluate
+terminal permissions or low-level
+commands.
+
+Therefore:
+
+Claude must self-enforce safety rules
+rather than relying on the user
+to detect problems.
+
+Claude should behave like:
+
+<span class="cue">&gt;</span> a careful senior builder working
+<span class="cue">&gt;</span> inside a small controlled workshop.</pre>
     </div>
     <div slot="right">
-      <Needs block ratio="4 / 3">Storybook screenshot — component grid / library view</Needs>
+      <pre><span class="dim">## Autonomous QA Checklist — item 13</span>
+
+Vertical lane alignment across
+sections. Trace vertical lanes through
+the full page. Do labels, values, and
+indicators fall on shared column lines?
+
+A structural mismatch is a layout bug
+even if every individual property
+within each section is correct.
+
+<span class="cue">&gt;</span> Vertical alignment is foundational —
+<span class="cue">&gt;</span> it is one of the dominant markers of
+<span class="cue">&gt;</span> a well-designed page.</pre>
     </div>
   </Receipt>
 
   <h2>How it worked</h2>
 
-  <h3>The system is the constraint, not the deliverable</h3>
+  <h3>Paper, not Figma — because one returns code</h3>
   <p>
     <Draft>
-      Design system v0 came out of real surfaces — the landing page, the context
-      engine, the workflow designer — not from a component wishlist. That matters
-      because the system is what bounds generation. A wishlist produces components
-      nobody asked for; real surfaces produce the ones that had to exist.
+      Paper's MCP returns actual JSX and Tailwind, not a description of a design to
+      be translated. Figma stayed in the system as a reader for legacy files and
+      nothing else. That single swap removes the interpretation step where most
+      design-to-code fidelity is lost.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      The rule that follows from it: every component begins as a literal copy of
+      what the design tool returned. No reinterpreting absolute positioning as flex,
+      no substituting spacing utilities for exact offsets. Abstraction is allowed
+      only after the literal version passes review — because abstractions are
+      opinions, and opinions have to be proven.
     </Draft>
   </p>
 
-  <h3>Reviews happen on the thing, not a picture of the thing</h3>
+  <h3>The token system is the palette</h3>
   <p>
     <Draft>
-      A mockup review postpones the argument about whether something works. A review
-      on a rendered component ends it. This was the change stakeholders noticed
-      first, and it cost nothing to adopt.
+      Every colour, weight, radius and spacing value has to trace to the project's
+      token page. If the tokens are too narrow for what is being asked, the agent
+      has to say so and wait rather than invent a value. Components are earned
+      through design extraction — if a component has not appeared in a design, it
+      does not belong in the library.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      That is what kept ninety-six components coherent without a second designer
+      reviewing every commit.
     </Draft>
   </p>
 
-  <h3>Exploration is cheap, so judgment is the constraint</h3>
+  <h3>Options were built, not described</h3>
   <p>
     <Draft>
-      When options come back as working code in minutes, the scarce thing stops being
-      production capacity and becomes knowing which option is right and what
-      guardrails it has to respect on the way out.
+      Three directions for the intelligence layer were built and deployed to three
+      separate URLs, so the choice was made against running software rather than in
+      a review deck. The ops surface went through six iterations, each with an
+      itemised feedback round against a live build.
     </Draft>
   </p>
-
-  <div class="aside">
-    <p>
-      Open decision — naming. This page avoids naming the client. Name it, or
-      describe it as “an AR / asset-management company”? Tyler's call. Also held:
-      whether the team-assessment thread is public or interview-only.
-    </p>
-  </div>
+  <p>
+    <Draft>
+      Nineteen deployments across ninety days: six iterations of one surface, three
+      parallel directions for another, the component library on its own URL, and the
+      decision tools I used to run the engagement.
+    </Draft>
+  </p>
 
   <h2>What changed</h2>
   <p>
     <Needs>
-      3–5 real, verifiable statements. Honest scale: 90 days, v0, process proved.
-      "Stakeholders reviewed working code for the first time" is strong enough
-      without embellishment.
+      Tyler — what actually landed against the 30-60-90 commitments. Honest scale:
+      90 days, v0, process proved. Not the plan's targets restated as results.
     </Needs>
   </p>
+
+  <div class="aside">
+    <p>
+      Client screens are deliberately absent. The work contains a named end customer
+      and their dealer-network data, and it has not been sanitised. Everything above
+      is either my own writing or a count from the repository.
+    </p>
+  </div>
 
   <LeadStrand
     slot="after"
     items={[
       {
-        slug: 'how-i-scaled-design-efficiency',
-        note: 'The pipeline is the same argument as the design system that came before it: teams move faster when the shared thing is assumed rather than optional. That one was adopted through usefulness, not mandate — this one had to be too.',
+        slug: 'how-i-built-culture-around-paradox',
+        note: 'Ninety days buys a v0 and a proved process, not a finished system. Knowing which quality bars are load-bearing and which are vanity is the whole discipline of shipping inside a fixed window.',
       },
       {
-        slug: 'how-i-shaped-cross-functional-reputation',
-        note: 'Moving reviews onto working code changes who design is to engineering and product. It is a reputational move as much as a technical one, and it only holds if the design org has already earned a seat in planning.',
+        slug: 'how-i-translated-design-work',
+        note: 'Replacing an agency is a budget argument before it is a design one. The pipeline had to be defensible in terms a stakeholder outside design could weigh — speed to production, and what stopped being paid for.',
       },
     ]}
   />
@@ -112,6 +193,45 @@ import Draft from '../components/Draft.astro';
   .answer {
     font-size: 24px !important;
     line-height: 1.52 !important;
-    margin-bottom: 40px !important;
+    margin-bottom: 36px !important;
+  }
+
+  .counts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 20px;
+    margin: 0 0 40px;
+    padding: 24px 0;
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .counts div {
+    display: grid;
+    gap: 4px;
+  }
+
+  .counts dt {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 5vw, 40px);
+    font-weight: 620;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .counts dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    line-height: 1.5;
+  }
+
+  @media (min-width: 810px) {
+    .counts {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
 </style>

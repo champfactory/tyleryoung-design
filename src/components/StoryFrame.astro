@@ -1,0 +1,128 @@
+---
+/**
+ * Embeds a single component from the live Storybook, without Storybook's chrome.
+ *
+ * The point is that this is not a screenshot — it is the actual component from the
+ * actual deployed build, rendering now. If the library breaks, this breaks, which
+ * is the correct behaviour for evidence.
+ *
+ * Lazy-loaded so the page's own first paint is unaffected, and the caption always
+ * carries a direct link in case a browser blocks third-party frames.
+ */
+const SB = 'https://atheer-next-storybook.fly.dev';
+
+interface Props {
+  /** Storybook story id, e.g. components-sidebar--default */
+  id: string;
+  label: string;
+  /** Where the component came from in the design file */
+  source?: string;
+  note?: string;
+  height?: number;
+}
+
+const { id, label, source, note, height = 520 } = Astro.props;
+const src = `${SB}/iframe.html?id=${id}&viewMode=story`;
+const deepLink = `${SB}/?path=/story/${id}`;
+---
+
+<figure class="story-frame">
+  <div class="chrome">
+    <span class="dot" aria-hidden="true"></span>
+    <span class="name">{label}</span>
+    {source && <span class="source">{source}</span>}
+    <a class="open" href={deepLink} target="_blank" rel="noopener">
+      Open in library <span aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="viewport" style={`height:${height}px`}>
+    <iframe
+      src={src}
+      title={`${label} — live from the component library`}
+      loading="lazy"
+      referrerpolicy="no-referrer"
+    ></iframe>
+  </div>
+
+  {note && <figcaption>{note}</figcaption>}
+</figure>
+
+<style>
+  .story-frame {
+    margin: 0 0 34px;
+    border: 1px solid var(--color-rule);
+    background: var(--color-paper-raised);
+  }
+
+  .chrome {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-rule);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-live);
+    flex: none;
+    align-self: center;
+  }
+
+  .name {
+    font-weight: 600;
+    color: var(--color-ink);
+    text-transform: uppercase;
+  }
+
+  .source {
+    color: var(--color-ink-3);
+    text-transform: uppercase;
+  }
+
+  .open {
+    margin-left: auto;
+    color: var(--color-ink-2);
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-rule-strong);
+    padding-bottom: 2px;
+  }
+
+  .open:hover {
+    color: var(--color-signal);
+    border-bottom-color: var(--color-signal);
+  }
+
+  .viewport {
+    /* The components expect a wide container; give them one and let the frame
+       scroll rather than reflowing the card into a narrow column. */
+    overflow: auto;
+    background: #ffffff;
+  }
+
+  iframe {
+    display: block;
+    width: 100%;
+    min-width: 720px;
+    height: 100%;
+    border: 0;
+  }
+
+  figcaption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-3);
+    padding: 14px 16px;
+    border-top: 1px solid var(--color-rule);
+  }
+</style>

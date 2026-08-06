@@ -1,0 +1,242 @@
+---
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import LeadStrand from '../components/LeadStrand.astro';
+import Draft from '../components/Draft.astro';
+import Needs from '../components/Needs.astro';
+
+// Figures below are Tyler's own, from how-i-scaled-design-efficiency. Not estimates.
+const counts = [
+  { n: '5', label: 'business functions' },
+  { n: '200+', label: 'components' },
+  { n: '3', label: 'orgs building on it' },
+];
+
+// Ported verbatim from the live site, including the deck URLs.
+const surfaces = [
+  {
+    eyebrow: 'Execution Impact',
+    title: 'Fast Find',
+    desc: 'Replaced filters with expressive inputs. A new UX primitive, built to move faster.',
+    label: '14 slide deck',
+    href: 'https://www.figma.com/deck/UBBOP8SP5gITdCrqp3jrty/Fast-Find?node-id=4004-207&viewport=501%2C404%2C0.02&t=jGlUNHd3GRNmvQiM-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
+  },
+  {
+    eyebrow: 'Strategic Framing',
+    title: 'One Place',
+    desc: 'Built conversion UX around perceived proximity to referring site, not just friction.',
+    label: '14 slide deck',
+    href: 'https://www.figma.com/deck/ToCiSMjR0JI9Y0SoDsBlNC/One-Place?node-id=4004-207&viewport=-63%2C38%2C0.49&t=WBw66U8AtUSdKLG5-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
+  },
+  {
+    eyebrow: 'System Design',
+    title: 'Storefront Builder',
+    desc: 'Created safe levers for brand expression. Control and creativity, finally in sync.',
+    label: '15 slide deck',
+    href: 'https://www.figma.com/deck/TxWswaxL97AiA48NWD9e5s/Storefront-Builder?node-id=2005-2&viewport=-42%2C52%2C0.47&t=Chg8rwuX9we4PeCk-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
+  },
+];
+---
+
+<DocumentLayout
+  title="A design system nobody was ordered to use"
+  metaTitle="Design at organisational scale | Tyler Young"
+  description="A global design system across five business functions and more than 200 components, adopted through usefulness rather than mandate."
+  descriptionDraft
+  eyebrow="03 · Organisational Scale"
+  meta={[
+    ['Role', 'Senior Director of Design'],
+    ['Scope', 'Five business functions · 200+ components'],
+    ['Reach', 'Design, engineering, product, creative, marketing'],
+    ['Company', '[NEEDS: naming — CaaStle, or “a retail platform company”?]'],
+  ]}
+>
+  <p class="answer">
+    <Draft>
+      The two stories above are ninety days. This one is the argument that the
+      approach holds at the scale of a company — a design system used across five
+      business functions, and a design organisation repositioned from taking orders
+      to shaping what got built.
+    </Draft>
+  </p>
+
+  <dl class="counts">
+    {
+      counts.map((c) => (
+        <div>
+          <dt>{c.n}</dt>
+          <dd>{c.label}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <h2>Adoption came from usefulness, not mandate</h2>
+  <p>
+    <Draft>
+      Nobody was told to use it. Product managers learned it because it made handoff
+      conversations easier to have without a designer in the room. Creative and
+      marketing picked it up because it made campaign production faster. Engineering
+      partnered on naming and component integrity, and ended up building a parallel
+      system that mirrored ours at the foundational level.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      That is the part worth transferring. A system that requires enforcement is a
+      tax. A system people reach for because it is the shortest path becomes
+      infrastructure, and teams start planning around it as if it were always there.
+    </Draft>
+  </p>
+
+  <h2>The same argument as the pipeline, one scale up</h2>
+  <p>
+    <Draft>
+      Ten years apart, the mechanism is identical: put the shared thing where the
+      work already happens, make it the fastest route, and let adoption follow. The
+      pipeline is that idea with generation attached — the system stops being a
+      library people import from and becomes the constraint on what can be produced
+      at all.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      What changed is the cost of a variation. When producing an option was
+      expensive, a design system mostly saved time. When producing an option is
+      nearly free, the system is the only thing keeping output coherent.
+    </Draft>
+  </p>
+
+  <h2>Product surfaces</h2>
+  <p class="sub">
+    <Draft>
+      Three surfaces the system was built to serve. These are decks rather than
+      running software — they predate the practice above, and the products are not
+      mine to deploy.
+    </Draft>
+  </p>
+
+  <div class="surfaces">
+    {
+      surfaces.map((s) => (
+        <article class="surface">
+          <p class="eyebrow">{s.eyebrow}</p>
+          <h3 class="heading">{s.title}</h3>
+          <p class="desc">{s.desc}</p>
+          <a class="artifact" href={s.href} target="_blank" rel="noopener">
+            {s.label}
+            <span aria-hidden="true">→</span>
+          </a>
+        </article>
+      ))
+    }
+  </div>
+
+  <h2>What it changed</h2>
+  <p>
+    <Needs>
+      Tyler — the outcomes worth stating here, in his words. The essays carry the
+      long version; this needs the short one.
+    </Needs>
+  </p>
+
+  <LeadStrand
+    slot="after"
+    items={[
+      {
+        slug: 'how-i-scaled-design-efficiency',
+        note: 'The long version of this story, written at the time — including why adoption spread through usefulness rather than mandate, and how the system became the default starting point for project planning.',
+      },
+      {
+        slug: 'how-i-shaped-cross-functional-reputation',
+        note: 'Systems change what a design org is allowed to do next. Tying advancement to planning impact is how the team grew into the seat the system had earned them.',
+      },
+    ]}
+  />
+</DocumentLayout>
+
+<style>
+  .answer {
+    font-size: 24px !important;
+    line-height: 1.52 !important;
+    margin-bottom: 36px !important;
+  }
+
+  .counts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin: 0 0 40px;
+    padding: 24px 0;
+    border-top: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .counts div {
+    display: grid;
+    gap: 4px;
+  }
+
+  .counts dt {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 5vw, 40px);
+    font-weight: 620;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .counts dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    line-height: 1.5;
+  }
+
+  .sub {
+    font-size: 17px !important;
+    color: var(--color-ink-2);
+  }
+
+  .surfaces {
+    display: grid;
+    gap: 28px;
+    margin: 26px 0 34px;
+  }
+
+  .surface {
+    padding-top: 18px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-signal);
+    margin: 0 0 8px !important;
+  }
+
+  .surface h3 {
+    font-size: 24px;
+    margin: 0 0 8px !important;
+  }
+
+  .desc {
+    font-size: 17px !important;
+    line-height: 1.55 !important;
+    color: var(--color-ink-2);
+    margin: 0 0 16px !important;
+    max-width: 44ch;
+  }
+
+  @media (min-width: 810px) {
+    .surfaces {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+</style>

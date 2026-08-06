@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import StoryCard from '../components/StoryCard.astro';
-import Receipt from '../components/Receipt.astro';
+import LiveFrame from '../components/LiveFrame.astro';
 import Needs from '../components/Needs.astro';
 import { stories } from '../data/stories';
+import { REPO } from '../data/site.mjs';
 import { essayGroups } from '../data/essayGroups';
 
 // Ported verbatim from the live site. Do not edit without Tyler.
@@ -55,6 +56,14 @@ const references = [
         line on this site. Tyler writes or approves it.
       </Needs>
     </p>
+
+    <ul class="proof" data-rise style="--i:4">
+      <li><a href="https://atheer-next.fly.dev/" target="_blank" rel="noopener">2 live deployments</a></li>
+      <li><a href="https://atheer-next-storybook.fly.dev/" target="_blank" rel="noopener">96 components · 51 stories</a></li>
+      <li><a href="/atheer-design-pipeline">1,048-line operating spec</a></li>
+      <li><a href={REPO} target="_blank" rel="noopener">This site's source</a></li>
+      <li><a href="/colophon">Audits that run on every build</a></li>
+    </ul>
   </section>
 
   <!-- ----------------------------------------------------------- STORIES ---
@@ -64,29 +73,23 @@ const references = [
 
     <StoryCard story={stories[0]}>
       <div slot="media">
-        <Receipt
-          label="~/design-system — prompt to rendered component"
-          leftLabel="Instruction"
-          rightLabel="Rendered in Storybook"
-        >
-          <div slot="left">
-            <Needs block ratio="4 / 3">
-              3–4 stills or a 60–90s capture of the loop
-            </Needs>
-          </div>
-          <div slot="right">
-            <Needs block ratio="4 / 3">Storybook screenshot — component grid</Needs>
-          </div>
-        </Receipt>
+        <LiveFrame
+          src="https://atheer-next-storybook.fly.dev/iframe.html?id=design-system-tokens--colors&viewMode=story"
+          host="atheer-next-storybook.fly.dev"
+          title="The design system's token page, live"
+          note="The design system's token page — running now, not a screenshot."
+        />
       </div>
     </StoryCard>
 
     <StoryCard story={stories[1]}>
       <div slot="media">
-        <Needs block ratio="4 / 3">
-          A page composing itself — screenshot or short capture. Or, better, the
-          live URL, which makes this frame unnecessary.
-        </Needs>
+        <LiveFrame
+          src="https://atheer-next.fly.dev/"
+          host="atheer-next.fly.dev"
+          title="The operations surface, live"
+          note="The running product. Status shapes sit on the nav items and job IDs."
+        />
       </div>
     </StoryCard>
 
@@ -196,6 +199,35 @@ const references = [
   .ai-line {
     margin: 26px 0 0;
     max-width: 60ch;
+  }
+
+  /* The 15-second layer: every claim on this row is checkable in one click. */
+  .proof {
+    list-style: none;
+    margin: 40px 0 0;
+    padding: 18px 0 0;
+    border-top: 1px solid var(--color-rule);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+  }
+
+  .proof a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-rule-strong);
+    padding-bottom: 3px;
+    transition: color 120ms ease, border-color 120ms ease;
+  }
+
+  .proof a:hover {
+    color: var(--color-signal);
+    border-bottom-color: var(--color-signal);
   }
 
   /* -------------------------------------------------------------- stories */

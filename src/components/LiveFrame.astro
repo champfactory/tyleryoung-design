@@ -1,0 +1,125 @@
+---
+/**
+ * Embeds a live deployment, scaled down to fit the card.
+ *
+ * The iframe renders at its real desktop width and is transform-scaled, so the
+ * layout is the actual layout rather than a responsive reflow of it. It is not a
+ * screenshot: if the deployment goes down, this goes blank — which is the correct
+ * failure mode for something presented as evidence.
+ */
+interface Props {
+  src: string;
+  /** shown in the chrome bar */
+  host: string;
+  title: string;
+  /** logical render width before scaling */
+  renderWidth?: number;
+  /** displayed aspect ratio, e.g. "16 / 10" */
+  ratio?: string;
+  scale?: number;
+  note?: string;
+}
+
+const {
+  src,
+  host,
+  title,
+  renderWidth = 1440,
+  ratio = '16 / 10',
+  scale = 0.42,
+  note,
+} = Astro.props;
+---
+
+<figure class="live">
+  <div class="chrome">
+    <span class="dot" aria-hidden="true"></span>
+    <span class="host">{host}</span>
+    <a class="open" href={src} target="_blank" rel="noopener">
+      Open <span aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="viewport" style={`aspect-ratio:${ratio}`}>
+    <iframe
+      src={src}
+      title={title}
+      loading="lazy"
+      referrerpolicy="no-referrer"
+      style={`width:${renderWidth}px;height:${Math.round(renderWidth / (16 / 10))}px;transform:scale(${scale});`}
+    ></iframe>
+  </div>
+
+  {note && <figcaption>{note}</figcaption>}
+</figure>
+
+<style>
+  .live {
+    margin: 0;
+    border: 1px solid var(--color-rule);
+    background: var(--color-paper-raised);
+  }
+
+  .chrome {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--color-rule);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-live);
+    flex: none;
+  }
+
+  .host {
+    color: var(--color-ink-2);
+  }
+
+  .open {
+    margin-left: auto;
+    color: var(--color-ink-2);
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-rule-strong);
+    padding-bottom: 1px;
+  }
+
+  .open:hover {
+    color: var(--color-signal);
+    border-bottom-color: var(--color-signal);
+  }
+
+  .viewport {
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    transform-origin: top left;
+    /* Decorative preview — the adjacent link is the real affordance. */
+    pointer-events: none;
+  }
+
+  figcaption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-3);
+    padding: 12px 14px;
+    border-top: 1px solid var(--color-rule);
+  }
+</style>
