@@ -3,6 +3,8 @@ slug: how-i-unlocked-team-trust
 title: >-
   Specialists to generalists, mid-downturn
 titleDraft: true
+pull: >-
+  Junior designers delivered the same caliber of execution once handled by senior specialists, but with greater speed and fewer dependencies.
 deck: >-
   How I unlocked team trust and performance by redesigning roles
 metaTitle: >-

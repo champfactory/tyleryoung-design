@@ -3,6 +3,8 @@ slug: how-i-scaled-design-efficiency
 title: >-
   The design system nobody was told to use
 titleDraft: true
+pull: >-
+  Product managers began learning the system to guide handoff conversations more confidently.
 deck: >-
   How I scaled design efficiency by replacing siloed workflows with a shared design system
 metaTitle: >-

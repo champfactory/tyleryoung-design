@@ -38,7 +38,6 @@ export const essayGroups: EssayGroup[] = [
     slugs: [
       'how-i-unlocked-team-trust',
       'how-i-shaped-cross-functional-reputation',
-      'how-i-infused-design-roles-with-product-thinking',
     ],
   },
 ];

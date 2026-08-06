@@ -21,6 +21,8 @@ interface Props {
   deck?: string;
   /** true when the short title is mine, not Tyler's */
   titleDraft?: boolean;
+  /** one verbatim line from the body, surfaced above the prose */
+  pull?: string;
   metaTitle: string;
   description?: string;
   descriptionDraft?: boolean;
@@ -35,6 +37,7 @@ const {
   title,
   deck,
   titleDraft,
+  pull,
   metaTitle,
   description,
   descriptionDraft,
@@ -87,6 +90,7 @@ const {
       </aside>
 
       <div class="prose">
+        {pull && <p class="pull">{pull}</p>}
         <slot />
       </div>
     </div>
@@ -170,6 +174,17 @@ const {
   .doc .prose {
     max-width: 68ch;
     min-width: 0;
+  }
+
+  .doc .prose > .pull {
+    margin: 0 0 34px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    font-size: clamp(23px, 3.1vw, 30px);
+    line-height: 1.28;
+    color: var(--color-ink);
+    text-wrap: balance;
   }
 
   .doc .prose > h2 {

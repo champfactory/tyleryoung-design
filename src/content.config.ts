@@ -18,6 +18,8 @@ const essays = defineCollection({
     // kept verbatim as the deck so nothing published is lost.
     titleDraft: z.boolean().optional(),
     deck: z.string().optional(),
+    /** the sharpest line in the essay, verbatim, surfaced above the prose */
+    pull: z.string().optional(),
     // Set where the ported metadata itself looks wrong on the live site.
     // Rendered as a visible warning rather than silently corrected.
     metaWarning: z.string().optional(),

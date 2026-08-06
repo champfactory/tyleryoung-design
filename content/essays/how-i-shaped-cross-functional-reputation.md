@@ -3,6 +3,8 @@ slug: how-i-shaped-cross-functional-reputation
 title: >-
   The influence ladder
 titleDraft: true
+pull: >-
+  Their growth was measured by how they shaped direction, not just by what they delivered.
 deck: >-
   How I shaped cross-functional reputation by tying advancement to planning impact
 metaTitle: >-

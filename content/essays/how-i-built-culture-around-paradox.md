@@ -3,6 +3,8 @@ slug: how-i-built-culture-around-paradox
 title: >-
   The good-enough double standard
 titleDraft: true
+pull: >-
+  A bar to exceed in problem definition, and to defend during execution.
 deck: >-
   How I built culture around the “good enough” paradox to hit business targets on schedule
 metaTitle: >-

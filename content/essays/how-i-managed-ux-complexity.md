@@ -3,6 +3,10 @@ slug: how-i-managed-ux-complexity
 title: >-
   The complexity budget
 titleDraft: true
+pull: >-
+  We stopped debating polish and started questioning cost.
+metaWarning: >-
+  Merged with "How I infused design roles with product thinking" — on the live site both essays opened My Response with a word-for-word identical sentence and described the same complexity budget. Only the Win differed, and both are kept here. The retired URL redirects. Tyler confirms the merge reads true.
 deck: >-
   How I managed UX complexity by championing an org-wide simplicity model
 metaTitle: >-
@@ -39,6 +43,10 @@ The framework changed how teams scoped. We stopped debating polish and started q
 ## The Win
 
 The complexity budget gave teams a credible way to recognize when scope had gone too far—and a shared language to scale it back. Simplicity stopped being a design preference and became a strategic constraint. Teams could justify reduction not by opinion, but by impact. Simplification happened earlier, and we shipped leaner.
+
+## What it changed about planning
+
+Design didn’t just join earlier. We changed the shape of planning. Roadmaps reflected more complete problem definitions. Priorities shifted as design clarified user value earlier in the process. Engineers worked with fewer blockers. PMs scoped more effectively. And designers became known not just for execution, but for improving how decisions were made. Decisions that drove measurable efficiency gains and consistent lift across the product roadmap pipeline.
 
 ## Key Outcomes
 

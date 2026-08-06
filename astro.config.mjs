@@ -15,5 +15,6 @@ export default defineConfig({
   redirects: {
     '/how-i-aligned-formative-vision': '/how-i-translated-design-work',
     '/how-i-built-a-shared-scoring-model': '/how-i-translated-design-work',
+    '/how-i-infused-design-roles-with-product-thinking': '/how-i-managed-ux-complexity',
   },
 });
