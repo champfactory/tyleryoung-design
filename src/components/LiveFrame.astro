@@ -1,34 +1,33 @@
 ---
 /**
- * Embeds a live deployment, scaled down to fit the card.
+ * Embeds a live deployment, scaled to fit its container exactly.
  *
- * The iframe renders at its real desktop width and is transform-scaled, so the
- * layout is the actual layout rather than a responsive reflow of it. It is not a
- * screenshot: if the deployment goes down, this goes blank — which is the correct
+ * The iframe is sized as a *percentage of the container* — width: 100/scale% —
+ * then transform-scaled back down. That way the scaled result is always exactly
+ * the container's width, whatever that turns out to be. Sizing the iframe at a
+ * fixed pixel width and scaling by a fixed factor (the previous approach) only
+ * lines up at one container width and leaves dead space at every other.
+ *
+ * The consequence worth knowing: the embedded page believes its viewport is
+ * container ÷ scale wide. At scale 0.5 in a 700px column that is 1400px, so the
+ * site inside renders its desktop layout rather than a squeezed mobile one.
+ *
+ * Not a screenshot: if the deployment goes down, this goes blank — the correct
  * failure mode for something presented as evidence.
  */
 interface Props {
   src: string;
-  /** shown in the chrome bar */
   host: string;
   title: string;
-  /** logical render width before scaling */
-  renderWidth?: number;
-  /** displayed aspect ratio, e.g. "16 / 10" */
+  /** displayed aspect ratio of the frame */
   ratio?: string;
+  /** smaller = wider logical viewport inside the frame */
   scale?: number;
   note?: string;
 }
 
-const {
-  src,
-  host,
-  title,
-  renderWidth = 1440,
-  ratio = '16 / 10',
-  scale = 0.42,
-  note,
-} = Astro.props;
+const { src, host, title, ratio = '16 / 10', scale = 0.5, note } = Astro.props;
+const pct = `${100 / scale}%`;
 ---
 
 <figure class="live">
@@ -46,7 +45,7 @@ const {
       title={title}
       loading="lazy"
       referrerpolicy="no-referrer"
-      style={`width:${renderWidth}px;height:${Math.round(renderWidth / (16 / 10))}px;transform:scale(${scale});`}
+      style={`width:${pct};height:${pct};transform:scale(${scale});`}
     ></iframe>
   </div>
 
@@ -90,6 +89,7 @@ const {
     text-decoration: none;
     border-bottom: 1px solid var(--color-rule-strong);
     padding-bottom: 1px;
+    transition: color 120ms ease, border-color 120ms ease;
   }
 
   .open:hover {
