@@ -29,12 +29,13 @@ import Draft from '../components/Draft.astro';
 
   <p class="opening">
     <Draft>
-      Designing with AI is not prompting for pictures. It is creating and managing the
-      system the AI builds from.
+      The spec that governs my agent runs to 1,048 lines. Most of it is not about
+      what to build — it is about what the agent is not allowed to do, and who has
+      to look before anything ships.
     </Draft>
   </p>
 
-  <h2>Feature goals are planning</h2>
+  <h2>Specify intent, not screens</h2>
   <p>
     <Draft>
       A goal stated well is a plan the model can execute against. Stated badly, it
@@ -44,26 +45,29 @@ import Draft from '../components/Draft.astro';
     </Draft>
   </p>
 
-  <h2>Company and user values are guardrails</h2>
+  <h2>Every value traces to the token page</h2>
   <p>
     <Draft>
-      Brand guidelines, accessibility floors, and the design system are not
-      documentation any more. They are constraints the output has to satisfy before
-      anyone looks at it. Written down, they hold. Left implicit, they are the first
-      thing to go.
+      The rule I wrote: every colour, weight, radius and spacing value has to trace
+      to the project's token page. If the tokens are too narrow for what is being
+      asked, the agent surfaces that and waits rather than inventing a value.
+      Brand guidelines and accessibility floors stop being documentation and become
+      a gate the output passes before anyone looks at it.
     </Draft>
   </p>
 
-  <h2>Stack-ranking options is evaluation</h2>
+  <h2>Three options, three URLs</h2>
   <p>
     <Draft>
-      When exploration is cheap, the scarce thing is judgment about which option is
-      right. I ask for several, in code, and then do the part that does not scale:
-      read them, rank them, and say why.
+      On the last engagement, three directions for one surface were built and
+      deployed to three separate addresses so the choice was made against running
+      software. When exploration costs almost nothing, the scarce thing is judgment
+      about which option is right — so I read them, rank them, and say why. That
+      part does not scale, which is the point.
     </Draft>
   </p>
 
-  <h2>Building options in code is tool use</h2>
+  <h2>Reviews happen on the rendered thing</h2>
   <p>
     <Draft>
       Options come back as working components, not pictures of components. A
@@ -72,12 +76,13 @@ import Draft from '../components/Draft.astro';
     </Draft>
   </p>
 
-  <h2>Handoff is human-in-the-loop</h2>
+  <h2>Nothing ships unread</h2>
   <p>
     <Draft>
-      Code goes out with a person's name on it. I read what was produced and shape it;
-      I do not ship what I have not vetted. That is the whole point of the loop, and
-      it is the part that does not get automated.
+      Code goes out with a person's name on it. The spec encodes the same asymmetry
+      it asks of me: an explicit list of what the agent may do alone, and a longer
+      one of what it may not — deploy, delete, restructure, or invent a value that
+      is not in the system.
     </Draft>
   </p>
 
