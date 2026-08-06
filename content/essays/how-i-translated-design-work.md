@@ -30,8 +30,6 @@ Design was brought in to execute decisions—but not to shape them. The team was
 
 Proposals weren't landing—not because they lacked quality, but because they lacked clarity. Leadership struggled to understand the opportunity cost of saying yes. Tradeoffs were buried, assumptions went unstated, and design was seen as opinionated rather than operational.
 
-Without a way to surface user priorities as business opportunities, roadmap decisions skewed toward engineering feasibility or stakeholder pressure. Design was reactive—polishing outputs rather than influencing direction.
-
 ## My Response
 
 I built three instruments that worked as a set. Each is simple alone; the value was in using them together.
@@ -42,13 +40,11 @@ I built three instruments that worked as a set. Each is simple alone; the value 
 
 **A rubric for the tradeoff.** A four-part framework scored decisions across User Value, Business Value, Implementation Ease, and Risk Management. That gave teams a way to assess not only what an idea could deliver, but what it would cost the business to say yes. Every initiative had to be weighed against the ROI of what it would displace.
 
-Together these shifted reviews from creative defense to collaborative prioritization. Teams began weighing options with structured scores, and roadmap discussions became faster, clearer, and less emotional. What used to be subjective critique became confident prioritization.
-
 ## The Win
 
 Design moved upstream. Stakeholders expected proposals to be framed before priorities were locked—using the models to align user needs and business goals. Prioritization sharpened, and conversations shifted from pitching solutions to clarifying which needs warranted investment.
 
-Executives began referencing design levers in funding meetings. Cross-functional partners aligned proposals to strategic business goals. Design shifted from a service model to a strategic signal—used to surface, shape, and justify long-range investments.
+Executives began referencing design levers in funding meetings. Cross-functional partners aligned proposals to strategic business goals.
 
 ## Key Outcomes
 

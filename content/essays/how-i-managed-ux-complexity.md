@@ -36,13 +36,11 @@ Everyone agreed simplicity mattered. But we lacked a shared way to prioritize wh
 
 I realized we couldn’t reduce complexity without first making it measurable. So I led the creation of a shared framework that redefined simplicity as a cross-functional constraint—not a design aesthetic. We grounded it in cognitive effort and user behavior, translating friction into guidance teams could act on.
 
-The core of the framework was a complexity budget—a constraint model that treated complexity like technical debt: it accumulates quietly, erodes the experience over time, and can only be reduced through better decisions earlier in the process. It defined how far a flow could push before it became too much to absorb—too many decisions, too many clicks, too many places to go. By translating that burden into a shared vocabulary, we gave teams a way to stop debating how things felt and start asking what kind of load they were introducing, how much of it, and whether it was justified.
-
-The framework changed how teams scoped. We stopped debating polish and started questioning cost. What friction were we adding? Was it worth it? The questions shifted—and so did the outcomes. We built the model into planning cycles. Researchers surfaced recurring friction patterns. PMs mapped effort and alternatives. Designers used the budget to prioritize, challenge scope, and make reductions defensible. What used to be gut feel became structure—visible, shared, and open to debate.
+The core of the framework was a complexity budget—a constraint model that treated complexity like technical debt: it accumulates quietly, erodes the experience over time, and can only be reduced through better decisions earlier in the process. It defined how far a flow could push before it became too much to absorb—too many decisions, too many clicks, too many places to go. The framework changed how teams scoped. We stopped debating polish and started questioning cost. What friction were we adding? Was it worth it? The questions shifted—and so did the outcomes. We built the model into planning cycles. Researchers surfaced recurring friction patterns. PMs mapped effort and alternatives. Designers used the budget to prioritize, challenge scope, and make reductions defensible.
 
 ## The Win
 
-The complexity budget gave teams a credible way to recognize when scope had gone too far—and a shared language to scale it back. Simplicity stopped being a design preference and became a strategic constraint. Teams could justify reduction not by opinion, but by impact. Simplification happened earlier, and we shipped leaner.
+The complexity budget gave teams a credible way to recognize when scope had gone too far—and a shared language to scale it back.  Teams could justify reduction not by opinion, but by impact. Simplification happened earlier, and we shipped leaner.
 
 ## What it changed about planning
 

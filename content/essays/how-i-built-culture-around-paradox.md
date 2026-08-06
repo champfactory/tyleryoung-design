@@ -32,11 +32,7 @@ When teams fail to recognize this trap, the results are often impressive feature
 
 I mentored the team early that “good enough” is a deliberate double standard. We used it to define two kinds of investment: a bar to exceed in problem definition, and to defend during execution. Designers learned to challenge assumptions, align on success criteria, and stop building once real value was delivered.
 
-I brought safety to creative conflict and the value of going through wrong to get to right. Designers learned when to challenge stakeholder inputs and how to reframe them, and once the team really felt they had permission, the obligation to question really took hold.
-
-## The Win
-
-The team’s identity shifted. Designers no longer saw execution excellence as proof of their value. They saw strategic clarity as their real contribution. They grew more confident—not just in their work, but in their judgment. Cross-functional partners took notice, treating design less as a service and more as a planning partner. The “good enough” paradox became more than a mindset. It became a repeatable system that shaped our culture.
+Designers learned when to challenge stakeholder inputs and how to reframe them. Once they felt they had permission, the obligation to question took hold.
 
 ## Key Outcomes
 

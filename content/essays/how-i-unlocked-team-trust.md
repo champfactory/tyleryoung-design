@@ -26,7 +26,7 @@ takeaway: >-
 
 ## The Challenge
 
-As the pandemic hit and business scope narrowed, downsizing and uncertainty reshaped the team’s structure. Remaining roles were unclear in the new normal, handoffs were inconsistent, and our processes were still being rebuilt. The team had been designed as a group of specialists, structured for large, orchestrated initiatives with long timelines. But we were now facing fast-moving, constantly evolving work—and we weren’t equipped for it. I began framing the issue as a structural gap. The problem wasn’t effort. What we lacked was role redundancy, shared ownership, and a more flexible, collaborative way to solve the right problems together. At a time when the business could afford inconsistent delivery the least, even our strongest designers struggled to break through silo inefficiencies.
+The pandemic narrowed business scope. Downsizing reshaped the team, roles were unclear, handoffs were inconsistent, and the team had been built as specialists — structured for long, orchestrated initiatives, at exactly the moment the work became fast-moving and uncertain.
 
 ## My Response
 
@@ -34,7 +34,7 @@ I recognized that building for the future meant doing more with less. So I restr
 
 ## The Win
 
-What began as a survival constraint became a structural advantage. Junior designers, supported by clear expectations and strong systems, delivered the same caliber of execution once handled by senior specialists, but with greater speed, fewer dependencies, and stronger alignment across teams. As the nature of work shifted from urgency to strategy, their growth kept pace. Execution strength evolved into collaboration strength. Designers began contributing to cross-functional planning, clarifying intent, and influencing direction. The team hadn’t just adapted. It had elevated—a success that inspired a new ask: mentoring front-end developers in India as they transitioned into product design.
+ Junior designers, supported by clear expectations and strong systems, delivered the same caliber of execution once handled by senior specialists, but with greater speed, fewer dependencies, and stronger alignment across teams. As the nature of work shifted from urgency to strategy, their growth kept pace. Execution strength evolved into collaboration strength. Designers began contributing to cross-functional planning, clarifying intent, and influencing direction. The team hadn’t just adapted. It had elevated—a success that inspired a new ask: mentoring front-end developers in India as they transitioned into product design.
 
 ## Key Outcomes
 

@@ -28,15 +28,9 @@ Designers on the team were capable, but their work rarely shaped the product. Th
 
 ## My Response
 
-I introduced a development model that prioritized cross-functional fluency rather than execution alone. The framework outlined five stages of maturity: framing problems clearly, recommending direction, influencing strategic decisions, advocating for systems, and mentoring through clarity and simplification. It gave designers a clear path for growing influence, not just skill.
-
-To put the model into practice, I wove structured mentorship, peer critique, and leadership-facing moments into the team’s rhythm. Designers practiced making strategic recommendations during roadmap debates and tradeoff reviews, not just design critiques. Confidence grew through exposure and repetition.
+I introduced a development model that prioritized cross-functional fluency rather than execution alone. The framework outlined five stages of maturity: framing problems clearly, recommending direction, influencing strategic decisions, advocating for systems, and mentoring through clarity and simplification. To put the model into practice, I wove structured mentorship, peer critique, and leadership-facing moments into the team’s rhythm. Designers practiced making strategic recommendations during roadmap debates and tradeoff reviews, not just design critiques. Confidence grew through exposure and repetition.
 
 As designers advanced, their growth was measured by how they shaped direction, not just by what they delivered. Junior team members began speaking with clarity, earning trust, and contributing meaningfully to planning.
-
-## The Win
-
-Designers began showing up in strategy meetings with clarity and conviction. Their ideas traveled further, their judgment earned trust, and their work became part of the planning conversation. Retention concerns eased, promotion cycles stabilized, and cross-functional partners grew to depend on design as a critical voice in decision-making.
 
 ## Key Outcomes
 
