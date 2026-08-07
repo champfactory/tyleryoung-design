@@ -5,8 +5,6 @@ title: >-
 titleDraft: true
 pull: >-
   We stopped debating polish and started questioning cost.
-metaWarning: >-
-  Merged with "How I infused design roles with product thinking" — on the live site both essays opened My Response with a word-for-word identical sentence and described the same complexity budget. Only the Win differed, and both are kept here. The retired URL redirects. Tyler confirms the merge reads true.
 deck: >-
   How I managed UX complexity by championing an org-wide simplicity model
 metaTitle: >-

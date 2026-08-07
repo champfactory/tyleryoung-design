@@ -12,8 +12,6 @@ metaTitle: >-
 description: >-
   Three instruments — a taxonomy of work, a map to business metrics, and a scoring rubric — that together let design argue for investment in the language leadership already used.
 descriptionDraft: true
-metaWarning: >-
-  Merged from three essays that described one system three times — "aligned formative vision", "translated design work" and "built a shared scoring model". On the live site two of them shared a word-for-word identical "The Win" and two shared identical Key Outcomes. Both other URLs still resolve and redirect here. Tyler confirms the merge reads true.
 contribution: >-
   Introduced a shared system for expressing design proposals in business terms — a taxonomy of work, a map to business metrics, and a rubric for scoring tradeoffs
 role: >-
