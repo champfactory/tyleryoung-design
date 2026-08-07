@@ -28,11 +28,11 @@ export const TOKENS = {
   live: '#2f6f4e',
   header: '#d6e9f8',
   'header-rule': '#a3c6e2',
-  /* The header blue rotated to orange and nothing else: #d6e9f8 is
-     hsl(206, 71%, 91%), so this is hsl(30, 71%, 91%). Same saturation, same
+  /* The header blue rotated to green and nothing else: #d6e9f8 is
+     hsl(206, 71%, 91%), so this is hsl(140, 71%, 91%). Same saturation, same
      lightness, so the two bands sit at the same weight on the page. */
-  accent: '#f8e7d6',
-  'accent-rule': '#e2c2a3',
+  accent: '#d6f8e1',
+  'accent-rule': '#a3e2b8',
 };
 
 /** Pairs that must pass, at the smallest size each is actually used. */
