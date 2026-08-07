@@ -104,92 +104,301 @@ const {
   /* Global, alongside .essay-fig. Scoped to the page these did not apply at all —
      the rules were emitted but never matched — so the iframe fell back to its
      replaced-element default of 300x150 and the caption rendered as body copy. */
-  /* Global, like .essay-fig and .figma. Scoped to the page these did not apply —
-     the rows lost their grid, the labels rendered as body copy and the marks came
-     out as list bullets. */
-  .doc .rubric {
-    margin: 0 0 30px;
+  /* ---- colophon ---------------------------------------------------------
+     Global, like .essay-fig and .figma: scoped to the page these rules are
+     emitted but never match, so the layout silently falls back to prose. */
+
+  .doc .opening-2 {
+    margin: -14px 0 0;
   }
 
-  .doc .rubric-row {
+  .doc .proof {
+    list-style: none;
     display: grid;
-    gap: 4px 22px;
-    padding: 13px 0;
-    border-top: 1px solid var(--color-rule);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin: 34px 0 8px;
+    padding: 0;
+    background: var(--color-rule);
+    border: 1px solid var(--color-rule);
   }
 
-  .doc .rubric dt {
-    font-weight: 600;
-    font-size: 17px;
-  }
-
-  .doc .rubric dd {
+  .doc .proof li {
     margin: 0;
-    font-size: 16px;
+    padding: 18px 16px;
+    background: var(--color-paper);
+  }
+
+  .doc .proof li::before {
+    content: none;
+  }
+
+  .doc .proof-figure {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 620;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .doc .proof-label {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
     line-height: 1.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--color-ink-3);
   }
 
-  .doc .rubric-label {
-    margin: 34px 0 6px;
+  /* Section numbers are wayfinding, so they sit in the margin at wide widths
+     and inline above the heading when there is no margin to sit in. */
+  .doc .sec {
+    display: block;
+    margin-bottom: 6px;
     font-family: var(--font-mono);
     font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    color: var(--color-signal);
+  }
+
+  .doc .principles,
+  .doc .ledger {
+    list-style: none;
+    margin: 24px 0 30px;
+    padding: 0;
+  }
+
+  .doc .principles > li,
+  .doc .ledger > li {
+    margin: 0;
+    padding: 16px 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .doc .principles > li::before,
+  .doc .ledger > li::before {
+    content: none;
+  }
+
+  .doc .principle {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .doc .principle-detail,
+  .doc .gate-req {
+    margin: 6px 0 0;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--color-ink-3);
+  }
+
+  .doc .gate-req {
+    color: var(--color-ink);
+  }
+
+  .doc .gate-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    margin: 8px 0 0;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.07em;
+  }
+
+  /* Shape carries the distinction as well as the word, so it survives greyscale
+     and colour-blindness: a square is enforced, a circle is read by a person. */
+  .doc .gate-mark {
+    width: 8px;
+    height: 8px;
+    flex: none;
+    align-self: center;
+    box-shadow: inset 0 0 0 1px var(--color-signal);
+  }
+
+  .doc .gate.human .gate-mark {
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px var(--color-ink-3);
+  }
+
+  .doc .gate-mode {
+    text-transform: uppercase;
+    color: var(--color-signal);
+  }
+
+  .doc .gate.human .gate-mode {
+    color: var(--color-ink-3);
+  }
+
+  .doc .gate-how {
+    color: var(--color-ink-3);
+    text-transform: none;
+    letter-spacing: 0.03em;
+  }
+
+  .doc .compare {
+    display: grid;
+    gap: 0;
+    margin: 26px 0 30px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .doc .compare-col {
+    padding: 16px 0 4px;
+  }
+
+  .doc .compare-col + .compare-col {
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .doc .compare-head {
+    margin: 0 0 10px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
     font-weight: 500;
     letter-spacing: 0.09em;
     text-transform: uppercase;
     color: var(--color-ink-3);
   }
 
-  .doc .reqs {
-    list-style: none;
-    margin: 0 0 34px;
+  .doc .compare-col.now .compare-head {
+    color: var(--color-signal);
+  }
+
+  .doc .compare ul {
+    margin: 0;
     padding: 0;
+    list-style: none;
   }
 
-  .doc .req {
-    display: grid;
-    grid-template-columns: 14px minmax(0, 1fr);
-    gap: 12px;
-    align-items: start;
-    padding: 12px 0;
-    border-top: 1px solid var(--color-rule);
+  .doc .compare li {
+    margin: 0 0 7px;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-ink-3);
   }
 
-  .doc .req::before {
+  .doc .compare-col.now li {
+    color: var(--color-ink);
+  }
+
+  .doc .compare li::before {
     content: none;
   }
 
-  /* Filled where a script enforces it, hollow where a person does. The two are
-     not the same promise and the page should not pretend otherwise. */
-  .doc .req-mark {
-    width: 9px;
-    height: 9px;
-    margin-top: 7px;
-    box-shadow: inset 0 0 0 1px var(--color-rule-strong);
+  .doc .pull-line {
+    margin: 26px 0 34px;
+    padding-left: 16px;
+    border-left: 2px solid var(--color-signal);
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.012em;
   }
 
-  .doc .req.auto .req-mark {
-    background: var(--color-signal);
-    box-shadow: none;
+  .doc .result-line {
+    margin: 22px 0 14px;
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 620;
+    letter-spacing: -0.012em;
   }
 
-  .doc .req-text {
-    font-size: 16px;
-    line-height: 1.5;
+  .doc .all-pairs {
+    margin: 0 0 34px;
+    border-top: 1px solid var(--color-rule);
   }
 
-  .doc .req-detail {
-    display: block;
-    margin-top: 3px;
+  .doc .all-pairs summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
     font-family: var(--font-mono);
     font-size: 11px;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+
+  .doc .all-pairs summary:hover {
+    color: var(--color-signal);
+  }
+
+  /* The table scrolls inside its own box rather than pushing the document
+     sideways on a narrow screen. */
+  .doc .scroller {
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .doc .related {
+    padding-top: 20px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .doc .related-head {
+    margin: 6px 0 18px;
+  }
+
+  .doc .related ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 18px;
+  }
+
+  .doc .related li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .doc .related li::before {
+    content: none;
+  }
+
+  .doc .related .artifact {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+  }
+
+  .doc .related-note {
+    display: block;
+    margin-top: 4px;
+    font-size: 15px;
+    line-height: 1.5;
     color: var(--color-ink-3);
   }
 
   @media (min-width: 700px) {
-    .doc .rubric-row {
-      grid-template-columns: minmax(0, 22ch) minmax(0, 1fr);
+    .doc .proof {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .doc .compare {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 40px;
+    }
+
+    .doc .compare-col + .compare-col {
+      border-top: 0;
+    }
+
+    .doc .related ul {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
     }
   }
 

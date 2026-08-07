@@ -1,338 +1,273 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
-import CrossLinks from '../components/CrossLinks.astro';
-import { goals, values, requirements, checked } from '../data/rubric.mjs';
-import Needs from '../components/Needs.astro';
-import Draft from '../components/Draft.astro';
 import { audit } from '../data/palette.mjs';
 import { REPO, REPO_LABEL } from '../data/site.mjs';
+import { principles, comparison, requirements, automatic, PREVIEW_PAIRS } from '../data/rubric.mjs';
 
 // Computed at build time from the same module the pre-build check runs against.
 // A hand-typed table of passing numbers would be a claim; this is the check.
 const rows = audit();
 const passing = rows.filter((r) => r.pass).length;
+
+// The preview and the full table read the same rows, so they cannot disagree.
+const preview = PREVIEW_PAIRS.map(([fg, bg]) => rows.find((r) => r.fg === fg && r.bg === bg)).filter(
+  Boolean,
+);
+
+const proof = [
+  ['16', 'Static pages'],
+  ['0', 'Client-side scripts on content pages'],
+  [`${passing} / ${rows.length}`, 'Colour pairs passing'],
+  ['10', 'Old essay URLs preserved'],
+];
+
+const related = [
+  ['/how-i-design-with-ai', 'I design with AI', 'The operating model behind the work.'],
+  [
+    '/atheer-design-pipeline',
+    'The design-to-code pipeline',
+    'How design intent becomes governed production code.',
+  ],
+  [
+    '/ops-manager',
+    'A product and the system it was built from',
+    'The running product and inspectable component library.',
+  ],
+];
 ---
 
 <DocumentLayout
-  title="How this site is built"
+  title="The portfolio is part of the work"
   metaTitle="Colophon | Tyler Young"
-  description="What this portfolio is built with, and the checks that run against it on every build."
+  description="The agent wrote the code. I defined what the site had to accomplish, what it could not compromise, and what had to be checked before it shipped."
   eyebrow="Colophon"
   meta={[
-    ['Stack', 'Astro · React islands · Tailwind · static output'],
-    ['Client JS', 'None on content pages'],
-    ['Checks', 'Contrast audit · open-items audit · both on every build'],
+    ['Stack', 'Astro · Tailwind · static output'],
+    ['Client JavaScript', 'None on content pages'],
+    ['Quality gates', 'Contrast · open items · links · build'],
     ['Source', `<a href="${REPO}">${REPO_LABEL}</a>`],
   ]}
 >
   <p class="opening">
-    <Draft>
-      Sixteen static pages. No client JavaScript on any of them, fonts served from
-      the same origin, and two checks that run on every build and can fail it.
-    </Draft>
+    The agent wrote the code. I defined what the site had to accomplish, what it was
+    not allowed to compromise, and what had to be checked before it could ship.
   </p>
+  <p class="opening-2">This page is the record of those decisions.</p>
 
-  <h2>The standard it is held to</h2>
-  <p>
-    <Draft>
-      Written before the redesign and used to settle arguments during it. Goals
-      say what success looks like. Values say what will not be traded to get
-      there. Requirements are the testable form of both — and each one records
-      whether a machine checks it or a person does, because a requirement with no
-      check is an intention.
-    </Draft>
-  </p>
-
-  <dl class="rubric">
+  <ul class="proof">
     {
-      goals.map((g) => (
-        <div class="rubric-row">
-          <dt>{g.goal}</dt>
-          <dd>{g.because}</dd>
-        </div>
-      ))
-    }
-  </dl>
-
-  <p class="rubric-label">Values</p>
-  <dl class="rubric">
-    {
-      values.map((v) => (
-        <div class="rubric-row">
-          <dt>{v.value}</dt>
-          <dd>{v.means}</dd>
-        </div>
-      ))
-    }
-  </dl>
-
-  <p class="rubric-label">
-    Requirements — {checked} of {requirements.length} checked by a script on every build
-  </p>
-  <ul class="reqs">
-    {
-      requirements.map((r) => (
-        <li class:list={['req', { auto: r.check }]}>
-          <span class="req-mark" aria-hidden="true" />
-          <span class="req-text">
-            {r.req}
-            <span class="req-detail">
-              {r.check ? `npm run ${r.check} — ${r.detail}` : `by eye — ${r.detail}`}
-            </span>
-          </span>
+      proof.map(([figure, label]) => (
+        <li>
+          <span class="proof-figure">{figure}</span>
+          <span class="proof-label">{label}</span>
         </li>
       ))
     }
   </ul>
 
-  <h2>Reading the old site first</h2>
+  <h2><span class="sec">01</span>The brief came before the build</h2>
   <p>
-    <Draft>
-      I started by pulling every word off the live site — nine essays, the TL;DR,
-      three project cards, three references — and reading it as a stranger would.
-      Two things came out of that. The argument was leadership: frameworks,
-      scoring models, a seat at the planning table. And the evidence was decks.
-      Nothing on it could be opened.
-    </Draft>
+    I wrote the standard before redesigning the site. It settled arguments while the
+    work was still cheap to change.
   </p>
   <p>
-    <Draft>
-      Reading it that closely also turned up defects I had shipped without
-      noticing. The same alt text on three different people's headshots. Nine more
-      images with none at all.
-      <code>&lt;meta name="description" content="Made with Framer"&gt;</code> on
-      every essay page. Body text at 2.6:1 against its background. Three essays
-      sharing whole paragraphs word for word.
-    </Draft>
-  </p>
-  <p>
-    <Draft>
-      None of that is unusual for a site built in a visual editor. All of it is
-      what an engineering team checks in the first thirty seconds.
-    </Draft>
+    The goals described what a reader needed to understand. The values defined what
+    could not be traded away. The requirements turned both into checks. Each
+    requirement names who verifies it — a script or a person — because a requirement
+    with no owner is only an intention.
   </p>
 
-  <h2>Deciding what had to change</h2>
+  <ol class="principles">
+    {
+      principles.map((p) => (
+        <li>
+          <p class="principle">{p.principle}</p>
+          <p class="principle-detail">{p.detail}</p>
+        </li>
+      ))
+    }
+  </ol>
+
+  <h2><span class="sec">02</span>What changed</h2>
   <p>
-    <Draft>
-      The reader I care about gives a portfolio ninety seconds, on bad wifi,
-      between two other tabs. That is the whole brief. It rules out a slow hero, a
-      carousel, a case study that explains its methodology before showing
-      anything.
-    </Draft>
+    I began by reading the previous portfolio as a stranger would: nine essays, three
+    project cards, a summary, and three references.
   </p>
   <p>
-    <Draft>
-      So the order changed. Three stories, each opening on something running, at
-      the top of the page. The leadership essays moved behind them — not because
-      they matter less, but because a claim about how I lead is worth more after
-      you have seen what I ship than before. The hero came out entirely: a name
-      and a bio line were pushing the only evidence on the page below the fold.
-    </Draft>
+    The leadership argument was clear. The evidence was not. The site described
+    frameworks and influence, but most of the work ended in a claim or a
+    presentation. Very little could be opened and inspected.
   </p>
 
-  <h2>Building it</h2>
-  <p>
-    <Draft>
-      The agent wrote the code. I decided what it was allowed to write, read
-      everything that came back, and rejected the parts that cost more than they
-      returned. The style was settled the same way anything gets settled — in
-      passes. Warm paper became white. A serif body became sans, and the serif
-      came out of the build entirely once nothing referenced it. The header went
-      through two colours before landing.
-    </Draft>
-  </p>
-  <p>
-    <Draft>
-      Working in code is what made that cheap. Changing every page's background is
-      one token. Checking that the change did not break contrast anywhere is one
-      command. In a visual editor both are an afternoon, which is why they usually
-      do not happen.
-    </Draft>
-  </p>
-  <p>
-    <Draft>
-      It also caught its own mistakes. The first pass at porting the essays
-      dropped all fifteen diagrams — the scoring rubrics, the heat map, the
-      two-by-twos — and left the arguments without their evidence. Recovering them
-      was possible because the source was a file I could diff, not a canvas I had
-      to remember.
-    </Draft>
-  </p>
-
-  <h2>What runs on every build</h2>
-  <p>
-    <Draft>
-      Two checks, both written for this site, both in the repo. Neither is an
-      off-the-shelf linter. They test decisions specific to this project.
-    </Draft>
-  </p>
-
-  <h3>Contrast audit</h3>
-  <p>
-    <Draft>
-      Every colour pair in the design system, checked at the smallest size it is
-      used at. It failed twice while I was building this. Two tokens got darker
-      until it passed.
-    </Draft>
-  </p>
-
-  <div class="table-wrap">
-    <table>
-      <caption class="label">
-        Computed at build time from <code>src/data/palette.mjs</code> — {passing} of {rows.length} pairs passing
-      </caption>
-      <thead>
-        <tr>
-          <th scope="col">Pair</th>
-          <th scope="col">Ratio</th>
-          <th scope="col">Needs</th>
-          <th scope="col">Used for</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          rows.map((r) => (
-            <tr>
-              <td>
-                <span class="swatch" style={`--fg:var(--color-${r.fg});--bg:var(--color-${r.bg})`}>
-                  Aa
-                </span>
-                {r.fg} on {r.bg}
-              </td>
-              <td class="num">{r.ratio.toFixed(2)}</td>
-              <td class="num dim">{r.need.toFixed(2)}</td>
-              <td class="use">{r.use}</td>
-            </tr>
-          ))
-        }
-      </tbody>
-    </table>
+  <div class="compare">
+    <div class="compare-col">
+      <p class="compare-head">Before</p>
+      <ul>{comparison.before.map((line) => <li>{line}</li>)}</ul>
+    </div>
+    <div class="compare-col now">
+      <p class="compare-head">Now</p>
+      <ul>{comparison.now.map((line) => <li>{line}</li>)}</ul>
+    </div>
   </div>
 
-  <h3>Open-items audit</h3>
   <p>
-    <Draft>
-      Scans the built HTML for unfinished slots and unapproved copy, and reports
-      where each one is. The list comes from the build, not from a checklist I keep
-      by hand, so it cannot go stale. With <code>--strict</code> it fails the
-      build.
-    </Draft>
+    The new order is deliberate. Product work establishes what I can make. The essays
+    then explain how I lead the people and systems around it.
   </p>
 
-  <h2>What this site does</h2>
-  <ul>
-    <li>No client JavaScript on content pages — view source and count the script tags</li>
-    <li>One <code>h1</code> per page, headings in order, no skipped levels</li>
-    <li>Real alt text on every image, or no image yet</li>
-    <li>Visible keyboard focus, reduced motion respected, skip link</li>
-    <li>Self-hosted fonts, latin subsets only, no third-party requests</li>
-    <li>Old essay URLs preserved exactly, so existing links survive</li>
-  </ul>
-
+  <h2><span class="sec">03</span>Directing the agent</h2>
   <p>
-    The same loop produced this page.
+    The agent wrote the implementation. My work was defining the operating environment
+    around it: the objective, the boundaries, the design system, the review criteria,
+    and the actions that required human approval.
+  </p>
+  <p>
+    I reviewed every page and every consequential change. I rejected plausible work
+    when it weakened the argument, introduced an unsupported fact, or added more
+    complexity than value.
+  </p>
+  <p>
+    Working in code made broad decisions cheap to test. A background change became one
+    token update. A typography change could remove an unused font from the entire
+    build. Every change could be checked against the same system before it shipped.
   </p>
 
-  <CrossLinks
-    slot="after"
-    label="Related"
-    title="The practice behind it"
-    links={[
-      { href: '/how-i-design-with-ai', label: 'I design with AI' },
-      { href: '/atheer-design-pipeline', label: 'The design-to-code pipeline' },
-    ]}
-  />
+  <p class="pull-line">Generation made options cheaper. It did not make judgment optional.</p>
+
+  <h2><span class="sec">04</span>The quality gates</h2>
+  <p>
+    Some decisions can be checked by a machine. Others still require a person. The
+    build makes that boundary explicit.
+  </p>
+
+  <ol class="ledger">
+    {
+      requirements.map((r) => (
+        <li class:list={['gate', { human: r.mode === 'HUMAN REVIEW' }]}>
+          <p class="gate-req">{r.req}</p>
+          <p class="gate-meta">
+            <span class="gate-mark" aria-hidden="true" />
+            <span class="gate-mode">{r.mode}</span>
+            <span class="gate-how">{r.how}</span>
+          </p>
+        </li>
+      ))
+    }
+  </ol>
+
+  <p>
+    Automation protects the rules that can be expressed reliably. Human review remains
+    responsible for meaning, hierarchy, and whether the page makes the right argument.
+  </p>
+
+  <h2><span class="sec">05</span>Contrast is computed, not assumed</h2>
+  <p>
+    The contrast audit evaluates every colour pairing at the smallest text size where
+    it is actually used. It failed twice during the redesign. In both cases, the token
+    changed — not an isolated component — so the correction propagated everywhere.
+  </p>
+
+  <p class="result-line">{passing} of {rows.length} documented colour pairs pass.</p>
+
+  <table class="ratios">
+    <caption class="sr-only">
+      Four representative colour pairs, computed at build time from src/data/palette.mjs
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Pair</th>
+        <th scope="col">Ratio</th>
+        <th scope="col">Needs</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        preview.map((r) => (
+          <tr>
+            <td>
+              <span class="swatch" style={`--fg:var(--color-${r.fg});--bg:var(--color-${r.bg})`}>
+                Aa
+              </span>
+              {r.fg} on {r.bg}
+            </td>
+            <td class="num">{r.ratio.toFixed(2)}</td>
+            <td class="num dim">{r.need.toFixed(2)}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  {/* Native disclosure — the evidence stays available without dominating the page,
+      and without a line of client JavaScript. */}
+  <details class="all-pairs">
+    <summary>View all {rows.length} colour-pair results</summary>
+    <div class="scroller">
+      <table class="ratios">
+        <caption class="label">
+          Computed at build time from <code>src/data/palette.mjs</code> — {passing} of{' '}
+          {rows.length} pairs passing
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Pair</th>
+            <th scope="col">Ratio</th>
+            <th scope="col">Needs</th>
+            <th scope="col">Used for</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            rows.map((r) => (
+              <tr>
+                <td>
+                  <span class="swatch" style={`--fg:var(--color-${r.fg});--bg:var(--color-${r.bg})`}>
+                    Aa
+                  </span>
+                  {r.fg} on {r.bg}
+                </td>
+                <td class="num">{r.ratio.toFixed(2)}</td>
+                <td class="num dim">{r.need.toFixed(2)}</td>
+                <td class="use">{r.use}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <h2><span class="sec">06</span>What the result proves</h2>
+  <p>
+    The result is not that an agent can make a portfolio. It is that a clear operating
+    system can turn fast generation into work a person is willing to sign.
+  </p>
+  <p>
+    This site is static, accessible, inspectable, and deliberately constrained. Its
+    code is public. Its claims connect to running work. Its checks encode the standards
+    that should survive the person who introduced them.
+  </p>
+  <p>
+    That is the same design problem I work on elsewhere: make intent explicit enough
+    that people — and increasingly agents — can act on it without lowering the
+    standard.
+  </p>
+
+  <section slot="after" class="shell related" aria-labelledby="related-title">
+    <p class="label">Related</p>
+    <h2 id="related-title" class="related-head">See the practice in product work</h2>
+    <ul>
+      {
+        related.map(([href, label, note]) => (
+          <li>
+            <a class="artifact" href={href}>
+              {label}
+              <span aria-hidden="true">→</span>
+            </a>
+            <span class="related-note">{note}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </DocumentLayout>
-
-<style>
-  .opening {
-    font-size: 24px !important;
-    line-height: 1.5 !important;
-    margin-bottom: 34px !important;
-  }
-
-  .table-wrap {
-    margin: 0 0 30px;
-    overflow-x: auto;
-    border: 1px solid var(--color-rule);
-    background: var(--color-paper-raised);
-  }
-
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    min-width: 540px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.03em;
-  }
-
-  caption {
-    text-align: left;
-    padding: 12px 14px;
-    border-bottom: 1px solid var(--color-rule);
-    color: var(--color-ink-3);
-    line-height: 1.6;
-  }
-
-  th {
-    text-align: left;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 10px;
-    color: var(--color-ink-3);
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--color-rule);
-  }
-
-  td {
-    padding: 8px 14px;
-    border-bottom: 1px solid var(--color-rule);
-    color: var(--color-ink-2);
-    white-space: nowrap;
-    vertical-align: middle;
-  }
-
-  tr:last-child td {
-    border-bottom: 0;
-  }
-
-  .num {
-    color: var(--color-ink);
-    font-weight: 500;
-  }
-
-  .dim {
-    color: var(--color-ink-3);
-  }
-
-  .use {
-    white-space: normal;
-    color: var(--color-ink-3);
-  }
-
-  .swatch {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 18px;
-    margin-right: 10px;
-    vertical-align: -4px;
-    background: var(--bg);
-    color: var(--fg);
-    border: 1px solid var(--color-rule);
-    font-size: 10px;
-    font-weight: 600;
-  }
-
-  code {
-    font-family: var(--font-mono);
-    font-size: 0.82em;
-    color: var(--color-ink);
-    background: var(--color-paper-sunk);
-    padding: 1px 5px;
-  }
-</style>

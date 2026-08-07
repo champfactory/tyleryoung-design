@@ -1,102 +1,107 @@
 /**
  * The standard this site is held to.
  *
- * Written before the redesign and used to settle arguments during it. It is here
- * rather than in a doc because a standard nobody can see is a preference.
+ * Written before the redesign and used to settle arguments during it. It lives
+ * here rather than in a document because a standard nobody can see is a
+ * preference.
  *
- * Goals say what success looks like. Values say what will not be traded to get
- * there. Requirements are the testable form of both — and each one records
- * whether a machine checks it or a person does, because a requirement with no
- * check is an intention.
- *
- * `check` maps to a script in this repo: `contrast`, `links`, `needs`, or
- * `build` for something the build itself enforces. `null` means judgment, and
- * says so on the page rather than implying coverage that does not exist.
+ * Each requirement names its verifier. `AUTOMATIC` means a script in this repo
+ * fails the build; `HUMAN REVIEW` means a person reads it. The page draws that
+ * line explicitly, because the two are not the same promise.
  */
 
-export const goals = [
+export const principles = [
   {
-    goal: 'A stranger knows what I do in ninety seconds',
-    because: 'That is how long a portfolio gets, on bad wifi, between two other tabs.',
+    principle: 'A stranger knows what I do in ninety seconds',
+    detail:
+      'A portfolio is usually one of several open tabs. The work has to become legible before the reader gives the next tab a chance.',
   },
   {
-    goal: 'Every claim can be opened',
-    because: 'A running URL settles what a screenshot only asserts.',
+    principle: 'Every important claim has evidence',
+    detail:
+      'A working product, a component library, a design artifact, or a visible result should sit close to the claim it supports.',
   },
   {
-    goal: 'Leadership reads as capability, not as a demand for a title',
-    because: 'The work should qualify me for the role on offer, not only the one above it.',
+    principle: 'Leadership reads as capability',
+    detail:
+      'The site should show how I establish direction, improve decisions, and raise the quality of other people’s work — not simply state the title I have held.',
   },
   {
-    goal: 'The site is itself evidence of the practice it describes',
-    because: 'It claims I direct agents to produce production code. It should be that.',
+    principle: 'The site demonstrates the practice it describes',
+    detail:
+      'I claim that I direct AI agents to produce production code. The portfolio should provide evidence of that practice in its own construction.',
   },
 ];
 
-export const values = [
-  {
-    value: 'No invented facts',
-    means: 'No metric, date, outcome or team size I cannot source. An empty slot ships visible before a plausible one ships quietly.',
-  },
-  {
-    value: 'Plain words',
-    means: 'Short sentences, concrete nouns. If a line needs decoding it is costing the reader time they have not got.',
-  },
-  {
-    value: 'Evidence over assertion',
-    means: 'Show the artifact, then say what it demonstrates. Never the other way round.',
-  },
-  {
-    value: 'Accessible by default',
-    means: 'Contrast, focus, alt text and heading order are part of the build, not a pass at the end.',
-  },
-  {
-    value: 'Fast on bad wifi',
-    means: 'Static output, self-hosted fonts, no third-party requests on content pages.',
-  },
-];
+export const comparison = {
+  before: [
+    'Leadership claims came first',
+    'Projects linked mostly to decks',
+    'Evidence appeared late',
+    'The hero pushed work below the fold',
+    'Accessibility depended on manual attention',
+  ],
+  now: [
+    'Running work comes first',
+    'Claims sit beside inspectable evidence',
+    'Three projects establish the story immediately',
+    'Leadership writing follows the product work',
+    'Accessibility decisions are part of the build',
+  ],
+};
+
+const AUTO = 'AUTOMATIC';
+const HUMAN = 'HUMAN REVIEW';
 
 export const requirements = [
   {
-    req: 'Every colour pair meets WCAG AA at the smallest size it is used',
-    check: 'contrast',
-    detail: '17 pairs, computed from the tokens',
+    req: 'Every colour pair meets WCAG AA at the smallest size where it appears.',
+    mode: AUTO,
+    how: 'npm run contrast · 17 pairs computed from the design tokens',
   },
   {
-    req: 'No unfinished slot or unapproved line ships',
-    check: 'needs',
-    detail: 'derived from the built HTML, not a list kept by hand',
+    req: 'No unfinished slot or unapproved line ships unnoticed.',
+    mode: AUTO,
+    how: 'npm run needs · derived from the built HTML',
   },
   {
-    req: 'Every old essay URL still resolves',
-    check: 'links',
-    detail: '10 URLs from the previous site',
+    req: 'Every URL preserved from the previous portfolio still resolves.',
+    mode: AUTO,
+    how: 'npm run links · 10 legacy routes',
   },
   {
-    req: 'No internal link 404s, no anchor points at a missing id',
-    check: 'links',
-    detail: 'every href in the built output',
+    req: 'No internal link returns a 404 or points to a missing anchor.',
+    mode: AUTO,
+    how: 'npm run links · every internal href in the built output',
   },
   {
-    req: 'No client JavaScript on content pages',
-    check: 'build',
-    detail: 'static output; count the script tags',
+    req: 'Content pages ship without client-side JavaScript.',
+    mode: AUTO,
+    how: 'Verified from the static build output',
   },
   {
-    req: 'Real alt text on every image, describing that image',
-    check: null,
-    detail: 'a person reads each one',
+    req: 'Every meaningful image has alt text written for that image.',
+    mode: HUMAN,
+    how: 'Each description is read alongside the image',
   },
   {
-    req: 'One h1 per page, headings in order, no skipped levels',
-    check: null,
-    detail: 'a person reads each one',
+    req: 'Every page has one H1 and a logical heading sequence.',
+    mode: HUMAN,
+    how: 'Heading structure is reviewed page by page',
   },
   {
-    req: 'The first line of every page lands in the same place',
-    check: null,
-    detail: 'measured by hand when it drifts',
+    req: 'The first line of every page lands in the same place.',
+    mode: HUMAN,
+    how: 'Alignment is checked across routes and breakpoints',
   },
 ];
 
-export const checked = requirements.filter((r) => r.check).length;
+export const automatic = requirements.filter((r) => r.mode === AUTO).length;
+
+/** The four pairs shown before the full table is expanded. */
+export const PREVIEW_PAIRS = [
+  ['ink', 'paper'],
+  ['ink-2', 'paper'],
+  ['signal', 'paper'],
+  ['ink-2', 'header'],
+];

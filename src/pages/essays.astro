@@ -30,7 +30,6 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
         essayGroups.map((group, i) => (
           <section class="group" aria-labelledby={`g${i}`}>
             <div class="group-head">
-              <span class="num">{String(i + 1).padStart(2, '0')}</span>
               <div>
                 <p class="eyebrow">{group.eyebrow}</p>
                 <h2 class="heading" id={`g${i}`}>
@@ -83,38 +82,22 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
     color: var(--color-ink-2);
   }
 
+  /* One explicit full-width column. Left implicit, the track sized to its
+     content and the whole group collapsed into a narrow ribbon once the number
+     gutter was removed. */
   .groups {
     margin-top: 64px;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 52px;
   }
 
-  /* The number sits in a fixed gutter and everything else — eyebrow, heading,
-     blurb and the list below — starts at the same left edge. With `auto` the
-     gutter was as wide as the digits, so the head text and the list began at
-     two different margins. */
-  .group {
-    --gutter: 34px;
-  }
-
+  /* No gutter now that the numbers are gone — eyebrow, heading, blurb and the
+     list below all start at the page's left edge. */
   .group-head {
-    display: grid;
-    grid-template-columns: var(--gutter) minmax(0, 1fr);
-    gap: 0;
     padding-top: 20px;
   }
 
-  .num {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.09em;
-    color: var(--color-signal);
-    /* Sits in the gutter beside the eyebrow, same size and leading, so the two
-       share a baseline. A 6px top margin here — left over from when the head was
-       a side column — dropped the number below the label it belongs to. */
-    margin: 0 0 6px;
-  }
 
   .eyebrow {
     font-family: var(--font-mono);
@@ -141,7 +124,7 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
   ul {
     list-style: none;
     margin: 20px 0 0;
-    padding: 0 0 0 var(--gutter);
+    padding: 0;
     display: grid;
     gap: 16px;
   }
