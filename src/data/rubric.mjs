@@ -12,9 +12,9 @@
 
 export const principles = [
   {
-    principle: 'A stranger knows what I do in ninety seconds',
+    principle: 'A hiring manager can place me in the first minute',
     detail:
-      'A portfolio is usually one of several open tabs. The work has to become legible before the reader gives the next tab a chance.',
+      'They are working through a stack of candidates between other meetings, deciding who to move forward. Most are not designers. The work has to be legible to someone who is scanning for a reason to say yes, before they decide it is not worth more time.',
   },
   {
     principle: 'Every important claim has evidence',

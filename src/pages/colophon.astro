@@ -52,8 +52,6 @@ const related = [
     The agent wrote the code. I defined what the site had to accomplish, what it was
     not allowed to compromise, and what had to be checked before it could ship.
   </p>
-  <p class="opening-2">This page is the record of those decisions.</p>
-
   <ul class="proof">
     {
       proof.map(([figure, label]) => (
@@ -77,7 +75,7 @@ const related = [
     with no owner is only an intention.
   </p>
 
-  <ol class="principles">
+  <ul class="principles">
     {
       principles.map((p) => (
         <li>
@@ -86,7 +84,7 @@ const related = [
         </li>
       ))
     }
-  </ol>
+  </ul>
 
   <h2><span class="sec">02</span>What changed</h2>
   <p>
@@ -140,7 +138,7 @@ const related = [
     build makes that boundary explicit.
   </p>
 
-  <ol class="ledger">
+  <ul class="ledger">
     {
       requirements.map((r) => (
         <li class:list={['gate', { human: r.mode === 'HUMAN REVIEW' }]}>
@@ -153,7 +151,7 @@ const related = [
         </li>
       ))
     }
-  </ol>
+  </ul>
 
   <p>
     Automation protects the rules that can be expressed reliably. Human review remains
