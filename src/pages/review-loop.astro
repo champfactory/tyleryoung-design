@@ -1,6 +1,5 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
-import LeadStrand from '../components/LeadStrand.astro';
 import LiveFrame from '../components/LiveFrame.astro';
 import FeedbackTable from '../components/FeedbackTable.astro';
 import Compare from '../components/Compare.astro';
@@ -146,20 +145,6 @@ const R = '/work/review';
       record rather than in anyone's memory.
     </Draft>
   </p>
-
-  <LeadStrand
-    slot="after"
-    items={[
-      {
-        slug: 'how-i-shaped-cross-functional-reputation',
-        note: 'Putting a stakeholder in front of running code changes what the rest of the org thinks design is for. It is a reputational move before it is a technical one, and it only works if design has already earned the room.',
-      },
-      {
-        slug: 'how-i-built-culture-around-paradox',
-        note: 'Thirty-six of forty-eight is a judgement about which half mattered, made once and then defended. The twelve I declined are the harder half of the record.',
-      },
-    ]}
-  />
 </DocumentLayout>
 
 <style>

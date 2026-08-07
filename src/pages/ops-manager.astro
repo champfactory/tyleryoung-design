@@ -1,6 +1,5 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
-import LeadStrand from '../components/LeadStrand.astro';
 import StoryFrame from '../components/StoryFrame.astro';
 import Draft from '../components/Draft.astro';
 import Needs from '../components/Needs.astro';
@@ -31,26 +30,25 @@ const shapes = [
 >
   <p class="answer">
     <Draft>
-      Both links above are running software, not screenshots. The product surface is
-      one; the component library it was assembled from is the other. Everything
-      below is a note on what to look at once you are in them.
+      Both links above are running software, not screenshots. One is the product.
+      The other is the component library it was built from. Below is what to look
+      at once you are in them.
     </Draft>
   </p>
 
   <h2>Status uses shape, not just colour</h2>
   <p>
     <Draft>
-      Open the product and look at the sidebar and the job IDs. State is carried by
-      a hollow shape — square, triangle, circle — not by a colour swatch. The same
-      glyph appears on the nav item, the job header and the status column, so the
-      blocked square you notice in the sidebar is the identical mark you find on the
-      row that caused it.
+      Open the product and look at the sidebar and the job IDs. Status is a hollow
+      shape — square, triangle, circle — not a colour. The same shape appears on
+      the nav item, the job header and the status column, so the blocked square in
+      the sidebar is the same mark on the row that caused it.
     </Draft>
   </p>
   <p>
     <Draft>
-      It survives greyscale, it works at eleven pixels, and it means colour is left
-      free to do something else.
+      It works in greyscale, it works at 11px, and it frees colour to do something
+      else.
     </Draft>
   </p>
 
@@ -81,11 +79,10 @@ const shapes = [
   <h2>The sidebar carries live state</h2>
   <p>
     <Draft>
-      Each application in the nav carries a live line underneath it — a certification
-      expiring tomorrow, a safety step skipped on a numbered job, a rework rate up
-      week over week. Navigation stops being a menu and becomes a set of threads out
-      of today's problem, which means people find capabilities by working rather
-      than by being onboarded to them.
+      Every item in the nav carries a live line underneath it: a certification
+      expiring tomorrow, a safety step skipped on a job, a rework rate up this
+      week. The nav stops being a menu and starts being today's problems. People
+      find features by working, not by being trained.
     </Draft>
   </p>
 
@@ -100,10 +97,9 @@ const shapes = [
   <h2>Every component traces to a design</h2>
   <p>
     <Draft>
-      Every component in the library traces to a specific node in the design file —
-      the inventory records which one, and what is configurable on each. Nothing was
-      created speculatively. If a component had not appeared in a design, it did not
-      belong in the library.
+      Every component traces back to a specific node in the design file. The
+      inventory records which one, and what you can configure on each. Nothing was
+      built on spec. If it never appeared in a design, it was not in the library.
     </Draft>
   </p>
 
@@ -117,10 +113,10 @@ const shapes = [
 
   <p>
     <Draft>
-      The library also carries the token page — colours, typography, spacing, radii,
-      borders and shadows — which is the constraint the whole system generates
-      inside. It is the first thing to open if you want to know whether this was a
-      system or a folder of components.
+      The library also carries the token page: colours, type, spacing, radii,
+      borders, shadows. That is the constraint everything else is generated inside.
+      Open it first if you want to know whether this was a real system or a folder
+      of components.
     </Draft>
   </p>
 
@@ -138,19 +134,18 @@ const shapes = [
   <h2>The engagement plan is an app</h2>
   <p>
     <Draft>
-      The engagement plan is an application the client makes a decision inside. They
-      pick which surface to build first and which second; the choice persists
-      server-side, so everyone opening the link sees the same plan, and the third
-      phase takes whatever is left. It is still running on the selections stored
-      against it — landing page first, context engine second.
+      I built the engagement plan as an app the client decides inside. They pick
+      which surface to build first and which second. The choice is saved on the
+      server, so everyone who opens the link sees the same plan, and the third
+      phase takes whatever is left. It is still running on their picks — landing
+      page first, context engine second.
     </Draft>
   </p>
   <p>
     <Draft>
-      Same instinct as the operating spec, pointed at people instead of an agent:
-      put the constraint where the decision gets made. Seventy-three lines of Flask,
-      a single-row table and a mounted volume so the choice survives a restart. What
-      it commits to is a plan; what landed against it is the question below.
+      Same idea as the operating spec, aimed at people instead of an agent: put
+      the choice where the decision happens. 73 lines of Flask, one table, and a
+      mounted volume so the choice survives a restart.
     </Draft>
   </p>
 
@@ -168,20 +163,6 @@ const shapes = [
       end customer and is deliberately not published.
     </p>
   </div>
-
-  <LeadStrand
-    slot="after"
-    items={[
-      {
-        slug: 'how-i-managed-ux-complexity',
-        note: 'This is the complexity budget applied to one surface. Making friction measurable is what lets a team argue about density with evidence instead of taste, and catch scope bloat while it is still cheap to remove.',
-      },
-      {
-        slug: 'how-i-scaled-design-efficiency',
-        note: 'The same argument as the design system that came before it: teams move faster when the shared thing is assumed rather than optional. That one spread through usefulness rather than mandate — so does this one.',
-      },
-    ]}
-  />
 </DocumentLayout>
 
 <style>

@@ -1,6 +1,5 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
-import LeadStrand from '../components/LeadStrand.astro';
 import Shot from '../components/Shot.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
@@ -22,9 +21,9 @@ const B = '/work/alucify';
 >
   <p class="answer">
     <Draft>
-      When an agent does the work, the human job changes. You are no longer watching
-      it happen — you are arriving afterwards and deciding whether to trust it. This
-      is an interface built for that moment, and its primary metrics say so.
+      An AI agent writes the code. Someone still has to sign off on it. They did
+      not watch it get written, so they need to know what it touched, how much work
+      it was, and what it cost. I designed the tool that tells them.
     </Draft>
   </p>
 
@@ -39,27 +38,24 @@ const B = '/work/alucify';
   <h2>The three numbers on the landing screen</h2>
   <p>
     <Draft>
-      Three measures sit at the top of a project: blast radius, agent hours, token
-      cost. Not velocity, not volume, not lines written. The surface is built to
-      answer how far a change reached, how much work it took and what it cost —
-      before anyone opens a single decision.
+      Blast radius, agent hours, token cost. Not velocity, not lines written. You
+      see how far the change reached, how much work it was and what it cost before
+      you open anything.
     </Draft>
   </p>
   <p>
     <Draft>
-      Cost keeps that rank the whole way down. It reappears in the impact detail
-      for an individual concept, beside the change it paid for, instead of being
-      rolled into a billing page a reviewer would have to go looking for.
+      Cost shows up again on each individual change, next to what it paid for. Most
+      tools bury it in a billing page, where it never affects a decision.
     </Draft>
   </p>
 
   <h2>Coverage, broken into decisions</h2>
   <p>
     <Draft>
-      The headline percentage is backed by the table of every decision behind it —
-      each one named, categorised as scope, architecture or data, and marked
-      covered, partial or none. The list sorts worst-first, so what is not covered
-      is the first thing on screen rather than something to go hunting for.
+      Under the percentage is every decision behind it. Each one is named,
+      categorised as scope, architecture or data, and marked covered, partial or
+      none. Worst first, so the gaps are the first thing you see.
     </Draft>
   </p>
 
@@ -74,11 +70,10 @@ const B = '/work/alucify';
   <h2>How severity is shown</h2>
   <p>
     <Draft>
-      The impact view is where the product is allowed to be loud. A scoped change
-      boundary marked critical, two of five, with its own summary and a breakdown
-      across blast radius, regression risk, data integrity and backward
-      compatibility. Everything else on the surface is quiet so that this can be
-      heard.
+      This is the one place the product raises its voice. A change marked critical
+      gets a summary and a breakdown across blast radius, regression risk, data
+      integrity and backward compatibility. Everything else stays quiet so this
+      reads as urgent.
     </Draft>
   </p>
 
@@ -93,10 +88,10 @@ const B = '/work/alucify';
   <h2>Empty, loading and stale states</h2>
   <p>
     <Draft>
-      Twenty screens, and a good number of them are the ones usually left to
-      engineering to improvise: the integration mid-flight, the audit that has gone
-      stale and needs re-running, the dashboard before anything exists in it. A
-      developer tool is used mostly in these states, not in the populated one.
+      I designed twenty screens. Many are the ones usually left to engineering to
+      improvise: an integration still running, an audit gone stale, a dashboard
+      with nothing in it yet. People spend most of their time in these states, not
+      in the full one.
     </Draft>
   </p>
 
@@ -118,9 +113,9 @@ const B = '/work/alucify';
   <h2>What I owned</h2>
   <p>
     <Draft>
-      The design, all of it. Every surface and every state in this product is
-      mine — the metric hierarchy on the landing screen, the coverage model, the
-      severity system, and the twenty states from first run through tenured use.
+      All of the design. Every screen and every state — the metrics on the landing
+      screen, the coverage model, the severity system, and the twenty states from
+      first run to daily use.
     </Draft>
   </p>
 
@@ -133,20 +128,6 @@ const B = '/work/alucify';
       measurements.
     </p>
   </div>
-
-  <LeadStrand
-    slot="after"
-    items={[
-      {
-        slug: 'how-i-managed-ux-complexity',
-        note: 'A tool that reports blast radius and token cost is measuring complexity so a person can act on it. That is the complexity budget, pointed at an agent rather than a design team.',
-      },
-      {
-        slug: 'how-i-translated-design-work',
-        note: 'Choosing which three numbers belong on the landing surface is the same act as choosing which levers a proposal is measured by. Both decide what the thing is for before anyone argues about it.',
-      },
-    ]}
-  />
 </DocumentLayout>
 
 <style>

@@ -6,8 +6,9 @@
  * ordered by relevance to the audience rather than by how easy each is to prove —
  * the proof strip in the hero does the credibility work before any story is read.
  *
- * Each story absorbs the leadership essays whose substance it demonstrates. The
- * essays still live at their original URLs behind /essays.
+ * The essays live behind /essays, at their original URLs. Each story used to
+ * carry a strand linking out to the two essays it supposedly echoed; the links
+ * were real but the connections were stretched, so they are gone.
  */
 
 export type Story = {
@@ -18,7 +19,6 @@ export type Story = {
   claim: string;
   /** What it was. The 30-second read. */
   outcome: string;
-  leadership: string[];
   artifacts: { label: string; href?: string; live?: boolean; needs?: string }[];
   /** true where the claim/outcome are words I wrote, not Tyler-approved copy */
   draft?: boolean;
@@ -32,7 +32,6 @@ export const stories: Story[] = [
     claim: 'I design tools for people who have to review code an AI wrote.',
     outcome:
       'A code-intelligence product whose landing metrics are blast radius, agent hours and token cost — twenty documented states, from first run to tenured use, including the ones usually left to engineering to improvise.',
-    leadership: ['how-i-managed-ux-complexity', 'how-i-translated-design-work'],
     artifacts: [{ label: 'See the work', href: '/alucify' }],
     draft: true,
   },
@@ -43,7 +42,6 @@ export const stories: Story[] = [
     claim: 'I build the design systems AI generates from.',
     outcome:
       'A design system is no longer a library people import from — it is the constraint on what an agent is allowed to produce. Ninety-six components and fifty-one stories, governed by a 1,048-line operating spec, with the product and its library deployed and open right now.',
-    leadership: ['how-i-scaled-design-efficiency', 'how-i-built-culture-around-paradox'],
     artifacts: [
       { label: 'Open the product', href: 'https://atheer-next.fly.dev/', live: true },
       { label: 'Component library', href: 'https://atheer-next-storybook.fly.dev/', live: true },
@@ -58,7 +56,6 @@ export const stories: Story[] = [
     claim: 'I run stakeholder reviews on running code, not mockups.',
     outcome:
       'Forty-eight itemised notes taken against a running build, and the diff showing which half was acted on and which was declined. When generation is cheap, review is the constraint — and reviewing code instead of mockups is what makes the decision auditable at all.',
-    leadership: ['how-i-shaped-cross-functional-reputation', 'how-i-translated-design-work'],
     artifacts: [{ label: 'Read the story', href: '/review-loop' }],
     draft: true,
   },

@@ -1,6 +1,5 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
-import LeadStrand from '../components/LeadStrand.astro';
 import Receipt from '../components/Receipt.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
@@ -176,20 +175,6 @@ within each section is correct.
       is either my own writing or a count from the repository.
     </p>
   </div>
-
-  <LeadStrand
-    slot="after"
-    items={[
-      {
-        slug: 'how-i-built-culture-around-paradox',
-        note: 'Ninety days buys a v0 and a proved process, not a finished system. Knowing which quality bars are load-bearing and which are vanity is the whole discipline of shipping inside a fixed window.',
-      },
-      {
-        slug: 'how-i-translated-design-work',
-        note: 'Replacing an agency is a budget argument before it is a design one. The pipeline had to be defensible in terms a stakeholder outside design could weigh — speed to production, and what stopped being paid for.',
-      },
-    ]}
-  />
 </DocumentLayout>
 
 <style>
