@@ -121,12 +121,15 @@ const {
     border: 0;
   }
 
-  .doc .proof li {
+  /* Scoped under .prose deliberately. The prose rule `.doc .prose > ul > li` sets
+     padding-left: 38px for the list marker and out-specifies a plainer selector,
+     so the band started where it was told and the text sat 38px inside it. */
+  .doc .prose > .proof > li {
     margin: 0;
     padding: 20px 18px;
   }
 
-  .doc .proof li:nth-child(odd) {
+  .doc .prose > .proof > li:nth-child(odd) {
     background: var(--color-row);
   }
 
@@ -169,16 +172,16 @@ const {
   /* Banded rather than ruled. The tint bleeds past the text on both sides so the
      copy stays aligned with the prose above it instead of being inset by the
      padding. */
-  .doc .principles > li,
-  .doc .ledger > li {
+  .doc .prose > .principles > li,
+  .doc .prose > .ledger > li {
     margin: 0;
     padding: 15px 16px;
     margin-inline: -16px;
     border: 0;
   }
 
-  .doc .principles > li:nth-child(odd),
-  .doc .ledger > li:nth-child(odd) {
+  .doc .prose > .principles > li:nth-child(odd),
+  .doc .prose > .ledger > li:nth-child(odd) {
     background: var(--color-row);
   }
 
@@ -284,10 +287,6 @@ const {
     color: var(--color-ink-3);
   }
 
-  .doc .compare-heads p:last-child {
-    color: var(--color-signal);
-  }
-
   /* Stacked, each line needs its own label; side by side, the column heads carry
      it and repeating the word on every row is noise. */
   .doc .compare .tag {
@@ -298,10 +297,6 @@ const {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-ink-3);
-  }
-
-  .doc .compare .now .tag {
-    color: var(--color-signal);
   }
 
   .doc .pull-line {
