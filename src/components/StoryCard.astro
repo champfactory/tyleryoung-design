@@ -129,6 +129,12 @@ const { num, eyebrow, claim, outcome, artifacts, draft } = story;
     display: none;
   }
 
+  /* The frame carries a bottom margin so prose does not butt into its caption.
+     Inside a card the grid owns the spacing, so take it back. */
+  .media :global(.live) {
+    margin-bottom: 0;
+  }
+
   .media :global(img) {
     display: block;
     width: 100%;
