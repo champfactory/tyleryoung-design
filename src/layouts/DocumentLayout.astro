@@ -523,6 +523,64 @@ const {
     color: var(--color-ink);
   }
 
+  /* The rail carries live URLs. Without an affordance they read as plain text —
+     and the copy beside them refers to "both links", which is only true if a
+     reader can see that they are links. */
+  .doc .rail a {
+    color: var(--color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-signal);
+    padding-bottom: 1px;
+  }
+
+  .doc .rail a:hover {
+    color: var(--color-signal);
+  }
+
+  /* Three equal cells, tinted alternately, grey first — the same banding the
+     rest of the site uses, applied to a legend. */
+  .doc .shape-key {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    margin: 22px 0 34px;
+    padding: 0;
+  }
+
+  .doc .shape-key > li {
+    margin: 0;
+    padding: 22px 16px;
+    text-align: center;
+  }
+
+  .doc .shape-key > li::before {
+    content: none !important;
+  }
+
+  .doc .shape-key > li:nth-child(odd) {
+    background: var(--color-row);
+  }
+
+  .doc .shape-key svg {
+    display: block;
+    margin: 0 auto 12px;
+  }
+
+  .doc .shape-key .glyph {
+    fill: none;
+    stroke: var(--color-ink);
+    stroke-width: 2;
+  }
+
+  .doc .shape-key span {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+
   .doc .prose {
     max-width: 68ch;
     min-width: 0;
@@ -543,13 +601,6 @@ const {
   }
 
   /* ---- case-study evidence patterns ------------------------------------- */
-
-  /* The headline has no measure of its own, so a long one runs past the grid at
-     desktop widths. A ch cap on the heading itself — not the wrapper, where it
-     resolves against the body's 20px and strangles a 60px display face. */
-  .doc .head .display {
-    max-width: 17ch;
-  }
 
   .doc .sec-eyebrow {
     margin: 44px 0 8px;
