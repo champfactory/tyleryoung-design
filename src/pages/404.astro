@@ -1,4 +1,5 @@
 ---
+import Display from '../components/Display.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { essayGroups } from '../data/essayGroups';
 import { getCollection } from 'astro:content';
@@ -13,7 +14,7 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
 >
   <section class="shell notfound">
     <p class="label">404</p>
-    <h1 class="display">That page doesn't exist</h1>
+    <Display text="That page doesn't exist">That page doesn't exist</Display>
     <p class="lede">
       The essay URLs from the previous site were all preserved, so an old link should
       still work. If one doesn't, it's a bug worth telling me about.

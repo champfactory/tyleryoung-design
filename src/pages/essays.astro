@@ -1,4 +1,5 @@
 ---
+import Display from '../components/Display.astro';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { essayGroups } from '../data/essayGroups';
@@ -18,7 +19,9 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
 >
   <section class="shell page">
     <p class="label">Leadership writing</p>
-    <h1 class="display">{spelled.charAt(0).toUpperCase() + spelled.slice(1)} things I built to run design teams</h1>
+    <Display text={`${spelled.charAt(0).toUpperCase() + spelled.slice(1)} things I built to run design teams`}>
+      {spelled.charAt(0).toUpperCase() + spelled.slice(1)} things I built to run design teams
+    </Display>
     <p class="lede">
       Each of these is the same move the work on the homepage makes: take a judgment
       that lived in someone's head and make it explicit enough to survive without

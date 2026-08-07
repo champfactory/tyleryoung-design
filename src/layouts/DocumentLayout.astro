@@ -9,6 +9,7 @@
  * use the same shell so a technical piece reads as a sibling of the leadership
  * essays rather than a bolt-on.
  */
+import Display from '../components/Display.astro';
 import BaseLayout from './BaseLayout.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
@@ -57,7 +58,7 @@ const {
   <article class="shell doc">
     <header class="head">
       <p class="label">{eyebrow}</p>
-      <h1 class="display">{titleDraft ? <Draft>{title}</Draft> : title}</h1>
+      <Display text={title}>{titleDraft ? <Draft>{title}</Draft> : title}</Display>
       {deck && <p class="deck">{deck}</p>}
     </header>
 
@@ -435,12 +436,10 @@ const {
     height: auto;
   }
 
+  /* Size and wrapping belong to the one display style in global.css, computed
+     per title by the Display component. Only the spacing to the eyebrow above
+     it is this layout's business. */
   .doc .head .display {
-    font-size: var(--text-display);
-    /* Not `balance`. It evens line lengths, which is the opposite of filling the
-       measure — it was holding the headline to about 60% of the column and
-       leaving the right of the grid empty. Lines fill greedily instead. */
-    overflow-wrap: break-word;
     margin: 16px 0 0;
   }
 

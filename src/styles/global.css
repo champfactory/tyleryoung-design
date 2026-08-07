@@ -167,12 +167,24 @@
   }
 
   /* --- structural type ----------------------------------------------------- */
+  /* The one display style. Size is not set here: it is computed per title by
+     src/data/display-fit.mjs and passed in, so a 16-character headline and a
+     61-character one both fill the measure instead of sharing a size and
+     landing in different places. `balance` is deliberately absent — it evens
+     line lengths, which is the opposite of filling the column.
+
+     Any element using this class must sit inside `.display-fit`, which is the
+     container the computed size is a percentage of. */
   .display {
     font-family: var(--font-display);
     font-weight: 620;
     letter-spacing: -0.025em;
     line-height: 1.02;
-    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  .display-fit {
+    container-type: inline-size;
   }
 
   .heading {

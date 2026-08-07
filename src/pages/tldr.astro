@@ -1,4 +1,5 @@
 ---
+import Display from '../components/Display.astro';
 import { getEntry, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Needs from '../components/Needs.astro';
@@ -13,7 +14,7 @@ const { Content } = await render(entry);
   <article class="shell doc tldr">
     <header class="head">
       <p class="label">Summary</p>
-      <h1 class="display">TL;DR</h1>
+      <Display text="TL;DR">TL;DR</Display>
     </header>
 
     <ul class="summary">
