@@ -104,6 +104,95 @@ const {
   /* Global, alongside .essay-fig. Scoped to the page these did not apply at all —
      the rules were emitted but never matched — so the iframe fell back to its
      replaced-element default of 300x150 and the caption rendered as body copy. */
+  /* Global, like .essay-fig and .figma. Scoped to the page these did not apply —
+     the rows lost their grid, the labels rendered as body copy and the marks came
+     out as list bullets. */
+  .doc .rubric {
+    margin: 0 0 30px;
+  }
+
+  .doc .rubric-row {
+    display: grid;
+    gap: 4px 22px;
+    padding: 13px 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .doc .rubric dt {
+    font-weight: 600;
+    font-size: 17px;
+  }
+
+  .doc .rubric dd {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-ink-3);
+  }
+
+  .doc .rubric-label {
+    margin: 34px 0 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+
+  .doc .reqs {
+    list-style: none;
+    margin: 0 0 34px;
+    padding: 0;
+  }
+
+  .doc .req {
+    display: grid;
+    grid-template-columns: 14px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    padding: 12px 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .doc .req::before {
+    content: none;
+  }
+
+  /* Filled where a script enforces it, hollow where a person does. The two are
+     not the same promise and the page should not pretend otherwise. */
+  .doc .req-mark {
+    width: 9px;
+    height: 9px;
+    margin-top: 7px;
+    box-shadow: inset 0 0 0 1px var(--color-rule-strong);
+  }
+
+  .doc .req.auto .req-mark {
+    background: var(--color-signal);
+    box-shadow: none;
+  }
+
+  .doc .req-text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .doc .req-detail {
+    display: block;
+    margin-top: 3px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-3);
+  }
+
+  @media (min-width: 700px) {
+    .doc .rubric-row {
+      grid-template-columns: minmax(0, 22ch) minmax(0, 1fr);
+    }
+  }
+
   .doc .figma {
     margin: 0 0 34px;
     border: 1px solid var(--color-rule);

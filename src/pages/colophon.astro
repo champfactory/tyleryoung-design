@@ -1,6 +1,7 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import CrossLinks from '../components/CrossLinks.astro';
+import { goals, values, requirements, checked } from '../data/rubric.mjs';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
 import { audit } from '../data/palette.mjs';
@@ -30,6 +31,59 @@ const passing = rows.filter((r) => r.pass).length;
       the same origin, and two checks that run on every build and can fail it.
     </Draft>
   </p>
+
+  <h2>The standard it is held to</h2>
+  <p>
+    <Draft>
+      Written before the redesign and used to settle arguments during it. Goals
+      say what success looks like. Values say what will not be traded to get
+      there. Requirements are the testable form of both — and each one records
+      whether a machine checks it or a person does, because a requirement with no
+      check is an intention.
+    </Draft>
+  </p>
+
+  <dl class="rubric">
+    {
+      goals.map((g) => (
+        <div class="rubric-row">
+          <dt>{g.goal}</dt>
+          <dd>{g.because}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <p class="rubric-label">Values</p>
+  <dl class="rubric">
+    {
+      values.map((v) => (
+        <div class="rubric-row">
+          <dt>{v.value}</dt>
+          <dd>{v.means}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <p class="rubric-label">
+    Requirements — {checked} of {requirements.length} checked by a script on every build
+  </p>
+  <ul class="reqs">
+    {
+      requirements.map((r) => (
+        <li class:list={['req', { auto: r.check }]}>
+          <span class="req-mark" aria-hidden="true" />
+          <span class="req-text">
+            {r.req}
+            <span class="req-detail">
+              {r.check ? `npm run ${r.check} — ${r.detail}` : `by eye — ${r.detail}`}
+            </span>
+          </span>
+        </li>
+      ))
+    }
+  </ul>
 
   <h2>Reading the old site first</h2>
   <p>
