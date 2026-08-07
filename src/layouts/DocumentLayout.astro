@@ -437,7 +437,9 @@ const {
 
   .doc .head .display {
     font-size: var(--text-display);
-    text-wrap: balance;
+    /* Not `balance`. It evens line lengths, which is the opposite of filling the
+       measure — it was holding the headline to about 60% of the column and
+       leaving the right of the grid empty. Lines fill greedily instead. */
     overflow-wrap: break-word;
     margin: 16px 0 0;
   }
