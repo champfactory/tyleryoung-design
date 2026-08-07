@@ -42,6 +42,7 @@ const deepLink = `${SB}/?path=/story/${id}`;
       title={`${label} — live from the component library`}
       loading="lazy"
       referrerpolicy="no-referrer"
+      scrolling="no"
     ></iframe>
   </div>
 
@@ -102,16 +103,17 @@ const deepLink = `${SB}/?path=/story/${id}`;
   }
 
   .viewport {
-    /* The components expect a wide container; give them one and let the frame
-       scroll rather than reflowing the card into a narrow column. */
-    overflow: auto;
+    /* No scrollbars in a specimen. Every embedded story is narrower than this
+       column (the widest is 352px) and each `height` below is the story's
+       measured content height, so there is nothing to scroll to. A scrollbar
+       here would mean the height is wrong — fix the height, not this rule. */
+    overflow: hidden;
     background: #ffffff;
   }
 
   iframe {
     display: block;
     width: 100%;
-    min-width: 720px;
     height: 100%;
     border: 0;
   }
