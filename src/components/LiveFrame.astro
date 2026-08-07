@@ -14,6 +14,11 @@
  *
  * Not a screenshot: if the deployment goes down, this goes blank — the correct
  * failure mode for something presented as evidence.
+ *
+ * scrolling="no" because the embedded app draws its own scrollbars, and at this
+ * scale they render as stray bars along two edges of the specimen. Nothing is
+ * lost by suppressing them: the frame is pointer-events:none, so they were never
+ * usable — the adjacent link is how you actually get into the app.
  */
 interface Props {
   src: string;
@@ -52,6 +57,7 @@ const pct = `${100 / scale}%`;
       title={title}
       loading="lazy"
       referrerpolicy="no-referrer"
+      scrolling="no"
       style={`width:${pct};height:${pct};transform:scale(${scale});`}
     ></iframe>
   </div>
