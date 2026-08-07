@@ -53,9 +53,9 @@ export const stories: Story[] = [
     num: '03',
     slug: '/review-loop',
     eyebrow: 'Human-in-the-loop design',
-    claim: 'I run stakeholder reviews on running code, not mockups.',
+    claim: 'I own the collaboration between stakeholders and agents.',
     outcome:
-      'A stakeholder reviewed a working app and wrote 48 notes. I decided which ones to act on, fed them into Claude Code, and shipped a new version. Both versions are still running, and the diff shows what changed.',
+      'A stakeholder reviewed a working app and returned 48 notes. Claude Code made responding fast; it did not make the notes unambiguous — one asked me to rename wording that was not on the screen. Deciding what each note actually meant was the work. Both versions are still running.',
     artifacts: [{ label: 'Read the story', href: '/review-loop' }],
     draft: true,
   },
