@@ -31,6 +31,81 @@ const passing = rows.filter((r) => r.pass).length;
     </Draft>
   </p>
 
+  <h2>Reading the old site first</h2>
+  <p>
+    <Draft>
+      I started by pulling every word off the live site — nine essays, the TL;DR,
+      three project cards, three references — and reading it as a stranger would.
+      Two things came out of that. The argument was leadership: frameworks,
+      scoring models, a seat at the planning table. And the evidence was decks.
+      Nothing on it could be opened.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      Reading it that closely also turned up defects I had shipped without
+      noticing. The same alt text on three different people's headshots. Nine more
+      images with none at all.
+      <code>&lt;meta name="description" content="Made with Framer"&gt;</code> on
+      every essay page. Body text at 2.6:1 against its background. Three essays
+      sharing whole paragraphs word for word.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      None of that is unusual for a site built in a visual editor. All of it is
+      what an engineering team checks in the first thirty seconds.
+    </Draft>
+  </p>
+
+  <h2>Deciding what had to change</h2>
+  <p>
+    <Draft>
+      The reader I care about gives a portfolio ninety seconds, on bad wifi,
+      between two other tabs. That is the whole brief. It rules out a slow hero, a
+      carousel, a case study that explains its methodology before showing
+      anything.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      So the order changed. Three stories, each opening on something running, at
+      the top of the page. The leadership essays moved behind them — not because
+      they matter less, but because a claim about how I lead is worth more after
+      you have seen what I ship than before. The hero came out entirely: a name
+      and a bio line were pushing the only evidence on the page below the fold.
+    </Draft>
+  </p>
+
+  <h2>Building it</h2>
+  <p>
+    <Draft>
+      The agent wrote the code. I decided what it was allowed to write, read
+      everything that came back, and rejected the parts that cost more than they
+      returned. The style was settled the same way anything gets settled — in
+      passes. Warm paper became white. A serif body became sans, and the serif
+      came out of the build entirely once nothing referenced it. The header went
+      through two colours before landing.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      Working in code is what made that cheap. Changing every page's background is
+      one token. Checking that the change did not break contrast anywhere is one
+      command. In a visual editor both are an afternoon, which is why they usually
+      do not happen.
+    </Draft>
+  </p>
+  <p>
+    <Draft>
+      It also caught its own mistakes. The first pass at porting the essays
+      dropped all fifteen diagrams — the scoring rubrics, the heat map, the
+      two-by-twos — and left the arguments without their evidence. Recovering them
+      was possible because the source was a file I could diff, not a canvas I had
+      to remember.
+    </Draft>
+  </p>
+
   <h2>What runs on every build</h2>
   <p>
     <Draft>
@@ -88,23 +163,6 @@ const passing = rows.filter((r) => r.pass).length;
       where each one is. The list comes from the build, not from a checklist I keep
       by hand, so it cannot go stale. With <code>--strict</code> it fails the
       build.
-    </Draft>
-  </p>
-
-  <h2>What the old site did</h2>
-  <p>
-    <Draft>
-      This is why the checks exist. My previous site used the same alt text on
-      three different people's headshots, had no alt text at all on nine more
-      images, and shipped
-      <code>&lt;meta name="description" content="Made with Framer"&gt;</code> on
-      every essay page. Body text sat at 2.6:1 against the background.
-    </Draft>
-  </p>
-  <p>
-    <Draft>
-      None of that is unusual for a site built in a visual editor. All of it is
-      what an engineering team checks in the first thirty seconds.
     </Draft>
   </p>
 
