@@ -33,7 +33,10 @@
   --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
 
   /* paper — warm, not white. white is a browser default; this is a choice. */
-  --color-paper: #f6f4ef;
+  /* Was #f6f4ef — a warm off-white — with paper-raised #fcfbf8 and paper-sunk
+     #edeae1 tuned against it. Kept here so the warm palette can be restored in
+     one line if white turns out to be too cold for the type. */
+  --color-paper: #ffffff;
   --color-paper-raised: #fcfbf8;
   --color-paper-sunk: #edeae1;
 

@@ -89,10 +89,18 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
     gap: 52px;
   }
 
+  /* The number sits in a fixed gutter and everything else — eyebrow, heading,
+     blurb and the list below — starts at the same left edge. With `auto` the
+     gutter was as wide as the digits, so the head text and the list began at
+     two different margins. */
+  .group {
+    --gutter: 34px;
+  }
+
   .group-head {
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 18px;
+    grid-template-columns: var(--gutter) minmax(0, 1fr);
+    gap: 0;
     padding-top: 20px;
   }
 
@@ -130,16 +138,13 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
   ul {
     list-style: none;
     margin: 20px 0 0;
-    padding: 0;
+    padding: 0 0 0 var(--gutter);
     display: grid;
     gap: 16px;
   }
 
-  /* An index row: one rule per title, running the full column. The rule is what
-     fills the measure now that nothing sits opposite the title. */
   li {
-    border-bottom: 1px solid var(--color-rule);
-    padding-bottom: 12px;
+    padding-bottom: 2px;
   }
 
   li a.link {
@@ -155,11 +160,9 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
 
 
   @media (min-width: 810px) {
-    .group {
-      display: grid;
-      grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
-      gap: 40px;
-    }
+    /* The group head used to sit in a 360px column with the list beside it, which
+       broke a three-word heading over two lines and left the blurb in a ribbon.
+       Head spans, list sits underneath. */
 
     .group-head {
       border-top: 0;
@@ -171,7 +174,7 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
     }
 
     ul {
-      margin-top: 0;
+      margin-top: 22px;
     }
   }
 </style>

@@ -118,7 +118,6 @@ const {
 
   .doc .deck {
     margin: 18px 0 0;
-    max-width: 46ch;
     font-size: 19px;
     line-height: 1.5;
     color: var(--color-ink-3);
@@ -177,7 +176,10 @@ const {
     min-width: 0;
   }
 
+  /* Breaks the prose measure. At display size a 68ch cap computed on the body's
+     19px leaves a pull quote sitting in half a column with dead space beside it. */
   .doc .prose > .pull {
+    max-width: none;
     margin: 0 0 34px;
     font-family: var(--font-display);
     font-weight: 600;

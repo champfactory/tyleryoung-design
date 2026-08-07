@@ -10,7 +10,7 @@
  */
 
 export const TOKENS = {
-  paper: '#f6f4ef',
+  paper: '#ffffff', // was #f6f4ef
   'paper-raised': '#fcfbf8',
   'paper-sunk': '#edeae1',
   ink: '#1a1a18',
