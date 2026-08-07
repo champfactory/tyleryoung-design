@@ -30,15 +30,4 @@ const essays = defineCollection({
   }),
 });
 
-const pages = defineCollection({
-  loader: glob({ pattern: 'tldr.md', base: './content' }),
-  schema: z.object({
-    slug: z.string(),
-    title: z.string(),
-    description: z.string().optional(),
-    descriptionDraft: z.boolean().optional(),
-    summary: z.array(z.string()),
-  }),
-});
-
-export const collections = { essays, pages };
+export const collections = { essays };
