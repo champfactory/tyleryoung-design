@@ -80,6 +80,9 @@
 
   --color-header: #d6e9f8;
   --color-header-rule: #a3c6e2;
+  /* The header blue rotated to orange, same saturation and lightness. */
+  --color-accent: #f8e7d6;
+  --color-accent-rule: #e2c2a3;
 
   --color-rule: #d0ccbe;
   --color-rule-strong: #b9b4a6;

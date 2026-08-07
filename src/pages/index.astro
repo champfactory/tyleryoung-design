@@ -81,55 +81,26 @@ const references = [
   <!-- -------------------------------------------------------------- MORE ---
        Everything the executive audience needs, one tier down. Not competing
        with the three stories for a first-pass reader's attention. -->
-  <section class="shell more">
-    <div class="more-grid">
-      <div class="col">
-        <p class="label">Leadership writing</p>
-        <p class="col-lede">
-          Nine essays on building design orgs — the long-form versions of what runs
-          underneath the work above.
-        </p>
-        <ul class="plain">
-          {essayGroups.map((g) => <li>{g.title}</li>)}
-        </ul>
-        <p class="col-link">
-          <a class="artifact" href="/essays">
-            Read the essays
-            <span aria-hidden="true">→</span>
-          </a>
-        </p>
-      </div>
-
-      <div class="col">
-        <p class="label">In short</p>
-        <p class="col-lede">{bioRest[0]}</p>
-        <p class="col-lede">{bioRest[1]}</p>
-        <p class="col-link">
-          <a class="artifact" href="/tldr">
-            TL;DR
-            <span aria-hidden="true">→</span>
-          </a>
-        </p>
-      </div>
-
-      <div class="col">
-        <p class="label">References</p>
-        <div class="refs">
-          {
-            references.map((r) => (
-              <figure class="ref">
-                <blockquote>{r.quote}</blockquote>
-                <figcaption>
-                  <span class="ref-name">{r.name}</span>
-                  <span class="ref-title">{r.title}</span>
-                </figcaption>
-              </figure>
-            ))
-          }
-        </div>
+  <!-- ------------------------------------------------------- REFERENCES ---
+       Three people who worked alongside the role being hired for, read side by
+       side. On its own band, the way the header is on one. -->
+  <section class="refs-band" id="references" aria-labelledby="refs-label">
+    <div class="shell">
+      <p class="label" id="refs-label">References</p>
+      <div class="refs">
+        {
+          references.map((r) => (
+            <figure class="ref">
+              <blockquote>{r.quote}</blockquote>
+              <figcaption>
+                <span class="ref-name">{r.name}</span>
+                <span class="ref-title">{r.title}</span>
+              </figcaption>
+            </figure>
+          ))
+        }
       </div>
     </div>
-
   </section>
 </BaseLayout>
 
@@ -151,48 +122,19 @@ const references = [
   }
 
   /* ----------------------------------------------------------------- more */
-  .more {
-    padding-top: 108px;
-  }
-
-
-
-
-  .more-grid {
-    display: grid;
-    gap: 48px;
-  }
-
-  .col-lede {
-    margin: 12px 0 0;
-    font-size: var(--text-note);
-    line-height: 1.6;
-    color: var(--color-ink);
-  }
-
-  .plain {
-    list-style: none;
-    margin: 18px 0 0;
-    padding: 0;
-    display: grid;
-    gap: 7px;
-  }
-
-  .plain li {
-    font-family: var(--font-mono);
-    font-size: var(--text-eyebrow);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--color-ink-3);
-  }
-
-  .col-link {
-    margin: 22px 0 0;
+  /* A full-bleed band, like the header. Same construction: colour on the
+     section, the shell inside it holding the measure. */
+  .refs-band {
+    margin-top: 108px;
+    padding-block: 56px 64px;
+    background: var(--color-accent);
+    border-top: 1px solid var(--color-accent-rule);
+    border-bottom: 1px solid var(--color-accent-rule);
   }
 
   .refs {
     display: grid;
-    gap: 24px;
+    gap: 32px;
     margin-top: 12px;
   }
 
@@ -239,9 +181,11 @@ const references = [
       padding-top: 120px;
     }
 
-    .more-grid {
+    /* The three references span the page, one per column. */
+    .refs {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 40px;
+      align-items: start;
     }
   }
 
