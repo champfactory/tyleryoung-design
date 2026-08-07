@@ -5,6 +5,11 @@
  * here rather than in a document because a standard nobody can see is a
  * preference.
  *
+ * Counts are not restated here. They drifted once — the page claimed 17 colour
+ * pairs when there were 19, and 9 external artifacts when there were 12 — which
+ * is the exact failure this page argues against. Anything countable is either
+ * derived at render time from the same source the script reads, or left out.
+ *
  * Each requirement names its verifier. `AUTOMATIC` means a script in this repo
  * fails the build; `HUMAN REVIEW` means a person reads it. The page draws that
  * line explicitly, because the two are not the same promise.
@@ -49,12 +54,12 @@ export const requirements = [
   {
     req: 'Every deployment and design file the site points at still answers.',
     mode: AUTO,
-    how: 'npm run evidence · 9 external artifacts, checked from the built output',
+    how: 'npm run evidence · every external artifact in the built output',
   },
   {
     req: 'Every colour pair meets WCAG AA at the smallest size where it appears.',
     mode: AUTO,
-    how: 'npm run contrast · 17 pairs computed from the design tokens',
+    how: 'npm run contrast · {pairs} pairs computed from the design tokens',
   },
   {
     req: 'No unfinished slot or unapproved line ships unnoticed.',
@@ -64,7 +69,7 @@ export const requirements = [
   {
     req: 'Every URL preserved from the previous portfolio still resolves.',
     mode: AUTO,
-    how: 'npm run links · 10 legacy routes',
+    how: 'npm run links · every URL preserved from the previous site',
   },
   {
     req: 'No internal link returns a 404 or points to a missing anchor.',

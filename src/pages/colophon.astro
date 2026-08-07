@@ -139,9 +139,8 @@ const proof = [
         <li class:list={['gate', { human: r.mode === 'HUMAN REVIEW' }]}>
           <p class="gate-req">{r.req}</p>
           <p class="gate-meta">
-            <span class="gate-mark" aria-hidden="true" />
             <span class="gate-mode">{r.mode}</span>
-            <span class="gate-how">{r.how}</span>
+            <span class="gate-how">{r.how.replace('{pairs}', String(rows.length))}</span>
           </p>
         </li>
       ))

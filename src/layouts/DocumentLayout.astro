@@ -215,27 +215,10 @@ const {
     letter-spacing: 0.07em;
   }
 
-  /* Shape carries the distinction as well as the word, so it survives greyscale
-     and colour-blindness: a square is enforced, a circle is read by a person. */
-  .doc .gate-mark {
-    width: 8px;
-    height: 8px;
-    flex: none;
-    align-self: center;
-    box-shadow: inset 0 0 0 1px var(--color-signal);
-  }
-
-  .doc .gate.human .gate-mark {
-    border-radius: 50%;
-    box-shadow: inset 0 0 0 1px var(--color-ink-3);
-  }
-
+  /* No marker beside these. The words already say which is which, so a square or
+     a circle repeated the label in a second language. */
   .doc .gate-mode {
     text-transform: uppercase;
-    color: var(--color-signal);
-  }
-
-  .doc .gate.human .gate-mode {
     color: var(--color-ink-3);
   }
 
