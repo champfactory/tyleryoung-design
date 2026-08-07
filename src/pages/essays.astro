@@ -110,7 +110,10 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
     font-weight: 600;
     letter-spacing: 0.09em;
     color: var(--color-signal);
-    margin-top: 6px;
+    /* Sits in the gutter beside the eyebrow, same size and leading, so the two
+       share a baseline. A 6px top margin here — left over from when the head was
+       a side column — dropped the number below the label it belongs to. */
+    margin: 0 0 6px;
   }
 
   .eyebrow {
