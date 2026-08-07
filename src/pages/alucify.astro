@@ -1,10 +1,10 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
-import Shot from '../components/Shot.astro';
+import LiveFrame from '../components/LiveFrame.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
 
-const B = '/work/alucify';
+const APP = 'https://alucify-screens.fly.dev';
 const FIGMA =
   'https://www.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1';
 const FIGMA_EMBED =
@@ -31,12 +31,11 @@ const FIGMA_EMBED =
     </Draft>
   </p>
 
-  <Shot
-    src={`${B}/dashboard.png`}
-    alt="Alucify dashboard for a project called RBAC v1.1.1, showing artifact status of one integrated, seven critical issues and twelve major issues; coverage analysis at 89 percent overall with three partially covered and one not covered; and impact analysis showing 87 percent blast radius, 240 agent hours and a 5M token cost."
-    state="Tenured user dashboard"
-    caption="Blast radius, agent hours and token cost sit at the same level as coverage. Customer name redacted in the rail."
-    wide
+  <LiveFrame
+    src={`${APP}/#/dashboard`}
+    host="alucify-screens.fly.dev"
+    title="The Alucify dashboard, running"
+    note="Running now. Blast radius, agent hours and token cost are summed from the five concepts on the impact screen."
   />
 
   <h2>The three numbers on the landing screen</h2>
@@ -63,12 +62,11 @@ const FIGMA_EMBED =
     </Draft>
   </p>
 
-  <Shot
-    src={`${B}/coverage.png`}
-    alt="Coverage analysis view showing 89 percent overall across 27 total decisions, with 23 fully covered, 3 partially covered and 1 not covered, above a table of named AI decisions each tagged none, partial or covered."
-    state="Coverage analysis"
-    caption="Every row is a specific decision — a gateway type resolution spec, a cache hydration model — not an abstract category."
-    wide
+  <LiveFrame
+    src={`${APP}/#/coverage`}
+    host="alucify-screens.fly.dev"
+    title="Coverage analysis, running"
+    note="Running now. The score is derived from the 27 decisions below it, and the table sorts worst-first."
   />
 
   <h2>How severity is shown</h2>
@@ -81,12 +79,11 @@ const FIGMA_EMBED =
     </Draft>
   </p>
 
-  <Shot
-    src={`${B}/impact.png`}
-    alt="Impact analysis detail panel for a scoped change boundary marked critical, two of five, with a written summary and severity indicators for blast radius at 30 percent, 56 agent hours, 3M token cost, regression, data integrity and backward compatibility."
-    state="Impact analysis — concept detail"
-    caption="Severity is carried by a badge, a colour and a written summary together, not by colour alone."
-    wide
+  <LiveFrame
+    src={`${APP}/#/impact-detail`}
+    host="alucify-screens.fly.dev"
+    title="Impact analysis concept detail, running"
+    note="Running now. Click a concept name in the table to open it, or use prev and next inside the panel."
   />
 
   <h2>Empty, loading and stale states</h2>
@@ -100,17 +97,17 @@ const FIGMA_EMBED =
   </p>
 
   <div class="pair">
-    <Shot
-      src={`${B}/reaudit.png`}
-      alt="Artifact re-audit view with a full-width orange banner stating the artifact was integrated on a given date, a deprecation notice reading this audit has been deprecated, please re-audit, and a table of six issues tagged critical, major and minor, each paired with a written resolution."
-      state="Deprecated audit"
-      caption="A stale result is stated plainly and paired with the action that fixes it."
+    <LiveFrame
+      src={`${APP}/#/artifact-reaudit`}
+      host="alucify-screens.fly.dev"
+      title="An integrated artifact with a deprecated audit, running"
+      note="Running now. Integrated, and the audit behind it has gone stale."
     />
-    <Shot
-      src={`${B}/in-progress.png`}
-      alt="Artifact integration in progress, showing the dashboard skeleton with empty metric slots and a yellow status banner explaining that context is being created and a completion notification will follow by email."
-      state="Integration in progress"
-      caption="The empty state explains what is happening and what will end the wait."
+    <LiveFrame
+      src={`${APP}/#/in-progress`}
+      host="alucify-screens.fly.dev"
+      title="Integration in progress, running"
+      note="Running now. The state the product spends real time in."
     />
   </div>
 
@@ -154,11 +151,11 @@ const FIGMA_EMBED =
 
   <div class="aside">
     <p>
-      Shown with the founder's agreement. The customer name has been redacted from
-      the navigation rail in every screen; the product and its data model are
-      otherwise as designed. The values on these screens are sample data from the
-      design file — they exercise the layout, they are not a customer's
-      measurements.
+      Shown with the founder's agreement. What is running above is the design
+      rebuilt as a working app, not the shipping product — I built it so these
+      screens could be opened rather than looked at. The tenant, the people and
+      every figure in it are invented; the numbers reconcile because they are
+      computed from the rows beneath them.
     </p>
   </div>
 </DocumentLayout>

@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import StoryCard from '../components/StoryCard.astro';
 import LiveFrame from '../components/LiveFrame.astro';
-import Shot from '../components/Shot.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
 import { stories } from '../data/stories';
@@ -47,10 +46,11 @@ const references = [
 
     <StoryCard story={stories[0]}>
       <div slot="media">
-        <Shot
-          src="/work/alucify/dashboard.png"
-          alt="Alucify dashboard showing artifact status, coverage analysis at 89 percent, and impact analysis reporting 87 percent blast radius, 240 agent hours and a 5M token cost."
-          state="Tenured user dashboard"
+        <LiveFrame
+          src="https://alucify-screens.fly.dev/#/dashboard"
+          host="alucify-screens.fly.dev"
+          title="The Alucify dashboard, running"
+          note="The design, rebuilt as a working app. Blast radius, agent hours and token cost are summed from the concepts behind them."
         />
       </div>
     </StoryCard>

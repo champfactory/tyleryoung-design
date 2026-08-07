@@ -47,12 +47,14 @@ const pct = `${100 / scale}%`;
 /**
  * Logical px trimmed off each edge to hide the app's own scrollbars.
  *
- * Asymmetric on purpose. Trimming the bottom removes the horizontal bar, which
- * ran the full width of the specimen and was the obvious one; nothing sits along
- * that edge to lose. Trimming the right removed the vertical bar too, but the
- * app's user-profile block is flush right, so it cropped a name mid-word — a
- * visible defect traded for a ~3px bar at this scale. The right edge is left
- * alone.
+ * Asymmetric on purpose. The bottom takes 40px, which removes the horizontal bar
+ * completely and costs nothing — no content sits along that edge.
+ *
+ * The right takes nothing. The app's inner scroll container is inset from the
+ * viewport, so widening the iframe drags the container and its bar along with it;
+ * measured at 12, 20 and 28 the bar narrows but never clears, and any crop large
+ * enough to clear it also eats the user-profile block, which is flush right.
+ * Clipped text is the worse defect, so the bar stays.
  */
 const OVERSCAN_X = 0;
 const OVERSCAN_Y = 40;
