@@ -282,7 +282,7 @@ const {
     color: var(--color-ink-3);
   }
 
-  .doc .pull-line {
+  .doc .prose > .pull-line {
     margin: 26px 0 34px;
     padding-left: 16px;
     border-left: 2px solid var(--color-signal);
@@ -293,7 +293,7 @@ const {
     letter-spacing: -0.012em;
   }
 
-  .doc .result-line {
+  .doc .prose > .result-line {
     margin: 22px 0 14px;
     font-family: var(--font-display);
     font-size: 21px;
@@ -602,8 +602,8 @@ const {
 
   /* ---- case-study evidence patterns ------------------------------------- */
 
-  .doc .sec-eyebrow {
-    margin: 44px 0 8px;
+  .doc .prose > .sec-eyebrow {
+    margin: 76px 0 10px;
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
@@ -614,7 +614,6 @@ const {
 
   .doc .prose > .sec-eyebrow + h2 {
     margin-top: 0;
-    padding-top: 0;
   }
 
   /* Labelled strips. Bordered cells, no shadow, no icon — the label and its one
@@ -658,8 +657,10 @@ const {
 
   /* ---- running screens ---------------------------------------------------- */
 
+  /* Embeds are the evidence, so they get room on both sides rather than sitting
+     hard against the paragraph that introduces them. */
   .doc .recon {
-    margin: 0 0 34px;
+    margin: 52px 0 64px;
     border: 1px solid var(--color-rule);
   }
 
@@ -852,6 +853,15 @@ const {
     background: var(--color-row);
   }
 
+  .doc .disclosure .sec-eyebrow,
+  .doc .related .sec-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
   .doc .disclosure .sec-eyebrow {
     margin-top: 0;
     color: var(--color-ink-3);
@@ -930,15 +940,18 @@ const {
     }
   }
 
+  /* One descending scale: mono eyebrow 11, h2 28, h3 21, body 20. The h2 used to
+     be 15px uppercase, which read as a label and sat below its own h3 at 22px —
+     so a section heading ranked under the heading inside it. Uppercase now
+     belongs to the eyebrow alone, where it does not compete. */
   .doc .prose > h2 {
     font-family: var(--font-display);
     font-weight: 600;
-    letter-spacing: -0.015em;
-    font-size: 15px;
-    text-transform: uppercase;
+    letter-spacing: -0.018em;
+    font-size: 28px;
+    line-height: 1.22;
     color: var(--color-ink);
-    margin: 52px 0 18px;
-    padding-top: 14px;
+    margin: 72px 0 20px;
   }
 
   .doc .prose > h2:first-child {
@@ -950,9 +963,10 @@ const {
   .doc .prose > h3 {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 22px;
+    font-size: 21px;
+    line-height: 1.3;
     letter-spacing: -0.015em;
-    margin: 34px 0 12px;
+    margin: 44px 0 14px;
   }
 
   /* Direct children only. As a descendant selector this out-specifies Astro's
