@@ -1,39 +1,37 @@
 ---
-import Needs from './Needs.astro';
 import { REPO, EMAIL, YEAR as year } from '../data/site.mjs';
 ---
 
 <footer class="footer">
   <div class="shell inner">
-    <div class="colophon">
-      <p class="label">Colophon</p>
-      <p class="built">
-        {/* The one sentence that makes this site part of the evidence. */}
-        Built the way the work above was built: I directed the agent, reviewed what
-        came back, and shipped it.
-      </p>
-      <p class="stack">
-        Astro · React · Tailwind · static output · no client JavaScript on content pages
-      </p>
-      <p class="links">
-        <a class="artifact" href="/colophon">
-          How this site is built
-          <span aria-hidden="true">→</span>
-        </a>
-        <a class="artifact" href={REPO} target="_blank" rel="noopener">
-          Source
-          <span aria-hidden="true">→</span>
-        </a>
-      </p>
-    </div>
+    <p class="built">
+      {/* The one sentence that makes this site part of the evidence. */}
+      Built the way the work above was built: I directed the agent, reviewed what
+      came back, and shipped it.
+    </p>
 
-    <div class="ends">
+    <p class="stack">
+      Astro · React · Tailwind · static output · no client JavaScript on content pages
+    </p>
+
+    {/* One row, one baseline. This used to be two columns with the ends
+        right-aligned against a left-aligned block, so nothing lined up with
+        anything and the eye had two starts to find. */}
+    <p class="ends">
+      <a class="artifact" href="/colophon">
+        How this site is built
+        <span aria-hidden="true">→</span>
+      </a>
+      <a class="artifact" href={REPO} target="_blank" rel="noopener">
+        Source
+        <span aria-hidden="true">→</span>
+      </a>
       <a class="artifact" href={`mailto:${EMAIL}`}>
         {EMAIL}
         <span aria-hidden="true">→</span>
       </a>
-      <p class="label year">© {year} Tyler Young</p>
-    </div>
+      <span class="year">© {year} Tyler Young</span>
+    </p>
   </div>
 </footer>
 
@@ -43,58 +41,41 @@ import { REPO, EMAIL, YEAR as year } from '../data/site.mjs';
     padding-block: 32px 56px;
   }
 
-  .inner {
-    display: grid;
-    gap: 32px;
-  }
-
-  .colophon {
-    max-width: 60ch;
-  }
-
   .built {
-    margin: 12px 0 10px;
+    margin: 0 0 10px;
+    max-width: 60ch;
     font-size: 19px;
     line-height: 1.55;
   }
 
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px 26px;
-    margin: 20px 0 0;
-  }
-
-  .stack {
-    margin: 0;
+  .stack,
+  .year {
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.06em;
     color: var(--color-ink-3);
+  }
+
+  .stack {
+    margin: 0;
     line-height: 1.6;
   }
 
   .ends {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 14px 26px;
+    margin: 26px 0 0;
   }
 
   .year {
-    margin: 0;
+    margin-left: auto;
   }
 
-  @media (min-width: 810px) {
-    .inner {
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: start;
-      gap: 48px;
-    }
-
-    .ends {
-      align-items: flex-end;
-      text-align: right;
+  @media (max-width: 700px) {
+    .year {
+      margin-left: 0;
     }
   }
 </style>

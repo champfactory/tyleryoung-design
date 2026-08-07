@@ -43,12 +43,12 @@
   --color-ink-3: #6b6961;
 
   /* rules — the visible grid */
-  /* Canary. The header is the one flat field of colour on the site, so it has to
-     hold dark ink at small mono sizes — this is warm enough to sit beside the
-     paper below it and light enough to keep the wordmark legible. */
-  --color-canary: #f5e04a;
-  --color-canary-rule: #d8c332;
-  --color-signal-canary: #b2371c;
+  /* The header is the one flat field of colour on the site, so it has to hold
+     dark ink at small mono sizes and let the accent sit on it unchanged. Canary
+     could not do the second part — the accent had to be darkened just for the
+     header. This blue clears it at 5.87, so there is one accent again. */
+  --color-header: #d6e9f8;
+  --color-header-rule: #a3c6e2;
 
   --color-rule: #d0ccbe;
   --color-rule-strong: #b9b4a6;
@@ -61,7 +61,7 @@
   --color-machine-ink-2: #9d9a90;
 
   /* signal — one accent, used only for things that are live or interactive */
-  --color-signal: #bc3a1e;
+  --color-signal: #4b3fcb;
   --color-signal-ink: #ffffff;
   --color-live: #2f6f4e;
 

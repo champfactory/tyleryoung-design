@@ -1,7 +1,7 @@
 ---
 slug: how-i-shaped-cross-functional-reputation
 title: >-
-  The influence ladder
+  Promoting designers for influence, not output
 titleDraft: true
 pull: >-
   Their growth was measured by how they shaped direction, not just by what they delivered.

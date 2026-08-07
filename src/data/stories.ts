@@ -29,7 +29,7 @@ export const stories: Story[] = [
     num: '01',
     slug: '/alucify',
     eyebrow: 'AI-Native Product',
-    claim: 'I design tools for people accountable for work an agent did.',
+    claim: 'I design tools for people who have to review code an AI wrote.',
     outcome:
       'A code-intelligence product whose landing metrics are blast radius, agent hours and token cost — twenty documented states, from first run to tenured use, including the ones usually left to engineering to improvise.',
     leadership: ['how-i-managed-ux-complexity', 'how-i-translated-design-work'],
@@ -40,7 +40,7 @@ export const stories: Story[] = [
     num: '02',
     slug: '/ops-manager',
     eyebrow: 'Systems + Practice',
-    claim: 'I build the design systems that machines generate from.',
+    claim: 'I build the design systems AI generates from.',
     outcome:
       'A design system is no longer a library people import from — it is the constraint on what an agent is allowed to produce. Ninety-six components and fifty-one stories, governed by a 1,048-line operating spec, with the product and its library deployed and open right now.',
     leadership: ['how-i-scaled-design-efficiency', 'how-i-built-culture-around-paradox'],
@@ -55,7 +55,7 @@ export const stories: Story[] = [
     num: '03',
     slug: '/review-loop',
     eyebrow: 'How I Work',
-    claim: 'I put stakeholders in front of code an agent wrote, and kept the receipts.',
+    claim: 'I run stakeholder reviews on running code, not mockups.',
     outcome:
       'Forty-eight itemised notes taken against a running build, and the diff showing which half was acted on and which was declined. When generation is cheap, review is the constraint — and reviewing code instead of mockups is what makes the decision auditable at all.',
     leadership: ['how-i-shaped-cross-functional-reputation', 'how-i-translated-design-work'],

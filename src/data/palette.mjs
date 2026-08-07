@@ -22,15 +22,11 @@ export const TOKENS = {
   'machine-raised': '#202027',
   'machine-ink': '#e6e4dc',
   'machine-ink-2': '#9d9a90',
-  signal: '#bc3a1e',
+  signal: '#4b3fcb',
   'signal-ink': '#ffffff',
   live: '#2f6f4e',
-  canary: '#f5e04a',
-  'canary-rule': '#d8c332',
-  /* The header is the only place these are used. Canary is bright enough that
-     ink-3 and the standard signal both fall under AA on it, so the header takes
-     a darker red and skips the lightest ink entirely. */
-  'signal-canary': '#b2371c',
+  header: '#d6e9f8',
+  'header-rule': '#a3c6e2',
 };
 
 /** Pairs that must pass, at the smallest size each is actually used. */
@@ -46,9 +42,10 @@ export const PAIRS = [
   ['machine-ink-2', 'machine', 'AA', 'terminal dim text'],
   ['machine-ink', 'machine-raised', 'AA', 'raised panel text'],
   ['signal-ink', 'signal', 'AA', 'inverted signal label'],
-  ['ink', 'canary', 'AA', 'wordmark on the header'],
-  ['ink-2', 'canary', 'AA', 'header role + nav links @ 11px'],
-  ['signal-canary', 'canary', 'AA', 'current-page marker on the header'],
+  ['ink', 'header', 'AA', 'wordmark on the header'],
+  ['ink-2', 'header', 'AA', 'header sentence @ 11px'],
+  ['signal', 'header', 'AA', 'current-page marker on the header'],
+  ['header-rule', 'header', 'UI', 'header hairline'],
   ['rule-strong', 'paper', 'UI', 'hairline rules'],
   ['rule', 'paper', 'UI', 'hairline rules (subtle)'],
 ];

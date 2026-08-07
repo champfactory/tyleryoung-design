@@ -9,20 +9,15 @@ const { current } = Astro.props as { current?: string };
       <span class="role">Senior Director of Design</span>
     </a>
     <nav aria-label="Main">
-      <ul>
-        <li>
-          <a
-            href="/how-i-design-with-ai"
-            aria-current={current === 'building' ? 'page' : undefined}>I design with AI</a
-          >
-        </li>
-        <li>
-          <a href="/essays" aria-current={current === 'essays' ? 'page' : undefined}
-            >I lead design</a
-          >
-        </li>
-        <li><a href="mailto:43tylers@gmail.com">Contact</a></li>
-      </ul>
+      {/* One sentence, not a row of tabs. The connective words are plain text, so
+          only the three things you can actually go and do are underlined. */}
+      <p class="statement">
+        I <a href="/how-i-design-with-ai" aria-current={current === 'building' ? 'page' : undefined}
+          >design with AI</a
+        > and <a href="/essays" aria-current={current === 'essays' ? 'page' : undefined}
+          >lead teams</a
+        >. <a href="mailto:43tylers@gmail.com">Contact me</a>
+      </p>
     </nav>
   </div>
 </header>
@@ -30,11 +25,11 @@ const { current } = Astro.props as { current?: string };
 <style>
   .nav {
     /* Solid, not the translucent paper this used to be. A sticky header tinted
-       88% paper let the page show through; canary at partial opacity over
-       scrolling content turns muddy, and the whole point of the colour is that
-       it holds one flat field. */
-    background: var(--color-canary);
-    border-bottom: 1px solid var(--color-canary-rule);
+       88% paper let the page show through; a flat colour at partial opacity over
+       scrolling content turns muddy, and the point of the field is that it is
+       flat. */
+    background: var(--color-header);
+    border-bottom: 1px solid var(--color-header-rule);
     position: sticky;
     top: 0;
     z-index: 20;
@@ -82,23 +77,39 @@ const { current } = Astro.props as { current?: string };
     padding: 0;
   }
 
-  nav a {
+  /* Sentence case, because it is a sentence — the uppercase treatment belonged
+     to tabs. The type sits on `nav` rather than on the paragraph's class: as a
+     class it lost to `nav a` for the links and left the connective words
+     inheriting 19px body sans, so the sentence rendered at two sizes. */
+  nav {
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    text-decoration: none;
     color: var(--color-ink-2);
+  }
+
+  .statement {
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  nav a {
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: none;
+    text-decoration: none;
+    color: var(--color-ink);
     padding-bottom: 2px;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid var(--color-ink);
     transition: color 120ms ease, border-color 120ms ease;
   }
 
   nav a:hover,
   nav a[aria-current='page'] {
-    color: var(--color-ink);
-    border-bottom-color: var(--color-signal-canary);
+    color: var(--color-signal);
+    border-bottom-color: var(--color-signal);
   }
 
   .inner {

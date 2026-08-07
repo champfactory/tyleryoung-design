@@ -1,7 +1,7 @@
 ---
 slug: how-i-built-culture-around-paradox
 title: >-
-  The good-enough double standard
+  Knowing when to stop building
 titleDraft: true
 pull: >-
   A bar to exceed in problem definition, and to defend during execution.

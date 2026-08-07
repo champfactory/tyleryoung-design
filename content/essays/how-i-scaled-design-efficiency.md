@@ -1,7 +1,7 @@
 ---
 slug: how-i-scaled-design-efficiency
 title: >-
-  The design system nobody was told to use
+  A design system five teams chose to adopt
 titleDraft: true
 pull: >-
   Product managers began learning the system to guide handoff conversations more confidently.

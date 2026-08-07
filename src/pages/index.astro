@@ -130,11 +130,6 @@ const references = [
       </div>
     </div>
 
-    <p class="legend">
-      <span class="k draft-key">Dotted</span> = draft copy awaiting Tyler's approval.{' '}
-      <span class="k needs-key">NEEDS</span> = missing asset or open decision. Neither
-      ships. Headshots are held back until the photo↔person mapping is confirmed.
-    </p>
   </section>
 </BaseLayout>
 
@@ -236,30 +231,9 @@ const references = [
     color: var(--color-ink-3);
   }
 
-  .legend {
-    margin: 64px 0 0;
-    padding-top: 20px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    line-height: 1.9;
-    letter-spacing: 0.04em;
-    color: var(--color-ink-3);
-    max-width: 78ch;
-  }
 
-  .k {
-    color: var(--color-ink);
-    padding-bottom: 1px;
-  }
 
-  .draft-key {
-    border-bottom: 1px dotted var(--color-signal);
-  }
 
-  .needs-key {
-    color: var(--color-signal);
-    border-bottom: 1px dashed var(--color-signal);
-  }
 
   @media (min-width: 810px) {
     .hero {

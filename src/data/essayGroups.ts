@@ -20,7 +20,7 @@ export type EssayGroup = {
 export const essayGroups: EssayGroup[] = [
   {
     eyebrow: 'Instruments',
-    title: 'Making judgment explicit',
+    title: 'Making decisions explicit',
     blurb:
       'A decision rule, written down, that outlives the person who made it. Scoring models, budgets, thresholds, systems.',
     slugs: [
@@ -32,7 +32,7 @@ export const essayGroups: EssayGroup[] = [
   },
   {
     eyebrow: 'Teams',
-    title: 'Changing how the work gets done',
+    title: 'Changing how teams work',
     blurb:
       'Structure, roles and growth paths rebuilt so the standard holds without anyone enforcing it.',
     slugs: [

@@ -1,7 +1,7 @@
 ---
 slug: how-i-translated-design-work
 title: >-
-  Three models that made design legible
+  Three models that tied design to business metrics
 titleDraft: true
 pull: >-
   Executives began referencing design levers in funding meetings.

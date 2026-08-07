@@ -1,7 +1,7 @@
 ---
 slug: how-i-managed-ux-complexity
 title: >-
-  The complexity budget
+  A complexity budget for scope decisions
 titleDraft: true
 pull: >-
   We stopped debating polish and started questioning cost.

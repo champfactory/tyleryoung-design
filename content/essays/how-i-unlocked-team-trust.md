@@ -1,7 +1,7 @@
 ---
 slug: how-i-unlocked-team-trust
 title: >-
-  Specialists to generalists, mid-downturn
+  Rebuilding the team from specialists to generalists
 titleDraft: true
 pull: >-
   Junior designers delivered the same caliber of execution once handled by senior specialists, but with greater speed and fewer dependencies.
