@@ -13,6 +13,7 @@ export const TOKENS = {
   paper: '#ffffff', // was #f6f4ef
   'paper-raised': '#fcfbf8',
   'paper-sunk': '#edeae1',
+  row: '#f5f5f6',
   ink: '#1a1a18',
   'ink-2': '#55534b',
   'ink-3': '#6b6961',
@@ -38,6 +39,8 @@ export const PAIRS = [
   ['live', 'paper', 'AA', 'live-product marker'],
   ['ink', 'paper-raised', 'AA', 'card text'],
   ['ink', 'paper-sunk', 'AA', 'sunk panel text'],
+  ['ink', 'row', 'AA', 'banded row text'],
+  ['ink-3', 'row', 'AA', 'banded row detail @ 16px'],
   ['machine-ink', 'machine', 'AA', 'terminal body text'],
   ['machine-ink-2', 'machine', 'AA', 'terminal dim text'],
   ['machine-ink', 'machine-raised', 'AA', 'raised panel text'],

@@ -39,6 +39,9 @@
   --color-paper: #ffffff;
   --color-paper-raised: #fcfbf8;
   --color-paper-sunk: #edeae1;
+  /* Zebra tint for banded rows. Neutral rather than warm, because the page is
+     white now and the warm sunk token reads as beige against it. */
+  --color-row: #f5f5f6;
 
   /* ink */
   --color-ink: #1a1a18;

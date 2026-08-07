@@ -108,22 +108,26 @@ const {
      Global, like .essay-fig and .figma: scoped to the page these rules are
      emitted but never match, so the layout silently falls back to prose. */
 
-  /* Four figures under one rule. This was a bordered box with 1px gaps showing
-     the container behind it, which rendered as grey bars and read as a broken
-     table. No box, no dividers — the spacing separates them. */
+  /* Four equal cells, tinted alternately across the row. Same banding as the
+     lists below, turned on its side. No rule and no gap — the tint does the
+     separating, and 1fr keeps every box the same width whatever its label does. */
   .doc .proof {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 26px 32px;
+    gap: 0;
     margin: 30px 0 10px;
-    padding: 24px 0 0;
-    border-top: 1px solid var(--color-rule);
+    padding: 0;
+    border: 0;
   }
 
   .doc .proof li {
     margin: 0;
-    padding: 0;
+    padding: 20px 18px;
+  }
+
+  .doc .proof li:nth-child(odd) {
+    background: var(--color-row);
   }
 
   /* The prose list marker out-specifies a plain override, and these lists are
@@ -131,8 +135,7 @@ const {
   .doc .proof li::before,
   .doc .principles > li::before,
   .doc .ledger > li::before,
-  .doc .compare li::before,
-  .doc .related li::before {
+  .doc .compare li::before {
     content: none !important;
   }
 
@@ -163,12 +166,20 @@ const {
     padding: 0;
   }
 
+  /* Banded rather than ruled. The tint bleeds past the text on both sides so the
+     copy stays aligned with the prose above it instead of being inset by the
+     padding. */
   .doc .principles > li,
   .doc .ledger > li {
     margin: 0;
-    padding: 16px 0;
-    padding-left: 0;
-    border-top: 1px solid var(--color-rule);
+    padding: 15px 16px;
+    margin-inline: -16px;
+    border: 0;
+  }
+
+  .doc .principles > li:nth-child(odd),
+  .doc .ledger > li:nth-child(odd) {
+    background: var(--color-row);
   }
 
   .doc .principle {
@@ -297,6 +308,69 @@ const {
     letter-spacing: -0.012em;
   }
 
+  /* The ratio tables. These had no styles at all, so the swatch collided with the
+     label and the column headers ran together. Banded to match the rows above,
+     numbers right-aligned and monospaced so they compare down the column. */
+  .doc .ratios {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 10px;
+    font-size: 15px;
+  }
+
+  .doc .ratios th {
+    padding: 0 14px 9px 16px;
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .doc .ratios td {
+    padding: 10px 14px 10px 16px;
+    vertical-align: middle;
+  }
+
+  .doc .ratios tbody tr:nth-child(odd) {
+    background: var(--color-row);
+  }
+
+  .doc .ratios .num {
+    width: 1%;
+    text-align: right;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  .doc .ratios .dim {
+    color: var(--color-ink-3);
+  }
+
+  .doc .ratios .use {
+    font-size: 13px;
+    color: var(--color-ink-3);
+  }
+
+  /* The swatch is the evidence: the pair rendered at the ratio being claimed. */
+  .doc .swatch {
+    display: inline-grid;
+    place-items: center;
+    width: 30px;
+    height: 22px;
+    margin-right: 12px;
+    vertical-align: -6px;
+    font-size: 12px;
+    line-height: 1;
+    color: var(--fg);
+    background: var(--bg);
+    border: 1px solid var(--color-rule);
+  }
+
   .doc .all-pairs {
     margin: 0 0 34px;
     border-top: 1px solid var(--color-rule);
@@ -325,41 +399,11 @@ const {
     padding-bottom: 4px;
   }
 
-  .doc .related {
-    padding-top: 20px;
-    border-top: 1px solid var(--color-rule);
-  }
 
-  .doc .related-head {
-    margin: 6px 0 18px;
-  }
 
-  .doc .related ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 18px;
-  }
 
-  .doc .related li {
-    margin: 0;
-    padding: 0;
-  }
 
-  .doc .related .artifact {
-    display: inline-flex;
-    align-items: center;
-    min-height: 28px;
-  }
 
-  .doc .related-note {
-    display: block;
-    margin-top: 4px;
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--color-ink-3);
-  }
 
   @media (min-width: 700px) {
     .doc .proof {
@@ -375,10 +419,6 @@ const {
       border-top: 0;
     }
 
-    .doc .related ul {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 28px;
-    }
   }
 
   .doc .figma {

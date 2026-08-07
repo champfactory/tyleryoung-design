@@ -21,19 +21,6 @@ const proof = [
   ['10', 'Old essay URLs preserved'],
 ];
 
-const related = [
-  ['/how-i-design-with-ai', 'I design with AI', 'The operating model behind the work.'],
-  [
-    '/atheer-design-pipeline',
-    'The design-to-code pipeline',
-    'How design intent becomes governed production code.',
-  ],
-  [
-    '/ops-manager',
-    'A product and the system it was built from',
-    'The running product and inspectable component library.',
-  ],
-];
 ---
 
 <DocumentLayout
@@ -253,21 +240,4 @@ const related = [
     standard.
   </p>
 
-  <section slot="after" class="shell related" aria-labelledby="related-title">
-    <p class="label">Related</p>
-    <h2 id="related-title" class="related-head">See the practice in product work</h2>
-    <ul>
-      {
-        related.map(([href, label, note]) => (
-          <li>
-            <a class="artifact" href={href}>
-              {label}
-              <span aria-hidden="true">→</span>
-            </a>
-            <span class="related-note">{note}</span>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
 </DocumentLayout>
