@@ -70,6 +70,8 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
   /* No max-width on either. A 20ch cap broke a six-word headline over three
      lines and left the right half of the page empty; the lede did the same at
      56ch. Both now run the shell's measure, so the block reads as one edge. */
+  /* A display clamp, not a ladder step: this headline scales with the
+     viewport rather than sitting at a fixed size. */
   h1 {
     font-size: clamp(32px, 5.2vw, 52px);
     margin: 16px 0 0;
@@ -77,7 +79,7 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
 
   .lede {
     margin: 26px 0 0;
-    font-size: 19px;
+    font-size: var(--text-body);
     line-height: 1.6;
     color: var(--color-ink);
   }
@@ -101,7 +103,7 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
 
   .eyebrow {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--text-eyebrow);
     font-weight: 500;
     letter-spacing: 0.09em;
     text-transform: uppercase;
@@ -110,13 +112,13 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
   }
 
   h2 {
-    font-size: 26px;
+    font-size: var(--text-h2);
     margin: 0;
   }
 
   .blurb {
     margin: 12px 0 0;
-    font-size: 16px;
+    font-size: var(--text-note);
     line-height: 1.55;
     color: var(--color-ink-3);
   }
@@ -134,7 +136,7 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
   }
 
   li a.link {
-    font-size: 20px;
+    font-size: var(--text-h3);
     line-height: 1.4;
     border-bottom: 0;
   }

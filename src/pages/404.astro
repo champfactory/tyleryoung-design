@@ -67,6 +67,8 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
     padding-top: 72px;
   }
 
+  /* A display clamp, not a ladder step: this headline scales with the
+     viewport rather than sitting at a fixed size. */
   h1 {
     font-size: clamp(34px, 6vw, 56px);
     margin: 16px 0 0;
@@ -75,7 +77,7 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
   .lede {
     margin: 24px 0 0;
     max-width: 56ch;
-    font-size: 19px;
+    font-size: var(--text-body);
     line-height: 1.6;
     color: var(--color-ink);
   }
@@ -104,7 +106,7 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
   }
 
   li a {
-    font-size: 18px;
+    font-size: var(--text-h3);
     line-height: 1.4;
   }
 

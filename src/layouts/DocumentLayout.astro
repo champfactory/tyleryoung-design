@@ -127,12 +127,12 @@ const {
   /* Scoped under .prose deliberately. The prose rule `.doc .prose > ul > li` sets
      padding-left: 38px for the list marker and out-specifies a plainer selector,
      so the band started where it was told and the text sat 38px inside it. */
-  .doc .prose > .proof > li {
+  .doc .proof > li {
     margin: 0;
     padding: 20px 18px;
   }
 
-  .doc .prose > .proof > li:nth-child(odd) {
+  .doc .proof > li:nth-child(odd) {
     background: var(--color-row);
   }
 
@@ -175,16 +175,16 @@ const {
   /* Banded rather than ruled. The tint bleeds past the text on both sides so the
      copy stays aligned with the prose above it instead of being inset by the
      padding. */
-  .doc .prose > .principles > li,
-  .doc .prose > .ledger > li {
+  .doc .principles > li,
+  .doc .ledger > li {
     margin: 0;
     padding: 15px 16px;
     margin-inline: -16px;
     border: 0;
   }
 
-  .doc .prose > .principles > li:nth-child(odd),
-  .doc .prose > .ledger > li:nth-child(odd) {
+  .doc .principles > li:nth-child(odd),
+  .doc .ledger > li:nth-child(odd) {
     background: var(--color-row);
   }
 
@@ -285,7 +285,7 @@ const {
     color: var(--color-ink-3);
   }
 
-  .doc .prose > .pull-line {
+  .doc .pull-line {
     margin: 26px 0 34px;
     padding-left: 16px;
     border-left: 2px solid var(--color-signal);
@@ -296,7 +296,7 @@ const {
     letter-spacing: -0.012em;
   }
 
-  .doc .prose > .result-line {
+  .doc .result-line {
     margin: 22px 0 14px;
     font-family: var(--font-display);
     font-size: 21px;
@@ -542,7 +542,7 @@ const {
 
   /* Three equal cells, tinted alternately, grey first — the same banding the
      rest of the site uses, applied to a legend. */
-  .doc .prose > .shape-key {
+  .doc .shape-key {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -551,32 +551,32 @@ const {
     padding: 0;
   }
 
-  .doc .prose > .shape-key > li {
+  .doc .shape-key > li {
     margin: 0;
     padding: 22px 16px;
     text-align: center;
   }
 
-  .doc .prose > .shape-key > li::before {
+  .doc .shape-key > li::before {
     content: none !important;
   }
 
-  .doc .prose > .shape-key > li:nth-child(odd) {
+  .doc .shape-key > li:nth-child(odd) {
     background: var(--color-row);
   }
 
-  .doc .prose > .shape-key svg {
+  .doc .shape-key svg {
     display: block;
     margin: 0 auto 12px;
   }
 
-  .doc .prose > .shape-key .glyph {
+  .doc .shape-key .glyph {
     fill: none;
     stroke: var(--color-ink);
     stroke-width: 2;
   }
 
-  .doc .prose > .shape-key span {
+  .doc .shape-key span {
     font-family: var(--font-mono);
     font-size: 10.5px;
     letter-spacing: 0.09em;
@@ -591,7 +591,7 @@ const {
 
   /* Breaks the prose measure. At display size a 68ch cap computed on the body's
      19px leaves a pull quote sitting in half a column with dead space beside it. */
-  .doc .prose > .pull {
+  .doc .pull {
     max-width: none;
     margin: 0 0 34px;
     font-family: var(--font-display);
@@ -605,7 +605,18 @@ const {
 
   /* ---- case-study evidence patterns ------------------------------------- */
 
-  .doc .prose > .sec-eyebrow {
+  /* The opening paragraph of a case study. This was declared four times across
+     four page files as .opening or .answer, and none of them emitted anything —
+     so every lede on the site was rendering unstyled. One class, one place. */
+  .doc .lede {
+    margin: 0 0 20px;
+    font-size: var(--text-lede);
+    line-height: 1.45;
+    letter-spacing: -0.004em;
+    text-wrap: pretty;
+  }
+
+  .doc .sec-eyebrow {
     margin: 76px 0 10px;
     font-family: var(--font-mono);
     font-size: 11px;
@@ -615,13 +626,13 @@ const {
     color: var(--color-signal);
   }
 
-  .doc .prose > .sec-eyebrow + h2 {
+  .doc .prose > .sec-eyebrow + h2:not([class]) {
     margin-top: 0;
   }
 
   /* Labelled strips. Bordered cells, no shadow, no icon — the label and its one
      line are the whole component. */
-  .doc .prose > .strip {
+  .doc .strip {
     list-style: none;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -631,13 +642,13 @@ const {
     border-top: 1px solid var(--color-rule);
   }
 
-  .doc .prose > .strip > li {
+  .doc .strip > li {
     margin: 0;
     padding: 13px 16px;
     border-bottom: 1px solid var(--color-rule);
   }
 
-  .doc .prose > .strip > li::before {
+  .doc .strip > li::before {
     content: none !important;
   }
 
@@ -663,7 +674,7 @@ const {
   /* Embeds are the evidence, so they get room on both sides rather than sitting
      hard against the paragraph that introduces them. */
   .doc .recon {
-    margin: 52px 0 64px;
+    margin: var(--space-embed) 0 calc(var(--space-embed) + 12px);
     border: 1px solid var(--color-rule);
   }
 
@@ -876,20 +887,20 @@ const {
 
 
   @media (min-width: 700px) {
-    .doc .prose > .strip {
+    .doc .strip {
       grid-template-columns: repeat(3, minmax(0, 1fr));
       border-bottom: 1px solid var(--color-rule);
     }
 
-    .doc .prose > .strip.four {
+    .doc .strip.four {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .doc .prose > .strip > li {
+    .doc .strip > li {
       border-bottom: 0;
     }
 
-    .doc .prose > .strip.four > li:nth-child(-n + 2) {
+    .doc .strip.four > li:nth-child(-n + 2) {
       border-bottom: 1px solid var(--color-rule);
     }
   }
@@ -898,43 +909,43 @@ const {
      be 15px uppercase, which read as a label and sat below its own h3 at 22px —
      so a section heading ranked under the heading inside it. Uppercase now
      belongs to the eyebrow alone, where it does not compete. */
-  .doc .prose > h2 {
+  .doc .prose > h2:not([class]) {
     font-family: var(--font-display);
     font-weight: 600;
     letter-spacing: -0.018em;
-    font-size: 28px;
+    font-size: var(--text-h2);
     line-height: 1.22;
     color: var(--color-ink);
-    margin: 72px 0 20px;
+    margin: var(--space-section) 0 20px;
   }
 
-  .doc .prose > h2:first-child {
+  .doc .prose > h2:not([class]):first-child {
     margin-top: 0;
     padding-top: 0;
     border-top: 0;
   }
 
-  .doc .prose > h3 {
+  .doc .prose > h3:not([class]) {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 21px;
+    font-size: var(--text-h3);
     line-height: 1.3;
     letter-spacing: -0.015em;
-    margin: 44px 0 14px;
+    margin: var(--space-heading) 0 14px;
   }
 
   /* Direct children only. As a descendant selector this out-specifies Astro's
      scoped component styles and reformats every <p> inside an embedded
      component — e.g. the Receipt's pane labels. */
-  .doc .prose > p {
-    font-size: 20px;
+  .doc .prose > p:not([class]) {
+    font-size: var(--text-body);
     line-height: 1.5;
     margin: 0 0 16px;
     text-wrap: pretty;
   }
 
-  .doc .prose > ol,
-  .doc .prose > ul {
+  .doc .prose > ol:not([class]),
+  .doc .prose > ul:not([class]) {
     margin: 0 0 22px;
     padding-left: 0;
     list-style: none;
@@ -943,8 +954,8 @@ const {
     counter-reset: item;
   }
 
-  .doc .prose > ol > li,
-  .doc .prose > ul > li {
+  .doc .prose > ol:not([class]) > li,
+  .doc .prose > ul:not([class]) > li {
     font-size: 19px;
     line-height: 1.6;
     padding-left: 38px;
@@ -952,11 +963,11 @@ const {
     text-wrap: pretty;
   }
 
-  .doc .prose > ol > li {
+  .doc .prose > ol:not([class]) > li {
     counter-increment: item;
   }
 
-  .doc .prose > ol > li::before {
+  .doc .prose > ol:not([class]) > li::before {
     content: counter(item, decimal-leading-zero);
     position: absolute;
     left: 0;
@@ -968,7 +979,7 @@ const {
     color: var(--color-signal);
   }
 
-  .doc .prose > ul > li::before {
+  .doc .prose > ul:not([class]) > li::before {
     content: '';
     position: absolute;
     left: 0;

@@ -53,6 +53,24 @@
      dark ink at small mono sizes and let the accent sit on it unchanged. Canary
      could not do the second part — the accent had to be darkened just for the
      header. This blue clears it at 5.87, so there is one accent again. */
+  /* ---- type scale --------------------------------------------------------
+     One ladder for the whole site. Anything that sets a size should reference a
+     step rather than pick a number, so a change lands everywhere at once. */
+  --text-eyebrow: 11px;   /* mono labels, captions, metadata */
+  --text-meta: 12px;      /* the metadata rail */
+  --text-caption: 15px;   /* figure captions, secondary rows */
+  --text-note: 16px;      /* explanatory lines under a label */
+  --text-body: 20px;      /* prose */
+  --text-h3: 21px;
+  --text-h2: 28px;
+  --text-lede: 24px;
+
+  /* ---- spacing ------------------------------------------------------------ */
+  --space-section: 72px;  /* between sections */
+  --space-heading: 44px;  /* before a subheading */
+  --space-block: 34px;    /* around a block element */
+  --space-embed: 52px;    /* around running evidence */
+
   /* Where the first line of every page sits, measured from under the header. */
   --space-page-top: 88px;
 
