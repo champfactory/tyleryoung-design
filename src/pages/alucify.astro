@@ -101,13 +101,13 @@ const FIGMA_EMBED =
       src={`${APP}/#/artifact-reaudit`}
       host="alucify-screens.fly.dev"
       title="An integrated artifact with a deprecated audit, running"
-      note="Running now. Integrated, and the audit behind it has gone stale."
+      note="The product says its own analysis is out of date, and puts the fix beside the admission."
     />
     <LiveFrame
       src={`${APP}/#/in-progress`}
       host="alucify-screens.fly.dev"
       title="Integration in progress, running"
-      note="Running now. The state the product spends real time in."
+      note="It tells you to close the tab. The work carries on without you watching it."
     />
   </div>
 
@@ -173,7 +173,10 @@ const FIGMA_EMBED =
     margin-bottom: 34px;
   }
 
-  .pair :global(.shot) {
+  /* These are LiveFrames now, not Shots. The stale selector left each one
+     carrying the 34px bottom margin meant for prose, inside a grid that already
+     owns the spacing. */
+  .pair :global(.live) {
     margin-bottom: 0;
   }
 
