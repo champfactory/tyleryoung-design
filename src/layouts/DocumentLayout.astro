@@ -283,10 +283,10 @@ const {
   }
 
   @media (min-width: 810px) {
-    .doc {
-      padding-top: 96px;
-    }
-
+    /* No padding-top override here. A `.doc { padding-top: 96px }` in this media
+       query quietly beat the shared token at every desktop width, so document
+       pages started lower than /essays and the title jumped when you moved
+       between them. */
     .doc .columns {
       grid-template-columns: 200px minmax(0, 1fr);
       gap: 56px;
