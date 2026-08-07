@@ -11,34 +11,53 @@ interface Props {
   related?: [string, string][];
 }
 const { related = [] } = Astro.props;
+
+/** The links this site carries on every page. */
+const site: [string, string, boolean][] = [
+  ['/colophon', 'How this site is built', false],
+  [REPO, 'Source', true],
+  [`mailto:${EMAIL}`, EMAIL, false],
+];
+
+/**
+ * Paired into rows so the two columns line up across the page rather than being
+ * two independent stacks that happen to share a footer.
+ */
+const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i) => ({
+  left: related[i],
+  right: site[i],
+}));
 ---
 
 <footer class="footer">
   <div class="shell inner">
-    {/* Three destinations and a copyright, right-aligned. The colophon link is
-        what carries the built-with-my-own-workflow claim now — the sentence that
-        used to sit here made the same point in prose, and the stack line beside
-        it named tools nobody was going to act on. */}
     {
-      related.map(([href, label]) => (
-        <a class="artifact" href={href}>
-          {label}
-          <span aria-hidden="true">→</span>
-        </a>
+      rows.map((row) => (
+        <div class="foot-row">
+          <span class="foot-left">
+            {row.left && (
+              <a class="artifact" href={row.left[0]}>
+                {row.left[1]}
+                <span aria-hidden="true">→</span>
+              </a>
+            )}
+          </span>
+          <span class="foot-right">
+            {row.right && (
+              <a
+                class="artifact"
+                href={row.right[0]}
+                target={row.right[2] ? '_blank' : undefined}
+                rel={row.right[2] ? 'noopener' : undefined}
+              >
+                {row.right[1]}
+                <span aria-hidden="true">→</span>
+              </a>
+            )}
+          </span>
+        </div>
       ))
     }
-    <a class="artifact" href="/colophon">
-      How this site is built
-      <span aria-hidden="true">→</span>
-    </a>
-    <a class="artifact" href={REPO} target="_blank" rel="noopener">
-      Source
-      <span aria-hidden="true">→</span>
-    </a>
-    <a class="artifact" href={`mailto:${EMAIL}`}>
-      {EMAIL}
-      <span aria-hidden="true">→</span>
-    </a>
     <p class="year">© {year} Tyler Young</p>
   </div>
 </footer>
@@ -53,21 +72,45 @@ const { related = [] } = Astro.props;
   }
 
   footer > div {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    display: grid;
     gap: 18px;
+  }
+
+  /* Two columns, one row each. The page's own links sit flush left and the
+     site-wide ones flush right, so a row reads as a pair rather than as two
+     stacks that happen to share a footer. */
+  footer .foot-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  footer .foot-left {
+    text-align: left;
+  }
+
+  footer .foot-right {
+    text-align: right;
   }
 
   /* The copyright sits under three mono links, so it wears the same type. At
      19px sans it read as body copy that had wandered into the footer. */
   footer p {
     margin: 10px 0 0;
+    text-align: right;
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.09em;
     text-transform: uppercase;
     color: var(--color-ink-3);
+  }
+
+  @media (min-width: 700px) {
+    footer .foot-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: baseline;
+      gap: 40px;
+    }
   }
 </style>
