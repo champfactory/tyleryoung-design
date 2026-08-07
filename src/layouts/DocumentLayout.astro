@@ -539,7 +539,7 @@ const {
 
   /* Three equal cells, tinted alternately, grey first — the same banding the
      rest of the site uses, applied to a legend. */
-  .doc .shape-key {
+  .doc .prose > .shape-key {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -548,32 +548,32 @@ const {
     padding: 0;
   }
 
-  .doc .shape-key > li {
+  .doc .prose > .shape-key > li {
     margin: 0;
     padding: 22px 16px;
     text-align: center;
   }
 
-  .doc .shape-key > li::before {
+  .doc .prose > .shape-key > li::before {
     content: none !important;
   }
 
-  .doc .shape-key > li:nth-child(odd) {
+  .doc .prose > .shape-key > li:nth-child(odd) {
     background: var(--color-row);
   }
 
-  .doc .shape-key svg {
+  .doc .prose > .shape-key svg {
     display: block;
     margin: 0 auto 12px;
   }
 
-  .doc .shape-key .glyph {
+  .doc .prose > .shape-key .glyph {
     fill: none;
     stroke: var(--color-ink);
     stroke-width: 2;
   }
 
-  .doc .shape-key span {
+  .doc .prose > .shape-key span {
     font-family: var(--font-mono);
     font-size: 10.5px;
     letter-spacing: 0.09em;
