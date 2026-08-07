@@ -1,12 +1,25 @@
 ---
 import { storyEyebrow, storyTitle } from '../data/stories';
 import DocumentLayout from '../layouts/DocumentLayout.astro';
+import LiveFrame from '../components/LiveFrame.astro';
 import StoryFrame from '../components/StoryFrame.astro';
-import Draft from '../components/Draft.astro';
-import Needs from '../components/Needs.astro';
 
 const APP = 'https://atheer-next.fly.dev/';
 const SB = 'https://atheer-next-storybook.fly.dev/';
+const PLAN = 'https://atheer-306090.fly.dev/';
+
+/**
+ * Counts read from the library's own index.json, not typed from memory. Every
+ * one of these was checked against the published build before it was written
+ * down: 75 stories total, 69 of them across 11 component families, 6 token
+ * references.
+ */
+const evidence = [
+  ['1', 'Running product'],
+  ['11', 'Component families'],
+  ['69', 'Documented component states'],
+  ['6', 'Token references'],
+];
 
 /** Status is carried by shape first, so it survives greyscale and small sizes. */
 const shapes = [
@@ -14,42 +27,169 @@ const shapes = [
   { key: 'triangle', label: 'At risk' },
   { key: 'circle', label: 'On track' },
 ];
+
+/**
+ * Verbatim from the running build, including the two separate Assets entries.
+ * The product says this; correcting it here would make the page a nicer
+ * description of software that does not exist.
+ */
+const nav = [
+  ['Planning', 'Lindgren cert expires tomorrow'],
+  ['Forms', 'Safety step skipped · #4042'],
+  ['Jobs', 'Rework flagged · #4021'],
+  ['Sessions', 'Lindgren + Reeves need guidance'],
+  ['Assets', '1 asset down at Meridian'],
+  ['Assets', 'Rework rate up 40% this week'],
+];
+
+/** What an equipment record connects to. */
+const junction = [
+  ['People', 'Who knows or owns it'],
+  ['Resources', 'Manuals · specifications · safety information'],
+  ['Workflows', 'The procedures that act on it'],
+];
+
+const families = [
+  ['Navigation', 'Sidebar · PageHeader · SubTabBar'],
+  ['Work', 'JobCard · EquipmentCard · PartCard'],
+  ['Guidance', 'TrainingColumn · IconLinkSection · IconLink'],
+  ['System controls', 'PaletteModal · ContextSparkle'],
+];
+
+const tokens = [
+  ['Base system', 'Typography · spacing · radii · borders · shadows'],
+  ['Stable colours', 'Text · page · surface · status · dividers'],
+  ['Theme values', 'Navigation · image mat · highlight · accent · links'],
+  ['Palettes', 'Default · Warm · Earth · Slate · Dusk'],
+];
+
+/** The chain a reusable decision travelled, in order. */
+const chain = [
+  ['Design node', 'The approved product decision', false],
+  ['Component', 'The reusable implementation and its documented variants', false],
+  ['Storybook variants', 'The states it has to survive', false],
+  ['Running product', 'The component operating inside a real workflow', false],
+];
 ---
 
 <DocumentLayout
   title={storyTitle('/ops-manager')}
-  metaTitle="Operational software — live product and component library | Tyler Young"
-  description="A working field-operations surface: status carried by shape rather than colour, and a sidebar that surfaces what changed instead of waiting to be clicked."
+  metaTitle="An operations product for work already in motion | Tyler Young"
+  description="A data-dense operations product designed around work already underway, and the component system it was built from. Both are running now: the product, and 69 documented component states across 11 families."
   eyebrow={storyEyebrow('/ops-manager')}
   meta={[
-    ['Live', `<a href="${APP}">atheer-next.fly.dev</a>`],
-    ['Components', `<a href="${SB}">atheer-next-storybook.fly.dev</a>`],
-    ['Persona', 'Monitors field work all day; arrives resuming, not browsing'],
-    ['Built with', 'Paper↔Claude Code · React · Tailwind · Storybook'],
+    ['Role', 'Director of Design · 90-day engagement'],
+    ['Product', 'Operations software for frontline work'],
+    ['Contribution', 'Product direction · design system · implementation'],
+    ['Public evidence', 'Running product · published Storybook'],
   ]}
 >
   <p class="lede">
-    <Draft>
-      The product and its component library are both running software, not
-      screenshots — the two links in the margin. Below is what to look at once you
-      are in them.
-    </Draft>
+    The person opening this product already has work underway. A job is in
+    progress. Another starts at ten. A certification is about to expire. An asset
+    is down somewhere else.
+  </p>
+  <p>
+    I designed the product around that reality: resume the current task first,
+    carry exceptions into navigation, and keep the people, resources, and
+    workflows surrounding the work within reach.
+  </p>
+  <p>The product and the component system it was built from are both running now.</p>
+
+  <ul class="cells two">
+    <li>
+      <span class="cell-label">Running product</span>
+      <span class="cell-host">Operations Manager</span>
+      <a class="artifact" href={APP} target="_blank" rel="noopener">
+        Open the product <span aria-hidden="true">→</span>
+      </a>
+    </li>
+    <li>
+      <span class="cell-label">Component system</span>
+      <span class="cell-host">Published Storybook</span>
+      <a class="artifact" href={SB} target="_blank" rel="noopener">
+        Open the component library <span aria-hidden="true">→</span>
+      </a>
+    </li>
+  </ul>
+
+  <ul class="cells four">
+    {
+      evidence.map(([figure, label]) => (
+        <li>
+          <span class="cell-figure">{figure}</span>
+          <span class="cell-label">{label}</span>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="note-line">Counted from the currently published build.</p>
+
+  <p class="sec-eyebrow">01 · The workday</p>
+  <h2>The home screen starts with the shift, not the software</h2>
+  <p>The first screen answers four questions before it asks the user to navigate:</p>
+  <ul>
+    <li>What am I doing now?</li>
+    <li>What comes next?</li>
+    <li>How much time remains?</li>
+    <li>Is anything blocking the work?</li>
+  </ul>
+  <p>
+    The summary shows three scheduled jobs, one already in progress, five and a
+    half hours remaining, and one certification gap.
+  </p>
+  <p>
+    The current job receives the most space. It carries the site, start time,
+    equipment, model, workflow, current step, estimated time, and elapsed time.
+    Its actions are equally direct: continue the workflow, request help, or open
+    the surrounding context. Upcoming jobs retain enough information to prepare
+    without competing with the work already underway.
   </p>
 
-  <h2>Status uses shape, not just colour</h2>
+  <p class="pull-line">
+    The hierarchy follows the workday: now, next, and what might stop either one.
+  </p>
+
+  <LiveFrame
+    src={APP}
+    host="atheer-next.fly.dev · home"
+    title="Running Atheer operations product home screen"
+    note="Inspect how the page separates the current job from upcoming work while keeping time, progress, certification, and support actions visible."
+    eager
+  />
+
+  <p class="sec-eyebrow">02 · Operational state</p>
+  <h2>Navigation shows what changed before the user opens it</h2>
   <p>
-    <Draft>
-      Open the product and look at the sidebar and the job IDs. Status is a hollow
-      shape — square, triangle, circle — not a colour. The same shape appears on
-      the nav item, the job header and the status column, so the blocked square in
-      the sidebar is the same mark on the row that caused it.
-    </Draft>
+    A conventional sidebar tells the user where features live. This one also
+    tells them where attention is required.
   </p>
   <p>
-    <Draft>
-      It works in greyscale, it works at 11px, and it frees colour to do something
-      else.
-    </Draft>
+    Planning warns that a certification expires tomorrow. Forms reports a skipped
+    safety step. Jobs carries a rework flag and its job number. Sessions
+    identifies two people who need guidance. Assets reports both an asset outage
+    and a rising rework rate.
+  </p>
+  <p>
+    The user can choose a destination based on the work happening inside it, not
+    only the feature’s name.
+  </p>
+
+  <ul class="cells three">
+    {
+      nav.map(([label, note]) => (
+        <li>
+          <span class="cell-label">{label}</span>
+          <span class="cell-note">{note}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h3>Status uses shape, not colour alone</h3>
+  <p>
+    Operational status appears in dense places: navigation, job identifiers,
+    headers, and tables. I assigned each primary state a hollow shape.
   </p>
 
   <ul class="cells three shape-key">
@@ -67,112 +207,392 @@ const shapes = [
     }
   </ul>
 
-  <h2>The sidebar carries live state</h2>
   <p>
-    <Draft>
-      Every item in the nav carries a live line underneath it: a certification
-      expiring tomorrow, a safety step skipped on a job, a rework rate up this
-      week. The nav stops being a menu and starts being today's problems. People
-      find features by working, not by being trained.
-    </Draft>
+    The same mark can follow an item through the interface. Shape keeps the
+    states distinguishable in greyscale and at small sizes, while leaving colour
+    available for emphasis rather than meaning.
   </p>
 
   <StoryFrame
     id="components-sidebar--home-active"
-    label="Sidebar"
-    source="Paper node IKC-1"
-    height={712}
-    note="Live from the component library. Configurable: active item, labels, subtitle text, status shapes, icons."
+    label="Sidebar · Home active"
+    source="Live component"
+    height={620}
+    note="The component accepts the active route, labels, subtitles, icons, and status shapes without changing its structure."
   />
 
-  <h2>Every component traces to a design</h2>
+  <p class="sec-eyebrow">03 · Context</p>
+  <h2>Equipment is a junction, not an inventory row</h2>
   <p>
-    <Draft>
-      Every component traces back to a specific node in the design file. The
-      inventory records which one, and what you can configure on each. Nothing was
-      built on spec. If it never appeared in a design, it was not in the library.
-    </Draft>
+    An equipment record is useful only when it connects the object to the work
+    around it. Each equipment card brings together make, model and year, the
+    people assigned to it, the reference material, and the workflows available.
   </p>
+  <p>
+    That relationship model supports both preparation and recovery. A technician
+    can identify the equipment, find the correct document, see who knows it, and
+    open the workflow required to continue.
+  </p>
+  <p>
+    The content varies substantially. One record has two people, two resources,
+    and one workflow. Another has one person, no resource, and nine workflows.
+    The component has to remain coherent across both.
+  </p>
+
+  <p class="sr-only">
+    An equipment record is a junction. The equipment itself carries make, model
+    and year. Three things connect to it: people, who knows or owns it;
+    resources, meaning manuals, specifications and safety information; and
+    workflows, the procedures that act on it.
+  </p>
+
+  <div aria-hidden="true">
+    <p class="junction-head">
+      <span class="cell-label">Equipment</span>
+      <span class="cell-note">Make · model · year</span>
+    </p>
+    <p class="junction-arrow">Connects to</p>
+    <ul class="cells three">
+      {
+        junction.map(([label, note]) => (
+          <li>
+            <span class="cell-label">{label}</span>
+            <span class="cell-note">{note}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 
   <StoryFrame
     id="components-equipmentcard--default"
-    label="EquipmentCard"
-    source="Paper node IRG-1"
-    height={690}
-    note="Title, spec values, section labels and link lists are all configurable; variants cover many links, no image, and two theme palettes."
+    label="EquipmentCard · default"
+    source="Live component"
+    height={660}
+    note="The default state combines equipment identity with the people, documentation, and workflows surrounding it."
   />
 
+  <ul class="captures three">
+    <li>
+      <img
+        class="capture-shot"
+        src="/work/ops/equipment-many-workflows.png"
+        width="654"
+        height="1212"
+        loading="lazy"
+        decoding="async"
+        alt="An equipment card whose workflow list runs to nine procedures, with the make, model and people sections keeping their position above it."
+      />
+      <span class="capture-name">Many workflows</span>
+      <span class="capture-note">
+        The card expands to support a larger procedure set without changing the
+        information hierarchy.
+      </span>
+    </li>
+    <li>
+      <img
+        class="capture-shot"
+        src="/work/ops/equipment-no-image.png"
+        width="654"
+        height="1044"
+        loading="lazy"
+        decoding="async"
+        alt="The same equipment card with no photograph, the title and relationship sections closing the gap rather than leaving an empty frame."
+      />
+      <span class="capture-name">No image</span>
+      <span class="capture-note">
+        Removing imagery does not remove the equipment identity or its
+        operational relationships.
+      </span>
+    </li>
+    <li>
+      <img
+        class="capture-shot"
+        src="/work/ops/job-with-certification.png"
+        width="590"
+        height="1286"
+        loading="lazy"
+        decoding="async"
+        alt="A job card carrying a certification requirement inline, directly beneath the job details it applies to."
+      />
+      <span class="capture-name">Certification attached</span>
+      <span class="capture-note">
+        Certification appears beside the job it affects rather than in a
+        disconnected administrative area.
+      </span>
+    </li>
+  </ul>
+
+  <p class="sec-eyebrow">04 · Finding guidance</p>
+  <h2>Training and reference material use the same operating model</h2>
   <p>
-    <Draft>
-      The library also carries the token page: colours, type, spacing, radii,
-      borders, shadows. That is the constraint everything else is generated inside.
-      Open it first if you want to know whether this was a real system or a folder
-      of components.
-    </Draft>
+    The Training surface is not organised as a course catalogue. It groups
+    guidance into three columns: digital workflows, which are procedures someone
+    can perform; resources, which are material someone can consult; and people,
+    who can help.
   </p>
-
-  <p class="artifact-row">
-    <a class="artifact" href={SB} data-live target="_blank" rel="noopener">
-      Open the component library
-      <span aria-hidden="true">→</span>
-    </a>
-    <a class="artifact" href={APP} data-live target="_blank" rel="noopener">
-      Open the product
-      <span aria-hidden="true">→</span>
-    </a>
-  </p>
-
-
-  <h2>What shipped</h2>
   <p>
-    90 days produced a working pipeline and a v0 of the design system. The team
-    carried it forward.
+    Tabs separate Welcome, Job Aids, SOP, and Onboarding content. Filters switch
+    among alphabetical, recent, and unread views.
+  </p>
+  <p>
+    The same structure also handles sparse and extreme cases. Storybook documents
+    empty columns, many-item columns, and unusually long item names — not only
+    the balanced default.
   </p>
 
-  <div class="aside">
+  <ul class="captures three">
+    <li>
+      <img
+        class="capture-shot"
+        src="/work/ops/training-empty.png"
+        width="768"
+        height="262"
+        loading="lazy"
+        decoding="async"
+        alt="A Job Aids training column with no items, keeping its heading and dividing rule so the column still occupies its place in the row."
+      />
+      <span class="capture-name">Empty</span>
+      <span class="capture-note">
+        An empty category preserves the column structure instead of collapsing
+        the page unexpectedly.
+      </span>
+    </li>
+    <li>
+      <img
+        class="capture-shot"
+        src="/work/ops/training-many-items.png"
+        width="800"
+        height="940"
+        loading="lazy"
+        decoding="async"
+        alt="A digital workflows column listing procedures alphabetically from Align Impeller Assembly down past Clean Burner Ports, each on its own ruled row."
+      />
+      <span class="capture-name">Many items</span>
+      <span class="capture-note">
+        The component supports a long working list without changing its reading
+        order.
+      </span>
+    </li>
+    <li>
+      <img
+        class="capture-shot"
+        src="/work/ops/training-long-names.png"
+        width="768"
+        height="440"
+        loading="lazy"
+        decoding="async"
+        alt="A training column whose procedure names wrap onto second and third lines, the rows growing to fit rather than truncating the text."
+      />
+      <span class="capture-name">Long names</span>
+      <span class="capture-note">
+        Long procedure and resource names are treated as expected content, not an
+        edge case left to implementation.
+      </span>
+    </li>
+  </ul>
+
+  <p class="sec-eyebrow">05 · The system</p>
+  <h2>The component library documents variation, not just defaults</h2>
+  <p>
+    The published Storybook contains sixty-nine component stories across eleven
+    component families, plus six token references.
+  </p>
+  <p>
+    The useful number is not the total. It is what those stories cover: active,
+    inactive and unselected navigation; jobs in progress and jobs still upcoming;
+    certification attached to work; equipment with many workflows; equipment
+    without imagery; resources that may or may not exist; empty content groups;
+    long names; different border treatments; and five theme palettes.
+  </p>
+  <p>
+    These are the states where a component system proves whether it can support a
+    product rather than only reproduce its cleanest screen.
+  </p>
+
+  <ul class="cells four">
+    {
+      families.map(([label, note]) => (
+        <li>
+          <span class="cell-label">{label}</span>
+          <span class="cell-note">{note}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="pull-line">
+    The system was designed around the ways content changes, not around one
+    perfect example.
+  </p>
+
+  <p class="sec-eyebrow">06 · Tokens</p>
+  <h2>Variation stays inside an approved palette</h2>
+  <p>
+    The design system defines shared values for colour, typography, spacing,
+    radii, borders, and shadows.
+  </p>
+  <p>
+    Its colour model separates stable base values from thematic ones. Primary
+    text, secondary text, page background, surface, status red, and dividers
+    remain consistent. Five palettes then vary the active-navigation background,
+    image mat, highlight, accent, and link colour.
+  </p>
+  <p>
+    That allows the interface to change character without changing its hierarchy
+    or inventing values component by component.
+  </p>
+
+  <ul class="cells four">
+    {
+      tokens.map(([label, note]) => (
+        <li>
+          <span class="cell-label">{label}</span>
+          <span class="cell-note">{note}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <StoryFrame
+    id="design-system-tokens--colors"
+    label="Design System · Colors"
+    source="Live token reference"
+    height={680}
+    note="Stable base colours sit above five coordinated theme palettes. Each palette changes the same five semantic roles."
+  />
+
+  <ul class="captures two">
+    <li>
+      <img
+        class="capture-shot"
+        src="/work/ops/palette-warm.png"
+        width="850"
+        height="768"
+        loading="lazy"
+        decoding="async"
+        alt="The palette control with Warm selected, showing five named palettes as rows of swatches with the chosen one marked."
+      />
+      <span class="capture-name">Warm selected</span>
+      <span class="capture-note">
+        The palette control applies the selected theme through shared semantic
+        values rather than component-specific overrides.
+      </span>
+    </li>
+  </ul>
+
+  <p class="sec-eyebrow">07 · Traceability</p>
+  <h2>Every reusable component began with a product decision</h2>
+  <p>
+    Each documented component traces to a specific node in the design file. The
+    inventory records where it came from and which properties may vary.
+  </p>
+  <p>
+    A component was added after the product needed it — not because it might
+    become useful later. That kept the library tied to real screens and gave
+    AI-generated implementation a clear boundary.
+  </p>
+
+  <p class="sr-only">
+    The chain ran in one direction, in four stages. A design node carried the
+    approved product decision. That became a component: the reusable
+    implementation and its documented variants. Those variants were published as
+    Storybook states, the conditions it has to survive. The component then ran
+    inside a real workflow in the product. The token system sat alongside all
+    four stages as a shared constraint.
+  </p>
+
+  <ol class="loop" aria-hidden="true">
+    {
+      chain.map(([actor, what]) => (
+        <li>
+          <span class="loop-actor">{actor}</span>
+          <span class="loop-what">{what}</span>
+        </li>
+      ))
+    }
+  </ol>
+
+  <ul class="cells" aria-hidden="true">
+    <li>
+      <span class="cell-label">Shared constraint · tokens</span>
+      <span class="cell-note">
+        The values every stage above is allowed to use.
+      </span>
+    </li>
+  </ul>
+
+  <p>
+    If a component had not appeared in a design, it did not belong in the
+    library. If an approved token did not exist, the implementation was not
+    allowed to invent one.
+  </p>
+
+  <p class="pull-line">
+    The library constrained what could be generated because every reusable
+    decision had a source.
+  </p>
+
+  <p class="sec-eyebrow">08 · Engagement</p>
+  <h2>The same principle shaped the project plan</h2>
+  <p>
+    The engagement itself began with a sequencing decision: which product surface
+    should be built first, which should follow, and which should take the
+    remaining phase.
+  </p>
+  <p>
+    I turned that decision into a small shared application. The client selected
+    the first two surfaces inside the plan. The choices were saved on the server,
+    so everyone opening the link saw the same sequence. It remains set to the
+    client’s selection: landing page first, context engine second.
+  </p>
+  <p>
+    The implementation was deliberately small — 73 lines of Flask, one table, and
+    persistent storage. Its purpose was not technical sophistication. It was to
+    put the decision where its consequences were visible.
+  </p>
+
+  <ul class="cells">
+    <li>
+      <span class="cell-label">The shared 90-day plan</span>
+      <span class="cell-note">A persistent sequence chosen inside the plan itself.</span>
+      <a class="artifact" href={PLAN} target="_blank" rel="noopener">
+        Open the engagement plan <span aria-hidden="true">→</span>
+      </a>
+    </li>
+  </ul>
+
+  <p class="sec-eyebrow">09 · Result</p>
+  <h2>What the engagement left behind</h2>
+  <p>
+    In ninety days, the engagement produced a running operations product, a
+    published component system, a governed design-to-code workflow, and the
+    decision tool used to sequence the work.
+  </p>
+  <p>
+    The product shows the operating model. Storybook exposes the components and
+    their variation. The token pages show the boundaries they share.
+  </p>
+  <p>
+    Together, they make the work inspectable beyond the screenshots on this page.
+    The team carried the system forward.
+  </p>
+
+  <div class="disclosure">
+    <p class="sec-eyebrow">About the public work</p>
     <p>
-      The data in the live product is invented — the equipment, the sites and the
-      people are not real. A second surface from the same engagement carries a named
-      end customer and is deliberately not published.
+      The product and component library are running software produced during the
+      engagement.
+    </p>
+    <p>
+      The equipment, sites, people, jobs, and operational measurements in the
+      public product are invented. They exist to exercise the interface and its
+      component states; they are not customer data or outcomes.
+    </p>
+    <p>
+      A second surface from the engagement contains a named end customer and
+      dealer-network data. It has not been sanitised and is deliberately not
+      published.
     </p>
   </div>
 </DocumentLayout>
-
-<style>
-
-  .fig {
-    margin: 0 0 34px;
-    border: 1px solid var(--color-rule);
-    background: var(--color-paper-raised);
-    padding: 20px;
-  }
-
-  .fig svg {
-    display: block;
-    width: 100%;
-    max-width: 372px;
-    height: auto;
-  }
-
-  .glyph {
-    fill: none;
-    stroke: var(--color-ink);
-    stroke-width: 2;
-  }
-
-  .glyph-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    fill: var(--color-ink-3);
-    text-anchor: middle;
-  }
-
-  .artifact-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px 26px;
-    margin: 30px 0 0 !important;
-  }
-</style>

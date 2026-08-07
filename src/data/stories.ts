@@ -39,9 +39,9 @@ export const stories: Story[] = [
     num: '02',
     slug: '/ops-manager',
     eyebrow: 'Systems + Practice',
-    claim: 'I build the design systems AI generates from.',
+    claim: 'I design operations software for work already in motion.',
     outcome:
-      '96 components and 51 stories, built under a 1,048-line spec that sets what the agent is allowed to produce. The product and its component library are both running right now — open either one.',
+      'A data-dense operations product built around the job already underway, and the component system behind it. The published library documents 69 component states across 11 families plus 6 token references — the empty, dense and missing-content ones, not just the clean screen.',
     artifacts: [
       { label: 'Open the product', href: 'https://atheer-next.fly.dev/', live: true },
       { label: 'Component library', href: 'https://atheer-next-storybook.fly.dev/', live: true },

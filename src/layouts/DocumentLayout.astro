@@ -574,6 +574,101 @@ const {
     margin-top: 5px !important;
   }
 
+  /* A short qualifier under a figure or a strip of them — smaller than body,
+     the same grey as a caption, so it reads as a footnote to the thing above it
+     rather than as the next paragraph. */
+  .doc .note-line {
+    margin: -18px 0 var(--space-block) !important;
+    font-family: var(--font-mono) !important;
+    font-size: 11px !important;
+    line-height: 1.7 !important;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-3) !important;
+  }
+
+  /* ---- static state captures ---------------------------------------------- */
+
+  /* Component states captured from the library, shown side by side. Live embeds
+     are the primary evidence; loading a separate iframe for every variant would
+     cost more than it proves, so secondary states are images.
+
+     Captured at one viewport width so they are directly comparable, then shown
+     at their natural height. An earlier version forced them into a common 4:3
+     box: at 654x1212 that cropped away everything below the photograph, so a
+     caption reading "the card expands to support a larger procedure set" sat
+     above an image with no procedures in it. Ragged bottoms are the cheaper
+     problem. */
+  .doc .captures {
+    list-style: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    margin: 30px 0 var(--space-block);
+    padding: 0;
+  }
+
+  .doc .captures > li {
+    margin: 0;
+    padding: 0;
+    align-self: start;
+  }
+
+  .doc .captures > li::before {
+    content: none !important;
+  }
+
+  .doc .capture-shot {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-rule);
+    background: var(--color-paper-raised);
+  }
+
+  .doc .capture-name {
+    display: block;
+    margin: 12px 0 0 !important;
+    font-family: var(--font-mono) !important;
+    font-size: 10.5px !important;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink) !important;
+  }
+
+  .doc .capture-note {
+    display: block;
+    margin: 6px 0 0 !important;
+    font-size: 15px !important;
+    line-height: 1.45 !important;
+    color: var(--color-ink-2) !important;
+  }
+
+  /* ---- the equipment junction --------------------------------------------- */
+
+  /* One record and the three things it connects to. The head is the subject; the
+     banded cells beneath it are what hangs off it. */
+  .doc .junction-head {
+    margin: 30px 0 0 !important;
+    padding: 18px;
+    border: 1px solid var(--color-ink);
+  }
+
+  .doc .junction-head + .cells {
+    margin-top: 0;
+  }
+
+  .doc .junction-arrow {
+    display: block;
+    margin: 0 !important;
+    padding: 8px 0;
+    font-family: var(--font-mono) !important;
+    font-size: 11px !important;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3) !important;
+  }
+
   /* ---- the review loop ---------------------------------------------------- */
 
   /* A sequence, not a cycle. Banded like every other list on the site — no
@@ -639,6 +734,14 @@ const {
 
     .doc .cells.four {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .doc .captures.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .doc .captures.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     /* Three columns: who, what, and whether a person has to sign it off. The
