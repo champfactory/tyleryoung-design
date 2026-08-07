@@ -90,9 +90,17 @@ const { current } = Astro.props as { current?: string };
     color: var(--color-ink);
   }
 
+  /* Wraps on a narrow screen. Held on one line it is wider than a 390px
+     viewport, which pushed the whole document sideways — the header cannot be
+     the reason a page scrolls horizontally. */
   .statement {
     margin: 0;
-    white-space: nowrap;
+  }
+
+  @media (min-width: 760px) {
+    .statement {
+      white-space: nowrap;
+    }
   }
 
   nav a {

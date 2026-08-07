@@ -64,6 +64,10 @@
   --text-h3: 21px;
   --text-h2: 28px;
   --text-lede: 24px;
+  /* The page headline. Scales with the viewport and caps high enough that a
+     title fills its measure instead of stopping at 60px and leaving the right
+     half of the grid empty. */
+  --text-display: clamp(30px, 7vw, 84px);
 
   /* ---- spacing ------------------------------------------------------------ */
   --space-section: 72px;  /* between sections */
@@ -119,9 +123,13 @@
     color: var(--color-signal-ink);
   }
 
+  /* Keyboard focus only — :focus-visible does not fire on a mouse click. Kept
+     because the site publishes visible focus as a requirement, but lighter than
+     it was: 1px, tight to the element, so it marks position without boxing the
+     interface. */
   :focus-visible {
-    outline: 2px solid var(--color-signal);
-    outline-offset: 3px;
+    outline: 1px solid var(--color-signal);
+    outline-offset: 2px;
   }
 
   @media (prefers-reduced-motion: reduce) {

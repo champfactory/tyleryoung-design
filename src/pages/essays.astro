@@ -70,10 +70,8 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
   /* No max-width on either. A 20ch cap broke a six-word headline over three
      lines and left the right half of the page empty; the lede did the same at
      56ch. Both now run the shell's measure, so the block reads as one edge. */
-  /* A display clamp, not a ladder step: this headline scales with the
-     viewport rather than sitting at a fixed size. */
   h1 {
-    font-size: clamp(32px, 5.2vw, 52px);
+    font-size: var(--text-display);
     margin: 16px 0 0;
   }
 
