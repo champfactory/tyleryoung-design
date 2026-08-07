@@ -10,16 +10,11 @@
 <span class="draft" data-draft><slot /></span>
 
 <style>
+  /* The wrapper stays so `npm run needs` can still count unapproved copy, but
+     it no longer draws. A visible rule under every sentence told a reader the
+     site was unfinished, which was true of the process and not of the work. */
   .draft {
-    border-bottom: 1px dotted color-mix(in srgb, var(--color-signal) 55%, transparent);
-    padding-bottom: 1px;
+    border-bottom: none;
   }
 
-  /* At headline scale a dotted rule under every line reads as decoration and
-     fights the type. Same signal, much quieter. */
-  :is(h1, h2, h3) .draft {
-    border-bottom-width: 1px;
-    border-bottom-color: color-mix(in srgb, var(--color-signal) 22%, transparent);
-    padding-bottom: 0.06em;
-  }
 </style>

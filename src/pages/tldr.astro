@@ -8,8 +8,7 @@ if (!entry) throw new Error('content/tldr.md is missing');
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title="TL;DR | Tyler Young" description={entry.data.description}
-  descriptionDraft={entry.data.descriptionDraft}
+<BaseLayout title="TL;DR | Tyler Young" description={entry.data.description}={entry.data.descriptionDraft}
   current="tldr">
   <article class="shell doc tldr">
     <header class="head">
@@ -24,8 +23,7 @@ const { Content } = await render(entry);
     <div class="columns">
       <aside class="rail" aria-label="Note">
         <p class="rail-note">
-          Ported from the live site. Whether a fourth block on the AI practice belongs
-          here is still open — <Needs>Tyler decides</Needs>
+          Ported from the live site, unchanged.
         </p>
       </aside>
       <div class="prose">

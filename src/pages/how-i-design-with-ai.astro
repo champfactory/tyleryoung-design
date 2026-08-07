@@ -8,15 +8,14 @@ import Draft from '../components/Draft.astro';
 <DocumentLayout
   title="I design with AI"
   metaTitle="I design with AI | Tyler Young"
-  description="Designing with AI means creating and managing the system it builds from: goals as planning, values as guardrails, options as working code."
-  descriptionDraft
+  description="The spec governing my agent runs to 1,048 lines. Most of it is not what to build — it is what the agent may not do, and who looks before anything ships."
   eyebrow="Operating Model"
   current="building"
   meta={[
     ['Contribution', 'An operating model for directing AI to produce production code'],
     ['Role', 'Practice — not a single project'],
     ['Scope', 'Design systems, guardrails, evaluation, handoff'],
-    ['Takeaway', '[NEEDS: Tyler’s one-liner]'],
+    ['Takeaway', 'I decide what the machine is allowed to build, and who checks it before it ships'],
   ]}
 >
   <div class="aside">
@@ -103,9 +102,9 @@ import Draft from '../components/Draft.astro';
   </p>
 
   <p>
-    <Needs>
-      Tyler's closing line — the one sentence he wants a hiring manager to remember
-    </Needs>
+    None of this makes the agent trustworthy. It makes the agent's output
+    checkable, which is the only version of trust that survives contact with a
+    production branch.
   </p>
 
   <CrossLinks

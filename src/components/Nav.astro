@@ -11,12 +11,14 @@ const { current } = Astro.props as { current?: string };
     <nav aria-label="Main">
       <ul>
         <li>
-          <a href="/essays" aria-current={current === 'essays' ? 'page' : undefined}>Essays</a>
-        </li>
-        <li>
           <a
             href="/how-i-design-with-ai"
             aria-current={current === 'building' ? 'page' : undefined}>I design with AI</a
+          >
+        </li>
+        <li>
+          <a href="/essays" aria-current={current === 'essays' ? 'page' : undefined}
+            >I lead design</a
           >
         </li>
         <li><a href="mailto:43tylers@gmail.com">Contact</a></li>
@@ -27,12 +29,15 @@ const { current } = Astro.props as { current?: string };
 
 <style>
   .nav {
-    border-bottom: 1px solid var(--color-rule);
+    /* Solid, not the translucent paper this used to be. A sticky header tinted
+       88% paper let the page show through; canary at partial opacity over
+       scrolling content turns muddy, and the whole point of the colour is that
+       it holds one flat field. */
+    background: var(--color-canary);
+    border-bottom: 1px solid var(--color-canary-rule);
     position: sticky;
     top: 0;
     z-index: 20;
-    background-color: color-mix(in srgb, var(--color-paper) 88%, transparent);
-    backdrop-filter: blur(10px);
   }
 
   .inner {
@@ -66,7 +71,7 @@ const { current } = Astro.props as { current?: string };
     font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--color-ink-3);
+    color: var(--color-ink-2);
   }
 
   ul {
@@ -93,7 +98,7 @@ const { current } = Astro.props as { current?: string };
   nav a:hover,
   nav a[aria-current='page'] {
     color: var(--color-ink);
-    border-bottom-color: var(--color-signal);
+    border-bottom-color: var(--color-signal-canary);
   }
 
   .inner {

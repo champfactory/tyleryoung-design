@@ -17,8 +17,7 @@ for (const s of stories) for (const slug of s.leadership) storyFor.set(slug, s);
 
 <BaseLayout
   title="Leadership essays | Tyler Young"
-  description="Seven instruments for building design organizations — scoring models, complexity budgets, thresholds and ladders that made judgment explicit enough to survive without the person who made it."
-  descriptionDraft
+  description={`${spelled.charAt(0).toUpperCase() + spelled.slice(1)} instruments for building design organizations — scoring models, complexity budgets, thresholds and ladders that made judgment explicit enough to survive without the person who made it.`}
   current="essays"
 >
   <section class="shell page">

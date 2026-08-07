@@ -41,6 +41,13 @@
   --color-ink-3: #6b6961;
 
   /* rules — the visible grid */
+  /* Canary. The header is the one flat field of colour on the site, so it has to
+     hold dark ink at small mono sizes — this is warm enough to sit beside the
+     paper below it and light enough to keep the wordmark legible. */
+  --color-canary: #f5e04a;
+  --color-canary-rule: #d8c332;
+  --color-signal-canary: #b2371c;
+
   --color-rule: #d0ccbe;
   --color-rule-strong: #b9b4a6;
 
