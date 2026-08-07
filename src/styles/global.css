@@ -2,7 +2,6 @@
 
 /* Latin subsets only download for English content — unicode-range gates the rest. */
 @import '@fontsource-variable/archivo/wght.css';
-@import '@fontsource-variable/newsreader/opsz.css';
 @import '@fontsource-variable/jetbrains-mono/wght.css';
 
 /* ---------------------------------------------------------------------------
@@ -14,8 +13,8 @@
    This one is built to read as "this person builds." The page is a document;
    the evidence is a machine embedded in it. Three typefaces, each with a job:
 
-     Archivo      structure, headings, UI      — industrial grotesk, wide range
-     Newsreader   long-form prose              — keeps the leadership essays' authority
+     Archivo      everything but the technical layer — headings, UI and body
+     JetBrains    the technical layer          — code, labels, metadata
      JetBrains Mono  labels, metadata, receipts — the technical layer, everywhere
 
    The four essay groups are numbered (01–04) rather than color-coded. That drops
@@ -27,7 +26,10 @@
 
 @theme {
   --font-display: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-prose: 'Newsreader Variable', ui-serif, Georgia, serif;
+  /* Body is sans now. The serif gave the essays an editorial authority that read
+     as the old portfolio's argument; one typeface across headings and prose reads
+     as a product. Kept as its own token so prose can diverge again later. */
+  --font-prose: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
 
   /* paper — warm, not white. white is a browser default; this is a choice. */
