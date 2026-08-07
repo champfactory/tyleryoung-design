@@ -3,28 +3,39 @@ import { storyEyebrow, storyTitle } from '../data/stories';
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import Reconstruction from '../components/Reconstruction.astro';
 
+const SITE = 'https://alucify.ai/';
+const APP = 'https://alucify-screens.fly.dev/#/dashboard';
 const FIGMA = 'https://www.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1';
 const FIGMA_EMBED =
   'https://embed.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1&embed-host=share';
+const W = '/work/alucify';
 
-/** The three questions the case study answers, in the order it answers them. */
-const questions = [
+/** The commercial promise, in the order the site makes it. */
+const promise = [
+  ['Scope', 'Understand the system'],
+  ['Commit', 'Fix the scope, price, and timeline'],
+  ['Deliver', 'Build and review the result'],
+];
+
+/** The delivery model, in the order the site explains it. AI code comes last. */
+const model = [
+  ['World model', 'Requirements, schemas, and code are synthesised into a queryable model.'],
+  ['Simulation', 'The model is used to identify edge cases, defects, and impact.'],
+  ['AI code', 'AI builds against that context, with senior engineers reviewing the work.'],
+];
+
+/** The three questions the dashboard answers. */
+const review = [
   ['Reach', 'How far did the change travel?'],
   ['Coverage', 'Which decisions did the agent address?'],
   ['Impact', 'Where does a person need to look?'],
 ];
 
-const landing = [
-  ['Blast radius', 'How much of the system may be affected?'],
-  ['Agent hours', 'How much automated work sits behind the result?'],
-  ['Token cost', 'What did this change cost to produce?'],
-];
-
 const severity = [
   ['Blast radius', 'How far the change reaches'],
-  ['Regression risk', 'What existing behavior could break'],
-  ['Data integrity', 'What stored or transferred information is exposed'],
-  ['Backward compatibility', 'What existing use may no longer work'],
+  ['Regression risk', 'What existing behaviour could break'],
+  ['Data integrity', 'What information may be exposed'],
+  ['Backward compatibility', 'What existing use may stop working'],
 ];
 
 const flows = [
@@ -33,31 +44,214 @@ const flows = [
   ['Coverage', ['Dashboard', 'Coverage summary', 'Decision detail']],
   ['Impact', ['Dashboard', 'Impact summary', 'Concept detail']],
 ];
-
 ---
 
 <DocumentLayout
   title={storyTitle('/alucify')}
-  metaTitle="Alucify — designing the review layer for AI-written code | Tyler Young"
-  description="When an AI agent writes code, the reviewer inherits work they did not watch happen. Alucify reconstructs enough of it for a person to judge whether it should ship."
+  metaTitle="Alucify — designing trust from first visit to code review | Tyler Young"
+  description="Alucify builds enterprise software with AI, which creates two moments where a person has to decide whether to trust the model. I designed the site that explains the promise and the product that makes the resulting work reviewable."
   eyebrow={storyEyebrow('/alucify')}
   meta={[
-    ['Product', 'Code intelligence for reviewing AI-written changes'],
-    ['Contribution', 'Design · the designer on the team that built it'],
-    ['Scope', '4 flows · 20 documented screens'],
+    ['Company', 'AI-native enterprise software delivery'],
+    ['Contribution', 'Product design · company website'],
+    ['Product scope', '4 flows · 20 documented screens'],
     ['Status', 'Active venture · shown with the founder’s agreement'],
   ]}
 >
   <p class="lede">
-    When an AI agent writes code, the reviewer inherits work they did not watch
-    happen. They need to reconstruct what changed, which decisions were made, where
-    the risk sits, and what the work cost before they can approve it.
+    Alucify builds enterprise software with AI. That creates two moments when a
+    person has to decide whether to trust the model.
   </p>
-  <p>I was the designer on the team that built Alucify.</p>
+  <p>
+    Before signing, a buyer has to believe Alucify can commit to scope, price,
+    and timeline without giving up enterprise quality.
+  </p>
+  <p>
+    Before code ships, a reviewer has to understand work they did not watch being
+    produced: what changed, which decisions were covered, where the risk sits,
+    and what the work cost.
+  </p>
+  <p>
+    I designed the public site that explains the promise and the product that
+    makes the resulting work reviewable.
+  </p>
+
+  <ul class="cells three">
+    <li>
+      <span class="cell-label">Public website</span>
+      <span class="cell-note">The promise</span>
+      <a class="artifact" href={SITE} target="_blank" rel="noopener">
+        Visit alucify.ai <span aria-hidden="true">→</span>
+      </a>
+    </li>
+    <li>
+      <span class="cell-label">Product reconstruction</span>
+      <span class="cell-note">The review experience</span>
+      <a class="artifact" href={APP} target="_blank" rel="noopener">
+        Open the dashboard <span aria-hidden="true">→</span>
+      </a>
+    </li>
+    <li>
+      <span class="cell-label">Complete design file</span>
+      <span class="cell-note">The full product system</span>
+      <a class="artifact" href={FIGMA} target="_blank" rel="noopener">
+        Open 20 screens in Figma <span aria-hidden="true">→</span>
+      </a>
+    </li>
+  </ul>
+
+  <p class="sec-eyebrow">01 · The trust problem</p>
+  <h2>The promise had to be understandable before the technology was</h2>
+  <p>
+    Alucify’s underlying model is unfamiliar: requirements, schemas, and code
+    become a World Model; that model is used to simulate impact and edge cases;
+    AI produces the implementation; and a senior engineer reviews every change.
+  </p>
+  <p>The website could not begin by asking a buyer to understand that architecture.</p>
+  <p>It begins with four recognisable business situations:</p>
+  <ul>
+    <li>An application works but no longer scales</li>
+    <li>A prototype needs to become production software</li>
+    <li>A legacy system needs modernisation</li>
+    <li>A critical feature cannot fit into the current roadmap</li>
+  </ul>
+  <p>Only after establishing those problems does the site explain how Alucify works.</p>
+
+  <p class="pull-line">
+    The story begins with the constraint the buyer recognises, not the technology
+    Alucify wants to explain.
+  </p>
+
+  <ul class="captures">
+    <li>
+      <span class="surface-tag">Website · alucify.ai</span>
+      <img
+        class="capture-shot"
+        src={`${W}/site-problem.png`}
+        width="1600"
+        height="766"
+        loading="lazy"
+        decoding="async"
+        alt="The You’re here because section: four pale blue cards reading an app is working but not scaling, a prototype is ready for prime-time, a legacy app needs to be modernized, and a critical new feature needs development."
+      />
+      <span class="capture-name">You’re here because</span>
+      <span class="capture-note">
+        The website establishes the buyer’s problem before introducing the World
+        Model or the AI delivery process.
+      </span>
+    </li>
+  </ul>
+
+  <p class="sec-eyebrow">02 · The public promise</p>
+  <h2>The website reduces the offer to three commitments</h2>
+  <p>The commercial model is deliberately simple.</p>
 
   <ul class="cells three">
     {
-      questions.map(([label, q]) => (
+      promise.map(([label, note]) => (
+        <li>
+          <span class="cell-label">{label}</span>
+          <span class="cell-note">{note}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p>
+    The page reinforces the same promise in three forms: a three-step process, a
+    fixed contract, and AI-native delivery with human review on every pull
+    request. That makes the unfamiliar delivery method legible through familiar
+    commitments.
+  </p>
+
+  <ul class="captures">
+    <li>
+      <span class="surface-tag">Website · alucify.ai</span>
+      <img
+        class="capture-shot"
+        src={`${W}/site-promise.png`}
+        width="1600"
+        height="978"
+        loading="lazy"
+        decoding="async"
+        alt="The green Alucify hero, headed We are the future of enterprise software development, closing on three commitments: a three-step process of scope, commit and deliver; a fixed contract for price, scope and timeline; and AI-native delivery with human review on every PR."
+      />
+      <span class="capture-name">The commitments</span>
+      <span class="capture-note">
+        The commercial promise is stated before the site explains the technical
+        mechanism behind it.
+      </span>
+    </li>
+  </ul>
+
+  <p class="sec-eyebrow">03 · The model</p>
+  <h2>The mechanism is explained as coherence, rigour, and speed</h2>
+  <p>
+    Once the promise is clear, the site introduces three parts of Alucify’s
+    delivery model.
+  </p>
+
+  <ul class="cells three">
+    {
+      model.map(([label, note]) => (
+        <li>
+          <span class="cell-label">{label}</span>
+          <span class="cell-note">{note}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p>
+    The sequence matters. AI code appears last. Context and validation establish
+    the conditions under which speed can be credible.
+  </p>
+
+  <ul class="captures">
+    <li>
+      <span class="surface-tag">Website · alucify.ai</span>
+      <img
+        class="capture-shot"
+        src={`${W}/site-model.png`}
+        width="1600"
+        height="544"
+        loading="lazy"
+        decoding="async"
+        alt="The How we do it section on a violet field, with three labelled columns: coherence and the World Model, rigor and Simulation, speed and AI Code reviewed by senior engineers."
+      />
+      <span class="capture-name">How we do it</span>
+      <span class="capture-note">
+        The website positions AI as the implementation layer inside a larger
+        system of context, simulation, and human review.
+      </span>
+    </li>
+  </ul>
+
+  <p>
+    The public site explains why the process should be trustworthy. The product
+    has to show a reviewer whether a particular result deserves that trust.
+  </p>
+
+  <p class="sec-eyebrow">04 · The review product</p>
+  <h2>The dashboard begins with the decision to approve</h2>
+  <p>
+    The product is not a celebration of how much code the agent produced. It is
+    an orientation screen for someone accountable for what happens next.
+  </p>
+  <p>
+    Three areas establish the review: artifacts, meaning what was produced,
+    integrated or flagged; coverage, meaning which decisions the work addressed;
+    and impact, meaning how far the change reaches and where risk sits.
+  </p>
+  <p>
+    Blast radius, agent hours, and token cost appear beside coverage because each
+    can affect the decision to approve the work. Cost is also attached to
+    individual changes rather than hidden in a separate billing surface.
+  </p>
+
+  <ul class="cells three">
+    {
+      review.map(([label, q]) => (
         <li>
           <span class="cell-label">{label}</span>
           <span class="cell-note">{q}</span>
@@ -69,68 +263,44 @@ const flows = [
   <Reconstruction
     route="dashboard"
     label="Dashboard"
-    title="Alucify dashboard reconstruction"
-    caption="The dashboard establishes the review in one view: the artifact’s status, the completeness of its reasoning, and the expected impact of the change."
+    title="Alucify code-review dashboard reconstruction"
+    caption="The dashboard places artifact status, coverage, and impact in one review surface."
     eager
   />
 
-  <p class="sec-eyebrow">01 · Orientation</p>
-  <h2>The landing screen answers three questions</h2>
+  <p class="sec-eyebrow">05 · Traceable coverage</p>
+  <h2>A score is only credible if the reviewer can open it</h2>
   <p>
-    The first screen does not celebrate how much code the agent produced. It tells
-    the reviewer how far the change reached, how much agent work it represents, and
-    what it cost.
+    The dashboard summarises coverage as a percentage. The detailed view exposes
+    every decision underneath it.
   </p>
   <p>
-    Blast radius, agent hours and token cost sit beside coverage because all four
-    affect the decision to approve the work. Cost also appears again on each
-    individual change, beside the result it paid for — operational context rather
-    than an accounting detail on another page.
+    Each decision is named, categorised as scope, architecture, or data, and
+    marked covered, partial, or not covered. The list sorts incomplete decisions
+    first.
+  </p>
+  <p>
+    That changes the role of the percentage. It does not end the review; it
+    identifies where the review should begin.
   </p>
 
-  <ul class="cells three">
-    {
-      landing.map(([label, note]) => (
-        <li>
-          <span class="cell-label">{label}</span>
-          <span class="cell-note">{note}</span>
-        </li>
-      ))
-    }
-  </ul>
-
-  <p class="sec-eyebrow">02 · Coverage</p>
-  <h2>A percentage is only useful if it can be opened</h2>
-  <p>
-    An overall coverage score is easy to scan and impossible to trust on its own.
-    The design makes every decision behind it visible.
+  <p class="pull-line">
+    The summary tells the reviewer where they stand. The rows show why.
   </p>
-  <p>
-    Each row names a specific decision, categorises it as scope, architecture or
-    data, and marks it covered, partial or not covered. The list sorts weakest
-    first, so the gaps set the reviewer’s agenda rather than the successes.
-  </p>
-  <p>This turns coverage from a score into a review queue.</p>
 
   <Reconstruction
     route="coverage"
     label="Coverage analysis"
     title="Alucify coverage-analysis reconstruction"
-    caption="The sample score is calculated from the 27 decisions shown below it. The table sorts incomplete decisions first, so the summary and its evidence cannot drift apart."
+    caption="The sample score is calculated from the 27 decisions beneath it, with incomplete decisions placed first."
   />
 
-  <p class="sec-eyebrow">03 · Severity</p>
-  <h2>The interface raises its voice only when the risk does</h2>
-  <p>Most of the product stays visually quiet. A critical change is the exception.</p>
+  <p class="sec-eyebrow">06 · Explained risk</p>
+  <h2>Critical status comes with a reason</h2>
   <p>
-    Opening one reveals a written summary and a consistent breakdown across blast
-    radius, regression risk, data integrity and backward compatibility. The reviewer
-    can understand why the item is critical without decoding a colour or relying on
-    a single score.
-  </p>
-  <p>
-    Severity is carried by three signals together: a label, a visual marker, and a
-    plain-language explanation.
+    Most of the interface remains visually quiet. Critical impact is the
+    exception. Opening a concept reveals a written summary and a consistent
+    breakdown across four dimensions.
   </p>
 
   <ul class="cells four">
@@ -144,69 +314,86 @@ const flows = [
     }
   </ul>
 
+  <p>
+    Severity is communicated through a label, a visual marker, and a written
+    explanation. The reviewer does not have to infer the reason from colour or a
+    single score.
+  </p>
+
   <Reconstruction
     route="impact-detail"
     label="Impact detail"
     title="Alucify impact-detail reconstruction"
-    caption="Open a concept to see the summary and its four severity dimensions. Previous and next controls move the reviewer through the queue without returning to the table."
+    caption="The detail view explains why a concept is critical and lets the reviewer move through the queue without returning to the table."
   />
 
-  <p class="sec-eyebrow">04 · System states</p>
-  <h2>Trust is designed in the incomplete states</h2>
+  <p class="sec-eyebrow">07 · System trust</p>
+  <h2>The product also has to say when not to trust it</h2>
+  <p>The complete dashboard is only one state in the product.</p>
   <p>
-    The full dashboard is only one moment in the product. The design covers twenty
-    screens: first run, integration, daily review, stale results and re-audit.
+    An analysis may still be running. A result may be empty. An audit may become
+    stale after the underlying artifact changes. These moments are not
+    implementation leftovers; they determine whether a reviewer understands what
+    the product currently knows.
   </p>
+  <p>I designed the product to make those limits explicit.</p>
+
+  <h3>When the analysis is still running</h3>
   <p>
-    An analysis product has to explain not only what it knows, but when it is still
-    working and when its answer should no longer be trusted.
+    The integration state explains what is happening in the background, how the
+    user will know when it is complete, and that they do not need to keep the tab
+    open.
   </p>
 
-  <h3>When the answer is out of date</h3>
+  <ul class="captures">
+    <li>
+      <span class="surface-tag">Product · reconstruction</span>
+      <img
+        class="capture-shot"
+        src={`${W}/product-in-progress.png`}
+        width="1500"
+        height="942"
+        loading="lazy"
+        decoding="async"
+        alt="The artifact screen mid-analysis: a banner reading creating context for this artifact, promising an email when it is ready, above artifact status, coverage and impact sections shown as grey placeholder rows."
+      />
+      <span class="capture-name">Integration in progress</span>
+      <span class="capture-note">
+        The product explains the wait and gives the user permission to leave.
+      </span>
+    </li>
+  </ul>
+
+  <h3>When the answer is no longer current</h3>
   <p>
-    A stale audit does not quietly remain on screen as if it were current. The
-    product states that the result has been deprecated and places the action that
-    fixes it beside the warning.
+    A stale audit does not remain on screen as if it were valid. The product
+    states that the result has been deprecated and places the re-audit action
+    beside that admission.
   </p>
 
   <Reconstruction
     route="artifact-reaudit"
     label="Stale audit"
     title="Alucify stale-audit reconstruction"
-    caption="The interface admits that its analysis is no longer current and pairs that admission with the re-audit action."
+    caption="The product identifies its own result as outdated and puts the corrective action beside it."
   />
 
-  <h3>When the product is still working</h3>
+  <p class="sec-eyebrow">08 · The complete system</p>
+  <h2>Twenty screens connect four review flows</h2>
   <p>
-    Integration continues without requiring the user to supervise it. The state
-    explains what is happening, what will end the wait, and how the user will know
-    when the result is ready.
-  </p>
-
-  <Reconstruction
-    route="in-progress"
-    label="Integration in progress"
-    title="Alucify integration-in-progress reconstruction"
-    caption="The product explains the background work, promises an email when it is complete, and tells the user they can close the tab."
-  />
-
-  <p class="sec-eyebrow">05 · The complete system</p>
-  <h2>Twenty screens across four connected flows</h2>
-  <p>The product begins before the dashboard.</p>
-  <p>
-    The first flow moves from sign-in to a code context the product can reason
-    about. The remaining three begin from the dashboard and branch into artifacts,
-    coverage and impact. Returning those paths to one shared hub keeps the product
-    understandable as its analysis deepens.
+    The product is structured as four horizontal flows rather than a collection
+    of dashboard concepts. The dashboard is the shared hub for the three review
+    paths, and the onboarding flow establishes the code context those reviews
+    depend on.
   </p>
 
   <div class="flows">
     <p class="sr-only">
-      Four flows. First run goes from sign in, to connect source, to build context,
-      to ready. The other three each begin at the dashboard: artifacts continues to
-      artifact, then audit, then re-audit; coverage continues to the coverage
-      summary and then a decision detail; impact continues to the impact summary and
-      then a concept detail.
+      Four flows. First run goes from sign in, to connect source, to build
+      context, to ready. The other three each begin at the dashboard: artifacts
+      continues to artifact, then audit, then re-audit; coverage continues to the
+      coverage summary and then a decision detail; impact continues to the impact
+      summary and then a concept detail.
     </p>
     {
       flows.map(([name, steps]) => (
@@ -242,44 +429,47 @@ const flows = [
         allowfullscreen></iframe>
     </div>
     <figcaption>
-      The complete file includes first run, the dashboard, artifact review, coverage
-      analysis, impact analysis, and the loading, empty, stale and re-audit states
-      between them.
+      The complete board contains onboarding, artifact review, coverage, impact,
+      and the incomplete states connecting them.
     </figcaption>
   </figure>
 
-  <p class="sec-eyebrow">06 · Ownership</p>
-  <h2>My role</h2>
+  <p class="sec-eyebrow">09 · My role</p>
+  <h2>I designed the promise and the proof</h2>
+  <p>I was the designer on the team that built Alucify.</p>
   <p>
-    I was the designer on the team that built Alucify. The product is the team's;
-    the design is the part I did — the information architecture, the landing
-    metrics, the coverage model, the severity system, and the states from first
+    For the public site, I designed how the company explains the buyer’s problem,
+    the fixed-price delivery model, the World Model, simulation, AI
+    implementation, human review, and the evidence supporting the offer.
+  </p>
+  <p>
+    For the product, I designed the information architecture, dashboard metrics,
+    coverage model, impact and severity system, and the states from first
     connection through daily review.
   </p>
   <p>
-    That work required more than arranging data. It required deciding what evidence
-    a reviewer needs, how summaries stay traceable to the decisions underneath them,
-    and how the product communicates uncertainty without surrendering authority.
+    The two surfaces solve different moments in the same decision. Can I trust
+    this company to build with AI? Can I trust this AI-generated change enough to
+    approve it?
   </p>
 
   <p class="pull-line">
-    The design problem was not helping an agent write more code. It was helping a
-    person decide whether that code should ship.
+    The website makes the model understandable. The product makes its work
+    inspectable.
   </p>
 
   <div class="disclosure">
-    <p class="sec-eyebrow">About the public version</p>
+    <p class="sec-eyebrow">About the public work</p>
+    <p>The company website is live at alucify.ai.</p>
+    <p>
+      The product screens are a working reconstruction of my design, built so the
+      states can be opened and used rather than viewed only as screenshots. The
+      reconstruction is not the shipping product.
+    </p>
+    <p>
+      The tenant, people, and measurements in it are invented. The summaries
+      reconcile with their underlying rows, but they are not customer results.
+    </p>
     <p>This work is shown with the founder’s agreement.</p>
-    <p>
-      The screens above are a working reconstruction of the design, built so the
-      states can be opened and used rather than viewed only as images. It is not the
-      shipping product.
-    </p>
-    <p>
-      The tenant, people and measurements are invented. The sample values reconcile
-      because the summaries are computed from the rows beneath them; they are not
-      customer results.
-    </p>
   </div>
-
 </DocumentLayout>

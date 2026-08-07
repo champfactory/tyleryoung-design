@@ -29,9 +29,9 @@ export const stories: Story[] = [
     num: '01',
     slug: '/alucify',
     eyebrow: 'AI-Native Product',
-    claim: 'I design tools for people who have to review code an AI wrote.',
+    claim: 'I designed how Alucify earns trust — from first visit to code review.',
     outcome:
-      'A code intelligence product. Its landing screen reports blast radius, agent hours and token cost. Twenty screens, from first run to daily use, including the empty and half-finished ones most tools leave to engineering.',
+      'Two surfaces, one problem. The public site explains why a buyer should trust an unfamiliar AI-native delivery model; the product lets a reviewer inspect the code that model produces. Twenty screens across four flows, including the empty and half-finished ones.',
     artifacts: [{ label: 'See the work', href: '/alucify' }],
     draft: true,
   },
