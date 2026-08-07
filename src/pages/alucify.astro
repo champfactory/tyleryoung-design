@@ -7,6 +7,8 @@ import Draft from '../components/Draft.astro';
 const B = '/work/alucify';
 const FIGMA =
   'https://www.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1';
+const FIGMA_EMBED =
+  'https://embed.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1&embed-host=share';
 ---
 
 <DocumentLayout
@@ -122,20 +124,24 @@ const FIGMA =
     </Draft>
   </p>
 
-  <a class="canvas" href={FIGMA} target="_blank" rel="noopener">
-    <img
-      src={`${B}/figma-canvas.jpg`}
-      alt="The Alucify design file: twenty screens laid out in four rows — eight for getting set up, six for artifacts, three for coverage and three for impact."
+  {/* Figma's embed, so a reader can pan and zoom the twenty frames without
+      leaving the page. It needs the file shared as "anyone with the link can
+      view"; the link underneath is what they fall back to if it is not. */}
+  <figure class="figma">
+    <iframe
+      src={FIGMA_EMBED}
+      title="The Alucify design file — twenty frames across four flows"
       loading="lazy"
-      decoding="async"
-      width="2662"
-      height="1070"
-    />
-    <span class="canvas-bar">
-      <span class="canvas-label">Open the design file</span>
-      <span class="canvas-meta">20 frames · 4 flows · Figma <span aria-hidden="true">→</span></span>
-    </span>
-  </a>
+      referrerpolicy="no-referrer"
+      allowfullscreen
+    ></iframe>
+    <figcaption>
+      20 frames · 4 flows ·{' '}
+      <a href={FIGMA} target="_blank" rel="noopener">
+        open in Figma <span aria-hidden="true">→</span>
+      </a>
+    </figcaption>
+  </figure>
 
   <h2>What I owned</h2>
   <p>
@@ -158,53 +164,6 @@ const FIGMA =
 </DocumentLayout>
 
 <style>
-  /* The whole canvas is the target. It is deliberately not legible at this size —
-     it shows the shape and extent of the work, and the click is what makes it
-     readable. Anything more detailed here would compete with the file itself. */
-  .canvas {
-    display: block;
-    margin: 0 0 34px;
-    border: 1px solid var(--color-rule);
-    background: #1e1e1e;
-    text-decoration: none;
-  }
-
-  .canvas img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  .canvas-bar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 8px 18px;
-    padding: 13px 16px;
-    border-top: 1px solid var(--color-rule);
-    background: var(--color-paper-raised);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .canvas-label {
-    color: var(--color-ink);
-    border-bottom: 1px solid var(--color-ink);
-    padding-bottom: 2px;
-  }
-
-  .canvas-meta {
-    color: var(--color-ink-3);
-  }
-
-  .canvas:hover .canvas-label {
-    color: var(--color-signal);
-    border-bottom-color: var(--color-signal);
-  }
-
   .answer {
     font-size: 24px !important;
     line-height: 1.52 !important;

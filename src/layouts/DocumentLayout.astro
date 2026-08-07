@@ -101,6 +101,45 @@ const {
      describe — scoring rubrics, before/after tables, the two-by-twos — so they
      run the full measure of the prose column rather than sitting inline. Every
      one shipped with empty alt text originally; each now describes itself. */
+  /* Global, alongside .essay-fig. Scoped to the page these did not apply at all —
+     the rules were emitted but never matched — so the iframe fell back to its
+     replaced-element default of 300x150 and the caption rendered as body copy. */
+  .doc .figma {
+    margin: 0 0 34px;
+    border: 1px solid var(--color-rule);
+    background: #1e1e1e;
+  }
+
+  .doc .figma iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border: 0;
+  }
+
+  .doc .figma figcaption {
+    padding: 13px 16px;
+    border-top: 1px solid var(--color-rule);
+    background: var(--color-paper-raised);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+
+  .doc .figma figcaption a {
+    color: var(--color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-ink);
+    padding-bottom: 2px;
+  }
+
+  .doc .figma figcaption a:hover {
+    color: var(--color-signal);
+    border-bottom-color: var(--color-signal);
+  }
+
   .doc .essay-fig {
     margin: 34px 0;
   }
