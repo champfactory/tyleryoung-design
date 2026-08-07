@@ -8,11 +8,6 @@ import Draft from '../components/Draft.astro';
 import { stories } from '../data/stories';
 import { essayGroups } from '../data/essayGroups';
 
-// DRAFT — replaces the ported exec sentence at Tyler's request. First person to
-// match the stories, and it now carries the AI-practice claim itself, which is
-// why the separate [NEEDS] marker below it is gone.
-const bioLede =
-  'I design software and the systems that generate it. Twenty years leading design organisations, now spent on one question: what an agent is allowed to produce, and who checks it before it ships.';
 const bioRest = [
   'He specializes in aligning product design with business outcomes, scaling high-impact teams, and embedding user-centered thinking into roadmap planning.',
   'His work spans product strategy, systems thinking, and operational rigor — driving measurable impact across growth-stage and enterprise orgs.',
@@ -46,21 +41,6 @@ const references = [
   description="I design software and the systems that generate it — and the constraints that decide what an agent is allowed to produce."
   descriptionDraft
 >
-  <!-- ------------------------------------------------------------- HERO ---
-       15-second read: who, what he does now, and three ways in. Nothing else. -->
-  <section class="shell hero">
-    <h1 class="display name" data-rise style="--i:0">Tyler Young</h1>
-
-    <p class="lede" data-rise style="--i:1"><Draft>{bioLede}</Draft></p>
-
-    <p class="thesis-line" data-rise style="--i:2">
-      <a class="thesis" href="/how-i-design-with-ai">
-        How I design with AI <span aria-hidden="true">→</span>
-      </a>
-    </p>
-
-  </section>
-
   <!-- ----------------------------------------------------------- STORIES ---
        Three. Attention collapses after the third; a fourth would not be read. -->
   <section class="shell stories" aria-labelledby="work">
@@ -174,56 +154,9 @@ const references = [
     white-space: nowrap;
   }
 
-  /* ---------------------------------------------------------------- hero */
-  .hero {
-    padding-top: 88px;
-    padding-bottom: 76px;
-  }
-
-  .name {
-    font-size: clamp(52px, 12vw, 132px);
-    margin: 18px 0 0;
-  }
-
-  .lede {
-    margin: 30px 0 0;
-    max-width: 34ch;
-    font-size: clamp(21px, 2.6vw, 27px);
-    line-height: 1.42;
-    text-wrap: pretty;
-  }
-
-  .ai-line {
-    margin: 26px 0 0;
-    max-width: 60ch;
-  }
-
-  .thesis-line {
-    margin: 22px 0 0;
-  }
-
-  /* The connective thesis, in the structure rather than buried two pages down. */
-  .thesis {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--color-ink);
-    text-decoration: none;
-    border-bottom: 1px solid var(--color-ink);
-    padding-bottom: 3px;
-  }
-
-  .thesis:hover {
-    color: var(--color-signal);
-    border-bottom-color: var(--color-signal);
-  }
-
-
   /* -------------------------------------------------------------- stories */
   .stories {
+    padding-top: 84px;
     display: grid;
     gap: 76px;
   }

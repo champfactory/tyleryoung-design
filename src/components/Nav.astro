@@ -14,7 +14,10 @@ const { current } = Astro.props as { current?: string };
           <a href="/essays" aria-current={current === 'essays' ? 'page' : undefined}>Essays</a>
         </li>
         <li>
-          <a href="/tldr" aria-current={current === 'tldr' ? 'page' : undefined}>TL;DR</a>
+          <a
+            href="/how-i-design-with-ai"
+            aria-current={current === 'building' ? 'page' : undefined}>I design with AI</a
+          >
         </li>
         <li><a href="mailto:43tylers@gmail.com">Contact</a></li>
       </ul>
