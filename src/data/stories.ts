@@ -31,7 +31,7 @@ export const stories: Story[] = [
     eyebrow: 'AI-Native Product',
     claim: 'I design tools for people who have to review code an AI wrote.',
     outcome:
-      'A code-intelligence product whose landing metrics are blast radius, agent hours and token cost — twenty documented states, from first run to tenured use, including the ones usually left to engineering to improvise.',
+      'A code intelligence product. Its landing screen reports blast radius, agent hours and token cost. Twenty screens, from first run to daily use, including the empty and half-finished ones most tools leave to engineering.',
     artifacts: [{ label: 'See the work', href: '/alucify' }],
     draft: true,
   },
@@ -41,7 +41,7 @@ export const stories: Story[] = [
     eyebrow: 'Systems + Practice',
     claim: 'I build the design systems AI generates from.',
     outcome:
-      'A design system is no longer a library people import from — it is the constraint on what an agent is allowed to produce. Ninety-six components and fifty-one stories, governed by a 1,048-line operating spec, with the product and its library deployed and open right now.',
+      '96 components and 51 stories, built under a 1,048-line spec that sets what the agent is allowed to produce. The product and its component library are both running right now — open either one.',
     artifacts: [
       { label: 'Open the product', href: 'https://atheer-next.fly.dev/', live: true },
       { label: 'Component library', href: 'https://atheer-next-storybook.fly.dev/', live: true },
@@ -55,7 +55,7 @@ export const stories: Story[] = [
     eyebrow: 'How I Work',
     claim: 'I run stakeholder reviews on running code, not mockups.',
     outcome:
-      'Forty-eight itemised notes taken against a running build, and the diff showing which half was acted on and which was declined. When generation is cheap, review is the constraint — and reviewing code instead of mockups is what makes the decision auditable at all.',
+      'A stakeholder reviewed a working app and wrote 48 notes. I decided which ones to act on, fed them into Claude Code, and shipped a new version. Both versions are still running, and the diff shows what changed.',
     artifacts: [{ label: 'Read the story', href: '/review-loop' }],
     draft: true,
   },

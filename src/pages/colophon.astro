@@ -26,26 +26,25 @@ const passing = rows.filter((r) => r.pass).length;
 >
   <p class="opening">
     <Draft>
-      This page exists because the footer makes a claim, and a claim about how
-      something was built should be checkable.
+      The footer says I built this site with my own workflow. This page is how you
+      check that.
     </Draft>
   </p>
 
   <h2>What runs on every build</h2>
   <p>
     <Draft>
-      Two checks, both written for this site, both in the repo. Neither is a linter
-      someone else wrote — they encode decisions specific to this project, which is
-      the only reason they're worth mentioning.
+      Two checks, both written for this site, both in the repo. Neither is an
+      off-the-shelf linter. They test decisions specific to this project.
     </Draft>
   </p>
 
   <h3>Contrast audit</h3>
   <p>
     <Draft>
-      Every color pair in the design system, checked at the smallest size it is
-      actually used at. It failed twice while I was building this. Two tokens got
-      darker until it stopped failing.
+      Every colour pair in the design system, checked at the smallest size it is
+      used at. It failed twice while I was building this. Two tokens got darker
+      until it passed.
     </Draft>
   </p>
 
@@ -85,28 +84,27 @@ const passing = rows.filter((r) => r.pass).length;
   <h3>Open-items audit</h3>
   <p>
     <Draft>
-      Scans the built HTML for every unfinished slot and every passage of copy that
-      hasn't been approved, and reports where each one landed. The list is derived
-      from the build rather than maintained by hand, so it can't quietly go stale
-      the way a checklist does. Run with <code>--strict</code> it fails, which is
-      what makes "no placeholders left" a gate rather than an intention.
+      Scans the built HTML for unfinished slots and unapproved copy, and reports
+      where each one is. The list comes from the build, not from a checklist I keep
+      by hand, so it cannot go stale. With <code>--strict</code> it fails the
+      build.
     </Draft>
   </p>
 
   <h2>What the old site did</h2>
   <p>
     <Draft>
-      Worth stating plainly, because it's the reason the checks exist. The previous
-      site shipped the same alt text on three different people's headshots, no alt
-      attribute at all on nine more images, and
-      <code>&lt;meta name="description" content="Made with Framer"&gt;</code> on every
-      essay page. Its body text sat at 2.6:1 against the background.
+      This is why the checks exist. My previous site used the same alt text on
+      three different people's headshots, had no alt text at all on nine more
+      images, and shipped
+      <code>&lt;meta name="description" content="Made with Framer"&gt;</code> on
+      every essay page. Body text sat at 2.6:1 against the background.
     </Draft>
   </p>
   <p>
     <Draft>
-      None of that is unusual for a site built in a visual editor. All of it is the
-      kind of thing an engineering culture checks in the first thirty seconds.
+      None of that is unusual for a site built in a visual editor. All of it is
+      what an engineering team checks in the first thirty seconds.
     </Draft>
   </p>
 

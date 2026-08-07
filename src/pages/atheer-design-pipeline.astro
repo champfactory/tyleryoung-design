@@ -27,11 +27,10 @@ const counts = [
 >
   <p class="answer">
     <Draft>
-      An agency sat between design intent and shipped UI, and every decision made a
-      round trip through a handoff document. I replaced the document with a pipeline:
-      Paper to Claude Code to React, Tailwind and Storybook, with the design system
-      as the constraint on what could be generated. Stakeholder reviews moved onto
-      running components.
+      An agency sat between the design and the shipped UI. Every decision made a
+      round trip through a handoff doc. I replaced the doc with a pipeline: Paper
+      to Claude Code to React, Tailwind and Storybook, with the design system
+      deciding what could be built. Reviews moved onto running components.
     </Draft>
   </p>
 
@@ -49,11 +48,10 @@ const counts = [
   <h2>The design system</h2>
   <p>
     <Draft>
-      The pipeline is a document. An operating spec that lets an autonomous agent
-      build inside a real codebase without supervision it cannot safely be given —
-      project boundaries, a command filter, secrets handling, an explicit list of
-      what it may do alone. It decides what is allowed to exist, which is the part
-      of a design system that actually holds.
+      The pipeline is a document. It is an operating spec that lets an agent build
+      inside a real codebase on its own: project boundaries, a command filter,
+      secrets handling, and a list of what it can do without asking. It decides
+      what is allowed to exist.
     </Draft>
   </p>
 
@@ -107,35 +105,32 @@ within each section is correct.
   <h3>Paper, not Figma — because one returns code</h3>
   <p>
     <Draft>
-      Paper's MCP returns actual JSX and Tailwind, not a description of a design to
-      be translated. Figma stayed in the system as a reader for legacy files and
-      nothing else. That single swap removes the interpretation step where most
-      design-to-code fidelity is lost.
+      Paper's MCP returns real JSX and Tailwind, not a description of a design to
+      translate. Figma stayed on to read legacy files, nothing more. That one swap
+      removes the step where most design-to-code fidelity gets lost.
     </Draft>
   </p>
   <p>
     <Draft>
-      The rule that follows from it: every component begins as a literal copy of
-      what the design tool returned. No reinterpreting absolute positioning as flex,
-      no substituting spacing utilities for exact offsets. Abstraction is allowed
-      only after the literal version passes review — because abstractions are
-      opinions, and opinions have to be proven.
+      So the rule is: every component starts as a literal copy of what the design
+      tool returned. No turning absolute positioning into flex, no swapping exact
+      offsets for spacing utilities. You can abstract it after the literal version
+      passes review, not before.
     </Draft>
   </p>
 
   <h3>The token system is the palette</h3>
   <p>
     <Draft>
-      Every colour, weight, radius and spacing value has to trace to the project's
-      token page. If the tokens are too narrow for what is being asked, the agent
-      has to say so and wait rather than invent a value. Components are earned
-      through design extraction — if a component has not appeared in a design, it
-      does not belong in the library.
+      Every colour, weight, radius and spacing value has to come from the project's
+      token page. If the tokens do not cover the request, the agent says so and
+      waits instead of inventing one. And if a component never appeared in a
+      design, it does not go in the library.
     </Draft>
   </p>
   <p>
     <Draft>
-      That is what kept ninety-six components coherent without a second designer
+      That is what kept 96 components consistent without a second designer
       reviewing every commit.
     </Draft>
   </p>
@@ -143,16 +138,15 @@ within each section is correct.
   <h3>Options were built, not described</h3>
   <p>
     <Draft>
-      Three directions for the intelligence layer were built and deployed to three
-      separate URLs, so the choice was made against running software rather than in
-      a review deck. The ops surface went through six iterations, each with an
-      itemised feedback round against a live build.
+      I had three directions for the intelligence layer built and deployed to three
+      separate links, so we chose against running software instead of a deck. The
+      ops screen went through six rounds, each one reviewed against a live build.
     </Draft>
   </p>
   <p>
     <Draft>
-      Nineteen deployments across ninety days: six iterations of one surface, three
-      parallel directions for another, the component library on its own URL, and the
+      Nineteen deployments in 90 days: six rounds of one screen, three parallel
+      directions for another, the component library on its own link, and the
       decision tools I used to run the engagement.
     </Draft>
   </p>
