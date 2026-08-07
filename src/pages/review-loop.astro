@@ -26,19 +26,18 @@ const R = '/work/review';
 >
   <p class="answer">
     <Draft>
-      Both versions are still running. Open the one that was reviewed, read what the
-      stakeholder wrote about it, then open what came back. The whole exchange is
-      still on the internet, which is only possible because the review happened
-      against software rather than a picture of it.
+      I sent a stakeholder a working app, not a prototype. They wrote 48 notes. I
+      pulled the notes into Claude Code, decided which ones to act on, and sent
+      back a new version. Both versions are still running, so you can open the
+      before, read the notes, and open the after.
     </Draft>
   </p>
 
   <h2>What the reviewer got</h2>
   <p>
     <Draft>
-      A URL. The stakeholder opened it on their own machine, in their own browser,
-      on their own time, and used it the way they would use anything else that
-      arrives as a link.
+      A link. They opened it on their own machine, in their own browser, on their
+      own time.
     </Draft>
   </p>
 
@@ -52,10 +51,9 @@ const R = '/work/review';
   <h2>The forty-eight notes</h2>
   <p>
     <Draft>
-      Forty-eight notes, organised by surface, written in the register of somebody
-      using software rather than evaluating a proposal. Specific enough to act on
-      without a follow-up meeting: rename this, colour-code that, make the first
-      three columns sticky when the table scrolls sideways.
+      They came back in a doc, grouped by screen. Most were specific enough to act
+      on without a meeting: rename this, colour-code that, keep the first three
+      columns in place when the table scrolls sideways.
     </Draft>
   </p>
 
@@ -64,34 +62,29 @@ const R = '/work/review';
   <h2>What I did with the notes</h2>
   <p>
     <Draft>
-      The notes went straight into Claude Code against the same repository the build
-      came from. That is the part that makes this loop fast: the feedback is already
-      written in the vocabulary of the interface, and the agent is working inside a
-      codebase governed by a design system, so “colour-code good and bad differently”
-      resolves to a token rather than to an invention.
+      I pulled them into Claude Code, pointed at the same repo the build came from.
+      The notes already used the words on the screen, and the code was governed by
+      a design system, so “colour-code good and bad differently” became a token
+      rather than something new.
     </Draft>
   </p>
   <p>
     <Draft>
-      My job in that pass was not typing. It was deciding which of the forty-eight
-      were worth a version, reading what came back against the design system, and
-      refusing the ones that would have cost more than they returned.
+      My job was deciding which of the 48 were worth a version, checking what came
+      back against the design system, and turning down the ones that cost more than
+      they were worth.
     </Draft>
   </p>
   <p>
     <Draft>
-      What the diff shows is a single pass rather than a negotiation: four files,
-      three hundred and ninety-four lines, four of the six surfaces touched. The
-      notes arrived together and the response went back together, which is the
-      shape a loop takes when the reviewer has a running build instead of a
-      meeting.
+      It went back as one pass: four files, 394 lines, four of the six screens.
     </Draft>
   </p>
 
   <h2>Three notes, and what changed</h2>
   <p>
     <Draft>
-      Two landed cleanly. The third is more useful, because it did not.
+      Two of these landed. The third did not, which is the more useful one to read.
     </Draft>
   </p>
 
@@ -134,9 +127,8 @@ const R = '/work/review';
   <h2>The next version</h2>
   <p>
     <Draft>
-      The next version, at its own URL, ready for the next round. Open both and the
-      differences are visible without being told where to look — which is the test a
-      revision should pass.
+      A new version at its own link, ready for the next round. Open both and you
+      can see what changed without being told where to look.
     </Draft>
   </p>
 
@@ -149,10 +141,9 @@ const R = '/work/review';
 
   <p>
     <Draft>
-      Twelve notes were not actioned. Which twelve is still legible, because the
-      record is a diff between two running deployments rather than anyone's memory
-      of a meeting — the table above was rebuilt from that diff, not from notes I
-      kept at the time.
+      Twelve notes were not actioned. The table above is built from the diff
+      between the two running versions, so what changed and what didn't is on the
+      record rather than in anyone's memory.
     </Draft>
   </p>
 
