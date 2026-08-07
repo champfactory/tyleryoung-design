@@ -44,7 +44,7 @@ const related = [
   meta={[
     ['Stack', 'Astro · Tailwind · static output'],
     ['Client JavaScript', 'None on content pages'],
-    ['Quality gates', 'Contrast · open items · links · build'],
+    ['Quality gates', 'Evidence · contrast · alt text · links · open items'],
     ['Source', `<a href="${REPO}">${REPO_LABEL}</a>`],
   ]}
 >
@@ -135,7 +135,9 @@ const related = [
   <h2><span class="sec">04</span>The quality gates</h2>
   <p>
     Some decisions can be checked by a machine. Others still require a person. The
-    build makes that boundary explicit.
+    build makes that boundary explicit. The first gate is the one that matters
+    most here: this site argues that every claim can be opened, so a deployment
+    going down should fail the build the same way a broken link does.
   </p>
 
   <ul class="ledger">

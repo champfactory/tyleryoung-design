@@ -14,7 +14,7 @@ export const principles = [
   {
     principle: 'A hiring manager can place me in the first minute',
     detail:
-      'They are working through a stack of candidates between other meetings, deciding who to move forward. Most are not designers. The work has to be legible to someone who is scanning for a reason to say yes, before they decide it is not worth more time.',
+      'Time constrained, highly trained, hard to impress.',
   },
   {
     principle: 'Every important claim has evidence',
@@ -55,6 +55,11 @@ const HUMAN = 'HUMAN REVIEW';
 
 export const requirements = [
   {
+    req: 'Every deployment and design file the site points at still answers.',
+    mode: AUTO,
+    how: 'npm run evidence · 9 external artifacts, checked from the built output',
+  },
+  {
     req: 'Every colour pair meets WCAG AA at the smallest size where it appears.',
     mode: AUTO,
     how: 'npm run contrast · 17 pairs computed from the design tokens',
@@ -80,9 +85,9 @@ export const requirements = [
     how: 'Verified from the static build output',
   },
   {
-    req: 'Every meaningful image has alt text written for that image.',
-    mode: HUMAN,
-    how: 'Each description is read alongside the image',
+    req: 'Every image has alt text, and no two images share it.',
+    mode: AUTO,
+    how: 'npm run alt · the second rule is what catches a description copied from the image above it',
   },
   {
     req: 'Every page has one H1 and a logical heading sequence.',
