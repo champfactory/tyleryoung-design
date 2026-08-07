@@ -3,6 +3,7 @@ import DocumentLayout from '../layouts/DocumentLayout.astro';
 import Shot from '../components/Shot.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
+import FlowMontage from '../components/FlowMontage.astro';
 
 const B = '/work/alucify';
 ---
@@ -109,6 +110,17 @@ const B = '/work/alucify';
       caption="The empty state explains what is happening and what will end the wait."
     />
   </div>
+
+  <h2>All twenty screens, by flow</h2>
+  <p>
+    <Draft>
+      Four flows. Getting set up runs from signing in to a context the product can
+      reason about. The other three all start on the same dashboard, because that
+      is the hub — artifacts, coverage and impact are the three ways out of it.
+    </Draft>
+  </p>
+
+  <FlowMontage />
 
   <h2>What I owned</h2>
   <p>

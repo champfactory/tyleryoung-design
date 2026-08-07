@@ -1,0 +1,180 @@
+---
+/**
+ * The twenty screens, grouped into the four flows they belong to.
+ *
+ * Labels are the frame names from the design file, not names invented here — so
+ * the sequence a reader sees is the sequence the work was organised into. Three
+ * of the four flows start on the same dashboard, which is the point: it is the
+ * hub, and coverage, impact and artifacts are the three ways out of it.
+ *
+ * Alt text names the flow and the screen rather than describing the pixels.
+ * At this size a thumbnail is a wayfinding mark, and a paragraph describing a
+ * 350px screenshot helps nobody using a screen reader.
+ */
+const B = '/work/alucify/flows';
+
+const flows = [
+  {
+    name: 'Getting set up',
+    note: 'First run, from signing in to a context the product can reason about.',
+    frames: [
+      ['366', 'Google login'],
+      ['367', 'Select workspace and create project'],
+      ['368', 'Create project'],
+      ['369', 'Dashboard instructions'],
+      ['370', 'Add code base'],
+      ['371', 'Dashboard instructions'],
+      ['372', 'Add requirements'],
+      ['373', 'Success instructions'],
+    ],
+  },
+  {
+    name: 'Artifacts',
+    note: 'Reviewing what was uploaded, and integrating it once the issues are understood.',
+    frames: [
+      ['366-1', 'Tenured user dashboard'],
+      ['367-1', 'Artifact collection page'],
+      ['368-1', 'Artifact details page — integration'],
+      ['369-1', 'Artifact integration flow'],
+      ['370-1', 'Artifact integration in progress'],
+      ['371-1', 'Artifact re-audit status'],
+    ],
+  },
+  {
+    name: 'Coverage',
+    note: 'From a single score down to the individual decision that is not covered.',
+    frames: [
+      ['366-2', 'Tenured user dashboard'],
+      ['367-2', 'Coverage analysis details page'],
+      ['368-2', 'Coverage analysis decision view'],
+    ],
+  },
+  {
+    name: 'Impact',
+    note: 'From the release-level numbers down to one concept and what it risks.',
+    frames: [
+      ['366-3', 'Tenured user dashboard'],
+      ['367-3', 'Impact analysis details page'],
+      ['368-3', 'Impact analysis concept view'],
+    ],
+  },
+];
+
+const total = flows.reduce((n, f) => n + f.frames.length, 0);
+---
+
+<section class="montage" aria-label={`${total} screens across ${flows.length} flows`}>
+  {
+    flows.map((flow) => (
+      <div class="flow">
+        <p class="flow-head">
+          <span class="flow-name">{flow.name}</span>
+          <span class="flow-count">{flow.frames.length} screens</span>
+        </p>
+        <p class="flow-note">{flow.note}</p>
+
+        <ol class="strip">
+          {flow.frames.map(([file, label], i) => (
+            <li>
+              <img
+                src={`${B}/${file}.jpg`}
+                alt={`${flow.name}, screen ${i + 1}: ${label}`}
+                loading="lazy"
+                decoding="async"
+                width="760"
+                height="431"
+              />
+              <span class="cap">
+                <span class="n">{String(i + 1).padStart(2, '0')}</span>
+                {label}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  .montage {
+    margin: 8px 0 40px;
+    display: grid;
+    gap: 46px;
+  }
+
+  .flow-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .flow-name {
+    color: var(--color-ink);
+  }
+
+  .flow-count {
+    color: var(--color-ink-3);
+  }
+
+  .flow-note {
+    margin: 8px 0 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-ink-3);
+  }
+
+  /* A strip, not a grid. The order is the flow, so it reads left to right and
+     scrolls rather than wrapping into rows that imply a different sequence. */
+  .strip {
+    list-style: none;
+    margin: 18px 0 0;
+    padding: 0 0 6px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(210px, 1fr);
+    gap: 16px;
+    overflow-x: auto;
+  }
+
+  .strip li {
+    margin: 0;
+    min-width: 0;
+  }
+
+  .strip img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-rule);
+    background: var(--color-paper-raised);
+  }
+
+  .cap {
+    display: flex;
+    gap: 8px;
+    margin-top: 9px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-3);
+  }
+
+  .n {
+    color: var(--color-signal);
+    flex: none;
+  }
+
+  @media (max-width: 900px) {
+    .strip {
+      grid-auto-columns: minmax(180px, 74vw);
+    }
+  }
+</style>
