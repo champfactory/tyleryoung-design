@@ -33,22 +33,14 @@ export const principles = [
   },
 ];
 
-export const comparison = {
-  before: [
-    'Leadership claims came first',
-    'Projects linked mostly to decks',
-    'Evidence appeared late',
-    'The hero pushed work below the fold',
-    'Accessibility depended on manual attention',
-  ],
-  now: [
-    'Running work comes first',
-    'Claims sit beside inspectable evidence',
-    'Three projects establish the story immediately',
-    'Leadership writing follows the product work',
-    'Accessibility decisions are part of the build',
-  ],
-};
+/** Paired, so each row is one decision that changed rather than two lists. */
+export const comparison = [
+  ['Leadership claims came first', 'Running work comes first'],
+  ['Projects linked mostly to decks', 'Claims sit beside inspectable evidence'],
+  ['Evidence appeared late', 'Three projects establish the story immediately'],
+  ['The hero pushed work below the fold', 'Leadership writing follows the product work'],
+  ['Accessibility depended on manual attention', 'Accessibility decisions are part of the build'],
+];
 
 const AUTO = 'AUTOMATIC';
 const HUMAN = 'HUMAN REVIEW';

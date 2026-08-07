@@ -74,56 +74,64 @@ const proof = [
 
   <h2>What changed</h2>
   <p>
-    I began by reading the previous portfolio as a stranger would: nine essays, three
-    project cards, a summary, and three references.
+    I read the previous site end to end first: nine essays, three project cards, a
+    summary, three references.
   </p>
   <p>
-    The leadership argument was clear. The evidence was not. The site described
-    frameworks and influence, but most of the work ended in a claim or a
-    presentation. Very little could be opened and inspected.
+    The leadership argument was clear. The evidence was not. Most of it ended in a
+    deck, and almost nothing could be opened.
   </p>
 
   <div class="compare">
-    <div class="compare-col">
-      <p class="compare-head">Before</p>
-      <ul>{comparison.before.map((line) => <li>{line}</li>)}</ul>
+    <div class="compare-row compare-heads" aria-hidden="true">
+      <p>Before</p>
+      <p>Now</p>
     </div>
-    <div class="compare-col now">
-      <p class="compare-head">Now</p>
-      <ul>{comparison.now.map((line) => <li>{line}</li>)}</ul>
-    </div>
+    {
+      comparison.map(([was, now]) => (
+        <div class="compare-row">
+          <p class="was">
+            <span class="tag">Before</span>
+            {was}
+          </p>
+          <p class="now">
+            <span class="tag">Now</span>
+            {now}
+          </p>
+        </div>
+      ))
+    }
   </div>
 
   <p>
-    The new order is deliberate. Product work establishes what I can make. The essays
-    then explain how I lead the people and systems around it.
+    Product work comes first because it establishes what I can make. The essays
+    explain how I lead the people and systems around it.
   </p>
 
   <h2>Directing the agent</h2>
   <p>
-    The agent wrote the implementation. My work was defining the operating environment
-    around it: the objective, the boundaries, the design system, the review criteria,
-    and the actions that required human approval.
+    The agent wrote the implementation. I set the objective, the boundaries, the
+    design system, the review criteria, and the actions that needed approval.
   </p>
   <p>
-    I reviewed every page and every consequential change. I rejected plausible work
-    when it weakened the argument, introduced an unsupported fact, or added more
-    complexity than value.
+    I read every consequential change, and rejected plausible work that weakened the
+    argument, introduced an unsupported fact, or cost more than it returned.
   </p>
   <p>
-    Working in code made broad decisions cheap to test. A background change became one
-    token update. A typography change could remove an unused font from the entire
-    build. Every change could be checked against the same system before it shipped.
+    Code made those decisions cheap to test. A background change is one token. A
+    typography change took an unused font out of the whole build. Every change is
+    checked against the same system before it ships.
   </p>
 
   <p class="pull-line">Generation made options cheaper. It did not make judgment optional.</p>
 
   <h2>The quality gates</h2>
   <p>
-    Some decisions can be checked by a machine. Others still require a person. The
-    build makes that boundary explicit. The first gate is the one that matters
-    most here: this site argues that every claim can be opened, so a deployment
-    going down should fail the build the same way a broken link does.
+    Some things a machine can check. Some it cannot. The build draws that line.
+  </p>
+  <p>
+    The first gate matters most. The site argues that every claim can be opened, so
+    a dead deployment fails the build the same way a broken link does.
   </p>
 
   <ul class="ledger">
@@ -142,15 +150,15 @@ const proof = [
   </ul>
 
   <p>
-    Automation protects the rules that can be expressed reliably. Human review remains
-    responsible for meaning, hierarchy, and whether the page makes the right argument.
+    Scripts hold the rules that can be stated exactly. People hold meaning,
+    hierarchy, and whether the argument lands.
   </p>
 
   <h2>Contrast is computed, not assumed</h2>
   <p>
-    The contrast audit evaluates every colour pairing at the smallest text size where
-    it is actually used. It failed twice during the redesign. In both cases, the token
-    changed — not an isolated component — so the correction propagated everywhere.
+    Every pairing is checked at the smallest size it appears. It failed twice during
+    the redesign. Both times the token changed rather than the component, so the fix
+    propagated everywhere.
   </p>
 
   <p class="result-line">{passing} of {rows.length} documented colour pairs pass.</p>
@@ -225,18 +233,17 @@ const proof = [
 
   <h2>What the result proves</h2>
   <p>
-    The result is not that an agent can make a portfolio. It is that a clear operating
-    system can turn fast generation into work a person is willing to sign.
+    The point is not that an agent can build a portfolio. It is that a clear
+    operating system turns fast generation into work someone will sign.
   </p>
   <p>
-    This site is static, accessible, inspectable, and deliberately constrained. Its
-    code is public. Its claims connect to running work. Its checks encode the standards
-    that should survive the person who introduced them.
+    The site is static, accessible and inspectable. The code is public, the claims
+    connect to running work, and the checks encode standards that outlast whoever
+    set them.
   </p>
   <p>
-    That is the same design problem I work on elsewhere: make intent explicit enough
-    that people — and increasingly agents — can act on it without lowering the
-    standard.
+    That is the problem I work on elsewhere: make intent explicit enough that people
+    — and now agents — can act on it without lowering the standard.
   </p>
 
 </DocumentLayout>

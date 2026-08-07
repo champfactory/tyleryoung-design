@@ -242,23 +242,40 @@ const {
     letter-spacing: 0.03em;
   }
 
+  /* Paired rows, banded like the lists above. Tighter than those, because each
+     cell is one line rather than a heading and a paragraph. */
   .doc .compare {
-    display: grid;
-    gap: 0;
     margin: 26px 0 30px;
-    border-top: 1px solid var(--color-rule);
   }
 
-  .doc .compare-col {
-    padding: 16px 0 4px;
+  .doc .compare-row {
+    display: grid;
+    gap: 2px 40px;
+    padding: 9px 16px;
+    margin-inline: -16px;
   }
 
-  .doc .compare-col + .compare-col {
-    border-top: 1px solid var(--color-rule);
+  .doc .compare-row:nth-of-type(even) {
+    background: var(--color-row);
   }
 
-  .doc .compare-head {
-    margin: 0 0 10px;
+  .doc .compare-row p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .doc .compare-row .was {
+    color: var(--color-ink-3);
+  }
+
+  .doc .compare-heads {
+    display: none;
+    padding-bottom: 4px;
+    background: none !important;
+  }
+
+  .doc .compare-heads p {
     font-family: var(--font-mono);
     font-size: 10.5px;
     font-weight: 500;
@@ -267,26 +284,24 @@ const {
     color: var(--color-ink-3);
   }
 
-  .doc .compare-col.now .compare-head {
+  .doc .compare-heads p:last-child {
     color: var(--color-signal);
   }
 
-  .doc .compare ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .doc .compare li {
-    margin: 0 0 7px;
-    padding: 0;
-    font-size: 16px;
-    line-height: 1.5;
+  /* Stacked, each line needs its own label; side by side, the column heads carry
+     it and repeating the word on every row is noise. */
+  .doc .compare .tag {
+    display: inline-block;
+    min-width: 62px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--color-ink-3);
   }
 
-  .doc .compare-col.now li {
-    color: var(--color-ink);
+  .doc .compare .now .tag {
+    color: var(--color-signal);
   }
 
   .doc .pull-line {
@@ -410,13 +425,16 @@ const {
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
-    .doc .compare {
+    .doc .compare-row {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: 40px;
     }
 
-    .doc .compare-col + .compare-col {
-      border-top: 0;
+    .doc .compare .tag {
+      display: none;
+    }
+
+    .doc .compare-heads {
+      display: grid;
     }
 
   }
