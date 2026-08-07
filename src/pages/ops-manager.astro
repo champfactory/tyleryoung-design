@@ -7,7 +7,6 @@ import Needs from '../components/Needs.astro';
 
 const APP = 'https://atheer-next.fly.dev/';
 const SB = 'https://atheer-next-storybook.fly.dev/';
-const PLAN = 'https://atheer-306090.fly.dev/';
 
 /** Status is carried by shape first, so it survives greyscale and small sizes. */
 const shapes = [
@@ -123,30 +122,6 @@ const shapes = [
     </a>
   </p>
 
-  <h2>The engagement plan is an app</h2>
-  <p>
-    <Draft>
-      I built the engagement plan as an app the client decides inside. They pick
-      which surface to build first and which second. The choice is saved on the
-      server, so everyone who opens the link sees the same plan, and the third
-      phase takes whatever is left. It is still running on their picks — landing
-      page first, context engine second.
-    </Draft>
-  </p>
-  <p>
-    <Draft>
-      Same idea as the operating spec, aimed at people instead of an agent: put
-      the choice where the decision happens. 73 lines of Flask, one table, and a
-      mounted volume so the choice survives a restart.
-    </Draft>
-  </p>
-
-  <p class="artifact-row">
-    <a class="artifact" href={PLAN} data-live target="_blank" rel="noopener">
-      Open the 90-day plan
-      <span aria-hidden="true">→</span>
-    </a>
-  </p>
 
   <h2>What shipped</h2>
   <p>
