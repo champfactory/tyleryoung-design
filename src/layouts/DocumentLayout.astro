@@ -114,56 +114,12 @@ const {
 
   /* Four equal cells, tinted alternately across the row. Same banding as the
      lists below, turned on its side. No rule and no gap — the tint does the
-     separating, and 1fr keeps every box the same width whatever its label does. */
-  .doc .proof {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0;
-    margin: 30px 0 10px;
-    padding: 0;
-    border: 0;
-  }
-
-  /* Scoped under .prose deliberately. The prose rule `.doc .prose > ul > li` sets
-     padding-left: 38px for the list marker and out-specifies a plainer selector,
-     so the band started where it was told and the text sat 38px inside it. */
-  .doc .proof > li {
-    margin: 0;
-    padding: 20px 18px;
-  }
-
-  .doc .proof > li:nth-child(odd) {
-    background: var(--color-row);
-  }
-
   /* The prose list marker out-specifies a plain override, and these lists are
      not prose. Everywhere a custom list appears on this page, the marker is off. */
-  .doc .proof li::before,
   .doc .principles > li::before,
   .doc .ledger > li::before,
-  .doc .compare li::before {
+  .doc .ledger-compare li::before {
     content: none !important;
-  }
-
-  .doc .proof-figure {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 30px;
-    font-weight: 620;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-  }
-
-  .doc .proof-label {
-    display: block;
-    margin-top: 5px;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    line-height: 1.5;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-ink-3);
   }
 
   .doc .principles,
@@ -234,38 +190,38 @@ const {
 
   /* Paired rows, banded like the lists above. Tighter than those, because each
      cell is one line rather than a heading and a paragraph. */
-  .doc .compare {
+  .doc .ledger-compare {
     margin: 26px 0 30px;
   }
 
-  .doc .compare-row {
+  .doc .ledger-row {
     display: grid;
     gap: 2px 40px;
     padding: 9px 16px;
     margin-inline: -16px;
   }
 
-  .doc .compare-row:nth-of-type(even) {
+  .doc .ledger-row:nth-of-type(even) {
     background: var(--color-row);
   }
 
-  .doc .compare-row p {
+  .doc .ledger-row p {
     margin: 0;
     font-size: 16px;
     line-height: 1.45;
   }
 
-  .doc .compare-row .was {
+  .doc .ledger-row .was {
     color: var(--color-ink);
   }
 
-  .doc .compare-heads {
+  .doc .ledger-heads {
     display: none;
     padding-bottom: 4px;
     background: none !important;
   }
 
-  .doc .compare-heads p {
+  .doc .ledger-heads p {
     font-family: var(--font-mono);
     font-size: 10.5px;
     font-weight: 500;
@@ -276,7 +232,7 @@ const {
 
   /* Stacked, each line needs its own label; side by side, the column heads carry
      it and repeating the word on every row is noise. */
-  .doc .compare .tag {
+  .doc .ledger-compare .tag {
     display: inline-block;
     min-width: 62px;
     font-family: var(--font-mono);
@@ -403,19 +359,15 @@ const {
 
 
   @media (min-width: 700px) {
-    .doc .proof {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .doc .compare-row {
+    .doc .ledger-row {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .doc .compare .tag {
+    .doc .ledger-compare .tag {
       display: none;
     }
 
-    .doc .compare-heads {
+    .doc .ledger-heads {
       display: grid;
     }
 
@@ -512,29 +464,11 @@ const {
     color: var(--color-signal);
   }
 
-  /* Three equal cells, tinted alternately, grey first — the same banding the
-     rest of the site uses, applied to a legend. */
-  .doc .shape-key {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0;
-    margin: 22px 0 34px;
-    padding: 0;
-  }
-
+  /* The banded-cell pattern below, carrying a glyph. Layout and banding come
+     from `.cells`; only what is particular to a legend lives here. */
   .doc .shape-key > li {
-    margin: 0;
-    padding: 22px 16px;
     text-align: center;
-  }
-
-  .doc .shape-key > li::before {
-    content: none !important;
-  }
-
-  .doc .shape-key > li:nth-child(odd) {
-    background: var(--color-row);
+    padding: 22px 16px;
   }
 
   .doc .shape-key svg {
@@ -554,6 +488,177 @@ const {
     letter-spacing: 0.09em;
     text-transform: uppercase;
     color: var(--color-ink-3);
+  }
+
+  /* ---- banded cells ------------------------------------------------------- */
+
+  /* Equal-width boxes, tinted alternately, grey first. This is the one pattern
+     for a short row of parallel things — a pair of links, three questions, four
+     figures. `.shape-key` above is the same pattern carrying a glyph, and reuses
+     these rules rather than restating them. */
+  .doc .cells {
+    list-style: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    margin: 26px 0 var(--space-block);
+    padding: 0;
+  }
+
+  .doc .cells > li {
+    margin: 0;
+    padding: 20px 18px;
+  }
+
+  .doc .cells > li::before {
+    content: none !important;
+  }
+
+  .doc .cells > li:nth-child(odd) {
+    background: var(--color-row);
+  }
+
+  /* A column of single numbers wastes a phone screen; two-up is still legible. */
+  .doc .cells.four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* A cell holds a label and one of: a line of text, a host, or a figure. The
+     label reads as a caption under a figure and as a heading above prose, so the
+     spacing is set by what it sits next to rather than baked into the label. */
+  .doc .cell-label {
+    display: block;
+    margin: 0 !important;
+    font-family: var(--font-mono) !important;
+    font-size: 10.5px !important;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3) !important;
+  }
+
+  .doc .cell-note,
+  .doc .cell-host {
+    display: block;
+    margin: 8px 0 0 !important;
+  }
+
+  .doc .cell-note {
+    font-size: 16px !important;
+    line-height: 1.45 !important;
+  }
+
+  .doc .cell-host {
+    font-family: var(--font-mono) !important;
+    font-size: 13px !important;
+    color: var(--color-ink) !important;
+  }
+
+  .doc .cell-host + .artifact {
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .doc .cell-figure {
+    display: block;
+    margin: 0 !important;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 620;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .doc .cell-figure + .cell-label {
+    margin-top: 5px !important;
+  }
+
+  /* ---- the review loop ---------------------------------------------------- */
+
+  /* A sequence, not a cycle. Banded like every other list on the site — no
+     rules, no arrows, no animation — with the two stages a person is
+     accountable for named in words, because the argument of the page is that
+     those two are not removable. */
+  .doc .loop {
+    list-style: none;
+    margin: 30px 0 var(--space-block);
+    padding: 0;
+  }
+
+  .doc .loop > li {
+    margin: 0;
+    padding: 16px 18px;
+  }
+
+  .doc .loop > li::before {
+    content: none !important;
+  }
+
+  .doc .loop > li:nth-child(odd) {
+    background: var(--color-row);
+  }
+
+  .doc .loop-actor {
+    display: block;
+    margin: 0 !important;
+    font-family: var(--font-mono) !important;
+    font-size: 11px !important;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink) !important;
+  }
+
+  .doc .loop-what {
+    display: block;
+    margin: 6px 0 0 !important;
+    font-size: 17px !important;
+    line-height: 1.45 !important;
+  }
+
+  .doc .loop-gate {
+    display: block;
+    margin: 6px 0 0 !important;
+    font-family: var(--font-mono) !important;
+    font-size: 10.5px !important;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-signal) !important;
+  }
+
+  @media (min-width: 700px) {
+    .doc .cells.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .doc .cells.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .doc .cells.four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    /* Three columns: who, what, and whether a person has to sign it off. The
+       first is sized to the longest actor name, not to a fraction of the page —
+       a wide column holding an 11px label is just a gap. */
+    .doc .loop > li {
+      display: grid;
+      grid-template-columns: minmax(0, 13rem) minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: baseline;
+    }
+
+    .doc .loop-what,
+    .doc .loop-gate {
+      margin: 0 !important;
+    }
+
+    .doc .loop-gate {
+      text-align: right;
+    }
   }
 
   .doc .prose {
@@ -600,45 +705,6 @@ const {
 
   .doc .prose > .sec-eyebrow + h2:not([class]) {
     margin-top: 0;
-  }
-
-  /* Labelled strips. Bordered cells, no shadow, no icon — the label and its one
-     line are the whole component. */
-  .doc .strip {
-    list-style: none;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
-    margin: 22px 0 30px;
-    padding: 0;
-    border-top: 1px solid var(--color-rule);
-  }
-
-  .doc .strip > li {
-    margin: 0;
-    padding: 13px 16px;
-    border-bottom: 1px solid var(--color-rule);
-  }
-
-  .doc .strip > li::before {
-    content: none !important;
-  }
-
-  .doc .strip-label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    font-weight: 500;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--color-ink-3);
-  }
-
-  .doc .strip-note {
-    display: block;
-    margin-top: 4px;
-    font-size: 16px;
-    line-height: 1.45;
   }
 
   /* ---- running screens ---------------------------------------------------- */
@@ -859,22 +925,6 @@ const {
 
 
   @media (min-width: 700px) {
-    .doc .strip {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      border-bottom: 1px solid var(--color-rule);
-    }
-
-    .doc .strip.four {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .doc .strip > li {
-      border-bottom: 0;
-    }
-
-    .doc .strip.four > li:nth-child(-n + 2) {
-      border-bottom: 1px solid var(--color-rule);
-    }
   }
 
   /* One descending scale: mono eyebrow 11, h2 28, h3 21, body 20. The h2 used to

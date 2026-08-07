@@ -52,7 +52,7 @@ export const stories: Story[] = [
   {
     num: '03',
     slug: '/review-loop',
-    eyebrow: 'How I Work',
+    eyebrow: 'Human-in-the-loop design',
     claim: 'I run stakeholder reviews on running code, not mockups.',
     outcome:
       'A stakeholder reviewed a working app and wrote 48 notes. I decided which ones to act on, fed them into Claude Code, and shipped a new version. Both versions are still running, and the diff shows what changed.',
@@ -62,3 +62,21 @@ export const stories: Story[] = [
 ];
 
 export const storyBySlug = (slug: string) => stories.find((s) => s.slug === slug);
+
+/**
+ * The eyebrow a story page wears, e.g. "01 · Systems + Practice".
+ *
+ * Every place a story is named — the homepage card, the page's own eyebrow, the
+ * footer link — reads from this file. They had drifted into five different
+ * names for the same three pieces of work, and two pages were both numbered 01.
+ */
+export const storyEyebrow = (slug: string) => {
+  const s = storyBySlug(slug);
+  return s ? `${s.num} · ${s.eyebrow}` : '';
+};
+
+/** The page's H1 — the same sentence its homepage card leads with. */
+export const storyTitle = (slug: string) => storyBySlug(slug)?.claim ?? '';
+
+/** Footer links: the same short name the story is known by everywhere else. */
+export const storyLinks = stories.map((s) => [s.slug, s.eyebrow] as [string, string]);

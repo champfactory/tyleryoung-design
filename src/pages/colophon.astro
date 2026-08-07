@@ -39,12 +39,12 @@ const proof = [
     The agent wrote the code. I defined what the site had to accomplish, what it was
     not allowed to compromise, and what had to be checked before it could ship.
   </p>
-  <ul class="proof">
+  <ul class="cells four">
     {
       proof.map(([figure, label]) => (
         <li>
-          <span class="proof-figure">{figure}</span>
-          <span class="proof-label">{label}</span>
+          <span class="cell-figure">{figure}</span>
+          <span class="cell-label">{label}</span>
         </li>
       ))
     }
@@ -81,14 +81,14 @@ const proof = [
     deck, and almost nothing could be opened.
   </p>
 
-  <div class="compare">
-    <div class="compare-row compare-heads" aria-hidden="true">
+  <div class="ledger-compare">
+    <div class="ledger-row ledger-heads" aria-hidden="true">
       <p>Before</p>
       <p>Now</p>
     </div>
     {
       comparison.map(([was, now]) => (
-        <div class="compare-row">
+        <div class="ledger-row">
           <p class="was">
             <span class="tag">Before</span>
             {was}

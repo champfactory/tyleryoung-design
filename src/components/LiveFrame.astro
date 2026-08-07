@@ -40,9 +40,11 @@ interface Props {
    */
   scale?: number;
   note?: string;
+  /** the first embed on a page loads eagerly; everything below it waits */
+  eager?: boolean;
 }
 
-const { src, host, title, ratio = '16 / 10', scale = 0.42, note } = Astro.props;
+const { src, host, title, ratio = '16 / 10', scale = 0.42, note, eager = false } = Astro.props;
 const pct = `${100 / scale}%`;
 /**
  * Logical px trimmed off each edge to hide the app's own scrollbars.
@@ -75,7 +77,7 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
     <iframe
       src={src}
       title={title}
-      loading="lazy"
+      loading={eager ? 'eager' : 'lazy'}
       referrerpolicy="no-referrer"
       scrolling="no"
       style={`width:${dimX};height:${dimY};transform:scale(${scale});`}

@@ -1,16 +1,21 @@
 ---
 import { REPO, EMAIL, YEAR as year } from '../data/site.mjs';
+import { storyLinks } from '../data/stories';
 
 /**
- * Pages can add their own links here. Related work used to sit in a block above
- * the footer with a sentence explaining each destination; a reader who has just
- * finished the case study does not need the explanation, and two stacks of links
- * one above the other read as two footers.
+ * The left column is the three case studies, on every page. Related work used to
+ * sit in a block above the footer with a sentence explaining each destination; a
+ * reader who has just finished a case study does not need the explanation, and
+ * two stacks of links one above the other read as two footers.
+ *
+ * It is not a per-page list any more. When each page chose its own, the two
+ * columns came out different lengths and the rows stopped lining up across the
+ * page.
  */
 interface Props {
   related?: [string, string][];
 }
-const { related = [] } = Astro.props;
+const { related = storyLinks } = Astro.props;
 
 /** The links this site carries on every page. */
 const site: [string, string, boolean][] = [

@@ -1,4 +1,5 @@
 ---
+import { storyEyebrow, storyTitle } from '../data/stories';
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import Reconstruction from '../components/Reconstruction.astro';
 
@@ -33,23 +34,13 @@ const flows = [
   ['Impact', ['Dashboard', 'Impact summary', 'Concept detail']],
 ];
 
-/**
- * Rendered in the footer beside the site-wide links. Footer labels are
- * destinations, not headlines — short enough to scan in a column of six.
- */
-const related = [
-  ['/ops-manager', 'Operations product'],
-  ['/how-i-design-with-ai', 'Designing with AI'],
-  ['/review-loop', 'Stakeholder review'],
-];
 ---
 
 <DocumentLayout
-  title="Designing the review layer for AI-written code"
+  title={storyTitle('/alucify')}
   metaTitle="Alucify — designing the review layer for AI-written code | Tyler Young"
   description="When an AI agent writes code, the reviewer inherits work they did not watch happen. Alucify reconstructs enough of it for a person to judge whether it should ship."
-  eyebrow="01 · AI-Native Product"
-  related={related}
+  eyebrow={storyEyebrow('/alucify')}
   meta={[
     ['Product', 'Code intelligence for reviewing AI-written changes'],
     ['Contribution', 'Design · the designer on the team that built it'],
@@ -64,12 +55,12 @@ const related = [
   </p>
   <p>I was the designer on the team that built Alucify.</p>
 
-  <ul class="strip">
+  <ul class="cells three">
     {
       questions.map(([label, q]) => (
         <li>
-          <span class="strip-label">{label}</span>
-          <span class="strip-note">{q}</span>
+          <span class="cell-label">{label}</span>
+          <span class="cell-note">{q}</span>
         </li>
       ))
     }
@@ -97,12 +88,12 @@ const related = [
     than an accounting detail on another page.
   </p>
 
-  <ul class="strip">
+  <ul class="cells three">
     {
       landing.map(([label, note]) => (
         <li>
-          <span class="strip-label">{label}</span>
-          <span class="strip-note">{note}</span>
+          <span class="cell-label">{label}</span>
+          <span class="cell-note">{note}</span>
         </li>
       ))
     }
@@ -142,12 +133,12 @@ const related = [
     plain-language explanation.
   </p>
 
-  <ul class="strip four">
+  <ul class="cells four">
     {
       severity.map(([label, note]) => (
         <li>
-          <span class="strip-label">{label}</span>
-          <span class="strip-note">{note}</span>
+          <span class="cell-label">{label}</span>
+          <span class="cell-note">{note}</span>
         </li>
       ))
     }

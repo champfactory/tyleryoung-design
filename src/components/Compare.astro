@@ -16,12 +16,17 @@ interface Props {
   afterAlt: string;
   /** what to look at, if the change is easy to miss */
   tell?: string;
+  /** the kind of decision this note produced */
+  label?: string;
+  /** one example carries the argument; it gets the room to. */
+  emphasis?: boolean;
 }
 
-const { note, before, after, beforeAlt, afterAlt, tell } = Astro.props;
+const { note, before, after, beforeAlt, afterAlt, tell, label, emphasis = false } = Astro.props;
 ---
 
-<figure class="compare">
+<figure class:list={['compare', { emphasis }]}>
+  {label && <p class="decision">{label}</p>}
   <p class="note">
     <span class="box" aria-hidden="true">☐</span>
     {note}
@@ -46,6 +51,25 @@ const { note, before, after, beforeAlt, afterAlt, tell } = Astro.props;
     margin: 0 0 40px;
     border: 1px solid var(--color-rule);
     background: var(--color-paper-raised);
+  }
+
+  /* The second example is the one that proves the page's argument, so it is the
+     one given weight — a heavier frame, not a different component. */
+  .compare.emphasis {
+    border-width: 2px;
+    border-color: var(--color-ink);
+  }
+
+  .decision {
+    margin: 0 !important;
+    padding: 11px 16px;
+    font-family: var(--font-mono) !important;
+    font-size: 10.5px !important;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-signal) !important;
+    border-bottom: 1px solid var(--color-rule);
   }
 
   .note {

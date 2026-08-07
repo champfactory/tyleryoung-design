@@ -1,4 +1,5 @@
 ---
+import { storyEyebrow, storyTitle } from '../data/stories';
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import StoryFrame from '../components/StoryFrame.astro';
 import Draft from '../components/Draft.astro';
@@ -17,10 +18,10 @@ const shapes = [
 ---
 
 <DocumentLayout
-  title="An operations product and the design system it was built from"
+  title={storyTitle('/ops-manager')}
   metaTitle="Operational software — live product and component library | Tyler Young"
   description="A working field-operations surface: status carried by shape rather than colour, and a sidebar that surfaces what changed instead of waiting to be clicked."
-  eyebrow="02 · Data-Dense B2B"
+  eyebrow={storyEyebrow('/ops-manager')}
   meta={[
     ['Live', `<a href="${APP}">atheer-next.fly.dev</a>`],
     ['Components', `<a href="${SB}">atheer-next-storybook.fly.dev</a>`],
@@ -52,7 +53,7 @@ const shapes = [
     </Draft>
   </p>
 
-  <ul class="shape-key">
+  <ul class="cells three shape-key">
     {
       shapes.map((s) => (
         <li>
