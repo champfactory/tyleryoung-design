@@ -1,0 +1,75 @@
+---
+/**
+ * One presentation for every running screen: status header, the live app, a
+ * caption saying what to inspect.
+ *
+ * The app lays out for ~1512px, so the iframe is sized as a percentage of its
+ * container and scaled back down — that way the scaled result is exactly the
+ * container's width whatever that turns out to be, and the app inside still
+ * renders its desktop layout rather than a squeezed mobile one.
+ *
+ * The header is not decoration. If the iframe is blocked or the deployment is
+ * down, the label, the domain and the link are all still there and still work —
+ * so the evidence degrades to a link rather than to a blank rectangle.
+ */
+interface Props {
+  /** hash route on the reconstruction, e.g. `dashboard` */
+  route: string;
+  /** shown in the header, uppercase */
+  label: string;
+  /** unique, descriptive iframe title */
+  title: string;
+  /** what the reader should look at */
+  caption: string;
+  /** the first embed loads eagerly; everything below it waits */
+  eager?: boolean;
+  ratio?: string;
+  scale?: number;
+}
+
+const APP = 'https://alucify-screens.fly.dev';
+const HOST = 'alucify-screens.fly.dev';
+
+const { route, label, title, caption, eager = false, ratio = '16 / 10', scale = 0.42 } = Astro.props;
+
+const src = `${APP}/#/${route}`;
+const pct = `${100 / scale}%`;
+/**
+ * Trimmed off the bottom so the app's own horizontal scrollbar falls outside the
+ * clip. The right edge is left alone: cropping it hides the vertical bar too, but
+ * takes the user-profile block with it, and clipped text is the worse defect.
+ */
+const OVERSCAN_Y = 40;
+---
+
+<figure class="recon">
+  <div class="recon-head">
+    <span class="recon-live">
+      <span class="dot" aria-hidden="true"></span>
+      Live reconstruction
+    </span>
+    <span class="recon-label">{label}</span>
+    <span class="recon-host">{HOST}</span>
+    <a class="recon-open" href={src} target="_blank" rel="noopener">
+      Open <span aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="recon-viewport" style={`aspect-ratio:${ratio}`}>
+    {/* Sits behind the iframe. Visible while it loads, and all that remains if it
+        never does — never an unexplained blank rectangle. */}
+    <p class="recon-fallback">
+      {label} — <a href={src} target="_blank" rel="noopener">open the reconstruction</a>
+    </p>
+    <iframe
+      src={src}
+      title={title}
+      loading={eager ? 'eager' : 'lazy'}
+      referrerpolicy="no-referrer"
+      scrolling="no"
+      style={`width:${pct};height:calc(${pct} + ${OVERSCAN_Y}px);transform:scale(${scale});`}
+    ></iframe>
+  </div>
+
+  <figcaption>{caption}</figcaption>
+</figure>

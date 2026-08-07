@@ -542,6 +542,343 @@ const {
     text-wrap: balance;
   }
 
+  /* ---- case-study evidence patterns ------------------------------------- */
+
+  /* The headline has no measure of its own, so a long one runs past the grid at
+     desktop widths. A ch cap on the heading itself — not the wrapper, where it
+     resolves against the body's 20px and strangles a 60px display face. */
+  .doc .head .display {
+    max-width: 17ch;
+  }
+
+  .doc .sec-eyebrow {
+    margin: 44px 0 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-signal);
+  }
+
+  .doc .prose > .sec-eyebrow + h2 {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  /* Labelled strips. Bordered cells, no shadow, no icon — the label and its one
+     line are the whole component. */
+  .doc .prose > .strip {
+    list-style: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    margin: 22px 0 30px;
+    padding: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .doc .prose > .strip > li {
+    margin: 0;
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .doc .prose > .strip > li::before {
+    content: none !important;
+  }
+
+  .doc .strip-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+
+  .doc .strip-note {
+    display: block;
+    margin-top: 4px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  /* ---- running screens ---------------------------------------------------- */
+
+  .doc .recon {
+    margin: 0 0 34px;
+    border: 1px solid var(--color-rule);
+  }
+
+  .doc .recon-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 16px;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--color-rule);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Status is a dot and a word. The dot alone would put the whole signal in a
+     colour. */
+  .doc .recon-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--color-live);
+  }
+
+  .doc .recon-live .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-live);
+    flex: none;
+  }
+
+  .doc .recon-label {
+    color: var(--color-ink);
+  }
+
+  .doc .recon-host {
+    color: var(--color-ink-3);
+    text-transform: none;
+    letter-spacing: 0.03em;
+  }
+
+  .doc .recon-open {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-ink);
+  }
+
+  .doc .recon-open:hover {
+    color: var(--color-signal);
+    border-bottom-color: var(--color-signal);
+  }
+
+  .doc .recon-viewport {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-paper-sunk);
+  }
+
+  /* Sits under the iframe: visible while it loads, and all that is left if it
+     never arrives. Never an unexplained rectangle. */
+  .doc .recon-fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    margin: 0;
+    padding: 24px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--color-ink-3);
+  }
+
+  .doc .recon iframe {
+    position: relative;
+    border: 0;
+    transform-origin: top left;
+    /* Decorative preview — the header link is the real affordance. */
+    pointer-events: none;
+    background: #ffffff;
+  }
+
+  .doc .recon figcaption {
+    padding: 13px 16px;
+    border-top: 1px solid var(--color-rule);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .doc .figma-viewport {
+    aspect-ratio: 16 / 10;
+    background: #1e1e1e;
+  }
+
+  .doc .figma-viewport iframe {
+    width: 100%;
+    height: 100%;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  /* ---- flow diagram -------------------------------------------------------- */
+
+  .doc .flows {
+    display: grid;
+    gap: 0;
+    margin: 22px 0 34px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .doc .flow {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .doc .flow-name {
+    margin: 0 0 8px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+
+  .doc .flow-steps {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0;
+    padding: 0;
+    counter-reset: none;
+  }
+
+  .doc .flow-step {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .doc .flow-step::before {
+    content: none !important;
+  }
+
+  .doc .flow-step + .flow-step::after {
+    content: none;
+  }
+
+  /* The arrow belongs between steps, so it is drawn before every step but the
+     first rather than after every step including the last. */
+  .doc .flow-step + .flow-step {
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .doc .flow-step + .flow-step::marker {
+    content: '';
+  }
+
+  .doc .flow-step + .flow-step {
+    background-image: none;
+  }
+
+  .doc .flow-steps > li + li::first-letter {
+    letter-spacing: inherit;
+  }
+
+  /* The dashboard is where three of the four flows begin — marked so the shared
+     hub is visible without a second diagram. */
+  .doc .flow-step.hub {
+    font-weight: 600;
+  }
+
+  /* ---- disclosure ---------------------------------------------------------- */
+
+  .doc .disclosure {
+    margin: 40px 0 0;
+    padding: 22px 20px 6px;
+    border-top: 1px solid var(--color-rule);
+    background: var(--color-row);
+  }
+
+  .doc .disclosure .sec-eyebrow {
+    margin-top: 0;
+    color: var(--color-ink-3);
+  }
+
+  .doc .disclosure h2 {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .doc .disclosure p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 14px;
+  }
+
+  /* ---- related ------------------------------------------------------------- */
+
+  .doc .related {
+    padding-top: 22px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .doc .related ul {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 20px;
+  }
+
+  .doc .related li {
+    margin: 0;
+    padding: 0;
+  }
+
+  .doc .related li::before {
+    content: none !important;
+  }
+
+  .doc .related .artifact {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+  }
+
+  .doc .related-note {
+    display: block;
+    margin-top: 4px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-ink-3);
+  }
+
+  @media (min-width: 700px) {
+    .doc .prose > .strip {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-bottom: 1px solid var(--color-rule);
+    }
+
+    .doc .prose > .strip.four {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .doc .prose > .strip > li {
+      border-bottom: 0;
+    }
+
+    .doc .prose > .strip.four > li:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--color-rule);
+    }
+
+    .doc .related ul {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+    }
+  }
+
   .doc .prose > h2 {
     font-family: var(--font-display);
     font-weight: 600;

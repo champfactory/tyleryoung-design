@@ -1,187 +1,314 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
-import LiveFrame from '../components/LiveFrame.astro';
-import Needs from '../components/Needs.astro';
-import Draft from '../components/Draft.astro';
+import Reconstruction from '../components/Reconstruction.astro';
 
-const APP = 'https://alucify-screens.fly.dev';
-const FIGMA =
-  'https://www.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1';
+const FIGMA = 'https://www.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1';
 const FIGMA_EMBED =
   'https://embed.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1&embed-host=share';
+
+/** The three questions the case study answers, in the order it answers them. */
+const questions = [
+  ['Reach', 'How far did the change travel?'],
+  ['Coverage', 'Which decisions did the agent address?'],
+  ['Impact', 'Where does a person need to look?'],
+];
+
+const landing = [
+  ['Blast radius', 'How much of the system may be affected?'],
+  ['Agent hours', 'How much automated work sits behind the result?'],
+  ['Token cost', 'What did this change cost to produce?'],
+];
+
+const severity = [
+  ['Blast radius', 'How far the change reaches'],
+  ['Regression risk', 'What existing behavior could break'],
+  ['Data integrity', 'What stored or transferred information is exposed'],
+  ['Backward compatibility', 'What existing use may no longer work'],
+];
+
+const flows = [
+  ['First run', ['Sign in', 'Connect source', 'Build context', 'Ready']],
+  ['Artifacts', ['Dashboard', 'Artifact', 'Audit', 'Re-audit']],
+  ['Coverage', ['Dashboard', 'Coverage summary', 'Decision detail']],
+  ['Impact', ['Dashboard', 'Impact summary', 'Concept detail']],
+];
+
+const related = [
+  [
+    '/ops-manager',
+    'A product and the system it was built from',
+    'A data-dense operations product and its inspectable component library.',
+  ],
+  [
+    '/how-i-design-with-ai',
+    'How I design with AI',
+    'The operating rules behind AI-directed design work.',
+  ],
+  ['/review-loop', 'The review loop', 'Forty-eight stakeholder notes reviewed against running code.'],
+];
 ---
 
 <DocumentLayout
-  title="A tool for reviewing code an AI agent wrote"
-  metaTitle="Alucify — designing for AI agents working on a codebase | Tyler Young"
-  description="A code-intelligence tool whose primary metrics are blast radius, agent hours and token cost — designed for people accountable for work an agent did."
+  title="Designing the review layer for AI-written code"
+  metaTitle="Alucify — designing the review layer for AI-written code | Tyler Young"
+  description="When an AI agent writes code, the reviewer inherits work they did not watch happen. Alucify reconstructs enough of it for a person to judge whether it should ship."
   eyebrow="01 · AI-Native Product"
   meta={[
-    ['Product', 'Code intelligence — “your code, flows, and intents, unified”'],
-    ['Contribution', 'All product design — every surface, every state'],
-    ['Surface', 'First run through tenured use · 20 documented states'],
+    ['Product', 'Code intelligence for reviewing AI-written changes'],
+    ['Contribution', 'All product design · every surface and state'],
+    ['Scope', '4 flows · 20 documented screens'],
     ['Status', 'Active venture · shown with the founder’s agreement'],
   ]}
 >
-  <p class="answer">
-    <Draft>
-      An AI agent writes the code. Someone still has to sign off on it. They did
-      not watch it get written, so they need to know what it touched, how much work
-      it was, and what it cost. I designed the tool that tells them.
-    </Draft>
+  <p class="opening">
+    When an AI agent writes code, the reviewer inherits work they did not watch
+    happen. They need to reconstruct what changed, which decisions were made, where
+    the risk sits, and what the work cost before they can approve it.
   </p>
+  <p>I designed Alucify to make that invisible work reviewable.</p>
 
-  <LiveFrame
-    src={`${APP}/#/dashboard`}
-    host="alucify-screens.fly.dev"
-    title="The Alucify dashboard, running"
-    note="Running now. Blast radius, agent hours and token cost are summed from the five concepts on the impact screen."
+  <ul class="strip">
+    {
+      questions.map(([label, q]) => (
+        <li>
+          <span class="strip-label">{label}</span>
+          <span class="strip-note">{q}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <Reconstruction
+    route="dashboard"
+    label="Dashboard"
+    title="Alucify dashboard reconstruction"
+    caption="The dashboard establishes the review in one view: the artifact’s status, the completeness of its reasoning, and the expected impact of the change."
+    eager
   />
 
-  <h2>The three numbers on the landing screen</h2>
+  <p class="sec-eyebrow">01 · Orientation</p>
+  <h2>The landing screen answers three questions</h2>
   <p>
-    <Draft>
-      Blast radius, agent hours, token cost. Not velocity, not lines written. You
-      see how far the change reached, how much work it was and what it cost before
-      you open anything.
-    </Draft>
+    The first screen does not celebrate how much code the agent produced. It tells
+    the reviewer how far the change reached, how much agent work it represents, and
+    what it cost.
   </p>
   <p>
-    <Draft>
-      Cost shows up again on each individual change, next to what it paid for.
-    </Draft>
-  </p>
-
-  <h2>Coverage, broken into decisions</h2>
-  <p>
-    <Draft>
-      Under the percentage is every decision behind it. Each one is named,
-      categorised as scope, architecture or data, and marked covered, partial or
-      none. Worst first, so the gaps are the first thing you see.
-    </Draft>
+    Blast radius, agent hours and token cost sit beside coverage because all four
+    affect the decision to approve the work. Cost also appears again on each
+    individual change, beside the result it paid for — operational context rather
+    than an accounting detail on another page.
   </p>
 
-  <LiveFrame
-    src={`${APP}/#/coverage`}
-    host="alucify-screens.fly.dev"
-    title="Coverage analysis, running"
-    note="Running now. The score is derived from the 27 decisions below it, and the table sorts worst-first."
+  <ul class="strip">
+    {
+      landing.map(([label, note]) => (
+        <li>
+          <span class="strip-label">{label}</span>
+          <span class="strip-note">{note}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="sec-eyebrow">02 · Coverage</p>
+  <h2>A percentage is only useful if it can be opened</h2>
+  <p>
+    An overall coverage score is easy to scan and impossible to trust on its own. I
+    made every decision behind it visible.
+  </p>
+  <p>
+    Each row names a specific decision, categorises it as scope, architecture or
+    data, and marks it covered, partial or not covered. The list sorts weakest
+    first, so the gaps set the reviewer’s agenda rather than the successes.
+  </p>
+  <p>This turns coverage from a score into a review queue.</p>
+
+  <Reconstruction
+    route="coverage"
+    label="Coverage analysis"
+    title="Alucify coverage-analysis reconstruction"
+    caption="The sample score is calculated from the 27 decisions shown below it. The table sorts incomplete decisions first, so the summary and its evidence cannot drift apart."
   />
 
-  <h2>How severity is shown</h2>
+  <p class="sec-eyebrow">03 · Severity</p>
+  <h2>The interface raises its voice only when the risk does</h2>
+  <p>Most of the product stays visually quiet. A critical change is the exception.</p>
   <p>
-    <Draft>
-      This is the one place the product raises its voice. A change marked critical
-      gets a summary and a breakdown across blast radius, regression risk, data
-      integrity and backward compatibility. Everything else stays quiet so this
-      reads as urgent.
-    </Draft>
+    Opening one reveals a written summary and a consistent breakdown across blast
+    radius, regression risk, data integrity and backward compatibility. The reviewer
+    can understand why the item is critical without decoding a colour or relying on
+    a single score.
+  </p>
+  <p>
+    Severity is carried by three signals together: a label, a visual marker, and a
+    plain-language explanation.
   </p>
 
-  <LiveFrame
-    src={`${APP}/#/impact-detail`}
-    host="alucify-screens.fly.dev"
-    title="Impact analysis concept detail, running"
-    note="Running now. Click a concept name in the table to open it, or use prev and next inside the panel."
+  <ul class="strip four">
+    {
+      severity.map(([label, note]) => (
+        <li>
+          <span class="strip-label">{label}</span>
+          <span class="strip-note">{note}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <Reconstruction
+    route="impact-detail"
+    label="Impact detail"
+    title="Alucify impact-detail reconstruction"
+    caption="Open a concept to see the summary and its four severity dimensions. Previous and next controls move the reviewer through the queue without returning to the table."
   />
 
-  <h2>Empty, loading and stale states</h2>
+  <p class="sec-eyebrow">04 · System states</p>
+  <h2>Trust is designed in the incomplete states</h2>
   <p>
-    <Draft>
-      I designed twenty screens. Many are the ones usually left to engineering to
-      improvise: an integration still running, an audit gone stale, a dashboard
-      with nothing in it yet. People spend most of their time in these states, not
-      in the full one.
-    </Draft>
+    The full dashboard is only one moment in the product. I designed twenty screens
+    covering first run, integration, daily review, stale results and re-audit.
+  </p>
+  <p>
+    An analysis product has to explain not only what it knows, but when it is still
+    working and when its answer should no longer be trusted.
   </p>
 
-  <div class="pair">
-    <LiveFrame
-      src={`${APP}/#/artifact-reaudit`}
-      host="alucify-screens.fly.dev"
-      title="An integrated artifact with a deprecated audit, running"
-      note="The product says its own analysis is out of date, and puts the fix beside the admission."
-    />
-    <LiveFrame
-      src={`${APP}/#/in-progress`}
-      host="alucify-screens.fly.dev"
-      title="Integration in progress, running"
-      note="It tells you to close the tab. The work carries on without you watching it."
-    />
+  <h3>When the answer is out of date</h3>
+  <p>
+    A stale audit does not quietly remain on screen as if it were current. The
+    product states that the result has been deprecated and places the action that
+    fixes it beside the warning.
+  </p>
+
+  <Reconstruction
+    route="artifact-reaudit"
+    label="Stale audit"
+    title="Alucify stale-audit reconstruction"
+    caption="The interface admits that its analysis is no longer current and pairs that admission with the re-audit action."
+  />
+
+  <h3>When the product is still working</h3>
+  <p>
+    Integration continues without requiring the user to supervise it. The state
+    explains what is happening, what will end the wait, and how the user will know
+    when the result is ready.
+  </p>
+
+  <Reconstruction
+    route="in-progress"
+    label="Integration in progress"
+    title="Alucify integration-in-progress reconstruction"
+    caption="The product explains the background work, promises an email when it is complete, and tells the user they can close the tab."
+  />
+
+  <p class="sec-eyebrow">05 · The complete system</p>
+  <h2>Twenty screens across four connected flows</h2>
+  <p>The product begins before the dashboard.</p>
+  <p>
+    The first flow moves from sign-in to a code context the product can reason
+    about. The remaining three begin from the dashboard and branch into artifacts,
+    coverage and impact. Returning those paths to one shared hub keeps the product
+    understandable as its analysis deepens.
+  </p>
+
+  <div class="flows">
+    <p class="sr-only">
+      Four flows. First run goes from sign in, to connect source, to build context,
+      to ready. The other three each begin at the dashboard: artifacts continues to
+      artifact, then audit, then re-audit; coverage continues to the coverage
+      summary and then a decision detail; impact continues to the impact summary and
+      then a concept detail.
+    </p>
+    {
+      flows.map(([name, steps]) => (
+        <div class="flow" aria-hidden="true">
+          <p class="flow-name">{name}</p>
+          <ol class="flow-steps">
+            {steps.map((step) => (
+              <li class:list={['flow-step', { hub: step === 'Dashboard' }]}>{step}</li>
+            ))}
+          </ol>
+        </div>
+      ))
+    }
   </div>
 
-  <h2>All twenty screens</h2>
-  <p>
-    <Draft>
-      Four flows. Getting set up runs from signing in to a context the product can
-      reason about. The other three start on the same dashboard — artifacts,
-      coverage and impact are the three ways out of it. Open the file to zoom into
-      any of them.
-    </Draft>
-  </p>
-
-  {/* Figma's embed, so a reader can pan and zoom the twenty frames without
-      leaving the page. It needs the file shared as "anyone with the link can
-      view"; the link underneath is what they fall back to if it is not. */}
-  <figure class="figma">
-    <iframe
-      src={FIGMA_EMBED}
-      title="The Alucify design file — twenty frames across four flows"
-      loading="lazy"
-      referrerpolicy="no-referrer"
-      allowfullscreen
-    ></iframe>
-    <figcaption>
-      20 frames · 4 flows ·{' '}
-      <a href={FIGMA} target="_blank" rel="noopener">
-        open in Figma <span aria-hidden="true">→</span>
+  <figure class="recon figma">
+    <div class="recon-head">
+      <span class="recon-label">Complete design file</span>
+      <span class="recon-host">20 screens · 4 flows</span>
+      <a class="recon-open" href={FIGMA} target="_blank" rel="noopener">
+        Open in Figma <span aria-hidden="true">→</span>
       </a>
+    </div>
+    <div class="recon-viewport figma-viewport">
+      <p class="recon-fallback">
+        Complete design file — <a href={FIGMA} target="_blank" rel="noopener">open in Figma</a>
+      </p>
+      <iframe
+        src={FIGMA_EMBED}
+        title="The Alucify design file — twenty screens across four flows"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        allowfullscreen></iframe>
+    </div>
+    <figcaption>
+      The complete file includes first run, the dashboard, artifact review, coverage
+      analysis, impact analysis, and the loading, empty, stale and re-audit states
+      between them.
     </figcaption>
   </figure>
 
-  <h2>What I owned</h2>
+  <p class="sec-eyebrow">06 · Ownership</p>
+  <h2>What I designed</h2>
   <p>
-    <Draft>
-      All of the design. Every screen and every state — the metrics on the landing
-      screen, the coverage model, the severity system, and the twenty states from
-      first run to daily use.
-    </Draft>
+    I owned all product design: the information architecture, the landing metrics,
+    the coverage model, the severity system, and every state from first connection
+    through daily review.
+  </p>
+  <p>
+    The work required more than arranging data. It required deciding what evidence a
+    reviewer needs, how summaries remain traceable to their underlying decisions,
+    and how the product communicates uncertainty without surrendering authority.
   </p>
 
-  <div class="aside">
+  <p class="pull-line">
+    The design problem was not helping an agent write more code. It was helping a
+    person decide whether that code should ship.
+  </p>
+
+  <div class="disclosure">
+    <p class="sec-eyebrow">About the public version</p>
+    <h2>What you are looking at</h2>
+    <p>This work is shown with the founder’s agreement.</p>
     <p>
-      Shown with the founder's agreement. What is running above is the design
-      rebuilt as a working app, not the shipping product — I built it so these
-      screens could be opened rather than looked at. The tenant, the people and
-      every figure in it are invented; the numbers reconcile because they are
-      computed from the rows beneath them.
+      The screens above are a working reconstruction of my design, built so the
+      states can be opened and used rather than viewed only as images. It is not the
+      shipping product.
+    </p>
+    <p>
+      The tenant, people and measurements are invented. The sample values reconcile
+      because the summaries are computed from the rows beneath them; they are not
+      customer results.
     </p>
   </div>
+
+  <section slot="after" class="shell related" aria-labelledby="related-title">
+    <p class="sec-eyebrow">Related</p>
+    <h2 id="related-title" class="related-head">More AI-native product work</h2>
+    <ul>
+      {
+        related.map(([href, label, note]) => (
+          <li>
+            <a class="artifact" href={href}>
+              {label}
+              <span aria-hidden="true">→</span>
+            </a>
+            <span class="related-note">{note}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </DocumentLayout>
-
-<style>
-  .answer {
-    font-size: 24px !important;
-    line-height: 1.52 !important;
-    margin-bottom: 36px !important;
-  }
-
-  .pair {
-    display: grid;
-    gap: 20px;
-    margin-bottom: 34px;
-  }
-
-  /* These are LiveFrames now, not Shots. The stale selector left each one
-     carrying the 34px bottom margin meant for prose, inside a grid that already
-     owns the spacing. */
-  .pair :global(.live) {
-    margin-bottom: 0;
-  }
-
-  @media (min-width: 1000px) {
-    .pair {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-</style>
