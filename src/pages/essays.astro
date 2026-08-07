@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { essayGroups } from '../data/essayGroups';
-import { stories } from '../data/stories';
 
 const essays = await getCollection('essays');
 const count = essays.length;
@@ -10,9 +9,6 @@ const words = ['zero','one','two','three','four','five','six','seven','eight','n
 const spelled = words[count] ?? String(count);
 const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
 
-/** Which story each essay feeds, so the index shows the connection both ways. */
-const storyFor = new Map<string, (typeof stories)[number]>();
-for (const s of stories) for (const slug of s.leadership) storyFor.set(slug, s);
 ---
 
 <BaseLayout
@@ -47,17 +43,11 @@ for (const s of stories) for (const slug of s.leadership) storyFor.set(slug, s);
             <ul>
               {group.slugs.map((slug) => {
                 const e = bySlug.get(slug);
-                const s = storyFor.get(slug);
                 return e ? (
                   <li>
                     <a class="link" href={`/${slug}`}>
                       {e.data.title}
                     </a>
-                    {s && (
-                      <span class="feeds">
-                        feeds <a href={s.slug}>{s.eyebrow}</a>
-                      </span>
-                    )}
                   </li>
                 ) : null;
               })}
@@ -74,15 +64,16 @@ for (const s of stories) for (const slug of s.leadership) storyFor.set(slug, s);
     padding-top: 88px;
   }
 
+  /* No max-width on either. A 20ch cap broke a six-word headline over three
+     lines and left the right half of the page empty; the lede did the same at
+     56ch. Both now run the shell's measure, so the block reads as one edge. */
   h1 {
     font-size: clamp(32px, 5.2vw, 52px);
     margin: 16px 0 0;
-    max-width: 20ch;
   }
 
   .lede {
     margin: 26px 0 0;
-    max-width: 56ch;
     font-size: 19px;
     line-height: 1.6;
     color: var(--color-ink-2);
@@ -130,7 +121,6 @@ for (const s of stories) for (const slug of s.leadership) storyFor.set(slug, s);
     font-size: 16px;
     line-height: 1.55;
     color: var(--color-ink-3);
-    max-width: 34ch;
   }
 
   ul {
@@ -141,37 +131,29 @@ for (const s of stories) for (const slug of s.leadership) storyFor.set(slug, s);
     gap: 16px;
   }
 
+  /* An index row: one rule per title, running the full column. The rule is what
+     fills the measure now that nothing sits opposite the title. */
   li {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 6px 14px;
+    border-bottom: 1px solid var(--color-rule);
+    padding-bottom: 12px;
   }
 
   li a.link {
     font-size: 20px;
     line-height: 1.4;
+    border-bottom: 0;
   }
 
-  .feeds {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--color-ink-3);
-    white-space: nowrap;
-  }
-
-  .feeds a {
+  li:hover a.link {
     color: var(--color-signal);
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
   }
+
+
 
   @media (min-width: 810px) {
     .group {
       display: grid;
-      grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
       gap: 40px;
     }
 
