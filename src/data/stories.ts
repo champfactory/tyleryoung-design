@@ -75,8 +75,15 @@ export const storyEyebrow = (slug: string) => {
   return s ? `${s.num} · ${s.eyebrow}` : '';
 };
 
-/** The page's H1 — the same sentence its homepage card leads with. */
-export const storyTitle = (slug: string) => storyBySlug(slug)?.claim ?? '';
+/**
+ * The page's H1 — the same sentence its homepage card leads with.
+ *
+ * One rule for every title on this site: a first-person claim, no terminal
+ * punctuation. The card keeps its full stop because it sits in a paragraph of
+ * cards; a headline does not need one, and half of them having one was most of
+ * what made the set look unplanned.
+ */
+export const storyTitle = (slug: string) => (storyBySlug(slug)?.claim ?? '').replace(/\.$/, '');
 
 /** Footer links: the same short name the story is known by everywhere else. */
 export const storyLinks = stories.map((s) => [s.slug, s.eyebrow] as [string, string]);

@@ -1,5 +1,5 @@
 ---
-import { storyEyebrow } from '../data/stories';
+import { storyEyebrow, storyTitle } from '../data/stories';
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import LiveFrame from '../components/LiveFrame.astro';
 import FeedbackTable from '../components/FeedbackTable.astro';
@@ -59,7 +59,7 @@ const results = [
 ---
 
 <DocumentLayout
-  title="AI made the next version faster. People still had to understand each other."
+  title={storyTitle('/review-loop')}
   metaTitle="Human-in-the-loop design — a stakeholder review on running code | Tyler Young"
   description="A stakeholder reviewed a running application and returned forty-eight notes. AI made responding fast; it did not make the notes unambiguous. Both builds are still deployed."
   eyebrow={storyEyebrow('/review-loop')}
