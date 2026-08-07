@@ -59,22 +59,10 @@ const {
       <p class="label">{eyebrow}</p>
       <h1 class="display">{titleDraft ? <Draft>{title}</Draft> : title}</h1>
       {deck && <p class="deck">{deck}</p>}
-      {
-        !description && (
-          <p class="meta-warning">
-          </p>
-        )
-      }
     </header>
 
     <div class="columns">
       <aside class="rail" aria-label="Metadata">
-        {
-          metaWarning && (
-            <p class="meta-flag">
-            </p>
-          )
-        }
         <dl>
           {
             meta.map(([label, value]) => (
@@ -100,16 +88,21 @@ const {
 <style is:global>
   /* Global rather than scoped: the prose styles have to reach markdown rendered
      by <Content />, and both essays and hand-authored case studies use them. */
+  /* Every page's first line lands at the same height. This was 64px here and
+     88px on /essays, and the eyebrow's default paragraph margin pushed the
+     document pages down further still — so titles jumped vertically whenever you
+     moved between the two. One token, and the eyebrow's margin zeroed. */
   .doc {
-    padding-top: 64px;
+    padding-top: var(--space-page-top);
+  }
+
+  .doc .head .label {
+    margin-top: 0;
   }
 
   .doc .head .display {
     font-size: clamp(34px, 6.2vw, 60px);
     margin: 16px 0 0;
-    /* ch on the heading itself — on the wrapper it resolves against the body's
-       19px and clamps a 60px headline to a ~250px column. */
-    max-width: 22ch;
   }
 
   .doc .deck {

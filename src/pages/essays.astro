@@ -61,7 +61,11 @@ const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
 
 <style>
   .page {
-    padding-top: 88px;
+    padding-top: var(--space-page-top);
+  }
+
+  .page > .label {
+    margin-top: 0;
   }
 
   /* No max-width on either. A 20ch cap broke a six-word headline over three

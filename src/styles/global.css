@@ -47,6 +47,9 @@
      dark ink at small mono sizes and let the accent sit on it unchanged. Canary
      could not do the second part — the accent had to be darkened just for the
      header. This blue clears it at 5.87, so there is one accent again. */
+  /* Where the first line of every page sits, measured from under the header. */
+  --space-page-top: 88px;
+
   --color-header: #d6e9f8;
   --color-header-rule: #a3c6e2;
 

@@ -45,16 +45,19 @@ interface Props {
 const { src, host, title, ratio = '16 / 10', scale = 0.42, note } = Astro.props;
 const pct = `${100 / scale}%`;
 /**
- * Logical px trimmed off the right and bottom edges.
+ * Logical px trimmed off each edge to hide the app's own scrollbars.
  *
- * Measured, not guessed: with overlay scrollbars disabled, 28 still left a
- * sliver of the app's inner scroll container's bar at the clip boundary and 40
- * was clean. 40 was the smallest clean value, so that is what this is. It costs ~17 visible
- * px off the right edge, which clips the tail of the user-profile block in the
- * app header — the least-bad trade for a specimen with no stray bars.
+ * Asymmetric on purpose. Trimming the bottom removes the horizontal bar, which
+ * ran the full width of the specimen and was the obvious one; nothing sits along
+ * that edge to lose. Trimming the right removed the vertical bar too, but the
+ * app's user-profile block is flush right, so it cropped a name mid-word — a
+ * visible defect traded for a ~3px bar at this scale. The right edge is left
+ * alone.
  */
-const OVERSCAN = 40;
-const dim = `calc(${pct} + ${OVERSCAN}px)`;
+const OVERSCAN_X = 0;
+const OVERSCAN_Y = 40;
+const dimX = `calc(${pct} + ${OVERSCAN_X}px)`;
+const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
 ---
 
 <figure class="live">
@@ -73,7 +76,7 @@ const dim = `calc(${pct} + ${OVERSCAN}px)`;
       loading="lazy"
       referrerpolicy="no-referrer"
       scrolling="no"
-      style={`width:${dim};height:${dim};transform:scale(${scale});`}
+      style={`width:${dimX};height:${dimY};transform:scale(${scale});`}
     ></iframe>
   </div>
 

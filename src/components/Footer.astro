@@ -4,78 +4,45 @@ import { REPO, EMAIL, YEAR as year } from '../data/site.mjs';
 
 <footer class="footer">
   <div class="shell inner">
-    <p class="built">
-      {/* The one sentence that makes this site part of the evidence. */}
-      Built the way the work above was built: I directed the agent, reviewed what
-      came back, and shipped it.
-    </p>
-
-    <p class="stack">
-      Astro · React · Tailwind · static output · no client JavaScript on content pages
-    </p>
-
-    {/* One row, one baseline. This used to be two columns with the ends
-        right-aligned against a left-aligned block, so nothing lined up with
-        anything and the eye had two starts to find. */}
-    <p class="ends">
-      <a class="artifact" href="/colophon">
-        How this site is built
-        <span aria-hidden="true">→</span>
-      </a>
-      <a class="artifact" href={REPO} target="_blank" rel="noopener">
-        Source
-        <span aria-hidden="true">→</span>
-      </a>
-      <a class="artifact" href={`mailto:${EMAIL}`}>
-        {EMAIL}
-        <span aria-hidden="true">→</span>
-      </a>
-      <span class="year">© {year} Tyler Young</span>
-    </p>
+    {/* Three destinations and a copyright, right-aligned. The colophon link is
+        what carries the built-with-my-own-workflow claim now — the sentence that
+        used to sit here made the same point in prose, and the stack line beside
+        it named tools nobody was going to act on. */}
+    <a class="artifact" href="/colophon">
+      How this site is built
+      <span aria-hidden="true">→</span>
+    </a>
+    <a class="artifact" href={REPO} target="_blank" rel="noopener">
+      Source
+      <span aria-hidden="true">→</span>
+    </a>
+    <a class="artifact" href={`mailto:${EMAIL}`}>
+      {EMAIL}
+      <span aria-hidden="true">→</span>
+    </a>
+    <p class="year">© {year} Tyler Young</p>
   </div>
 </footer>
 
 <style>
-  .footer {
+  /* Element selectors, not `.inner`. A scoped class rule on this wrapper did not
+     apply — the same thing happened to the header's `.statement` — and the links
+     fell back to inline flow, running together on one line at the left edge. */
+  footer {
     margin-top: 96px;
     padding-block: 32px 56px;
   }
 
-  .built {
-    margin: 0 0 10px;
-    max-width: 60ch;
-    font-size: 19px;
-    line-height: 1.55;
-  }
-
-  .stack,
-  .year {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    color: var(--color-ink-3);
-  }
-
-  .stack {
-    margin: 0;
-    line-height: 1.6;
-  }
-
-  .ends {
+  footer > div {
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 14px 26px;
-    margin: 26px 0 0;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 18px;
   }
 
-  .year {
-    margin-left: auto;
-  }
-
-  @media (max-width: 700px) {
-    .year {
-      margin-left: 0;
-    }
+  footer p {
+    margin: 6px 0 0;
+    font-size: 19px;
+    color: var(--color-ink);
   }
 </style>
