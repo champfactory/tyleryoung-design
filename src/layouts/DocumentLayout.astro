@@ -29,6 +29,7 @@ interface Props {
   eyebrow: string;
   meta: MetaPair[];
   current?: string;
+  related?: [string, string][];
 }
 
 const {
@@ -42,6 +43,7 @@ const {
   eyebrow,
   meta,
   current,
+  related,
 } = Astro.props;
 ---
 
@@ -50,6 +52,7 @@ const {
   description={description}
   descriptionDraft={descriptionDraft}
   current={current}
+  related={related}
 >
   <article class="shell doc">
     <header class="head">
@@ -854,13 +857,6 @@ const {
   }
 
   .doc .disclosure .sec-eyebrow,
-  .doc .related .sec-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-  }
 
   .doc .disclosure .sec-eyebrow {
     margin-top: 0;
@@ -878,43 +874,6 @@ const {
     margin: 0 0 14px;
   }
 
-  /* ---- related ------------------------------------------------------------- */
-
-  .doc .related {
-    padding-top: 22px;
-    border-top: 1px solid var(--color-rule);
-  }
-
-  .doc .related ul {
-    list-style: none;
-    margin: 16px 0 0;
-    padding: 0;
-    display: grid;
-    gap: 20px;
-  }
-
-  .doc .related li {
-    margin: 0;
-    padding: 0;
-  }
-
-  .doc .related li::before {
-    content: none !important;
-  }
-
-  .doc .related .artifact {
-    display: inline-flex;
-    align-items: center;
-    min-height: 28px;
-  }
-
-  .doc .related-note {
-    display: block;
-    margin-top: 4px;
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--color-ink-3);
-  }
 
   @media (min-width: 700px) {
     .doc .prose > .strip {
@@ -932,11 +891,6 @@ const {
 
     .doc .prose > .strip.four > li:nth-child(-n + 2) {
       border-bottom: 1px solid var(--color-rule);
-    }
-
-    .doc .related ul {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 26px;
     }
   }
 

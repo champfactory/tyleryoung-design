@@ -9,9 +9,10 @@ interface Props {
   /** true when the description is copy I drafted, not copy Tyler approved */
   descriptionDraft?: boolean;
   current?: string;
+  related?: [string, string][];
 }
 
-const { title, description, descriptionDraft, current } = Astro.props;
+const { title, description, descriptionDraft, current, related } = Astro.props;
 
 // The live site ships "Made with Framer" on every essay page. Rather than invent
 // copy, emit an obvious marker so the gap shows up in view-source and in an audit.
@@ -45,7 +46,7 @@ const metaDescription = description ?? '[NEEDS: meta description]';
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer related={related} />
   </body>
 </html>
 

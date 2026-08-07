@@ -1,5 +1,16 @@
 ---
 import { REPO, EMAIL, YEAR as year } from '../data/site.mjs';
+
+/**
+ * Pages can add their own links here. Related work used to sit in a block above
+ * the footer with a sentence explaining each destination; a reader who has just
+ * finished the case study does not need the explanation, and two stacks of links
+ * one above the other read as two footers.
+ */
+interface Props {
+  related?: [string, string][];
+}
+const { related = [] } = Astro.props;
 ---
 
 <footer class="footer">
@@ -8,6 +19,14 @@ import { REPO, EMAIL, YEAR as year } from '../data/site.mjs';
         what carries the built-with-my-own-workflow claim now — the sentence that
         used to sit here made the same point in prose, and the stack line beside
         it named tools nobody was going to act on. */}
+    {
+      related.map(([href, label]) => (
+        <a class="artifact" href={href}>
+          {label}
+          <span aria-hidden="true">→</span>
+        </a>
+      ))
+    }
     <a class="artifact" href="/colophon">
       How this site is built
       <span aria-hidden="true">→</span>

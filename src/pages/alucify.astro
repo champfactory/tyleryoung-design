@@ -33,18 +33,11 @@ const flows = [
   ['Impact', ['Dashboard', 'Impact summary', 'Concept detail']],
 ];
 
+/** Rendered in the footer beside the site-wide links, without descriptions. */
 const related = [
-  [
-    '/ops-manager',
-    'A product and the system it was built from',
-    'A data-dense operations product and its inspectable component library.',
-  ],
-  [
-    '/how-i-design-with-ai',
-    'How I design with AI',
-    'The operating rules behind AI-directed design work.',
-  ],
-  ['/review-loop', 'The review loop', 'Forty-eight stakeholder notes reviewed against running code.'],
+  ['/ops-manager', 'A product and the system it was built from'],
+  ['/how-i-design-with-ai', 'How I design with AI'],
+  ['/review-loop', 'The review loop'],
 ];
 ---
 
@@ -53,6 +46,7 @@ const related = [
   metaTitle="Alucify — designing the review layer for AI-written code | Tyler Young"
   description="When an AI agent writes code, the reviewer inherits work they did not watch happen. Alucify reconstructs enough of it for a person to judge whether it should ship."
   eyebrow="01 · AI-Native Product"
+  related={related}
   meta={[
     ['Product', 'Code intelligence for reviewing AI-written changes'],
     ['Contribution', 'Design · the designer on the team that built it'],
@@ -295,21 +289,4 @@ const related = [
     </p>
   </div>
 
-  <section slot="after" class="shell related" aria-labelledby="related-title">
-    <p class="sec-eyebrow">Related</p>
-    <h2 id="related-title" class="related-head">More AI-native product work</h2>
-    <ul>
-      {
-        related.map(([href, label, note]) => (
-          <li>
-            <a class="artifact" href={href}>
-              {label}
-              <span aria-hidden="true">→</span>
-            </a>
-            <span class="related-note">{note}</span>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
 </DocumentLayout>
