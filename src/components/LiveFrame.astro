@@ -15,10 +15,14 @@
  * Not a screenshot: if the deployment goes down, this goes blank — the correct
  * failure mode for something presented as evidence.
  *
- * scrolling="no" because the embedded app draws its own scrollbars, and at this
- * scale they render as stray bars along two edges of the specimen. Nothing is
- * lost by suppressing them: the frame is pointer-events:none, so they were never
- * usable — the adjacent link is how you actually get into the app.
+ * Two things suppress the app's scrollbars, because they are two different
+ * scrollbars. scrolling="no" stops the *document* scrolling, which also pins the
+ * app to the top of its layout. But the app's main region is its own scroll
+ * container, and its bars sit at that element's edges where scrolling="no"
+ * cannot reach — so the iframe is also overscanned by OVERSCAN logical pixels in
+ * each axis, pushing those edges past the clip. Nothing usable is lost: the
+ * frame is pointer-events:none, so the bars were never draggable, and the only
+ * content hidden is the strip the bars themselves occupied.
  */
 interface Props {
   src: string;
@@ -40,6 +44,17 @@ interface Props {
 
 const { src, host, title, ratio = '16 / 10', scale = 0.42, note } = Astro.props;
 const pct = `${100 / scale}%`;
+/**
+ * Logical px trimmed off the right and bottom edges.
+ *
+ * Measured, not guessed: with overlay scrollbars disabled, 28 still left a
+ * sliver of the app's inner scroll container's bar at the clip boundary and 40
+ * was clean. 40 was the smallest clean value, so that is what this is. It costs ~17 visible
+ * px off the right edge, which clips the tail of the user-profile block in the
+ * app header — the least-bad trade for a specimen with no stray bars.
+ */
+const OVERSCAN = 40;
+const dim = `calc(${pct} + ${OVERSCAN}px)`;
 ---
 
 <figure class="live">
@@ -58,7 +73,7 @@ const pct = `${100 / scale}%`;
       loading="lazy"
       referrerpolicy="no-referrer"
       scrolling="no"
-      style={`width:${pct};height:${pct};transform:scale(${scale});`}
+      style={`width:${dim};height:${dim};transform:scale(${scale});`}
     ></iframe>
   </div>
 
