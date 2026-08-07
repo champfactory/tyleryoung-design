@@ -34,6 +34,10 @@ I mentored the team early that “good enough” is a deliberate double standard
 
 Designers learned when to challenge stakeholder inputs and how to reframe them. Once they felt they had permission, the obligation to question took hold.
 
+<figure class="essay-fig">
+  <img src="/work/essays/how-i-built-culture-around-paradox/fig-1.svg" alt="Before and after table on team decision maturity. Problem Framing moves from accepted as given to questioned and reframed, Team Alignment from rushing to solutions to slowing down to align first, Team Rigor from avoiding disagreement to embracing structured debate, Delivery Mindset from measured by output to measured by business value, and Scope Decisions from saying yes by default to making tradeoffs about scope." loading="lazy" decoding="async" />
+</figure>
+
 ## Key Outcomes
 
 1. Prioritizing problem definition gave teams permission to question assumptions

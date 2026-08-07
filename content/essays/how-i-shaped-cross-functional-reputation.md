@@ -32,6 +32,14 @@ I introduced a development model that prioritized cross-functional fluency rathe
 
 As designers advanced, their growth was measured by how they shaped direction, not just by what they delivered. Junior team members began speaking with clarity, earning trust, and contributing meaningfully to planning.
 
+<figure class="essay-fig">
+  <img src="/work/essays/how-i-shaped-cross-functional-reputation/fig-1.svg" alt="A five-stage loop running upward and cycling back, captioned growth loop: from structure to culture. Growth Paths clarify roles and build confidence. Confidence develops through strategic practice. Strategic Practice creates appetite for mentorship. Mentorship shapes cultural models. Culture modeling prompts the team to question what advancement looks like, which refines growth paths again." loading="lazy" decoding="async" />
+</figure>
+
+<figure class="essay-fig">
+  <img src="/work/essays/how-i-shaped-cross-functional-reputation/fig-2.svg" alt="Before and after table on team strategic maturity. Execution moves from taking assignments to co-defining problems, Options Framing from waiting for definition to contributing to frameworks, Recommendation Advocacy from deferred decision-making to co-owned decisions, Systems Influence from working within process limits to inspiring process improvements, and Culture Modeling from a focus on speed and accuracy to being rewarded for directional impact." loading="lazy" decoding="async" />
+</figure>
+
 ## Key Outcomes
 
 1. Cross-functional fluency became a promotable team strength
