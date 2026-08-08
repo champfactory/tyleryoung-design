@@ -13,13 +13,13 @@ description: >-
   Restructuring a team of specialists into product design generalists during a downturn, and finding it made the team faster.
 descriptionDraft: true
 contribution: >-
-  Built a global design system adopted across four functions, enabling consistent delivery and faster execution at scale
+  Rebuilt a specialist team into product-design generalists who own work from framing through delivery
 role: >-
   Led in partnership with senior leadership
 scope: >-
   Internal and Cross Functional Process Improvements
 takeaway: >-
-  Transformed a design system into infrastructure that teams relied on to move faster and ship with clarity
+  Junior generalists delivered what senior specialists had handled, with greater speed and fewer dependencies
 ---
 
 ## The Challenge

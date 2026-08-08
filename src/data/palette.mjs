@@ -14,7 +14,7 @@ export const TOKENS = {
   'paper-raised': '#ffffff',
   'paper-sunk': '#edeae1',
   row: '#ffffff',
-  ink: '#1a1a18',
+  ink: '#3B2923',
   'ink-2': '#55534b',
   'ink-3': '#6b6961',
   rule: '#d0ccbe',

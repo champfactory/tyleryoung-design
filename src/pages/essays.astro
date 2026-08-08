@@ -1,168 +1,426 @@
 ---
-import Display from '../components/Display.astro';
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { essayGroups } from '../data/essayGroups';
+import Display from '../components/Display.astro';
 
-const essays = await getCollection('essays');
-const count = essays.length;
-const words = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];
-const spelled = words[count] ?? String(count);
-const bySlug = new Map(essays.map((e) => [e.data.slug, e]));
+/**
+ * Three moves, two stories each. The order is the argument: change the language
+ * decisions are made in, encode the standard they must satisfy, then grow the
+ * people who can operate there.
+ */
+const sections = [
+  {
+    title: 'Change the planning conversation',
+    intro:
+      'Design cannot influence strategy if its reasoning becomes legible only after priorities have been set. I gave teams shared ways to connect user needs with business value and to expose the cost of complexity before either became expensive to change.',
+    conclusion:
+      'Design moved upstream when it improved the quality of the decision — not merely the presentation of the proposal.',
+    cards: [
+      {
+        lever: 'Value',
+        title: 'Give design a language the business can use',
+        summary:
+          'Design proposals were being judged as visual improvements because the value behind them remained implicit. I introduced a taxonomy of work, a map to business metrics, and a rubric for evaluating user value, business value, implementation effort, and risk.',
+        evidence: 'Executives began referencing the resulting design levers in funding meetings.',
+        link: 'Three models that tied design to business metrics',
+        href: '/how-i-translated-design-work',
+        fig: '/work/essays/how-i-translated-design-work/fig-2.svg',
+        alt: 'Two-by-two placing the four business levers: efficiency in operation and now, growth in operation and future, retention in customer and now, strategic alignment in customer and future.',
+      },
+      {
+        lever: 'Scope',
+        title: 'Make complexity part of the cost',
+        summary:
+          'Teams agreed that simplicity mattered but had no shared way to defend it. I introduced a complexity budget that measured decision, attention, and orientation load — giving product, research, design, and engineering a common basis for reducing scope before overbuild reached the interface.',
+        evidence: 'The conversation moved from polishing complexity to questioning whether it belonged.',
+        link: 'A complexity budget for scope decisions',
+        href: '/how-i-managed-ux-complexity',
+        fig: '/work/essays/how-i-managed-ux-complexity/fig-2.svg',
+        alt: 'Heat map scoring four product flows against decision, attention and orientation load, the heaviest cells shaded darkest.',
+      },
+    ],
+  },
+  {
+    title: 'Turn standards into shared infrastructure',
+    intro:
+      'A standard does not scale because a leader declares it. It scales when other teams find it useful enough to depend on. I built systems that clarified how work should be made and where continued investment stopped returning value.',
+    conclusion:
+      'Quality became easier to hold when the standard existed outside any one review or reviewer.',
+    cards: [
+      {
+        lever: 'Coherence',
+        title: 'Build a system teams choose to adopt',
+        summary:
+          'Product quality was drifting across siloed teams, conflicting standards, and repeated handoff failures. I led a global design system of more than 200 components that became a shared operating layer across product, engineering, creative, marketing, and planning.',
+        evidence:
+          'Adoption spread through usefulness rather than mandate. Product managers learned the system, engineering mirrored its foundations, and teams began planning around its availability.',
+        link: 'A design system five teams chose to adopt',
+        href: '/how-i-scaled-design-efficiency',
+        fig: '/work/essays/how-i-scaled-design-efficiency/fig-1.svg',
+        alt: 'Three layers of design-system trust: shared language produces alignment, shared structure produces consistency, shared infrastructure produces velocity.',
+      },
+      {
+        lever: 'Restraint',
+        title: 'Establish a defensible stopping point',
+        summary:
+          'Teams rushed through problem definition, then pursued perfection during execution. I reframed “good enough” as a deliberate double standard: a threshold to exceed while defining the problem and one to defend once the work had delivered its intended value.',
+        evidence:
+          'Designers gained both permission and an obligation to challenge assumptions, align on success, and stop building when additional work no longer improved the outcome.',
+        link: 'Knowing when to stop building',
+        href: '/how-i-built-culture-around-paradox',
+        fig: '/work/essays/how-i-built-culture-around-paradox/fig-1.svg',
+        alt: 'Before and after table on team decision maturity: problem framing, alignment on success and knowing when to stop each move from implicit to deliberate.',
+      },
+    ],
+  },
+  {
+    title: 'Grow designers into decision-makers',
+    intro:
+      'Moving design upstream is meaningless if only the design leader is allowed to operate there. I changed roles, ownership, and advancement so designers could carry work from framing through delivery — and grow by influencing direction rather than merely increasing output.',
+    conclusion:
+      'The team’s influence grew because judgment became something designers could practice, demonstrate, and be rewarded for.',
+    cards: [
+      {
+        lever: 'Ownership',
+        title: 'Replace specialist handoffs with product ownership',
+        summary:
+          'After the pandemic reshaped the business and reduced the team, a specialist structure built for long, orchestrated initiatives became too brittle. I rebuilt the group around junior product-design generalists and coached them to own the complete process.',
+        evidence:
+          'Junior designers delivered work previously handled by senior specialists with greater speed and fewer dependencies, then grew into cross-functional planning and mentorship.',
+        link: 'Rebuilding the team from specialists to generalists',
+        href: '/how-i-unlocked-team-trust',
+        fig: '/work/essays/how-i-unlocked-team-trust/fig-1.svg',
+        alt: 'Before and after diagram of the team’s shape: separate specialist groups become one ring of product-design generalists around the product.',
+      },
+      {
+        lever: 'Growth',
+        title: 'Promote designers for the direction they shape',
+        summary:
+          'Execution skill dominated the career path, leaving capable designers outside strategic conversations. I introduced a development model that rewarded problem framing, recommendations, strategic influence, systems advocacy, and mentorship.',
+        evidence:
+          'Designers practiced strategy in roadmap and tradeoff conversations — not only in critique — and advancement became connected to visible planning impact.',
+        link: 'Promoting designers for influence, not output',
+        href: '/how-i-shaped-cross-functional-reputation',
+        fig: '/work/essays/how-i-shaped-cross-functional-reputation/fig-1.svg',
+        alt: 'A five-stage growth loop running from structure to trust to opportunity to visibility to advancement, and back.',
+      },
+    ],
+  },
+];
 
+/** The organizational sequence the three sections follow. */
+const progression = [
+  ['Planning', 'Change the language used to make decisions'],
+  ['Standards', 'Encode the standard those decisions must satisfy'],
+  ['People', 'Develop people capable of applying and improving it'],
+];
+
+const strip = [
+  'Executives used design’s language in funding meetings',
+  'Five functions adopted a shared design system',
+  'Junior generalists took ownership from framing through delivery',
+  'Career growth became tied to influence, not output',
+];
 ---
 
 <BaseLayout
-  title="Leadership essays | Tyler Young"
-  description={`${spelled.charAt(0).toUpperCase() + spelled.slice(1)} things I built to run design teams: scoring models, budgets, thresholds and promotion criteria that kept working after I left the room.`}
+  title="I build design teams that change what gets decided"
+  metaTitle="I build design teams that change what gets decided | Tyler Young"
+  description="Getting design invited earlier was not the goal. Six stories about moving design upstream by changing how the company framed value, controlled scope, held standards, and developed judgment."
   current="essays"
 >
-  <section class="shell page">
-    <p class="label">Leadership writing</p>
-    <Display text={`${spelled.charAt(0).toUpperCase() + spelled.slice(1)} things I built to run design teams`}>
-      {spelled.charAt(0).toUpperCase() + spelled.slice(1)} things I built to run design teams
+  <header class="shell hero">
+    <p class="label">How I lead</p>
+    <Display text="I build design teams that change what gets decided">
+      I build design teams that change what gets decided
     </Display>
-    <p class="lede">
-      Each of these is the same move the work on the homepage makes: take a judgment
-      that lived in someone's head and make it explicit enough to survive without
-      them. Written years before the thing carrying the judgment was a machine.
+    <p class="stand">
+      Getting design invited earlier was not the goal. I wanted designers to
+      improve the decisions being made there — what deserved investment, how much
+      complexity users should absorb, when the work was ready, and what quality
+      meant across teams.
+    </p>
+    <p class="open">
+      That required more than advocating for design. I introduced shared ways to
+      frame value, control scope, establish standards, and develop judgment. Some
+      became planning instruments. Some changed the shape of the team. Together,
+      they moved design from receiving decisions to helping make them. These six
+      stories show how.
     </p>
 
-    <div class="groups">
-      {
-        essayGroups.map((group, i) => (
-          <section class="group" aria-labelledby={`g${i}`}>
-            <div class="group-head">
-              <div>
-                <p class="eyebrow">{group.eyebrow}</p>
-                <h2 class="heading" id={`g${i}`}>
-                  {group.title}
-                </h2>
-                {group.blurb && <p class="blurb">{group.blurb}</p>}
-              </div>
-            </div>
+    <ul class="strip">
+      {strip.map((s) => <li>{s}</li>)}
+    </ul>
 
-            <ul>
-              {group.slugs.map((slug) => {
-                const e = bySlug.get(slug);
-                return e ? (
-                  <li>
-                    <a class="link" href={`/${slug}`}>
-                      {e.data.title}
-                    </a>
-                  </li>
-                ) : null;
-              })}
-            </ul>
-          </section>
+    <ol class="progression" aria-label="The sequence the three sections follow">
+      {
+        progression.map(([step, what], i) => (
+          <li>
+            <span class="prog-step">{step}</span>
+            <span class="prog-what">{what}</span>
+            {i < progression.length - 1 && <span class="prog-arrow" aria-hidden="true">→</span>}
+          </li>
         ))
       }
-    </div>
+    </ol>
+  </header>
+
+  {
+    sections.map((sec, si) => (
+      <section class="shell block" aria-labelledby={`sec-${si}`}>
+        <h2 class="heading sec-title" id={`sec-${si}`}>{sec.title}</h2>
+        <p class="sec-intro">{sec.intro}</p>
+
+        {sec.cards.map((c, ci) => (
+          <article class:list={['card', { flip: (si * 2 + ci) % 2 === 1 }]}>
+            <a class="media" href={c.href} tabindex="-1" aria-hidden="true">
+              <img src={c.fig} alt={c.alt} loading="lazy" decoding="async" />
+            </a>
+            <div class="body">
+              <p class="lever">{c.lever}</p>
+              <h3 class="heading card-title">{c.title}</h3>
+              <p class="summary">{c.summary}</p>
+              <p class="evidence">{c.evidence}</p>
+              <a class="essay-link" href={c.href}>
+                {c.link} <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+
+        <p class="sec-close">{sec.conclusion}</p>
+      </section>
+    ))
+  }
+
+  <section class="shell closing">
+    <h2 class="heading">The point was never to put design into every meeting</h2>
+    <p>It was to make design useful at the moments when product direction was still fluid.</p>
+    <p>
+      The business-value models changed how opportunities were framed. The
+      complexity budget changed how scope was negotiated. The design system
+      changed how quality traveled across teams. The “good enough” threshold
+      changed when people challenged and when they committed. The role and career
+      models changed who was equipped and expected to participate.
+    </p>
+    <p>
+      My job as a design leader is not to make every consequential decision
+      myself. It is to build a team, a language, and an operating environment in
+      which better decisions become more likely — with or without me in the room.
+    </p>
+    <p class="close-line">
+      I scale design by increasing the quality of the decisions the organization
+      can make.
+    </p>
   </section>
 </BaseLayout>
 
 <style>
-  .page {
-    padding-top: var(--space-page-top);
+  .hero {
+    padding-top: 96px;
   }
 
-  .page > .label {
-    margin-top: 0;
-  }
-
-  /* No max-width on either. A 20ch cap broke a six-word headline over three
-     lines and left the right half of the page empty; the lede did the same at
-     56ch. Both now run the shell's measure, so the block reads as one edge. */
-  h1 {
-    font-size: var(--text-display);
-    margin: 16px 0 0;
-  }
-
-  .lede {
+  .stand {
     margin: 26px 0 0;
-    font-size: var(--text-body);
-    line-height: 1.6;
+    max-width: 62ch;
+    font-size: var(--text-lede);
+    line-height: 1.45;
     color: var(--color-ink);
   }
 
-  /* One explicit full-width column. Left implicit, the track sized to its
-     content and the whole group collapsed into a narrow ribbon once the number
-     gutter was removed. */
-  .groups {
-    margin-top: 64px;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 52px;
-  }
-
-  /* No gutter now that the numbers are gone — eyebrow, heading, blurb and the
-     list below all start at the page's left edge. */
-  .group-head {
-    padding-top: 20px;
-  }
-
-
-  .eyebrow {
-    font-family: var(--font-prose);
-    font-size: var(--text-eyebrow);
-    font-weight: 600;
-    letter-spacing: 0;
-    color: var(--color-ink-2);
-    margin: 0 0 6px;
-  }
-
-  h2 {
-    font-size: var(--text-h2);
-    margin: 0;
-  }
-
-  .blurb {
-    margin: 12px 0 0;
+  .open {
+    margin: 18px 0 0;
+    max-width: 68ch;
     font-size: var(--text-note);
     line-height: 1.55;
+    color: var(--color-ink-2);
+  }
+
+  /* The four outcomes, banded like every parallel row on the site. */
+  .strip {
+    list-style: none;
+    display: grid;
+    margin: 40px 0 0;
+    padding: 0;
+    gap: 0;
+  }
+
+  .strip li {
+    padding: 16px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-ink);
+  }
+
+  .strip li:nth-child(odd) {
+    background: var(--color-row);
+  }
+
+  /* Planning → Standards → People. A line, not a diagram. */
+  .progression {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin: 40px 0 0;
+    padding: 22px 0 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .progression li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .prog-step {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .prog-what {
+    font-size: 14px;
     color: var(--color-ink-3);
   }
 
-  ul {
-    list-style: none;
-    margin: 20px 0 0;
-    padding: 0;
+  .prog-arrow {
+    color: var(--color-ink-3);
+    margin-left: 8px;
+  }
+
+  .block {
+    padding-top: 110px;
+  }
+
+  .sec-title {
+    font-size: clamp(26px, 3.4vw, 34px);
+    margin: 0;
+  }
+
+  .sec-intro {
+    margin: 16px 0 0;
+    max-width: 66ch;
+    font-size: var(--text-note);
+    line-height: 1.55;
+    color: var(--color-ink-2);
+  }
+
+  /* An essay card: evidence on one side, the case on the other. */
+  .card {
     display: grid;
-    gap: 16px;
+    gap: 26px;
+    margin-top: 54px;
   }
 
-  li {
-    padding-bottom: 2px;
+  .media {
+    display: block;
+    background: var(--color-paper-raised);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 22px;
+    align-self: start;
   }
 
-  li a.link {
-    font-size: var(--text-h3);
-    line-height: 1.4;
-    border-bottom: 0;
+  .media img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
-  li:hover a.link {
-    color: var(--color-signal);
+  .lever {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-ink-3);
   }
 
+  .card-title {
+    font-size: 23px;
+    margin: 8px 0 0;
+  }
 
+  .summary {
+    margin: 12px 0 0;
+    font-size: var(--text-note);
+    line-height: 1.55;
+    color: var(--color-ink-2);
+  }
 
-  @media (min-width: 810px) {
-    /* The group head used to sit in a 360px column with the list beside it, which
-       broke a three-word heading over two lines and left the blurb in a ribbon.
-       Head spans, list sits underneath. */
+  /* The one concrete consequence, set apart from the description. */
+  .evidence {
+    margin: 14px 0 0;
+    font-size: var(--text-note);
+    line-height: 1.5;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
 
-    .group-head {
-      border-top: 0;
-      padding-top: 0;
+  /* Ink, not blue: these sit six to a page, and a page of blue headlines reads
+     as a link farm. The arrow does the pointing, as in the footer. */
+  .essay-link {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: opacity 120ms ease;
+  }
+
+  .essay-link:hover,
+  .essay-link:focus-visible {
+    opacity: 0.7;
+  }
+
+  .sec-close {
+    margin: 54px 0 0;
+    max-width: 62ch;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--color-ink);
+  }
+
+  .closing {
+    padding-top: 120px;
+    padding-bottom: 40px;
+  }
+
+  .closing h2 {
+    font-size: clamp(26px, 3.4vw, 34px);
+    margin: 0 0 18px;
+  }
+
+  .closing p {
+    max-width: 66ch;
+    margin: 0 0 16px;
+    font-size: var(--text-note);
+    line-height: 1.55;
+    color: var(--color-ink-2);
+  }
+
+  .close-line {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--color-ink) !important;
+    margin-top: 26px !important;
+  }
+
+  @media (min-width: 860px) {
+    .strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .group {
-      padding-top: 20px;
+    .card {
+      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+      gap: 48px;
+      align-items: start;
     }
 
-    ul {
-      margin-top: 22px;
+    /* Alternate sides so the page has a gait rather than a march. */
+    .card.flip .media {
+      order: 2;
     }
   }
 </style>
