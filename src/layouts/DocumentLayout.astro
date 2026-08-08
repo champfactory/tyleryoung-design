@@ -243,10 +243,10 @@ const {
   }
 
   .doc .pull-line {
-    /* The rule hangs into the margin so the quote's text sits on the same left
-       edge as the prose around it. Before, the text was indented 16px past
-       everything else and the rule sat tight against it. */
-    margin: 26px 0 34px -26px;
+    /* The rule sits on the prose's own left edge, in line with the paragraphs
+       above and below it. The gap to the quote is 26px rather than 16 — the
+       rule needs room around it, not a tighter grip on the text. */
+    margin: 26px 0 34px;
     padding-left: 26px;
     border-left: 2px solid var(--color-signal);
     font-family: var(--font-display);
