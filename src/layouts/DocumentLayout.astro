@@ -864,22 +864,14 @@ const {
     text-transform: uppercase;
   }
 
-  /* Status is a dot and a word. The dot alone would put the whole signal in a
-     colour. */
+  /* Was green, to pair with a green dot. The dot is gone and the accent is
+     blue, so this is the same ink as the label beside it. */
   .doc .recon-live {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    color: var(--color-live);
+    color: var(--color-ink);
   }
 
-  .doc .recon-live .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-live);
-    flex: none;
-  }
 
   .doc .recon-label {
     color: var(--color-ink);

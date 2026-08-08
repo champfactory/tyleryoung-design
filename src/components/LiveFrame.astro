@@ -66,7 +66,6 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
 
 <figure class="live">
   <div class="chrome">
-    <span class="dot" aria-hidden="true"></span>
     <span class="host">{host}</span>
     <a class="open" href={src} target="_blank" rel="noopener">
       Open <span aria-hidden="true">→</span>
@@ -110,14 +109,6 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.06em;
-  }
-
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-live);
-    flex: none;
   }
 
   .host {

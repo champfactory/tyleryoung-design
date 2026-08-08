@@ -10,7 +10,6 @@
 export interface Artifact {
   label: string;
   href?: string;
-  live?: boolean;
   needs?: string;
 }
 
@@ -42,7 +41,7 @@ const { eyebrow, title, description, artifacts = [], lead = false } = Astro.prop
           {artifacts.map((a) => (
             <li>
               {a.href ? (
-                <a class="artifact" href={a.href} data-live={a.live ? '' : undefined}
+                <a class="artifact" href={a.href}
                    target={a.href.startsWith('http') ? '_blank' : undefined}
                    rel={a.href.startsWith('http') ? 'noopener' : undefined}>
                   {a.label}

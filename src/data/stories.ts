@@ -19,7 +19,7 @@ export type Story = {
   claim: string;
   /** What it was. The 30-second read. */
   outcome: string;
-  artifacts: { label: string; href?: string; live?: boolean; needs?: string }[];
+  artifacts: { label: string; href?: string; needs?: string }[];
   /** true where the claim/outcome are words I wrote, not Tyler-approved copy */
   draft?: boolean;
 };

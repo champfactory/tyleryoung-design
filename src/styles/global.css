@@ -96,7 +96,6 @@
   /* signal — one accent, used only for things that are live or interactive */
   --color-signal: #1b5bda;
   --color-signal-ink: #ffffff;
-  --color-live: #2f6f4e;
 
   --spacing-rail: 168px;
   --breakpoint-md: 810px;
@@ -304,14 +303,6 @@
     opacity: 1;
   }
 
-  .artifact[data-live]::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-live);
-    flex: none;
-  }
 }
 
 /* --- page-load reveal: one orchestrated moment, not scattered micro-motion -- */

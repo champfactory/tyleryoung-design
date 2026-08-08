@@ -28,7 +28,6 @@ const deepLink = `${SB}/?path=/story/${id}`;
 
 <figure class="story-frame">
   <div class="chrome">
-    <span class="dot" aria-hidden="true"></span>
     <span class="name">{label}</span>
     {source && <span class="source">{source}</span>}
     <a class="open" href={deepLink} target="_blank" rel="noopener">
@@ -70,15 +69,6 @@ const deepLink = `${SB}/?path=/story/${id}`;
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.06em;
-  }
-
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-live);
-    flex: none;
-    align-self: center;
   }
 
   .name {

@@ -25,7 +25,6 @@ export const TOKENS = {
   'machine-ink-2': '#9d9a90',
   signal: '#1b5bda',
   'signal-ink': '#ffffff',
-  live: '#2f6f4e',
   header: '#d6e9f8',
   'header-rule': '#a3c6e2',
   /* The disclosure tint. A caveat should look like a caveat — grey read as
@@ -39,7 +38,6 @@ export const PAIRS = [
   ['ink-2', 'paper', 'AA', 'secondary prose'],
   ['ink-3', 'paper', 'AA', 'mono labels @ 11px'],
   ['signal', 'paper', 'AA', 'links, section numbers'],
-  ['live', 'paper', 'AA', 'live-product marker'],
   ['ink', 'paper-raised', 'AA', 'card text'],
   ['ink', 'paper-sunk', 'AA', 'sunk panel text'],
   ['ink', 'row', 'AA', 'banded row text'],
