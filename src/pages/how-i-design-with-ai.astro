@@ -48,22 +48,16 @@ const lenses = [
   ['Implementation', 'Is the behavior credible in the actual product environment?'],
 ];
 
-const mayProceed = [
-  'Generate options inside the existing system',
-  'Implement approved components and patterns',
-  'Run checks and report failures',
-  'Document its decisions',
-  'Propose a system addition when no approved pattern exists',
-];
-
-const needsAPerson = [
-  'Deploy to production',
-  'Delete or migrate consequential data',
-  'Restructure the product architecture',
-  'Invent design-system values',
-  'Conceal a failed check',
-  'Resolve meaningful product ambiguity by assumption',
-  'Treat a technically valid result as product approval',
+/**
+ * Only the boundaries a design leader sets. "Do not deploy to production" and
+ * "do not delete data" were here too; anyone who has run an agent for a week
+ * sets those, and twelve bullets spent the page's longest list on its least
+ * differentiated idea.
+ */
+const boundaries = [
+  ['Invent design-system values', 'If the system has no approved value, the agent names the gap. It does not fill it.'],
+  ['Resolve product ambiguity', 'An assumption made at speed is still an assumption, and it arrives looking finished.'],
+  ['Treat valid as approved', 'Passing every check is not the same as being the right thing to build.'],
 ];
 
 /** Where leverage comes from now. */
@@ -319,19 +313,28 @@ const leverage = [
 
   <p class="sec-eyebrow">Boundaries</p>
   <h2>Autonomy needs an explicit perimeter</h2>
-  <p>I define what an agent may do on its own, and what requires a person.</p>
+  <p>
+    An agent can run checks, implement approved patterns, generate options inside
+    the system, and propose an addition when no pattern fits. The limits worth
+    stating are not the obvious operational ones — they are the three places where
+    an agent would otherwise make a design decision by default.
+  </p>
 
-  <h3>May proceed</h3>
-  <ul>{mayProceed.map((x) => <li>{x}</li>)}</ul>
-
-  <h3>Requires a person</h3>
-  <ul>{needsAPerson.map((x) => <li>{x}</li>)}</ul>
+  <ul class="cells three">
+    {
+      boundaries.map(([label, note]) => (
+        <li>
+          <span class="cell-label">{label}</span>
+          <span class="cell-note">{note}</span>
+        </li>
+      ))
+    }
+  </ul>
 
   <p>
-    These boundaries are not there because I expect the agent to behave like a
-    bad actor. They exist because speed magnifies misunderstandings. The goal is
-    not maximum autonomy; it is useful autonomy, with visible consequences and
-    clear accountability.
+    None of this assumes the agent behaves badly. It exists because speed
+    magnifies misunderstandings. The goal is not maximum autonomy; it is useful
+    autonomy, with visible consequences and clear accountability.
   </p>
 
   <p class="pull-line">
