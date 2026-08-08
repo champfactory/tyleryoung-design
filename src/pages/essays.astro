@@ -21,7 +21,6 @@ const sections = [
     ],
     cards: [
       {
-        lever: 'Value',
         title: 'Translated design into business terms',
         paras: [
           'Design proposals were read as visual improvements because nobody had priced their value. With product leadership, I built a taxonomy of design work, mapped it to company metrics, and wrote a rubric covering user value, business value, effort and risk.',
@@ -33,7 +32,6 @@ const sections = [
         alt: 'Two-by-two placing the four business levers: efficiency in operation and now, growth in operation and future, retention in customer and now, strategic alignment in customer and future.',
       },
       {
-        lever: 'Scope',
         title: 'Made complexity a scoping constraint',
         paras: [
           'Everyone agreed simplicity mattered. Nobody had a way to defend it. The complexity budget scored a flow on decision, attention and orientation load, so product, research, design and engineering could see where scope asked too much of users — and cut it before it reached the interface.',
@@ -54,7 +52,6 @@ const sections = [
     ],
     cards: [
       {
-        lever: 'Coherence',
         title: 'Built a design system five functions chose to use',
         paras: [
           'Quality was drifting across siloed teams, conflicting standards and repeated handoff failures. I led a system of more than 200 components connecting product, engineering, creative, marketing and planning. Nobody was ordered to use it. Product managers learned it, engineering mirrored it, and teams began planning around it.',
@@ -66,7 +63,6 @@ const sections = [
         alt: 'Three layers of design-system trust: shared language produces alignment, shared structure produces consistency, shared infrastructure produces velocity.',
       },
       {
-        lever: 'Restraint',
         title: 'Made “good enough” a deliberate threshold',
         paras: [
           'Teams rushed the problem definition, then polished the execution forever. I flipped the standard: exceed the bar while defining the problem, and defend “good enough” once the work has done its job.',
@@ -87,7 +83,6 @@ const sections = [
     ],
     cards: [
       {
-        lever: 'Ownership',
         title: 'Rebuilt specialist roles around product ownership',
         paras: [
           'After the pandemic shrank the team, a structure built on UX and visual-design handoffs was too brittle for the pace. I rebuilt around junior product-design generalists and coached them to own work from first framing to final delivery.',
@@ -99,7 +94,6 @@ const sections = [
         alt: 'Before and after diagram of the team’s shape: separate specialist groups become one ring of product-design generalists around the product.',
       },
       {
-        lever: 'Growth',
         title: 'Rewarded influence, not just output',
         paras: [
           'The career path rewarded execution, so capable designers stayed out of strategic conversations. I made problem framing, recommendations, influence and mentorship count toward advancement — practiced in roadmap and tradeoff meetings, not just critique.',
@@ -155,7 +149,6 @@ const sections = [
               <img src={c.fig} alt={c.alt} loading="lazy" decoding="async" />
             </a>
             <div class="body">
-              <p class="label">{c.lever}</p>
               <h3 class="heading card-title">{c.title}</h3>
               {c.paras.map((p) => <p class="summary">{p}</p>)}
               <p class="label ev-gap">The win</p>
@@ -279,7 +272,7 @@ const sections = [
 
   .card-title {
     font-size: var(--text-h3);
-    margin: 8px 0 0;
+    margin: 0;
   }
 
   .summary {
