@@ -16,9 +16,6 @@ const sections = [
   {
     label: 'Planning',
     statement: 'Put design into the decision, not just the delivery',
-    intro: [
-      'Design used to show up after priorities were set, which meant its reasoning arrived during execution, when changing the scope or the investment was already expensive. So I built tools that put user value, business value and complexity on the table while those decisions were still open.',
-    ],
     cards: [
       {
         title: 'Translated design into business terms',
@@ -48,9 +45,6 @@ const sections = [
   {
     label: 'Standards',
     statement: 'Made quality something other teams could rely on',
-    intro: [
-      'A standard scales when other teams find it useful enough to build on, not because a design leader declares it. I focused on shared foundations, and on a clear line for when more work stopped improving the outcome.',
-    ],
     cards: [
       {
         title: 'Built a design system five functions chose to use',
@@ -79,9 +73,6 @@ const sections = [
   {
     label: 'People',
     statement: 'Developed designers to own more than execution',
-    intro: [
-      'Moving design upstream means little if only the leader can work there, so I changed the team’s structure and its career path until designers could own whole problems and grow by shaping direction.',
-    ],
     cards: [
       {
         title: 'Rebuilt specialist roles around product ownership',
@@ -142,7 +133,6 @@ const sections = [
       <section class="shell block" aria-labelledby={`sec-${si}`}>
         <p class="label">{sec.label}</p>
         <h2 class="heading statement" id={`sec-${si}`}>{sec.statement}</h2>
-        {sec.intro.map((p) => <p class="sec-intro">{p}</p>)}
 
         {sec.cards.map((c, ci) => (
           <article class="card">
@@ -242,14 +232,6 @@ const sections = [
     margin: 10px 0 0;
   }
 
-  /* Spans with the statement above it — the header block is one full-width
-     unit, and the cards below are the narrower things. */
-  .sec-intro {
-    margin: 16px 0 0;
-    font-size: var(--text-note);
-    line-height: 1.55;
-    color: var(--color-ink-2);
-  }
 
   .card {
     display: grid;
