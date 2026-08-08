@@ -95,7 +95,7 @@
   --color-machine-ink-2: #9d9a90;
 
   /* signal — one accent, used only for things that are live or interactive */
-  --color-signal: #4b3fcb;
+  --color-signal: #173a6b;
   --color-signal-ink: #ffffff;
   --color-live: #2f6f4e;
 
@@ -248,7 +248,10 @@
   .link {
     color: var(--color-ink);
     text-decoration: none;
-    border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+    /* A prose link can wrap across lines, so this stays a real border: a
+       pseudo-element would only underline the last line box. */
+    border-bottom: 1px solid var(--color-rule-strong);
+    border-bottom-color: color-mix(in srgb, currentColor 25%, transparent);
     transition: border-color 120ms ease;
   }
 
@@ -270,15 +273,32 @@
     color: var(--color-ink);
     text-decoration: none;
     padding-bottom: 3px;
-    border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-    /* Only the line changes — nothing moves. A gap or letter-spacing shift
-       nudges the arrow and reflows the label under the cursor. */
-    transition: border-color 120ms ease;
+    position: relative;
   }
 
-  .artifact:hover,
-  .artifact:focus-visible {
-    border-bottom-color: currentColor;
+  /* The underline is a pseudo-element at 25% opacity rather than a border in
+     `color-mix`. The CSS minifier emits `currentColor` as its own fallback for
+     color-mix, so on any engine that skipped it the line came back at full
+     strength — a black underline, which is the hover state. Opacity needs no
+     fallback and still derives the colour from the text above it.
+
+     Only the line changes — nothing moves. A gap or letter-spacing shift
+     nudges the arrow and reflows the label under the cursor. */
+  .artifact::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.25;
+    transition: opacity 120ms ease;
+  }
+
+  .artifact:hover::after,
+  .artifact:focus-visible::after {
+    opacity: 1;
   }
 
   .artifact[data-live]::before {

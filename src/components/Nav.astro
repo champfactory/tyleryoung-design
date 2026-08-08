@@ -108,16 +108,27 @@ const { current } = Astro.props as { current?: string };
     text-decoration: none;
     color: var(--color-ink);
     padding-bottom: 2px;
-    /* Same rule as every other underline on the site: a quarter of the text's own
-       colour at rest, full once you are on it or heading for it. */
-    border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-    transition: border-color 120ms ease;
+    position: relative;
   }
 
-  nav a:hover,
-  nav a:focus-visible,
-  nav a[aria-current='page'] {
-    border-bottom-color: currentColor;
+  /* Same construction as `.artifact`: the line is a pseudo-element at 25%
+     opacity, so it never depends on a color-mix fallback. */
+  nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.25;
+    transition: opacity 120ms ease;
+  }
+
+  nav a:hover::after,
+  nav a:focus-visible::after,
+  nav a[aria-current='page']::after {
+    opacity: 1;
   }
 
   .inner {
