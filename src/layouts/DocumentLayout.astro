@@ -97,8 +97,13 @@ const {
     padding-top: var(--space-page-top);
   }
 
+  /* The page eyebrow matches the section eyebrows below it — same colour, same
+     weight. It was ink-3 at 500 while every `.sec-eyebrow` on the same page was
+     signal at 600, so the topmost label was the one that looked unlike the rest. */
   .doc .head .label {
     margin-top: 0;
+    font-weight: 600;
+    color: var(--color-signal);
   }
 
   /* Diagrams recovered from the live site. These are the instruments the essays
