@@ -32,10 +32,15 @@ export const stories: Story[] = [
     claim: 'I designed the control layer for agentic software development.',
     outcome:
       'Agents generate faster than teams can specify and absorb change. Alucify models what a brownfield codebase means, then shows where context is missing, what a change would reach, and where human judgement is still required. Twenty screens across four connected flows.',
+    /*
+     * No link to alucify.ai from here. The public site still runs the company's
+     * earlier fixed-price-delivery positioning, which contradicts the case study
+     * this card opens. Inside the story the disclosure sits beside it and says
+     * so; on a card there is no room for that context.
+     */
     artifacts: [
       { label: 'The screens', href: 'https://alucify-screens.fly.dev/#/dashboard' },
       { label: 'The Figma', href: 'https://www.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1' },
-      { label: 'The site', href: 'https://alucify.ai/' },
       { label: 'The story', href: '/alucify' },
     ],
     draft: true,
