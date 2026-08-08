@@ -42,9 +42,12 @@ interface Props {
   note?: string;
   /** the first embed on a page loads eagerly; everything below it waits */
   eager?: boolean;
+  /** the homepage cards carry their own labels and links, so the header strip
+      would say everything twice there */
+  plain?: boolean;
 }
 
-const { src, host, title, ratio = '16 / 10', scale = 0.42, note, eager = false } = Astro.props;
+const { src, host, title, ratio = '16 / 10', scale = 0.42, note, eager = false, plain = false } = Astro.props;
 const pct = `${100 / scale}%`;
 /**
  * Logical px trimmed off each edge to hide the app's own scrollbars.
@@ -65,12 +68,14 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
 ---
 
 <figure class="live">
+  {!plain && (
   <div class="chrome">
     <span class="host">{host}</span>
     <a class="open" href={src} target="_blank" rel="noopener">
       Open <span aria-hidden="true">→</span>
     </a>
   </div>
+  )}
 
   <div class="viewport" style={`aspect-ratio:${ratio}`}>
     <iframe
@@ -96,8 +101,13 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
        paragraph introducing it while the reconstructions had room on both
        sides. */
     margin: var(--space-embed) 0 calc(var(--space-embed) + 12px);
-    border: 1px solid var(--color-rule);
     background: var(--color-paper-raised);
+    /* A card, not an outlined panel: small radius, no border, the faintest
+       lift so the edge reads on white without a rule doing it. */
+    border: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(20, 30, 50, 0.05), 0 6px 20px rgba(20, 30, 50, 0.06);
   }
 
   .chrome {
