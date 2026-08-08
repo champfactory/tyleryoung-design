@@ -173,21 +173,20 @@ const {
     gap: 4px 10px;
     margin: 8px 0 0;
     font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.07em;
+    font-size: 13px;
+    letter-spacing: 0;
   }
 
   /* No marker beside these. The words already say which is which, so a square or
      a circle repeated the label in a second language. */
   .doc .gate-mode {
-    text-transform: uppercase;
     color: var(--color-ink-3);
   }
 
   .doc .gate-how {
     color: var(--color-ink-3);
     text-transform: none;
-    letter-spacing: 0.03em;
+    letter-spacing: 0;
   }
 
   /* Paired rows, banded like the lists above. Tighter than those, because each
@@ -225,10 +224,9 @@ const {
 
   .doc .ledger-heads p {
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-ink-3);
   }
 
@@ -239,8 +237,7 @@ const {
     min-width: 62px;
     font-family: var(--font-mono);
     font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-ink-3);
   }
 
@@ -280,10 +277,9 @@ const {
     padding: 0 14px 9px 16px;
     text-align: left;
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-ink-3);
     border-bottom: 1px solid var(--color-rule);
   }
@@ -340,8 +336,7 @@ const {
     min-height: 44px;
     font-family: var(--font-mono);
     font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-ink);
     cursor: pointer;
   }
@@ -441,8 +436,7 @@ const {
     font-family: var(--font-mono);
     font-size: 10px;
     font-weight: 650;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-ink-2);
   }
 
@@ -492,9 +486,8 @@ const {
 
   .doc .shape-key span {
     font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0;
     color: var(--color-ink-3);
   }
 
@@ -538,11 +531,10 @@ const {
     display: block;
     margin: 0 !important;
     font-family: var(--font-mono) !important;
-    font-size: 10.5px !important;
+    font-size: 13px !important;
     font-weight: 500;
     line-height: 1.5;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-ink-3) !important;
   }
 
@@ -588,9 +580,9 @@ const {
   .doc .note-line {
     margin: -18px 0 var(--space-block) !important;
     font-family: var(--font-mono) !important;
-    font-size: 11px !important;
+    font-size: 13.5px !important;
     line-height: 1.7 !important;
-    letter-spacing: 0.03em;
+    letter-spacing: 0;
     color: var(--color-ink-3) !important;
   }
 
@@ -642,9 +634,8 @@ const {
     padding: 11px 14px;
     border-bottom: 1px solid var(--color-rule);
     font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0;
   }
 
   .doc .capture-name {
@@ -667,9 +658,9 @@ const {
     padding: 13px 14px;
     border-top: 1px solid var(--color-rule);
     font-family: var(--font-mono) !important;
-    font-size: 11px !important;
+    font-size: 13.5px !important;
     line-height: 1.7 !important;
-    letter-spacing: 0.03em;
+    letter-spacing: 0;
     color: var(--color-ink-3) !important;
   }
 
@@ -692,9 +683,8 @@ const {
     margin: 0 !important;
     padding: 8px 0;
     font-family: var(--font-mono) !important;
-    font-size: 11px !important;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    font-size: 13.5px !important;
+    letter-spacing: 0;
     color: var(--color-ink-3) !important;
   }
 
@@ -727,10 +717,9 @@ const {
     display: block;
     margin: 0 !important;
     font-family: var(--font-mono) !important;
-    font-size: 11px !important;
+    font-size: 13.5px !important;
     font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-ink) !important;
   }
 
@@ -745,10 +734,9 @@ const {
     display: block;
     margin: 6px 0 0 !important;
     font-family: var(--font-mono) !important;
-    font-size: 10.5px !important;
+    font-size: 13px !important;
     font-weight: 650;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-ink-2) !important;
   }
 
@@ -828,13 +816,12 @@ const {
   .doc .sec-eyebrow {
     margin: 76px 0 10px;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 16px;
     /* 600 to match the rail's labels. At 500 the mono looked thin against the
        display type it introduces, and the two blue labels on a page were set at
        different weights. */
     font-weight: 600;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-ink-2);
   }
 
@@ -864,9 +851,8 @@ const {
     padding: 11px 14px;
     border-bottom: 1px solid var(--color-rule);
     font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0;
   }
 
   /* Was green, to pair with a green dot. The dot is gone and the accent is
@@ -885,7 +871,7 @@ const {
   .doc .recon-host {
     color: var(--color-ink-3);
     text-transform: none;
-    letter-spacing: 0.03em;
+    letter-spacing: 0;
   }
 
   .doc .recon-open {
@@ -922,7 +908,7 @@ const {
     text-align: center;
     font-family: var(--font-mono);
     font-size: 11px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0;
     color: var(--color-ink-3);
   }
 
@@ -971,10 +957,9 @@ const {
   .doc .flow-name {
     margin: 0 0 8px;
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-ink-3);
   }
 
@@ -1198,7 +1183,7 @@ const {
     font-family: var(--font-mono);
     font-size: 12px;
     line-height: 1.8;
-    letter-spacing: 0.03em;
+    letter-spacing: 0;
     margin: 0;
     color: var(--color-ink);
   }

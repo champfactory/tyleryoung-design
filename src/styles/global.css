@@ -30,7 +30,11 @@
      as the old portfolio's argument; one typeface across headings and prose reads
      as a product. Kept as its own token so prose can diverge again later. */
   --font-prose: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
+  /* One family. Everything that wore JetBrains as chrome now wears Archivo;
+     the only mono left is --font-code, for literal terminal output, where the
+     typeface is the content's own. */
+  --font-mono: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-code: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
 
   /* paper — warm, not white. white is a browser default; this is a choice. */
   /* Was #f6f4ef — a warm off-white — with paper-raised #fcfbf8 and paper-sunk
@@ -165,11 +169,10 @@
   /* Eyebrows are a lighter shade of the text they introduce, not the accent.
      Blue now belongs to links alone. */
   .label {
-    font-family: var(--font-mono);
-    font-size: 11px;
+    font-family: var(--font-sans, var(--font-prose));
+    font-size: 16px;
     font-weight: 600;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-ink-2);
   }
 
@@ -267,13 +270,12 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: var(--font-mono);
-    /* Now that the underline is gone, the label carries the whole affordance —
-       it earns a step up in size and weight. */
-    font-size: 12.5px;
+    font-family: var(--font-prose);
+    /* Sentence case at reading size — the link is a sentence fragment now, not
+       a stamped label. */
+    font-size: 17px;
     font-weight: 600;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--color-signal);
     text-decoration: none;
     padding-bottom: 3px;
