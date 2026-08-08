@@ -225,6 +225,9 @@ const sections = [
 
   .hero-cap :global(.display) {
     font-size: min(64px, 5vw) !important;
+    /* The document template's number: 16px from eyebrow to headline. This page
+       had zero, which is why its head read tighter than every other page's. */
+    margin-top: 16px;
   }
 
   .open {
