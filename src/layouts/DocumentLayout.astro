@@ -1097,9 +1097,17 @@ const {
   .doc .prose > ul:not([class]) > li {
     font-size: 19px;
     line-height: 1.6;
-    padding-left: 38px;
     position: relative;
     text-wrap: pretty;
+  }
+
+  /* Numbered lists keep the wider hanging indent: two digits need the room. */
+  .doc .prose > ol:not([class]) > li {
+    padding-left: 38px;
+  }
+
+  .doc .prose > ul:not([class]) > li {
+    padding-left: 22px;
   }
 
   .doc .prose > ol:not([class]) > li {
@@ -1118,14 +1126,19 @@ const {
     color: var(--color-signal);
   }
 
+  /* A small dot, set in the text's own colour at half strength — the same
+     relationship the underlines use. The previous marker was a 22px rule in a
+     fixed grey, sitting 38px out: long enough to read as a horizontal line of
+     its own and far enough away that the eye had to travel back to the text. */
   .doc .prose > ul:not([class]) > li::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0.72em;
-    width: 22px;
-    height: 1px;
-    background: var(--color-rule-strong);
+    left: 2px;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: color-mix(in srgb, currentColor 50%, transparent);
   }
 
   .doc .prose > p a,
