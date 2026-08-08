@@ -34,7 +34,7 @@ export const TOKENS = {
   accent: '#d6f8e1',
   /* The disclosure tint. A caveat should look like a caveat — grey read as
      another quiet panel among several. */
-  note: '#fdf6cf',
+  note: '#fefbe4',
   'accent-rule': '#a3e2b8',
 };
 
