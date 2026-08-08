@@ -453,17 +453,14 @@ const {
      and the copy beside them refers to "both links", which is only true if a
      reader can see that they are links. */
   .doc .rail a {
-    color: var(--color-ink);
+    color: var(--color-signal);
     text-decoration: none;
-    padding-bottom: 1px;
-    border-bottom: 1px solid var(--color-rule-strong);
-    border-bottom-color: color-mix(in srgb, currentColor 25%, transparent);
-    transition: border-color 120ms ease;
+    transition: opacity 120ms ease;
   }
 
   .doc .rail a:hover,
   .doc .rail a:focus-visible {
-    border-bottom-color: currentColor;
+    opacity: 0.75;
   }
 
   /* The banded-cell pattern below, carrying a glyph. Layout and banding come
@@ -1151,14 +1148,15 @@ const {
 
      `.artifact` draws its own line as a pseudo-element, so it is excluded here
      rather than carrying two. */
+  /* Prose links follow the one link rule: blue, no underline. These selectors
+     out-specify the global .link, which is exactly how the old ink-and-rule
+     treatment survived here after the site moved on. */
   .doc .prose > p a:not(.artifact),
   .doc .prose > ul a:not(.artifact),
   .doc .prose > ol a:not(.artifact) {
-    color: var(--color-ink);
+    color: var(--color-signal);
     text-decoration: none;
-    border-bottom: 1px solid var(--color-rule-strong);
-    border-bottom-color: color-mix(in srgb, currentColor 25%, transparent);
-    transition: border-color 120ms ease;
+    transition: opacity 120ms ease;
   }
 
   .doc .prose > p a:not(.artifact):hover,
@@ -1167,7 +1165,7 @@ const {
   .doc .prose > p a:not(.artifact):focus-visible,
   .doc .prose > ul a:not(.artifact):focus-visible,
   .doc .prose > ol a:not(.artifact):focus-visible {
-    border-bottom-color: currentColor;
+    opacity: 0.75;
   }
 
   /* a pull-out for facts that are not prose — used by the case studies */
