@@ -165,22 +165,22 @@ const sections = [
   {
     sections.map((sec, si) => (
       <section class="shell block" aria-labelledby={`sec-${si}`}>
-        <p class="sec-label">{sec.label}</p>
-        <h2 class="heading sec-statement" id={`sec-${si}`}>{sec.statement}</h2>
+        <p class="label">{sec.label}</p>
+        <h2 class="heading statement" id={`sec-${si}`}>{sec.statement}</h2>
         {sec.intro.map((p) => <p class="sec-intro">{p}</p>)}
 
         {sec.cards.map((c, ci) => (
-          <article class:list={['card', { flip: (si * 2 + ci) % 2 === 1 }]}>
+          <article class="card">
             <a class="media" href={c.href} tabindex="-1" aria-hidden="true">
               <img src={c.fig} alt={c.alt} loading="lazy" decoding="async" />
             </a>
             <div class="body">
-              <p class="lever">{c.lever}</p>
+              <p class="label">{c.lever}</p>
               <h3 class="heading card-title">{c.title}</h3>
               {c.paras.map((p) => <p class="summary">{p}</p>)}
-              <p class="ev-label">Evidence</p>
+              <p class="label ev-gap">Evidence</p>
               <p class="evidence">{c.evidence}</p>
-              <a class="essay-link" href={c.href}>
+              <a class="artifact link-gap" href={c.href}>
                 {c.link} <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -217,13 +217,27 @@ const sections = [
 </BaseLayout>
 
 <style>
+  /*
+   * This page runs on the design system. From global.css: .shell, .label,
+   * .heading, .artifact, the type tokens (--text-lede, --text-note, --text-h2,
+   * --text-h3) and the surface tokens. The Display component sizes the H1.
+   *
+   * Three things had no system equivalent and are declared here as new:
+   *
+   *   1. hero-cap    — a page-level ceiling on the fitted display size, so the
+   *                    statement and the three framing cards share a viewport.
+   *   2. the card surface — white, 10px radius, no border. This is the embed
+   *                    card treatment reused as a general surface (.frames li,
+   *                    .media); candidate for promotion into global.css.
+   *   3. .evidence   — a bold ink line at note size for a named result; also
+   *                    carries the closing line.
+   *
+   * Everything else is composition: grid, gap, max-width, margins.
+   */
   .hero {
     padding-top: 96px;
   }
 
-  /* The fitted size would run this headline to 85px; a leadership page opens
-     with a statement, not a poster, and the whole line has to sit inside one
-     laptop viewport with the framing cards. */
   .hero-cap :global(.display) {
     font-size: min(64px, 5vw) !important;
   }
@@ -243,8 +257,6 @@ const sections = [
     color: var(--color-ink-2);
   }
 
-  /* Planning, Standards, People — three equal cards, no arrows: dimensions of
-     the job, not steps in it. */
   .frames {
     list-style: none;
     display: grid;
@@ -261,7 +273,7 @@ const sections = [
 
   .frame-name {
     margin: 0;
-    font-size: 19px;
+    font-size: var(--text-h3);
     font-weight: 650;
     letter-spacing: -0.01em;
     color: var(--color-ink);
@@ -269,7 +281,7 @@ const sections = [
 
   .frame-what {
     margin: 8px 0 0;
-    font-size: 15.5px;
+    font-size: var(--text-caption);
     line-height: 1.5;
     color: var(--color-ink-2);
   }
@@ -278,17 +290,10 @@ const sections = [
     padding-top: 110px;
   }
 
-  .sec-label {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--color-ink-2);
-  }
-
-  .sec-statement {
-    font-size: clamp(26px, 3.4vw, 36px);
+  .statement {
+    font-size: var(--text-h2);
     margin: 10px 0 0;
-    max-width: 24ch;
+    max-width: 30ch;
   }
 
   .sec-intro {
@@ -320,15 +325,8 @@ const sections = [
     height: auto;
   }
 
-  .lever {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--color-ink-3);
-  }
-
   .card-title {
-    font-size: 23px;
+    font-size: var(--text-h3);
     margin: 8px 0 0;
   }
 
@@ -339,12 +337,8 @@ const sections = [
     color: var(--color-ink-2);
   }
 
-  /* The result, named as such and kept beside the story that produced it. */
-  .ev-label {
-    margin: 18px 0 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--color-ink-3);
+  .ev-gap {
+    margin-top: 18px;
   }
 
   .evidence {
@@ -355,19 +349,8 @@ const sections = [
     color: var(--color-ink);
   }
 
-  .essay-link {
-    display: inline-block;
+  .link-gap {
     margin-top: 18px;
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--color-signal);
-    text-decoration: none;
-    transition: opacity 120ms ease;
-  }
-
-  .essay-link:hover,
-  .essay-link:focus-visible {
-    opacity: 0.7;
   }
 
   .closing {
@@ -376,9 +359,9 @@ const sections = [
   }
 
   .closing h2 {
-    font-size: clamp(26px, 3.4vw, 36px);
+    font-size: var(--text-h2);
     margin: 0 0 18px;
-    max-width: 24ch;
+    max-width: 30ch;
   }
 
   .closing p {
@@ -390,7 +373,7 @@ const sections = [
   }
 
   .close-line {
-    font-size: 19px;
+    font-size: var(--text-note);
     font-weight: 600;
     color: var(--color-ink) !important;
     margin-top: 26px !important;
@@ -401,13 +384,14 @@ const sections = [
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+    /* Uniform: the case reads first, the diagram sits right, every card. */
     .card {
-      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
       gap: 48px;
       align-items: start;
     }
 
-    .card.flip .media {
+    .media {
       order: 2;
     }
   }
