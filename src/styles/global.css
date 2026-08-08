@@ -73,7 +73,7 @@
   --space-section: 72px;  /* between sections */
   --space-heading: 44px;  /* before a subheading */
   --space-block: 34px;    /* around a block element */
-  --space-embed: 76px;    /* around running evidence */
+  --space-embed: 61px;    /* around running evidence */
 
   /* Where the first line of every page sits, measured from under the header. */
   --space-page-top: 88px;
