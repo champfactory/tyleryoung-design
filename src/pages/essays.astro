@@ -219,10 +219,11 @@ const sections = [
     color: var(--color-ink-2);
   }
 
-  /* Three sections, three clear breaths — the gap between themes has to beat
-     the gap between a theme and its own cards by a wide margin. */
+  /* Enough to separate the three themes, not so much that the scroll goes
+     quiet between them. 170px opened a hole; 118 still clearly beats the 40px
+     inside a section. */
   .block {
-    padding-top: 170px;
+    padding-top: 118px;
   }
 
   /* The theme. It spans the measure and sits directly on the gray page — the
