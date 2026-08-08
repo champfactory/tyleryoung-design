@@ -438,7 +438,7 @@ const {
   .doc .rail dt {
     font-family: var(--font-mono);
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 650;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-signal);
@@ -603,7 +603,13 @@ const {
      box: at 654x1212 that cropped away everything below the photograph, so a
      caption reading "the card expands to support a larger procedure set" sat
      above an image with no procedures in it. Ragged bottoms are the cheaper
-     problem. */
+     problem.
+
+     The anatomy matches a live embed exactly — a header naming the state and the
+     surface, then the evidence, then one caption saying what to look at. It used
+     to carry three labels in two places: a blue surface tag above the image and
+     a black state name below it, which read as two competing titles for the same
+     thing. */
   .doc .captures {
     list-style: none;
     display: grid;
@@ -617,51 +623,52 @@ const {
     margin: 0;
     padding: 0;
     align-self: start;
+    border: 1px solid var(--color-rule);
+    background: var(--color-paper-raised);
   }
 
   .doc .captures > li::before {
     content: none !important;
   }
 
+  /* The same header a running embed wears. */
+  .doc .capture-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 14px;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--color-rule);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .doc .capture-name {
+    color: var(--color-ink);
+  }
+
+  .doc .capture-surface {
+    color: var(--color-ink-3);
+  }
+
   .doc .capture-shot {
     display: block;
     width: 100%;
     height: auto;
-    border: 1px solid var(--color-rule);
-    background: var(--color-paper-raised);
-  }
-
-  .doc .capture-name {
-    display: block;
-    margin: 12px 0 0 !important;
-    font-family: var(--font-mono) !important;
-    font-size: 10.5px !important;
-    font-weight: 500;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--color-ink) !important;
   }
 
   .doc .capture-note {
     display: block;
-    margin: 6px 0 0 !important;
-    font-size: 15px !important;
-    line-height: 1.45 !important;
-    color: var(--color-ink-2) !important;
-  }
-
-  /* Which surface a reader is looking at. This page alternates between a public
-     website and a product, and a screenshot of one is easy to mistake for the
-     other, so every capture says which it is. */
-  .doc .surface-tag {
-    display: block;
-    margin: 0 0 10px !important;
+    margin: 0 !important;
+    padding: 13px 14px;
+    border-top: 1px solid var(--color-rule);
     font-family: var(--font-mono) !important;
-    font-size: 10.5px !important;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-signal) !important;
+    font-size: 11px !important;
+    line-height: 1.7 !important;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-3) !important;
   }
 
   /* ---- the equipment junction --------------------------------------------- */
@@ -820,7 +827,10 @@ const {
     margin: 76px 0 10px;
     font-family: var(--font-mono);
     font-size: 11px;
-    font-weight: 500;
+    /* 600 to match the rail's labels. At 500 the mono looked thin against the
+       display type it introduces, and the two blue labels on a page were set at
+       different weights. */
+    font-weight: 600;
     letter-spacing: 0.09em;
     text-transform: uppercase;
     color: var(--color-signal);
