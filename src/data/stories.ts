@@ -89,5 +89,11 @@ export const storyEyebrow = (slug: string) => {
  */
 export const storyTitle = (slug: string) => (storyBySlug(slug)?.claim ?? '').replace(/\.$/, '');
 
-/** Footer links: the same short name the story is known by everywhere else. */
-export const storyLinks = stories.map((s) => [s.slug, s.eyebrow] as [string, string]);
+/**
+ * Footer links: the numbered eyebrow, exactly as the story page wears it, so a
+ * reader arriving at the footer sees the same name and the same position in the
+ * series that the page itself shows.
+ */
+export const storyLinks = stories.map(
+  (s) => [s.slug, `${s.num} · ${s.eyebrow}`] as [string, string],
+);

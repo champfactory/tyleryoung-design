@@ -108,9 +108,9 @@ const { current } = Astro.props as { current?: string };
     text-decoration: none;
     color: var(--color-ink);
     padding-bottom: 2px;
-    /* Same rule as every other underline on the site: half the text's own
+    /* Same rule as every other underline on the site: a quarter of the text's own
        colour at rest, full once you are on it or heading for it. */
-    border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent);
     transition: border-color 120ms ease;
   }
 

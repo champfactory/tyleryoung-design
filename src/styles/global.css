@@ -241,14 +241,14 @@
   /* --- links --------------------------------------------------------------- */
 
   /* One underline behaviour everywhere, including the nav. The line is always
-     the colour of the text above it — half strength at rest, full on hover,
+     the colour of the text above it — a quarter strength at rest, full on hover,
      focus or the current page. Deriving it from `currentColor` rather than a
      grey token means an underline under lighter or inverted type still matches
      its own text instead of forcing one grey everywhere. */
   .link {
     color: var(--color-ink);
     text-decoration: none;
-    border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent);
     transition: border-color 120ms ease;
   }
 
@@ -270,7 +270,7 @@
     color: var(--color-ink);
     text-decoration: none;
     padding-bottom: 3px;
-    border-bottom: 1px solid color-mix(in srgb, currentColor 50%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent);
     /* Only the line changes — nothing moves. A gap or letter-spacing shift
        nudges the arrow and reflows the label under the cursor. */
     transition: border-color 120ms ease;
