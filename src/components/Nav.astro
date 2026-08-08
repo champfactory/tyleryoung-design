@@ -9,14 +9,16 @@ const { current } = Astro.props as { current?: string };
       <span class="role">Senior Director of Design</span>
     </a>
     <nav aria-label="Main">
-      {/* One sentence, not a row of tabs. The connective words are plain text, so
-          only the three things you can actually go and do are underlined. */}
+      {/* One sentence, not a row of tabs. The connective words are plain ink, so
+          only the two things you can go and do are blue. The email lives in the
+          footer of every page — it was the widest thing in the header, spending
+          the best slot on the least differentiated fact. */}
       <p class="statement">
         I <a href="/how-i-design-with-ai" aria-current={current === 'building' ? 'page' : undefined}
           >design with AI</a
         > and <a href="/essays" aria-current={current === 'essays' ? 'page' : undefined}
           >lead teams</a
-        >. <a href="mailto:43tylers@gmail.com">43tylers@gmail.com <span aria-hidden="true">→</span></a>
+        >.
       </p>
     </nav>
   </div>
