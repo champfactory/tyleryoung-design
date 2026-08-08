@@ -108,27 +108,18 @@ const { current } = Astro.props as { current?: string };
     text-decoration: none;
     color: var(--color-ink);
     padding-bottom: 2px;
-    position: relative;
-  }
-
-  /* Same construction as `.artifact`: the line is a pseudo-element at 25%
-     opacity, so it never depends on a color-mix fallback. */
-  nav a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.25;
+    /* Links are blue and unadorned; the page you are on reads in ink. */
+    color: var(--color-signal);
     transition: opacity 120ms ease;
   }
 
-  nav a:hover::after,
-  nav a:focus-visible::after,
-  nav a[aria-current='page']::after {
-    opacity: 1;
+  nav a:hover,
+  nav a:focus-visible {
+    opacity: 0.75;
+  }
+
+  nav a[aria-current='page'] {
+    color: var(--color-ink);
   }
 
   .inner {

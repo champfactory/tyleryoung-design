@@ -162,13 +162,15 @@
      cards, the essays index, the 404. It was ink-3 at 500 on the landing page
      and signal at 600 inside a case study, so the same mark had two looks
      depending on which page you were on. */
+  /* Eyebrows are a lighter shade of the text they introduce, not the accent.
+     Blue now belongs to links alone. */
   .label {
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: var(--color-signal);
+    color: var(--color-ink-2);
   }
 
   /* --- structural type ----------------------------------------------------- */
@@ -247,19 +249,17 @@
      focus or the current page. Deriving it from `currentColor` rather than a
      grey token means an underline under lighter or inverted type still matches
      its own text instead of forcing one grey everywhere. */
+  /* A link is blue, and blue is only ever a link. No underline — the colour is
+     the affordance. */
   .link {
-    color: var(--color-ink);
+    color: var(--color-signal);
     text-decoration: none;
-    /* A prose link can wrap across lines, so this stays a real border: a
-       pseudo-element would only underline the last line box. */
-    border-bottom: 1px solid var(--color-rule-strong);
-    border-bottom-color: color-mix(in srgb, currentColor 25%, transparent);
-    transition: border-color 120ms ease;
+    transition: opacity 120ms ease;
   }
 
   .link:hover,
   .link:focus-visible {
-    border-bottom-color: currentColor;
+    opacity: 0.75;
   }
 
   /* An artifact link — concrete label, arrow, mono. "Live product", "Case study". */
@@ -272,36 +272,17 @@
     font-weight: 500;
     letter-spacing: 0.09em;
     text-transform: uppercase;
-    color: var(--color-ink);
+    color: var(--color-signal);
     text-decoration: none;
     padding-bottom: 3px;
-    position: relative;
-  }
-
-  /* The underline is a pseudo-element at 25% opacity rather than a border in
-     `color-mix`. The CSS minifier emits `currentColor` as its own fallback for
-     color-mix, so on any engine that skipped it the line came back at full
-     strength — a black underline, which is the hover state. Opacity needs no
-     fallback and still derives the colour from the text above it.
-
-     Only the line changes — nothing moves. A gap or letter-spacing shift
-     nudges the arrow and reflows the label under the cursor. */
-  .artifact::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.25;
     transition: opacity 120ms ease;
   }
 
-  .artifact:hover::after,
-  .artifact:focus-visible::after {
-    opacity: 1;
+  .artifact:hover,
+  .artifact:focus-visible {
+    opacity: 0.75;
   }
+
 
 }
 
