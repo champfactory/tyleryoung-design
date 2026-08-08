@@ -3,24 +3,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Display from '../components/Display.astro';
 
 /**
- * Three moves, two stories each. The order is the argument: change the language
- * decisions are made in, encode the standard they must satisfy, then grow the
- * people who can operate there.
+ * Three dimensions of the work, equal in weight — related, not sequential, so
+ * nothing here draws an arrow between them.
  */
+const frames = [
+  ['Planning', 'Deciding what is worth building before priorities harden.'],
+  ['Standards', 'Making quality consistent without routing every decision through design leadership.'],
+  ['People', 'Developing designers who can own problems, influence direction, and raise the standard themselves.'],
+];
+
 const sections = [
   {
-    title: 'Change the planning conversation',
-    intro:
-      'Design cannot influence strategy if its reasoning becomes legible only after priorities have been set. I gave teams shared ways to connect user needs with business value and to expose the cost of complexity before either became expensive to change.',
-    conclusion:
-      'Design moved upstream when it improved the quality of the decision — not merely the presentation of the proposal.',
+    label: 'Planning',
+    statement: 'Put design into the decision, not just the delivery',
+    intro: [
+      'Design was entering after priorities had hardened. Its reasoning appeared during execution, when changing the problem, scope, or investment was already expensive.',
+      'I introduced tools that made user value, business value, and complexity visible while teams could still act on them.',
+    ],
     cards: [
       {
         lever: 'Value',
-        title: 'Give design a language the business can use',
-        summary:
-          'Design proposals were being judged as visual improvements because the value behind them remained implicit. I introduced a taxonomy of work, a map to business metrics, and a rubric for evaluating user value, business value, implementation effort, and risk.',
-        evidence: 'Executives began referencing the resulting design levers in funding meetings.',
+        title: 'Translated design into business terms',
+        paras: [
+          'Design proposals were being judged as visual improvements because their value remained implicit.',
+          'In partnership with product leadership, I introduced a taxonomy of design work, mapped it to company metrics, and created a rubric for evaluating user value, business value, implementation effort, and risk.',
+        ],
+        evidence: 'Executives began using the resulting design levers in funding meetings.',
         link: 'Three models that tied design to business metrics',
         href: '/how-i-translated-design-work',
         fig: '/work/essays/how-i-translated-design-work/fig-2.svg',
@@ -28,10 +36,12 @@ const sections = [
       },
       {
         lever: 'Scope',
-        title: 'Make complexity part of the cost',
-        summary:
-          'Teams agreed that simplicity mattered but had no shared way to defend it. I introduced a complexity budget that measured decision, attention, and orientation load — giving product, research, design, and engineering a common basis for reducing scope before overbuild reached the interface.',
-        evidence: 'The conversation moved from polishing complexity to questioning whether it belonged.',
+        title: 'Made complexity a scoping constraint',
+        paras: [
+          'Everyone agreed that simplicity mattered, but nobody had a shared way to defend it.',
+          'I introduced a complexity budget that measured decision, attention, and orientation load across a flow. Product, research, design, and engineering could identify where scope was asking too much of users — and reduce it before overbuild reached the interface.',
+        ],
+        evidence: 'Teams stopped treating complexity as something to polish and began treating it as a cost to justify.',
         link: 'A complexity budget for scope decisions',
         href: '/how-i-managed-ux-complexity',
         fig: '/work/essays/how-i-managed-ux-complexity/fig-2.svg',
@@ -40,31 +50,36 @@ const sections = [
     ],
   },
   {
-    title: 'Turn standards into shared infrastructure',
-    intro:
-      'A standard does not scale because a leader declares it. It scales when other teams find it useful enough to depend on. I built systems that clarified how work should be made and where continued investment stopped returning value.',
-    conclusion:
-      'Quality became easier to hold when the standard existed outside any one review or reviewer.',
+    label: 'Standards',
+    statement: 'Made quality something other teams could depend on',
+    intro: [
+      'Standards do not scale because a design leader declares them. They scale when teams find them useful enough to build their own work around.',
+      'I established shared foundations for how products were made and a clearer threshold for when continued work stopped improving the outcome.',
+    ],
     cards: [
       {
         lever: 'Coherence',
-        title: 'Build a system teams choose to adopt',
-        summary:
-          'Product quality was drifting across siloed teams, conflicting standards, and repeated handoff failures. I led a global design system of more than 200 components that became a shared operating layer across product, engineering, creative, marketing, and planning.',
-        evidence:
-          'Adoption spread through usefulness rather than mandate. Product managers learned the system, engineering mirrored its foundations, and teams began planning around its availability.',
-        link: 'A design system five teams chose to adopt',
+        title: 'Built a design system five functions chose to use',
+        paras: [
+          'Product quality was drifting across siloed teams, conflicting standards, and repeated handoff failures.',
+          'I led a global system of more than 200 components that connected product, engineering, creative, marketing, and planning.',
+          'Adoption spread through usefulness rather than mandate. Product managers learned the system, engineering mirrored its foundations, and teams began assuming its availability when planning new work.',
+        ],
+        evidence: 'What began as a design initiative became shared organizational infrastructure across five functions.',
+        link: 'A design system five functions chose to adopt',
         href: '/how-i-scaled-design-efficiency',
         fig: '/work/essays/how-i-scaled-design-efficiency/fig-1.svg',
         alt: 'Three layers of design-system trust: shared language produces alignment, shared structure produces consistency, shared infrastructure produces velocity.',
       },
       {
         lever: 'Restraint',
-        title: 'Establish a defensible stopping point',
-        summary:
-          'Teams rushed through problem definition, then pursued perfection during execution. I reframed “good enough” as a deliberate double standard: a threshold to exceed while defining the problem and one to defend once the work had delivered its intended value.',
-        evidence:
-          'Designers gained both permission and an obligation to challenge assumptions, align on success, and stop building when additional work no longer improved the outcome.',
+        title: 'Made “good enough” a deliberate threshold',
+        paras: [
+          'Teams rushed through problem definition, then pursued perfection during execution.',
+          'I introduced a deliberate double standard: “good enough” was a bar to exceed while defining the problem and a threshold to defend once the work had delivered its intended value.',
+          'Designers learned when to challenge assumptions, when to commit, and when additional work no longer justified its cost.',
+        ],
+        evidence: 'The team became more rigorous about defining the problem and more disciplined about stopping once the intended value had been delivered.',
         link: 'Knowing when to stop building',
         href: '/how-i-built-culture-around-paradox',
         fig: '/work/essays/how-i-built-culture-around-paradox/fig-1.svg',
@@ -73,19 +88,21 @@ const sections = [
     ],
   },
   {
-    title: 'Grow designers into decision-makers',
-    intro:
-      'Moving design upstream is meaningless if only the design leader is allowed to operate there. I changed roles, ownership, and advancement so designers could carry work from framing through delivery — and grow by influencing direction rather than merely increasing output.',
-    conclusion:
-      'The team’s influence grew because judgment became something designers could practice, demonstrate, and be rewarded for.',
+    label: 'People',
+    statement: 'Developed designers to own more than execution',
+    intro: [
+      'Moving design upstream would mean little if only its leader could operate there.',
+      'I changed the structure of the team and the definition of advancement so designers could own complete problems, influence product direction, and develop judgment through real strategic work.',
+    ],
     cards: [
       {
         lever: 'Ownership',
-        title: 'Replace specialist handoffs with product ownership',
-        summary:
-          'After the pandemic reshaped the business and reduced the team, a specialist structure built for long, orchestrated initiatives became too brittle. I rebuilt the group around junior product-design generalists and coached them to own the complete process.',
-        evidence:
-          'Junior designers delivered work previously handled by senior specialists with greater speed and fewer dependencies, then grew into cross-functional planning and mentorship.',
+        title: 'Rebuilt specialist roles around product ownership',
+        paras: [
+          'After the pandemic reduced the team and changed the pace of the work, a structure built around UX and visual-design handoffs became too brittle.',
+          'I rebuilt the group around junior product-design generalists and coached them to own work from early framing through final delivery.',
+        ],
+        evidence: 'Junior designers delivered work previously handled by senior specialists with greater speed and fewer dependencies, then grew into cross-functional planning and mentorship.',
         link: 'Rebuilding the team from specialists to generalists',
         href: '/how-i-unlocked-team-trust',
         fig: '/work/essays/how-i-unlocked-team-trust/fig-1.svg',
@@ -93,11 +110,13 @@ const sections = [
       },
       {
         lever: 'Growth',
-        title: 'Promote designers for the direction they shape',
-        summary:
-          'Execution skill dominated the career path, leaving capable designers outside strategic conversations. I introduced a development model that rewarded problem framing, recommendations, strategic influence, systems advocacy, and mentorship.',
-        evidence:
-          'Designers practiced strategy in roadmap and tradeoff conversations — not only in critique — and advancement became connected to visible planning impact.',
+        title: 'Rewarded influence, not just output',
+        paras: [
+          'The existing career path rewarded execution strength while leaving capable designers outside strategic conversations.',
+          'I introduced a development model that made problem framing, recommendations, strategic influence, systems advocacy, and mentorship visible parts of advancement.',
+          'Designers practiced those skills in roadmap and tradeoff conversations — not only during critique.',
+        ],
+        evidence: 'Career growth became connected to how designers shaped product direction, not simply how much work they delivered.',
         link: 'Promoting designers for influence, not output',
         href: '/how-i-shaped-cross-functional-reputation',
         fig: '/work/essays/how-i-shaped-cross-functional-reputation/fig-1.svg',
@@ -106,69 +125,49 @@ const sections = [
     ],
   },
 ];
-
-/** The organizational sequence the three sections follow. */
-const progression = [
-  ['Planning', 'Change the language used to make decisions'],
-  ['Standards', 'Encode the standard those decisions must satisfy'],
-  ['People', 'Develop people capable of applying and improving it'],
-];
-
-const strip = [
-  'Executives used design’s language in funding meetings',
-  'Five functions adopted a shared design system',
-  'Junior generalists took ownership from framing through delivery',
-  'Career growth became tied to influence, not output',
-];
 ---
 
 <BaseLayout
-  title="I build design teams that change what gets decided"
-  metaTitle="I build design teams that change what gets decided | Tyler Young"
-  description="Getting design invited earlier was not the goal. Six stories about moving design upstream by changing how the company framed value, controlled scope, held standards, and developed judgment."
+  title="I build design teams that make better product decisions"
+  metaTitle="I build design teams that make better product decisions | Tyler Young"
+  description="Most design teams are measured by what they deliver. I built mine to improve the decisions that determine what gets delivered — how opportunities were framed, how complexity was challenged, how quality traveled, and how designers grew."
   current="essays"
 >
   <header class="shell hero">
     <p class="label">How I lead</p>
-    <Display text="I build design teams that change what gets decided">
-      I build design teams that change what gets decided
-    </Display>
-    <p class="stand">
-      Getting design invited earlier was not the goal. I wanted designers to
-      improve the decisions being made there — what deserved investment, how much
-      complexity users should absorb, when the work was ready, and what quality
-      meant across teams.
-    </p>
+    <div class="hero-cap">
+      <Display text="I build design teams that make better product decisions">
+        I build design teams that make better product decisions
+      </Display>
+    </div>
     <p class="open">
-      That required more than advocating for design. I introduced shared ways to
-      frame value, control scope, establish standards, and develop judgment. Some
-      became planning instruments. Some changed the shape of the team. Together,
-      they moved design from receiving decisions to helping make them. These six
-      stories show how.
+      Most design teams are measured by what they deliver. I built mine to
+      improve the decisions that determine what gets delivered.
+    </p>
+    <p class="open dim">
+      That meant changing how opportunities were framed, how complexity was
+      challenged, how quality traveled across teams, and how designers grew into
+      broader ownership. These six stories cover three parts of that work.
     </p>
 
-    <ul class="strip">
-      {strip.map((s) => <li>{s}</li>)}
-    </ul>
-
-    <ol class="progression" aria-label="The sequence the three sections follow">
+    <ul class="frames">
       {
-        progression.map(([step, what], i) => (
+        frames.map(([name, what]) => (
           <li>
-            <span class="prog-step">{step}</span>
-            <span class="prog-what">{what}</span>
-            {i < progression.length - 1 && <span class="prog-arrow" aria-hidden="true">→</span>}
+            <h2 class="frame-name">{name}</h2>
+            <p class="frame-what">{what}</p>
           </li>
         ))
       }
-    </ol>
+    </ul>
   </header>
 
   {
     sections.map((sec, si) => (
       <section class="shell block" aria-labelledby={`sec-${si}`}>
-        <h2 class="heading sec-title" id={`sec-${si}`}>{sec.title}</h2>
-        <p class="sec-intro">{sec.intro}</p>
+        <p class="sec-label">{sec.label}</p>
+        <h2 class="heading sec-statement" id={`sec-${si}`}>{sec.statement}</h2>
+        {sec.intro.map((p) => <p class="sec-intro">{p}</p>)}
 
         {sec.cards.map((c, ci) => (
           <article class:list={['card', { flip: (si * 2 + ci) % 2 === 1 }]}>
@@ -178,7 +177,8 @@ const strip = [
             <div class="body">
               <p class="lever">{c.lever}</p>
               <h3 class="heading card-title">{c.title}</h3>
-              <p class="summary">{c.summary}</p>
+              {c.paras.map((p) => <p class="summary">{p}</p>)}
+              <p class="ev-label">Evidence</p>
               <p class="evidence">{c.evidence}</p>
               <a class="essay-link" href={c.href}>
                 {c.link} <span aria-hidden="true">→</span>
@@ -186,30 +186,32 @@ const strip = [
             </div>
           </article>
         ))}
-
-        <p class="sec-close">{sec.conclusion}</p>
       </section>
     ))
   }
 
   <section class="shell closing">
-    <h2 class="heading">The point was never to put design into every meeting</h2>
-    <p>It was to make design useful at the moments when product direction was still fluid.</p>
+    <h2 class="heading">The outcome was not a louder design function</h2>
+    <p>It was a more useful one.</p>
     <p>
-      The business-value models changed how opportunities were framed. The
-      complexity budget changed how scope was negotiated. The design system
-      changed how quality traveled across teams. The “good enough” threshold
-      changed when people challenged and when they committed. The role and career
-      models changed who was equipped and expected to participate.
+      Design earned influence because it made opportunities clearer, scope more
+      defensible, execution more coherent, and the people doing the work more
+      capable.
     </p>
     <p>
-      My job as a design leader is not to make every consequential decision
-      myself. It is to build a team, a language, and an operating environment in
-      which better decisions become more likely — with or without me in the room.
+      The business-value models changed how investments were framed. The
+      complexity budget changed how scope was negotiated. The design system gave
+      teams a shared foundation. The delivery threshold clarified when to
+      challenge and when to commit. The role and career models developed
+      designers who could operate across all of it.
+    </p>
+    <p>
+      I do not measure leadership by how many decisions depend on me. I measure
+      it by whether the team can frame the problem, challenge the scope, hold the
+      standard, and influence direction without waiting for permission.
     </p>
     <p class="close-line">
-      I scale design by increasing the quality of the decisions the organization
-      can make.
+      I scale design by improving the decisions the team is equipped to make.
     </p>
   </section>
 </BaseLayout>
@@ -219,98 +221,88 @@ const strip = [
     padding-top: 96px;
   }
 
-  .stand {
+  /* The fitted size would run this headline to 85px; a leadership page opens
+     with a statement, not a poster, and the whole line has to sit inside one
+     laptop viewport with the framing cards. */
+  .hero-cap :global(.display) {
+    font-size: min(64px, 5vw) !important;
+  }
+
+  .open {
     margin: 26px 0 0;
-    max-width: 62ch;
+    max-width: 64ch;
     font-size: var(--text-lede);
     line-height: 1.45;
     color: var(--color-ink);
   }
 
-  .open {
-    margin: 18px 0 0;
-    max-width: 68ch;
+  .open.dim {
+    margin-top: 16px;
     font-size: var(--text-note);
     line-height: 1.55;
     color: var(--color-ink-2);
   }
 
-  /* The four outcomes, banded like every parallel row on the site. */
-  .strip {
+  /* Planning, Standards, People — three equal cards, no arrows: dimensions of
+     the job, not steps in it. */
+  .frames {
     list-style: none;
     display: grid;
-    margin: 40px 0 0;
+    gap: 14px;
+    margin: 44px 0 0;
     padding: 0;
-    gap: 0;
   }
 
-  .strip li {
-    padding: 16px 18px;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.4;
+  .frames li {
+    background: var(--color-paper-raised);
+    border-radius: 10px;
+    padding: 24px 22px;
+  }
+
+  .frame-name {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 650;
+    letter-spacing: -0.01em;
     color: var(--color-ink);
   }
 
-  .strip li:nth-child(odd) {
-    background: var(--color-row);
-  }
-
-  /* Planning → Standards → People. A line, not a diagram. */
-  .progression {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 18px;
-    margin: 40px 0 0;
-    padding: 22px 0 0;
-    border-top: 1px solid var(--color-rule);
-  }
-
-  .progression li {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-  }
-
-  .prog-step {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--color-ink);
-  }
-
-  .prog-what {
-    font-size: 14px;
-    color: var(--color-ink-3);
-  }
-
-  .prog-arrow {
-    color: var(--color-ink-3);
-    margin-left: 8px;
+  .frame-what {
+    margin: 8px 0 0;
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--color-ink-2);
   }
 
   .block {
     padding-top: 110px;
   }
 
-  .sec-title {
-    font-size: clamp(26px, 3.4vw, 34px);
+  .sec-label {
     margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-ink-2);
+  }
+
+  .sec-statement {
+    font-size: clamp(26px, 3.4vw, 36px);
+    margin: 10px 0 0;
+    max-width: 24ch;
   }
 
   .sec-intro {
     margin: 16px 0 0;
-    max-width: 66ch;
+    max-width: 64ch;
     font-size: var(--text-note);
     line-height: 1.55;
     color: var(--color-ink-2);
   }
 
-  /* An essay card: evidence on one side, the case on the other. */
   .card {
     display: grid;
     gap: 26px;
-    margin-top: 54px;
+    margin-top: 56px;
   }
 
   .media {
@@ -347,17 +339,24 @@ const strip = [
     color: var(--color-ink-2);
   }
 
-  /* The one concrete consequence, set apart from the description. */
+  /* The result, named as such and kept beside the story that produced it. */
+  .ev-label {
+    margin: 18px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-ink-3);
+  }
+
   .evidence {
-    margin: 14px 0 0;
+    margin: 4px 0 0;
     font-size: var(--text-note);
     line-height: 1.5;
     font-weight: 600;
     color: var(--color-ink);
   }
 
-  /* Ink, not blue: these sit six to a page, and a page of blue headlines reads
-     as a link farm. The arrow does the pointing, as in the footer. */
+  /* Ink with an arrow: six blue headlines on one page would read as a link
+     farm. The essay title appears only here, as the way in. */
   .essay-link {
     display: inline-block;
     margin-top: 18px;
@@ -373,23 +372,15 @@ const strip = [
     opacity: 0.7;
   }
 
-  .sec-close {
-    margin: 54px 0 0;
-    max-width: 62ch;
-    font-size: 19px;
-    font-weight: 600;
-    line-height: 1.45;
-    color: var(--color-ink);
-  }
-
   .closing {
     padding-top: 120px;
     padding-bottom: 40px;
   }
 
   .closing h2 {
-    font-size: clamp(26px, 3.4vw, 34px);
+    font-size: clamp(26px, 3.4vw, 36px);
     margin: 0 0 18px;
+    max-width: 24ch;
   }
 
   .closing p {
@@ -408,8 +399,8 @@ const strip = [
   }
 
   @media (min-width: 860px) {
-    .strip {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .frames {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .card {
@@ -418,7 +409,6 @@ const strip = [
       align-items: start;
     }
 
-    /* Alternate sides so the page has a gait rather than a march. */
     .card.flip .media {
       order: 2;
     }

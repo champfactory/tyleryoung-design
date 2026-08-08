@@ -13,13 +13,13 @@ description: >-
   Restructuring a team of specialists into product design generalists during a downturn, and finding it made the team faster.
 descriptionDraft: true
 contribution: >-
-  Rebuilt a specialist team into product-design generalists who own work from framing through delivery
+  Restructured a specialist design team into a product-design generalist model with end-to-end ownership
 role: >-
-  Led in partnership with senior leadership
+  Design leader · coach · organizational designer
 scope: >-
-  Internal and Cross Functional Process Improvements
+  Team structure · role clarity · capability development
 takeaway: >-
-  Junior generalists delivered what senior specialists had handled, with greater speed and fewer dependencies
+  Clear expectations and strong systems enabled junior designers to assume broader ownership with fewer dependencies
 ---
 
 ## The Challenge

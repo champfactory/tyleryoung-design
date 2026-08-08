@@ -1,7 +1,7 @@
 ---
 slug: how-i-scaled-design-efficiency
 title: >-
-  A design system five teams chose to adopt
+  A design system five functions chose to adopt
 titleDraft: true
 pull: >-
   Product managers began learning the system to guide handoff conversations more confidently.
