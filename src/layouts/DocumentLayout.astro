@@ -243,8 +243,11 @@ const {
   }
 
   .doc .pull-line {
-    margin: 26px 0 34px;
-    padding-left: 16px;
+    /* The rule hangs into the margin so the quote's text sits on the same left
+       edge as the prose around it. Before, the text was indented 16px past
+       everything else and the rule sat tight against it. */
+    margin: 26px 0 34px -26px;
+    padding-left: 26px;
     border-left: 2px solid var(--color-signal);
     font-family: var(--font-display);
     font-size: 21px;
@@ -1018,18 +1021,20 @@ const {
 
   /* ---- disclosure ---------------------------------------------------------- */
 
+  /* Canary rather than grey. A disclosure is a caveat about what is real and
+     what is representative; in the site's neutral grey it read as one more
+     quiet panel among several and could be scrolled past. */
   .doc .disclosure {
     margin: 40px 0 0;
     padding: 22px 20px 6px;
-    border-top: 1px solid var(--color-rule);
-    background: var(--color-row);
+    background: var(--color-note);
   }
 
-  .doc .disclosure .sec-eyebrow,
-
+  /* ink-3 is tuned for white. On the tint it goes muddy, so the eyebrow steps
+     up one to ink-2 — 7.14 against the background rather than 5.09. */
   .doc .disclosure .sec-eyebrow {
     margin-top: 0;
-    color: var(--color-ink-3);
+    color: var(--color-ink-2);
   }
 
   .doc .disclosure h2 {
