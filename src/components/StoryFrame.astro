@@ -51,7 +51,11 @@ const deepLink = `${SB}/?path=/story/${id}`;
 
 <style>
   .story-frame {
-    margin: 0 0 34px;
+    /* Same token as every other embed. These two carried `margin: 0 0 34px` —
+       no space above at all — so a running screen started immediately under the
+       paragraph introducing it while the reconstructions had room on both
+       sides. */
+    margin: var(--space-embed) 0 calc(var(--space-embed) + 12px);
     border: 1px solid var(--color-rule);
     background: var(--color-paper-raised);
   }

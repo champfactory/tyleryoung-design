@@ -73,7 +73,7 @@
   --space-section: 72px;  /* between sections */
   --space-heading: 44px;  /* before a subheading */
   --space-block: 34px;    /* around a block element */
-  --space-embed: 52px;    /* around running evidence */
+  --space-embed: 76px;    /* around running evidence */
 
   /* Where the first line of every page sits, measured from under the header. */
   --space-page-top: 88px;
@@ -95,7 +95,7 @@
   --color-machine-ink-2: #9d9a90;
 
   /* signal — one accent, used only for things that are live or interactive */
-  --color-signal: #173a6b;
+  --color-signal: #99560a;
   --color-signal-ink: #ffffff;
   --color-live: #2f6f4e;
 
