@@ -40,7 +40,8 @@ const sections = [
         link: 'A complexity budget for scope decisions',
         href: '/how-i-managed-ux-complexity',
         fig: '/work/essays/how-i-managed-ux-complexity/fig-2.svg',
-        alt: 'Heat map scoring four product flows against decision, attention and orientation load, the heaviest cells shaded darkest.',
+        alt: 'Heat map scoring four product flows against decision, attention and orientation load on the easy, manageable, challenging, frustrating scale, the heaviest cells shaded darkest.',
+        legend: 'E easy · M manageable · C challenging · F frustrating',
       },
     ],
   },
@@ -147,6 +148,7 @@ const sections = [
           <article class="card">
             <a class="media" href={c.href} tabindex="-1" aria-hidden="true">
               <img src={c.fig} alt={c.alt} loading="lazy" decoding="async" />
+              {c.legend && <span class="legend">{c.legend}</span>}
             </a>
             <div class="body">
               <h3 class="heading card-title">{c.title}</h3>
@@ -268,6 +270,15 @@ const sections = [
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  /* A diagram that speaks in letters says what they mean, right under itself. */
+  .legend {
+    display: block;
+    margin-top: 12px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-ink-3);
   }
 
   .card-title {
