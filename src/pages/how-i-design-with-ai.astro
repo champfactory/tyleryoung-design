@@ -113,18 +113,24 @@ const leverage = [
   </ol>
   <p class="note-line">Human judgment runs across all five, not at the end.</p>
 
-  <p>AI changed the distance between design intent and working software.</p>
   <p>
-    I can explore several directions, test them in the actual interface, and
-    return to a product conversation with something people can use — not only
-    something they can imagine from a static artifact.
+    Getting from an idea to something a person could actually use took weeks.
+    Now it takes hours. I can try several directions, put them in the real
+    interface, and come back to the team with something they can click instead
+    of something they have to picture.
   </p>
-  <p>That changes my medium. It does not change my responsibility.</p>
+  <p>What I am responsible for has not moved.</p>
   <p>
-    My job is still to understand the problem, frame the right behavior, protect
-    the coherence of the product, bring the right people into the decision, and
-    know when an attractive result is solving the wrong thing. I use AI to make
-    more of that thinking executable.
+    I still have to understand the problem, decide how the thing should behave,
+    keep the product coherent, get the right people into the decision, and
+    notice when a good-looking answer is solving the wrong thing.
+  </p>
+  <p>
+    What is new is where those decisions end up. A rule I set — this state has to
+    exist, this colour comes from the token page, this action needs a person —
+    used to be written down and checked later by whoever built it. Now it is
+    applied while the thing is being built. Fewer of my decisions survive as
+    notes; more of them survive as behavior.
   </p>
 
   <p class="sec-eyebrow">Frame</p>
@@ -156,14 +162,9 @@ const leverage = [
   </ul>
 
   <p>
-    This is not less design specification. It is a more complete specification of
-    the experience — behavior, hierarchy, states, content, accessibility, system
-    constraints, and the questions the work should help us answer.
-  </p>
-
-  <p class="pull-line">
-    The quality of generated work is limited by the quality of the judgment
-    encoded around it.
+    That is more specification than a screen drawing carries, not less —
+    behavior, hierarchy, states, content, accessibility, system constraints, and
+    the questions the work should help us answer.
   </p>
 
   <p class="sec-eyebrow">Encode</p>
@@ -175,9 +176,9 @@ const leverage = [
     invent an exception.
   </p>
   <p>
-    That changes what a design system is. It stops being documentation people
-    consult, or a standard applied at review, and becomes part of the environment
-    the interface is generated from.
+    That puts the design system somewhere new. It is no longer a document people
+    consult or a standard applied at review — it is part of the environment the
+    interface comes out of.
   </p>
 
   <p class="sr-only">
@@ -215,15 +216,15 @@ const leverage = [
   </p>
 
   <p class="pull-line">
-    A mature design system does more than describe the product. It constrains
-    what the product is allowed to become.
+    A design system this close to production decides what the product is allowed
+    to become.
   </p>
 
   <p class="sec-eyebrow">Explore</p>
   <h2>Options come back as working software</h2>
   <p>
-    AI makes producing alternatives inexpensive. It does not make choosing among
-    them automatic.
+    Making three versions of something is cheap now. Choosing between them is
+    the part that still costs.
   </p>
   <p>
     On a recent engagement I directed three approaches to the same problem and
@@ -238,12 +239,8 @@ const leverage = [
     work.
   </p>
   <p>
-    I still read the options, rank them, and explain why. Generation creates
-    possibilities; design judgment creates direction.
-  </p>
-
-  <p class="pull-line">
-    Exploration is cheaper. Deciding what deserves to exist is not.
+    I still read every option, rank them, and say why. That is the part of the
+    job the tooling has not touched.
   </p>
 
   <p class="sec-eyebrow">Collaborate</p>
@@ -276,9 +273,9 @@ const leverage = [
   </ol>
 
   <p>
-    Human collaboration is not a concession to unreliable AI. It has always been
-    how complex product decisions become shared and correct. AI simply makes the
-    object under discussion arrive sooner.
+    None of this is a workaround for unreliable AI. Talking it through has always
+    been how a hard product decision becomes a shared one. What is different is
+    that the thing being discussed shows up sooner.
   </p>
   <p>
     <a class="link" href="/review-loop">A stakeholder review run this way</a> is on the site: two
@@ -286,13 +283,8 @@ const leverage = [
     work actually was.
   </p>
 
-  <p class="pull-line">
-    The model can expose an interpretation. Only the team can decide whether it
-    understood the intent.
-  </p>
-
   <p class="sec-eyebrow">Evaluate</p>
-  <h2>I review the reasoning the interface expresses</h2>
+  <h2>I read the screen for the decisions inside it</h2>
   <p>A generated screen can be clean, consistent, and still wrong.</p>
 
   <ul class="cells three">
@@ -344,7 +336,7 @@ const leverage = [
   </p>
 
   <p class="sec-eyebrow">Accountability</p>
-  <h2>Code can be generated. Accountability cannot.</h2>
+  <h2>Whoever approves it owns it</h2>
   <p>Anything that ships still belongs to people.</p>
   <p>
     Whoever approves the work needs to understand what changed, which checks ran,
@@ -353,7 +345,7 @@ const leverage = [
     automated process.
   </p>
   <p>
-    That principle connects my product work to my own practice. In
+    The same idea runs through my product work. In
     <a class="link" href="/alucify">Alucify</a> I designed the surfaces that expose coverage gaps,
     downstream impact, stale analysis, and the places where human interpretation
     is still required. I hold my own work to the same rule: automation should
@@ -362,11 +354,6 @@ const leverage = [
   <p>
     I do not ask whether an agent is trustworthy in the abstract. I ask whether
     this result is grounded, reviewable, and safe to advance.
-  </p>
-
-  <p class="pull-line">
-    The useful form of trust is not confidence in the machine. It is evidence a
-    person can inspect.
   </p>
 
   <p class="sec-eyebrow">Leadership</p>
@@ -391,31 +378,28 @@ const leverage = [
   </p>
 
   <p class="pull-line">
-    My leverage comes from improving the system that produces the work, not from
-    increasing the volume of work produced.
+    My leverage is the system the work comes out of, not how much work comes out
+    of it.
   </p>
 
   <p class="sec-eyebrow">Closing</p>
-  <h2>The systems designers own now compile</h2>
+  <h2>What changed is the material</h2>
   <p>
     I am not presenting myself as a frontend engineer, and I do not think every
     designer needs to become one. I am describing a change in the material of
     design.
   </p>
   <p>
-    Intent can become behavior sooner. Design systems can govern generated
-    implementation. Options can be evaluated as running software. Review can
-    happen before a misunderstanding becomes expensive. Decisions can reach
-    production with less translation between the people who made them and the
-    people who build them.
+    A decision about behavior can be built the same day it is made. A design
+    system can decide what an agent is allowed to produce instead of being
+    checked afterwards. Options can be tried instead of imagined. A
+    misunderstanding can surface in an afternoon rather than in a sprint review.
+    And less gets lost between the people who decide something and the people
+    who build it.
   </p>
   <p>
-    The tools are new. The standard is not. The work still has to be useful,
-    coherent, accessible, explainable, and right for the people it serves.
+    The tools are new. What the work has to be has not moved: useful, coherent,
+    accessible, explainable, and right for the people it serves.
   </p>
 
-  <p class="pull-line">
-    AI helps me make design executable. Human judgment decides whether it is
-    worth shipping.
-  </p>
 </DocumentLayout>
