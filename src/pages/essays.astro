@@ -7,9 +7,9 @@ import Display from '../components/Display.astro';
  * nothing here draws an arrow between them.
  */
 const frames = [
-  ['Planning', 'Deciding what is worth building before priorities harden.'],
-  ['Standards', 'Making quality consistent without routing every decision through design leadership.'],
-  ['People', 'Developing designers who can own problems, influence direction, and raise the standard themselves.'],
+  ['Planning', 'Decide what is worth building before the roadmap hardens.'],
+  ['Standards', 'Keep quality consistent without me in every review.'],
+  ['People', 'Grow designers who can own a problem end to end.'],
 ];
 
 const sections = [
@@ -17,18 +17,18 @@ const sections = [
     label: 'Planning',
     statement: 'Put design into the decision, not just the delivery',
     intro: [
-      'Design was entering after priorities had hardened. Its reasoning appeared during execution, when changing the problem, scope, or investment was already expensive.',
-      'I introduced tools that made user value, business value, and complexity visible while teams could still act on them.',
+      'Design showed up after priorities were set, so its reasoning arrived during execution — when changing the scope or the investment was already expensive.',
+      'I built tools that put user value, business value and complexity on the table while the decisions were still open.',
     ],
     cards: [
       {
         lever: 'Value',
         title: 'Translated design into business terms',
         paras: [
-          'Design proposals were being judged as visual improvements because their value remained implicit.',
-          'In partnership with product leadership, I introduced a taxonomy of design work, mapped it to company metrics, and created a rubric for evaluating user value, business value, implementation effort, and risk.',
+          'Design proposals were read as visual improvements because nobody had priced their value.',
+          'With product leadership, I built a taxonomy of design work, mapped it to company metrics, and wrote a rubric covering user value, business value, effort and risk.',
         ],
-        evidence: 'Executives began using the resulting design levers in funding meetings.',
+        evidence: 'Executives started using the design levers in funding meetings.',
         link: 'Three models that tied design to business metrics',
         href: '/how-i-translated-design-work',
         fig: '/work/essays/how-i-translated-design-work/fig-2.svg',
@@ -38,10 +38,10 @@ const sections = [
         lever: 'Scope',
         title: 'Made complexity a scoping constraint',
         paras: [
-          'Everyone agreed that simplicity mattered, but nobody had a shared way to defend it.',
-          'I introduced a complexity budget that measured decision, attention, and orientation load across a flow. Product, research, design, and engineering could identify where scope was asking too much of users — and reduce it before overbuild reached the interface.',
+          'Everyone agreed simplicity mattered. Nobody had a way to defend it.',
+          'The complexity budget scored a flow on decision, attention and orientation load, so product, research, design and engineering could see where scope asked too much of users — and cut it before it reached the interface.',
         ],
-        evidence: 'Teams stopped treating complexity as something to polish and began treating it as a cost to justify.',
+        evidence: 'Complexity stopped being something to polish and became a cost to justify.',
         link: 'A complexity budget for scope decisions',
         href: '/how-i-managed-ux-complexity',
         fig: '/work/essays/how-i-managed-ux-complexity/fig-2.svg',
@@ -51,21 +51,20 @@ const sections = [
   },
   {
     label: 'Standards',
-    statement: 'Made quality something other teams could depend on',
+    statement: 'Made quality something other teams could rely on',
     intro: [
-      'Standards do not scale because a design leader declares them. They scale when teams find them useful enough to build their own work around.',
-      'I established shared foundations for how products were made and a clearer threshold for when continued work stopped improving the outcome.',
+      'A standard does not scale because the design leader declares it. It scales when other teams find it useful enough to build on.',
+      'I built the shared foundations, and a clear line for when more work stopped improving the outcome.',
     ],
     cards: [
       {
         lever: 'Coherence',
         title: 'Built a design system five functions chose to use',
         paras: [
-          'Product quality was drifting across siloed teams, conflicting standards, and repeated handoff failures.',
-          'I led a global system of more than 200 components that connected product, engineering, creative, marketing, and planning.',
-          'Adoption spread through usefulness rather than mandate. Product managers learned the system, engineering mirrored its foundations, and teams began assuming its availability when planning new work.',
+          'Quality was drifting across siloed teams, conflicting standards and repeated handoff failures.',
+          'I led a system of more than 200 components connecting product, engineering, creative, marketing and planning. Nobody was ordered to use it. Product managers learned it, engineering mirrored it, and teams began planning around it.',
         ],
-        evidence: 'What began as a design initiative became shared organizational infrastructure across five functions.',
+        evidence: 'A design project became infrastructure that five functions rely on.',
         link: 'A design system five functions chose to adopt',
         href: '/how-i-scaled-design-efficiency',
         fig: '/work/essays/how-i-scaled-design-efficiency/fig-1.svg',
@@ -75,11 +74,10 @@ const sections = [
         lever: 'Restraint',
         title: 'Made “good enough” a deliberate threshold',
         paras: [
-          'Teams rushed through problem definition, then pursued perfection during execution.',
-          'I introduced a deliberate double standard: “good enough” was a bar to exceed while defining the problem and a threshold to defend once the work had delivered its intended value.',
-          'Designers learned when to challenge assumptions, when to commit, and when additional work no longer justified its cost.',
+          'Teams rushed the problem definition, then polished the execution forever.',
+          'I flipped the standard: exceed the bar while defining the problem, and defend “good enough” once the work has done its job.',
         ],
-        evidence: 'The team became more rigorous about defining the problem and more disciplined about stopping once the intended value had been delivered.',
+        evidence: 'The team got more rigorous up front and stopped sooner at the end.',
         link: 'Knowing when to stop building',
         href: '/how-i-built-culture-around-paradox',
         fig: '/work/essays/how-i-built-culture-around-paradox/fig-1.svg',
@@ -91,18 +89,18 @@ const sections = [
     label: 'People',
     statement: 'Developed designers to own more than execution',
     intro: [
-      'Moving design upstream would mean little if only its leader could operate there.',
-      'I changed the structure of the team and the definition of advancement so designers could own complete problems, influence product direction, and develop judgment through real strategic work.',
+      'Moving design upstream means little if only the leader can operate there.',
+      'I changed the team structure and the career path so designers could own whole problems and grow by shaping direction.',
     ],
     cards: [
       {
         lever: 'Ownership',
         title: 'Rebuilt specialist roles around product ownership',
         paras: [
-          'After the pandemic reduced the team and changed the pace of the work, a structure built around UX and visual-design handoffs became too brittle.',
-          'I rebuilt the group around junior product-design generalists and coached them to own work from early framing through final delivery.',
+          'After the pandemic shrank the team, a structure built on UX and visual-design handoffs was too brittle for the pace.',
+          'I rebuilt around junior product-design generalists and coached them to own work from first framing to final delivery.',
         ],
-        evidence: 'Junior designers delivered work previously handled by senior specialists with greater speed and fewer dependencies, then grew into cross-functional planning and mentorship.',
+        evidence: 'Junior designers delivered what senior specialists had, faster and with fewer dependencies — then grew into planning and mentorship.',
         link: 'Rebuilding the team from specialists to generalists',
         href: '/how-i-unlocked-team-trust',
         fig: '/work/essays/how-i-unlocked-team-trust/fig-1.svg',
@@ -112,11 +110,10 @@ const sections = [
         lever: 'Growth',
         title: 'Rewarded influence, not just output',
         paras: [
-          'The existing career path rewarded execution strength while leaving capable designers outside strategic conversations.',
-          'I introduced a development model that made problem framing, recommendations, strategic influence, systems advocacy, and mentorship visible parts of advancement.',
-          'Designers practiced those skills in roadmap and tradeoff conversations — not only during critique.',
+          'The career path rewarded execution, so capable designers stayed out of strategic conversations.',
+          'I made problem framing, recommendations, influence and mentorship count toward advancement — practiced in roadmap and tradeoff meetings, not just critique.',
         ],
-        evidence: 'Career growth became connected to how designers shaped product direction, not simply how much work they delivered.',
+        evidence: 'Designers advanced by shaping direction, not by shipping more.',
         link: 'Promoting designers for influence, not output',
         href: '/how-i-shaped-cross-functional-reputation',
         fig: '/work/essays/how-i-shaped-cross-functional-reputation/fig-1.svg',
@@ -141,13 +138,10 @@ const sections = [
       </Display>
     </div>
     <p class="open">
-      Most design teams are measured by what they deliver. I built mine to
-      improve the decisions that determine what gets delivered.
-    </p>
-    <p class="open dim">
-      That meant changing how opportunities were framed, how complexity was
-      challenged, how quality traveled across teams, and how designers grew into
-      broader ownership. These six stories cover three parts of that work.
+      Design teams get measured on what they ship. The bigger lever is the set
+      of decisions made before anything ships — what gets built, how much of it,
+      and when it is done. I built my team to be good at those. Six stories, in
+      three parts.
     </p>
 
     <ul class="frames">
@@ -191,27 +185,18 @@ const sections = [
   }
 
   <section class="shell closing">
-    <h2 class="heading">The outcome was not a louder design function</h2>
-    <p>It was a more useful one.</p>
+    <h2 class="heading">The result was not a louder design team</h2>
     <p>
-      Design earned influence because it made opportunities clearer, scope more
-      defensible, execution more coherent, and the people doing the work more
+      It was a more useful one. Opportunities got clearer, scope got defensible,
+      quality traveled between teams, and the people doing the work got more
       capable.
     </p>
     <p>
-      The business-value models changed how investments were framed. The
-      complexity budget changed how scope was negotiated. The design system gave
-      teams a shared foundation. The delivery threshold clarified when to
-      challenge and when to commit. The role and career models developed
-      designers who could operate across all of it.
-    </p>
-    <p>
-      I do not measure leadership by how many decisions depend on me. I measure
-      it by whether the team can frame the problem, challenge the scope, hold the
-      standard, and influence direction without waiting for permission.
+      I do not measure leadership by how many decisions run through me. I
+      measure it by what the team decides well without me.
     </p>
     <p class="close-line">
-      I scale design by improving the decisions the team is equipped to make.
+      I scale design by improving the decisions the team can make.
     </p>
   </section>
 </BaseLayout>
@@ -250,25 +235,21 @@ const sections = [
     color: var(--color-ink);
   }
 
-  .open.dim {
-    margin-top: 16px;
-    font-size: var(--text-note);
-    line-height: 1.55;
-    color: var(--color-ink-2);
-  }
-
+  /* The site's banded row: equal boxes, every other one surfaced. */
   .frames {
     list-style: none;
     display: grid;
-    gap: 14px;
+    gap: 0;
     margin: 44px 0 0;
     padding: 0;
   }
 
   .frames li {
-    background: var(--color-paper-raised);
-    border-radius: 10px;
-    padding: 24px 22px;
+    padding: 20px 18px;
+  }
+
+  .frames li:nth-child(odd) {
+    background: var(--color-row);
   }
 
   .frame-name {
