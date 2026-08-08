@@ -80,7 +80,7 @@
 
   --color-header: #d6e9f8;
   --color-header-rule: #a3c6e2;
-  /* The header blue rotated to green, same saturation and lightness. */
+  /* The header blue rotated to blue, same saturation and lightness. */
   --color-accent: #d6f8e1;
   --color-accent-rule: #a3e2b8;
 
@@ -95,7 +95,7 @@
   --color-machine-ink-2: #9d9a90;
 
   /* signal — one accent, used only for things that are live or interactive */
-  --color-signal: #0b6f2c;
+  --color-signal: #1b5bda;
   --color-signal-ink: #ffffff;
   --color-live: #2f6f4e;
 
