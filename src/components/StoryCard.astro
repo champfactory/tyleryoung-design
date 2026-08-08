@@ -128,10 +128,12 @@ const { num, eyebrow, claim, outcome, artifacts, draft } = story;
     display: none;
   }
 
-  /* The frame carries a bottom margin so prose does not butt into its caption.
-     Inside a card the grid owns the spacing, so take it back. */
+  /* The frame carries margins so prose does not butt into it on a case-study
+     page. Inside a card the grid owns the spacing, so take both back — the top
+     one especially: with it, the embed started a whole `--space-embed` below the
+     eyebrow it is supposed to line up with. */
   .media :global(.live) {
-    margin-bottom: 0;
+    margin: 0;
   }
 
   .media :global(img) {
