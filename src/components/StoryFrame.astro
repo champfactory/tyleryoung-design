@@ -57,12 +57,10 @@ const deepLink = `${SB}/?path=/story/${id}`;
     margin: var(--space-embed) 0 calc(var(--space-embed) + 12px);
     background: var(--color-paper-raised);
   
-    /* A card, not an outlined panel: small radius, no border, the faintest
-       lift so the edge reads on white without a rule doing it. */
+    /* A card, not an outlined panel: small radius, no border, the radius alone. */
     border: 0;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 1px 2px rgba(20, 30, 50, 0.05), 0 6px 20px rgba(20, 30, 50, 0.06);
   }
 
   .chrome {
