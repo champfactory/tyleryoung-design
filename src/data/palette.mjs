@@ -10,10 +10,10 @@
  */
 
 export const TOKENS = {
-  paper: '#ffffff', // was #f6f4ef
-  'paper-raised': '#fcfbf8',
+  paper: '#f5f5f7', // was #f6f4ef
+  'paper-raised': '#ffffff',
   'paper-sunk': '#edeae1',
-  row: '#f5f5f6',
+  row: '#ffffff',
   ink: '#1a1a18',
   'ink-2': '#55534b',
   'ink-3': '#6b6961',
