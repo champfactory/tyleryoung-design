@@ -91,11 +91,11 @@ const references = [
         {
           references.map((r) => (
             <figure class="ref">
-              <blockquote>{r.quote}</blockquote>
               <figcaption>
                 <span class="ref-name">{r.name}</span>
                 <span class="ref-title">{r.title}</span>
               </figcaption>
+              <blockquote>{r.quote}</blockquote>
             </figure>
           ))
         }
@@ -143,7 +143,7 @@ const references = [
   }
 
   blockquote {
-    margin: 0 0 22px;
+    margin: 14px 0 0;
     font-size: var(--text-note);
     line-height: 1.58;
     color: var(--color-ink);

@@ -41,11 +41,15 @@ const FLOOR_PX = 30;
 const TARGET_MAX_PX = 110;
 
 /**
- * A hard ceiling. A five-character title like "TL;DR" would need ~400px to span
- * the measure, which is a poster, not a page. Titles that short stop short of
- * the right edge, and should.
+ * A hard ceiling, and the same number as the target below.
+ *
+ * Filling the measure is the goal, but it cannot be the only rule: a
+ * 16-character headline only spans 1120px by reaching 171px, and at that size it
+ * stops being the same component as every other page's title. Titles short
+ * enough to need more than this stop short of the right edge instead. Size
+ * consistency wins over spanning; they are only in conflict at the extremes.
  */
-const ABSOLUTE_MAX_PX = 180;
+const ABSOLUTE_MAX_PX = 110;
 
 /** More lines than this reads as a paragraph, not a headline. */
 const MAX_LINES = 4;

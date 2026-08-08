@@ -56,7 +56,11 @@ export const stories: Story[] = [
     claim: 'I own the collaboration between stakeholders and agents.',
     outcome:
       'A stakeholder reviewed a working app and returned 48 notes. Claude Code made responding fast; it did not make the notes unambiguous — one asked me to rename wording that was not on the screen. Deciding what each note actually meant was the work. Both versions are still running.',
-    artifacts: [{ label: 'Read the story', href: '/review-loop' }],
+    artifacts: [
+      { label: 'Open the reviewed build', href: 'https://metin-oasis-v6.fly.dev/', live: true },
+      { label: 'Open the next version', href: 'https://metin-oasis-v7.fly.dev/', live: true },
+      { label: 'Read the story', href: '/review-loop' },
+    ],
     draft: true,
   },
 ];
