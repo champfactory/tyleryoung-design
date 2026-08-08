@@ -1,0 +1,42 @@
+---
+/**
+ * The one page head. Eyebrow, fitted headline, optional deck — and, more to the
+ * point, one set of numbers. Before this existed, the essays page hand-rolled
+ * the same three elements and drifted: zero gap where the template has 16px,
+ * its own top padding, its own cap on the headline. Toggling between two pages
+ * showed the titles jumping. Now both consume this, so they cannot disagree.
+ *
+ * No .shell here — the caller owns the column, because DocumentLayout mounts
+ * this inside an article that is already a shell.
+ */
+import Display from './Display.astro';
+
+interface Props {
+  eyebrow: string;
+  /** the headline text, used to compute the fitted size */
+  title: string;
+  deck?: string;
+}
+
+const { eyebrow, title, deck } = Astro.props;
+---
+
+<header class="page-head">
+  <p class="label">{eyebrow}</p>
+  <Display text={title}><slot>{title}</slot></Display>
+  {deck && <p class="deck">{deck}</p>}
+</header>
+
+<style>
+  .page-head :global(.display-fit) {
+    margin-top: 16px;
+  }
+
+  .deck {
+    margin: 18px 0 0;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--color-ink);
+    text-wrap: pretty;
+  }
+</style>

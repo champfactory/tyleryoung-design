@@ -9,7 +9,7 @@
  * use the same shell so a technical piece reads as a sibling of the leadership
  * essays rather than a bolt-on.
  */
-import Display from '../components/Display.astro';
+import PageHead from '../components/PageHead.astro';
 import BaseLayout from './BaseLayout.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
@@ -56,11 +56,9 @@ const {
   related={related}
 >
   <article class="shell doc">
-    <header class="head">
-      <p class="label">{eyebrow}</p>
-      <Display text={title}>{titleDraft ? <Draft>{title}</Draft> : title}</Display>
-      {deck && <p class="deck">{deck}</p>}
-    </header>
+    <PageHead eyebrow={eyebrow} title={title} deck={deck}>
+      {titleDraft ? <Draft>{title}</Draft> : title}
+    </PageHead>
 
     <div class="columns">
       <aside class="rail" aria-label="Metadata">
@@ -99,9 +97,6 @@ const {
 
   /* Colour and weight come from `.label` in global.css; only the spacing is
      this layout's business. */
-  .doc .head .label {
-    margin-top: 0;
-  }
 
   /* Diagrams recovered from the live site. These are the instruments the essays
      describe — scoring rubrics, before/after tables, the two-by-twos — so they
@@ -388,20 +383,7 @@ const {
     height: auto;
   }
 
-  /* Size and wrapping belong to the one display style in global.css, computed
-     per title by the Display component. Only the spacing to the eyebrow above
-     it is this layout's business. */
-  .doc .head .display {
-    margin: 16px 0 0;
-  }
 
-  .doc .deck {
-    margin: 18px 0 0;
-    font-size: 19px;
-    line-height: 1.5;
-    color: var(--color-ink);
-    text-wrap: pretty;
-  }
 
   .doc .meta-warning {
     margin: 20px 0 0;

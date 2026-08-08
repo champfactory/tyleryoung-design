@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Display from '../components/Display.astro';
+import PageHead from '../components/PageHead.astro';
 
 /**
  * Three dimensions of the work, equal in weight — related, not sequential, so
@@ -130,13 +130,8 @@ const sections = [
   description="Most design teams are measured by what they deliver. I built mine to improve the decisions that determine what gets delivered — how opportunities were framed, how complexity was challenged, how quality traveled, and how designers grew."
   current="essays"
 >
-  <header class="shell hero">
-    <p class="label">How I lead</p>
-    <div class="hero-cap">
-      <Display text="I build design teams that make better product decisions">
-        I build design teams that make better product decisions
-      </Display>
-    </div>
+  <div class="shell hero">
+    <PageHead eyebrow="How I lead" title="I build design teams that make better product decisions" />
     <p class="open">
       Design teams get measured on what they ship. The bigger lever is the set
       of decisions made before anything ships — what gets built, how much of it,
@@ -154,7 +149,7 @@ const sections = [
         ))
       }
     </ul>
-  </header>
+  </div>
 
   {
     sections.map((sec, si) => (
@@ -220,15 +215,9 @@ const sections = [
    * Everything else is composition: grid, gap, max-width, margins.
    */
   .hero {
-    padding-top: 96px;
+    padding-top: var(--space-page-top);
   }
 
-  .hero-cap :global(.display) {
-    font-size: min(64px, 5vw) !important;
-    /* The document template's number: 16px from eyebrow to headline. This page
-       had zero, which is why its head read tighter than every other page's. */
-    margin-top: 16px;
-  }
 
   .open {
     margin: 26px 0 0;
