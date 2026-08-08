@@ -32,7 +32,7 @@ export const stories: Story[] = [
     claim: 'I designed the control layer for agentic software development.',
     outcome:
       'Agents generate faster than teams can specify and absorb change. Alucify models what a brownfield codebase means, then shows where context is missing, what a change would reach, and where human judgement is still required. Twenty screens across four connected flows.',
-    artifacts: [{ label: 'See the work', href: '/alucify' }],
+    artifacts: [{ label: 'The work', href: '/alucify' }],
     draft: true,
   },
   {
@@ -43,9 +43,9 @@ export const stories: Story[] = [
     outcome:
       'A data-dense operations product built around the job already underway, and the component system behind it. The published library documents 69 component states across 11 families plus 6 token references — the empty, dense and missing-content ones, not just the clean screen.',
     artifacts: [
-      { label: 'Open the product', href: 'https://atheer-next.fly.dev/', live: true },
-      { label: 'Component library', href: 'https://atheer-next-storybook.fly.dev/', live: true },
-      { label: 'Read the story', href: '/ops-manager' },
+      { label: 'The product', href: 'https://atheer-next.fly.dev/' },
+      { label: 'The library', href: 'https://atheer-next-storybook.fly.dev/' },
+      { label: 'The story', href: '/ops-manager' },
     ],
     draft: true,
   },
@@ -57,9 +57,9 @@ export const stories: Story[] = [
     outcome:
       'A stakeholder reviewed a working app and returned 48 notes. Claude Code made responding fast; it did not make the notes unambiguous — one asked me to rename wording that was not on the screen. Deciding what each note actually meant was the work. Both versions are still running.',
     artifacts: [
-      { label: 'Open the reviewed build', href: 'https://metin-oasis-v6.fly.dev/', live: true },
-      { label: 'Open the next version', href: 'https://metin-oasis-v7.fly.dev/', live: true },
-      { label: 'Read the story', href: '/review-loop' },
+      { label: 'The review build', href: 'https://metin-oasis-v6.fly.dev/' },
+      { label: 'The outcome build', href: 'https://metin-oasis-v7.fly.dev/' },
+      { label: 'The story', href: '/review-loop' },
     ],
     draft: true,
   },
