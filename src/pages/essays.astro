@@ -153,7 +153,6 @@ const sections = [
             <div class="body">
               <h3 class="heading card-title">{c.title}</h3>
               {c.paras.map((p) => <p class="summary">{p}</p>)}
-              <p class="label ev-gap">The win</p>
               <p class="evidence">{c.evidence}</p>
               <a class="artifact link-gap" href={c.href}>
                 {c.link} <span aria-hidden="true">→</span>
@@ -293,21 +292,19 @@ const sections = [
     color: var(--color-ink-2);
   }
 
-  .ev-gap {
-    margin-top: 18px;
-  }
 
-  /* Regular weight: the Evidence label and full ink already set it apart from
-     the ink-2 summary above it. Bold on top of that was saying it three times. */
+  /* The result reads as the lead-in to the link below it: same size and
+     weight, ink where the link is blue, one thought completed by the arrow. */
   .evidence {
-    margin: 4px 0 0;
-    font-size: var(--text-note);
+    margin: 18px 0 0;
+    font-size: 17px;
+    font-weight: 500;
     line-height: 1.5;
     color: var(--color-ink);
   }
 
   .link-gap {
-    margin-top: 18px;
+    margin-top: 6px;
   }
 
   @media (min-width: 860px) {
