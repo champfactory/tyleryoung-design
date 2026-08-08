@@ -6,12 +6,11 @@ interface Props {
   story: Story;
 }
 const { story } = Astro.props;
-const { num, eyebrow, claim, outcome, artifacts, draft } = story;
+const { eyebrow, claim, outcome, artifacts, draft } = story;
 ---
 
 <article class="story">
   <header class="head">
-    <span class="num">{num}</span>
     <span class="eyebrow">{eyebrow}</span>
   </header>
 
@@ -65,14 +64,6 @@ const { num, eyebrow, claim, outcome, artifacts, draft } = story;
     display: flex;
     align-items: baseline;
     gap: 14px;
-  }
-
-  .num {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.09em;
-    color: var(--color-signal);
   }
 
   .eyebrow {

@@ -74,10 +74,7 @@ export const storyBySlug = (slug: string) => stories.find((s) => s.slug === slug
  * footer link — reads from this file. They had drifted into five different
  * names for the same three pieces of work, and two pages were both numbered 01.
  */
-export const storyEyebrow = (slug: string) => {
-  const s = storyBySlug(slug);
-  return s ? `${s.num} · ${s.eyebrow}` : '';
-};
+export const storyEyebrow = (slug: string) => storyBySlug(slug)?.eyebrow ?? '';
 
 /**
  * The page's H1 — the same sentence its homepage card leads with.
@@ -94,6 +91,4 @@ export const storyTitle = (slug: string) => (storyBySlug(slug)?.claim ?? '').rep
  * reader arriving at the footer sees the same name and the same position in the
  * series that the page itself shows.
  */
-export const storyLinks = stories.map(
-  (s) => [s.slug, `${s.num} · ${s.eyebrow}`] as [string, string],
-);
+export const storyLinks = stories.map((s) => [s.slug, s.eyebrow] as [string, string]);
