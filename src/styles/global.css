@@ -239,16 +239,21 @@
   }
 
   /* --- links --------------------------------------------------------------- */
+
+  /* One underline behaviour everywhere, including the nav: a light grey rule at
+     rest, and on hover, focus or the current page it goes to `currentColor` —
+     the same black as the text it sits under. Nothing changes colour and
+     nothing moves; only the line's weight of presence changes. */
   .link {
     color: var(--color-ink);
     text-decoration: none;
     border-bottom: 1px solid var(--color-rule-strong);
-    transition: border-color 120ms ease, color 120ms ease;
+    transition: border-color 120ms ease;
   }
 
-  .link:hover {
-    color: var(--color-signal);
-    border-bottom-color: var(--color-signal);
+  .link:hover,
+  .link:focus-visible {
+    border-bottom-color: currentColor;
   }
 
   /* An artifact link — concrete label, arrow, mono. "Live product", "Case study". */
@@ -264,15 +269,15 @@
     color: var(--color-ink);
     text-decoration: none;
     padding-bottom: 3px;
-    border-bottom: 1px solid var(--color-ink);
-    /* Colour only on hover — nothing moves. A gap or letter-spacing shift
+    border-bottom: 1px solid var(--color-rule-strong);
+    /* Only the line changes — nothing moves. A gap or letter-spacing shift
        nudges the arrow and reflows the label under the cursor. */
-    transition: color 120ms ease, border-color 120ms ease;
+    transition: border-color 120ms ease;
   }
 
-  .artifact:hover {
-    color: var(--color-signal);
-    border-bottom-color: var(--color-signal);
+  .artifact:hover,
+  .artifact:focus-visible {
+    border-bottom-color: currentColor;
   }
 
   .artifact[data-live]::before {
