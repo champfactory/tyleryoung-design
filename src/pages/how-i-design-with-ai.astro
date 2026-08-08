@@ -1,6 +1,5 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
-import CrossLinks from '../components/CrossLinks.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
 ---
@@ -95,15 +94,6 @@ import Draft from '../components/Draft.astro';
     is the only kind of trust that holds up in a production branch.
   </p>
 
-  <CrossLinks
-    slot="after"
-    label="Related"
-    title="The system in practice"
-    links={[
-      { href: '/ops-manager', label: 'The system, and the machine that builds from it' },
-      { href: '/alucify', label: 'Designing for people supervising agents' },
-    ]}
-  />
 </DocumentLayout>
 
 <style>
