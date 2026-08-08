@@ -127,7 +127,10 @@ const references = [
   .refs-band {
     margin-top: 108px;
     padding-block: 56px 64px;
-    background: var(--color-accent);
+    /* The same blue as the header. It was a green derived by rotating this
+       colour; with the accent now blue, that green was the only one on the site
+       and no longer part of a family. One band colour. */
+    background: var(--color-header);
   }
 
   .refs {
@@ -168,8 +171,11 @@ const references = [
     color: var(--color-ink);
   }
 
+  /* ink-3 is tuned for white and measures 4.42 on the band, under the 4.50
+     floor. ink-2 clears it at 6.19 and still reads as secondary beside the
+     name. */
   .ref-title {
-    color: var(--color-ink-3);
+    color: var(--color-ink-2);
   }
 
 

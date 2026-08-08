@@ -28,14 +28,9 @@ export const TOKENS = {
   live: '#2f6f4e',
   header: '#d6e9f8',
   'header-rule': '#a3c6e2',
-  /* The header blue rotated to green and nothing else: #d6e9f8 is
-     hsl(206, 71%, 91%), so this is hsl(140, 71%, 91%). Same saturation, same
-     lightness, so the two bands sit at the same weight on the page. */
-  accent: '#d6f8e1',
   /* The disclosure tint. A caveat should look like a caveat — grey read as
      another quiet panel among several. */
   note: '#fefbe4',
-  'accent-rule': '#a3e2b8',
 };
 
 /** Pairs that must pass, at the smallest size each is actually used. */
@@ -56,8 +51,7 @@ export const PAIRS = [
   ['ink', 'header', 'AA', 'wordmark on the header'],
   ['ink', 'note', 'AA', 'disclosure body text'],
   ['ink-2', 'note', 'AA', 'disclosure eyebrow @ 11px'],
-  ['ink', 'accent', 'AA', 'reference quotes on the accent band'],
-  ['ink-3', 'accent', 'AA', 'attribution @ 11px on the accent band'],
+  ['ink-2', 'header', 'AA', 'reference attribution @ 11px on the band'],
   ['ink-2', 'header', 'AA', 'header sentence @ 11px'],
   ['signal', 'header', 'AA', 'current-page marker on the header'],
   ['header-rule', 'header', 'UI', 'header hairline'],
