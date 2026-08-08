@@ -271,10 +271,12 @@ const sections = [
     padding-top: 110px;
   }
 
+  /* The theme. It spans the measure and sits directly on the gray page — the
+     only element at this rank — so the white cards beneath read as its
+     contents, not its siblings. */
   .statement {
-    font-size: var(--text-h2);
+    font-size: clamp(28px, 3vw, 34px);
     margin: 10px 0 0;
-    max-width: 30ch;
   }
 
   .sec-intro {
@@ -288,16 +290,15 @@ const sections = [
   .card {
     display: grid;
     gap: 26px;
-    margin-top: 56px;
+    margin-top: 40px;
+    background: var(--color-paper-raised);
+    border-radius: 10px;
+    padding: 30px 28px;
   }
 
   .media {
     display: block;
-    background: var(--color-paper-raised);
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 22px;
-    align-self: start;
+    align-self: center;
   }
 
   .media img {
@@ -370,6 +371,7 @@ const sections = [
       grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
       gap: 48px;
       align-items: start;
+      padding: 34px 36px;
     }
 
     .media {
