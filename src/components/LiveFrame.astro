@@ -138,16 +138,17 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
 
   .open {
     margin-left: auto;
-    color: var(--color-ink);
+    /* The one link convention: signal, no underline, underline on hover. These
+       were ink with a permanent hairline under them and only turned blue on
+       hover — an affordance drawn two ways on a site whose rule is that blue is
+       the affordance. */
+    color: var(--color-signal);
     text-decoration: none;
-    border-bottom: 1px solid var(--color-rule-strong);
-    padding-bottom: 1px;
-    transition: color 120ms ease, border-color 120ms ease;
   }
 
   .open:hover {
-    color: var(--color-signal);
-    border-bottom-color: var(--color-signal);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   .viewport {
