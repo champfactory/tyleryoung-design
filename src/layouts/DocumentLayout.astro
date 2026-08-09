@@ -957,11 +957,12 @@ const {
   /* Same treatment as the Storybook embed's open link: ink, on the quieter of
      the two hairlines. It carried a dead `color: signal` overridden two lines
      later, and a full-ink underline the other one does not use. */
+  /* No min-height. A 44px tap target on this one link forced the whole chrome
+     bar to 44px, so the reconstruction's header stood taller than the two
+     embeds' headers beside it. The other two are plain inline links; this is
+     one too. */
   .doc .recon-open {
     margin-left: auto;
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
     /* The one link convention: signal, no underline, underline on hover. These
        were ink with a permanent hairline under them and only turned blue on
        hover — an affordance drawn two ways on a site whose rule is that blue is
