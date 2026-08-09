@@ -1,23 +1,16 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 
-/** The loop, start to finish. Judgment is not a stage — it runs across all five. */
-const loop = [
-  ['Frame the intent', 'Say what a good result has to do'],
-  ['Generate working options', 'Build them, do not describe them'],
-  ['Review in context', 'Put running software in front of the people who know different parts of the problem'],
-  ['Decide together', 'Rank, choose, and say why'],
-  ['Strengthen the system', 'Fold the decision back into what everything else is generated from'],
-];
-
 /**
- * What a brief has to carry before anything is generated.
+ * Four things are mine to build, and each section is one of them.
  *
- * Each slot holds the question it answers. The section used to ask seven
- * questions in a list, then name six slots, then close by naming seven
- * concepts — three passes over the same idea, none of which was the artifact.
- * The brief is the artifact, so the questions live inside it.
+ * Two ledgers were cut rather than shortened. `loop` gave the page a five-stage
+ * process running alongside a four-part spine — two spines for one argument.
+ * `encode` listed design intent, tokens, components and behavioural rules
+ * producing the interface, which is the sentence above it, drawn.
  */
+
+/** The brief, and the question each slot answers. */
 const brief = [
   ['Intent', 'Who is trying to do what, and which decision should get easier?'],
   ['Required behavior', 'What has to remain true across every state, transition, permission and failure path?'],
@@ -25,15 +18,6 @@ const brief = [
   ['Prohibited actions', 'What may the agent not do without a person?'],
   ['Open questions', 'What should the work help us resolve?'],
   ['Evaluation criteria', 'What would make this wrong even if it looked finished?'],
-];
-
-/** Design intent becomes an interface through the system, not around it. */
-const encode = [
-  ['Design intent', 'The behavior and hierarchy the work has to produce'],
-  ['Tokens', 'Colour, type, spacing, radius — the approved values'],
-  ['Components', 'The patterns already agreed, and their documented states'],
-  ['Behavioral rules', 'Accessibility minimums and brand rules, as constraints rather than notes'],
-  ['Working interface', 'Generated inside all four, not compared against them afterwards'],
 ];
 
 /** Six lenses, one question each. */
@@ -49,23 +33,12 @@ const lenses = [
 /**
  * Only the boundaries a design leader sets. "Do not deploy to production" and
  * "do not delete data" were here too; anyone who has run an agent for a week
- * sets those, and twelve bullets spent the page's longest list on its least
- * differentiated idea.
+ * sets those.
  */
 const boundaries = [
   ['Invent design-system values', 'If the system has no approved value, the agent names the gap. It does not fill it.'],
   ['Resolve product ambiguity', 'An assumption made at speed is still an assumption, and it arrives looking finished.'],
   ['Treat valid as approved', 'Passing every check is not the same as being the right thing to build.'],
-];
-
-/** Where leverage comes from now. */
-const leverage = [
-  'The clarity of the product intent',
-  'The strength of the design system',
-  'The quality of the evaluation criteria',
-  'The boundaries around autonomous action',
-  'The speed and honesty of the review loop',
-  'The team’s ability to turn individual learning into shared infrastructure',
 ];
 ---
 
@@ -84,59 +57,30 @@ const leverage = [
 >
   <p class="lede">
     An agent can build a screen in minutes. Knowing whether it is the right
-    screen still takes a person who understands the problem. I build the design
-    systems, constraints and review loops that agents work inside, and I am
-    accountable for what ships.
+    screen still takes a person who understands the problem. I build what agents
+    work inside, and I am accountable for what ships.
   </p>
 
-  <p class="sr-only">
-    The operating loop runs in five stages. Frame the intent: define what a good
-    result has to do. Generate working options: build them rather than
-    describe them. Review in context: put running software in front of the people
-    who know different parts of the problem. Decide together: rank, choose, and
-    say why. Strengthen the system: fold the decision back into what everything
-    else is generated from.
+  <p>
+    Turning an idea into something a team could use once took weeks. Now I build
+    several working directions in hours and let the team compare real behavior
+    instead of imagined outcomes. The work moves faster; my responsibility does
+    not change.
+  </p>
+  <p>
+    What changed is where my decisions land. A rule I set — this state has to
+    exist, this colour comes from the token page, this action needs a person —
+    once got written down and checked later by whoever built it. Now it is
+    applied while the thing is being built. So the work moved upstream of the
+    screen, into four things that are mine to build.
   </p>
 
-  <ol class="loop" aria-hidden="true">
-    {
-      loop.map(([actor, what]) => (
-        <li>
-          <span class="loop-actor">{actor}</span>
-          <span class="loop-what">{what}</span>
-        </li>
-      ))
-    }
-  </ol>
-  <p class="note-line">Human judgment runs across all five, not at the end.</p>
+  <h2>The brief</h2>
+  <p>
+    An agent will build a polished version of a poorly framed idea, so I write
+    the brief first. It answers six questions.
+  </p>
 
-  <p>
-    Turning an idea into something a team could use once took weeks. Now I can
-    build several working directions in hours and let the team compare real
-    behavior instead of imagined outcomes.
-  </p>
-  <p>
-    The work may move faster now, but my responsibility remains the same:
-    understand the problem, decide how the thing should behave, keep the product
-    coherent, get the right people into the decision, and notice when a
-    good-looking answer is solving the wrong thing.
-  </p>
-  <p>
-    A rule I set — this state has to exist, this colour comes from the token
-    page, this action needs a person — once got written down and checked later by
-    whoever built it. Now it is applied while the thing is being built, so fewer
-    of my decisions survive as notes and more survive as behavior.
-  </p>
-  <p>
-    So the work moved upstream of the screen: the brief, the system, the loop,
-    and the perimeter around what an agent decides alone.
-  </p>
-  <h2>I write the brief first</h2>
-  <p>
-    An agent can build a polished version of a poorly framed idea remarkably
-    quickly. So before generating anything, I write a brief that answers six
-    questions.
-  </p>
   <ol class="loop">
     {
       brief.map(([label, question]) => (
@@ -149,48 +93,21 @@ const leverage = [
   </ol>
 
   <p>That is more specification than a screen drawing carries.</p>
-  <h2>The design system moved into the build</h2>
+
+  <h2>The system</h2>
   <p>
-    Every colour, type style, spacing value, radius, interaction pattern and
-    accessibility rule should resolve to the system. If a required value or
-    pattern does not exist, the agent should name the gap rather than quietly
-    invent an exception.
+    Every colour, type style, spacing value, radius, pattern and accessibility
+    rule resolves to the design system. Where a value does not exist, the agent
+    names the gap instead of inventing one. That makes the system part of the
+    environment the interface comes out of, rather than a document someone
+    consults afterwards.
   </p>
-  <p>
-    That puts the design system somewhere new. It is no longer a document people
-    consult or a standard applied at review — it is part of the environment the
-    interface comes out of.
-  </p>
-
-  <p class="sr-only">
-    Design intent, tokens, components and behavioral rules together produce the
-    working interface: the interface is generated inside all four rather than
-    compared against them afterwards.
-  </p>
-
-  <ol class="loop" aria-hidden="true">
-    {
-      encode.map(([actor, what]) => (
-        <li>
-          <span class="loop-actor">{actor}</span>
-          <span class="loop-what">{what}</span>
-        </li>
-      ))
-    }
-  </ol>
-
   <p>
     At Atheer I rebuilt an ageing system into a pipeline that worked this way.
-    Explorations came back as working components, and approved decisions moved
-    toward engineering as code instead of as redlines someone had to interpret.
+    Explorations came back as working components, designers could explore
+    without breaking coherence, engineers got behaviour as code, and
+    accessibility and brand rules arrived before review instead of after it.
   </p>
-  <p>It paid off on both sides of the handoff:</p>
-  <ul>
-    <li>Designers could explore without abandoning product coherence.</li>
-    <li>Engineers got behaviour as code, not as a description of code.</li>
-    <li>Accessibility and brand rules were present before review, not after it.</li>
-    <li>A new decision could strengthen the shared system instead of becoming an isolated exception.</li>
-  </ul>
   <p>
     <a class="link" href="/ops-manager">The product and the system it was built from</a> are both
     running, and the component library documents the states that prove it.
@@ -200,48 +117,29 @@ const leverage = [
     A design system this close to production decides what the product is allowed
     to become.
   </p>
-  <h2>Options come back as working software</h2>
-  <p>
-    Making three versions of something is cheap now. Choosing between them is
-    the part that still costs.
-  </p>
-  <p>
-    On a recent engagement I directed three approaches to the same problem and
-    deployed each to its own URL. We evaluated actual behavior, content,
-    responsiveness and edge cases rather than debating static approximations.
-  </p>
-  <p>
-    Running software changes the conversation. A stakeholder can try the
-    workflow. An engineer can see a structural problem. A designer can compare
-    hierarchy under real content. The team can discover that two people read the
-    same requirement differently — before either reading hardens into production
-    work.
-  </p>
-  <p>
-    It also surfaces what a specification hides. A designer may use
-    a word differently from an engineer. A product manager may assume an edge
-    case is included. An agent may satisfy the literal instruction and miss the
-    reason behind it. Running software makes those misunderstandings observable
-    while they are still cheap.
-  </p>
-  <p>
-    I still read every option, rank them, and say why. That is the part of the
-    job the tooling has not touched.
-  </p>
 
-
+  <h2>The loop</h2>
   <p>
-    None of this is a workaround for unreliable AI. Talking it through has always
-    been how a hard product decision becomes a shared one. What is different is
-    that the thing being discussed shows up sooner.
+    Making three versions is cheap now; choosing between them still costs. On a
+    recent engagement I built three approaches to the same problem and deployed
+    each to its own URL, so the team judged behavior, content and edge cases
+    instead of debating static pictures.
+  </p>
+  <p>
+    Running software also surfaces what a specification hides — a designer and
+    an engineer using the same word differently, an agent satisfying the
+    sentence and missing the reason behind it. I still read every option, rank
+    them, and say why.
   </p>
   <p>
     <a class="link" href="/review-loop">A stakeholder review run this way</a> is on the site: two
     running builds, forty-eight notes, and the three that show where the human
     work actually was.
   </p>
-  <h2>How I read a generated screen</h2>
-  <p>A generated screen can be clean, consistent, and still wrong.</p>
+  <p>
+    A generated screen can be clean, consistent, and still wrong, so I read it
+    against six questions.
+  </p>
 
   <ol class="loop">
     {
@@ -255,17 +153,17 @@ const leverage = [
   </ol>
 
   <p>
-    This is where design leadership stays close to the work. I do not need to
-    draw every artifact by hand to hold a bar, but I do need to recognise where
-    the work is coherent, where it is merely plausible, and where the system
-    underneath it needs to improve.
+    I do not need to draw every artifact by hand to hold a bar. I do need to see
+    where the work is coherent, where it is merely plausible, and where the
+    system underneath it has to improve.
   </p>
-  <h2>What the agent may not decide</h2>
+
+  <h2>The perimeter</h2>
   <p>
-    An agent can run checks, implement approved patterns, generate options inside
-    the system, and propose an addition when no pattern fits. Three limits are
-    worth stating, and they are the places where it would otherwise make a design
-    decision by default.
+    An agent can run checks, implement approved patterns, generate options
+    inside the system, and propose an addition when no pattern fits. Three
+    limits are worth stating, and they are the places where it would otherwise
+    make a design decision by default.
   </p>
 
   <ol class="loop">
@@ -280,53 +178,32 @@ const leverage = [
   </ol>
 
   <p>
-    None of this assumes the agent behaves badly; it exists because speed
-    magnifies misunderstandings. What I want is useful autonomy, with visible
-    consequences and clear accountability.
-  </p>
-  <p>
-    Anything that ships still belongs to people. Whoever approves the
-    work needs to understand what changed, which checks ran, where uncertainty
-    remains, and what could be affected. A human name on a change should mean
-    informed responsibility, not a ritual click after an automated process.
-  </p>
-  <p>
-    The same idea runs through my product work.
-    In <a class="link" href="/alucify">Alucify</a> I designed the surfaces that expose coverage gaps,
-    downstream impact, stale analysis, and the places where human interpretation
-    is still required.
-  </p>
-  <p>
-    I do not ask whether an agent is trustworthy in the abstract. I ask whether
-    this result is grounded, reviewable, and safe to advance.
+    Speed magnifies misunderstanding, so anything that ships still belongs to a
+    person. Whoever approves the work needs to know what changed, which checks
+    ran, and what could be affected. In
+    <a class="link" href="/alucify">Alucify</a> I designed the surfaces that make exactly that
+    inspectable.
   </p>
 
   <p class="pull-line">
     I automate execution more readily than I automate judgment.
   </p>
+
   <h2>What changed is the material</h2>
   <p>
-    Design leadership used to scale mostly through capacity: how much a team
-    could research, draw, review, document and shepherd through implementation.
-    Capacity still matters, but it is no longer the only constraint. The brief,
-    the system, the loop and the perimeter are the other one, and they let me stay
-    close to consequential decisions without becoming the production bottleneck.
+    I am not a frontend engineer and I do not think designers need to become
+    one. Design leadership used to scale through capacity — how much a team
+    could research, draw, review and shepherd through implementation — and the
+    four things above are the other constraint now.
   </p>
   <p>
-    I am not presenting myself as a frontend engineer, and I do not think every
-    designer needs to become one. I am describing a change in the material of
-    design. Less gets lost between the people who decide something and the people
-    who build it, and the opportunity is to remove enough production friction that
-    designers spend more of their time understanding problems, comparing
-    possibilities, and improving what shapes the next piece of work.
-  </p>
-  <p>
-    The tools are new. What the work has to be has not changed: useful, coherent,
-    accessible, explainable, and right for the people it serves.
+    Less gets lost between the people who decide something and the people who
+    build it. The tools are new; what the work has to be has not changed:
+    useful, coherent, accessible, explainable, and right for the people it
+    serves.
   </p>
 
   <p class="pull-line">
     My leverage is the system the work comes out of.
   </p>
-
 </DocumentLayout>
