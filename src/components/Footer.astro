@@ -1,5 +1,5 @@
 ---
-import { REPO, EMAIL, YEAR as year } from '../data/site.mjs';
+import { REPO, EMAIL } from '../data/site.mjs';
 import { storyLinks } from '../data/stories';
 import Chevron from './Chevron.astro';
 
@@ -35,7 +35,7 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
 }));
 ---
 
-<footer class="footer">
+<footer class="footer on-dark">
   <div class="shell inner">
     {
       rows.map((row) => (
@@ -60,7 +60,6 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
         </div>
       ))
     }
-    <p class="year">© {year} Tyler Young</p>
   </div>
 </footer>
 
@@ -68,9 +67,27 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
   /* Element selectors, not `.inner`. A scoped class rule on this wrapper did not
      apply — the same thing happened to the header's `.statement` — and the links
      fell back to inline flow, running together on one line at the left edge. */
+  /* The footer is the page's baseplate now, not more page. It bleeds the full
+     width — the `.shell` inside keeps the links on the same measure as the
+     content above — and the dark field is what ends the document. The blue
+     links inside turn white through the `.on-dark` alternate in global.css;
+     nothing here restates that. */
   footer {
+    position: relative;
     margin-top: 96px;
-    padding-block: 32px 56px;
+    padding-block: 52px 60px;
+    background: var(--color-deep);
+  }
+
+  /* The mirror of the nav's band. Overscrolling past the end exposed the grey
+     canvas under a near-black footer; this continues the footer's own colour
+     for a viewport below it. */
+  footer::after {
+    content: '';
+    position: absolute;
+    inset: 100% 0 auto 0;
+    height: 100vh;
+    background: inherit;
   }
 
   footer > div {
@@ -93,18 +110,6 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
 
   footer .foot-right {
     text-align: right;
-  }
-
-  /* The copyright sits under three mono links, so it wears the same type. At
-     19px sans it read as body copy that had wandered into the footer. */
-  footer p {
-    margin: 10px 0 0;
-    text-align: right;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0;
-    color: var(--color-ink-3);
   }
 
   @media (min-width: 700px) {

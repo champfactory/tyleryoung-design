@@ -96,6 +96,11 @@
   /* The header blue rotated to blue, same saturation and lightness. */
   --color-note: #fefbe4;
 
+  /* deep — the footer baseplate. Not `machine`: that is reserved for literal
+     instrument surfaces, and the two should be able to move independently. */
+  --color-deep: #1d1d1f;
+  --color-deep-ink: #ffffff;
+
   --color-rule: #d0ccbe;
   --color-rule-strong: #b9b4a6;
 
@@ -278,10 +283,13 @@
 
   /* An artifact link — concrete label, arrow, mono. "Live product", "Case study". */
   .artifact {
-    display: inline-flex;
-    align-items: center;
-    /* No gap: the chevron carries its own margin so the space in front of it
-       scales with the type and never joins the underlined text run. */
+    /* A plain inline box, not inline-flex. Flex made the underline depend on
+       text-decoration propagating into an anonymous flex item — something
+       engines disagree about — and bought nothing: the chevron carries its own
+       margin and its own vertical alignment. As an ordinary inline, the
+       underline is universally supported, and the chevron is excluded by spec
+       everywhere because an <svg> is an atomic inline. */
+    display: inline;
     font-family: var(--font-prose);
     /* Sentence case at reading size — the link is a sentence fragment now, not
        a stamped label. */
@@ -313,6 +321,17 @@
   a.link,
   a.artifact {
     text-decoration-thickness: 1px;
+  }
+
+  /* THE ONE ALTERNATE to the link rule. On a near-black surface blue is
+     unreadable, so it stops being an affordance and white takes over the job.
+     Nothing else changes: same weight, same size, same hover underline at the
+     same offset, and the chevron follows for free because it fills with
+     currentColor. Scope it by putting `on-dark` on the dark surface itself —
+     the links inside need no new class, so a link is still a link. */
+  .on-dark .link,
+  .on-dark .artifact {
+    color: var(--color-deep-ink);
   }
 
   /* The chevron is the <Chevron> component — the Alucify glyph at three

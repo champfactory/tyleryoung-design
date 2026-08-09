@@ -30,10 +30,17 @@ export const TOKENS = {
   /* The disclosure tint. A caveat should look like a caveat — grey read as
      another quiet panel among several. */
   note: '#fefbe4',
+  /* The footer. Deep near-black — a baseplate under the page rather than
+     another panel on it. Distinct from `machine`, which is reserved for
+     literal instrument surfaces (terminals, receipts), so darkening one
+     never drags the other with it. */
+  deep: '#1d1d1f',
+  'deep-ink': '#ffffff',
 };
 
 /** Pairs that must pass, at the smallest size each is actually used. */
 export const PAIRS = [
+  ['deep-ink', 'deep', 'AA', 'footer links @ 17px'],
   ['ink', 'paper', 'AA', 'body + headings'],
   ['ink-2', 'paper', 'AA', 'secondary prose'],
   ['ink-3', 'paper', 'AA', 'mono labels @ 11px'],
