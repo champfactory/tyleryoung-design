@@ -10,6 +10,22 @@ const REVIEWED = 'https://metin-oasis-v6.fly.dev/';
 const NEXT = 'https://metin-oasis-v7.fly.dev/';
 const R = '/work/review';
 
+/** The three questions every note had to answer, in order. */
+const questions = [
+  [
+    'What did the reviewer notice?',
+    'This identifies the friction behind the note. The underlying problem may differ from the solution the reviewer proposed.',
+  ],
+  [
+    'Does the note describe the product accurately?',
+    'I compared the wording with the running interface. If the referenced element or text was not present, the note could not be implemented literally.',
+  ],
+  [
+    'What belongs in this version?',
+    'Once the concern was clear, I could accept the request, reshape it, split it into separate decisions, or hold it for later.',
+  ],
+];
+
 /** The five translations a response passed through, in order. */
 const loop = [
   ['Stakeholder experience', 'The stakeholder uses the running product.'],
@@ -159,23 +175,17 @@ const total = items.length;
   </p>
   <p>I evaluated each note in order:</p>
 
-  <h3>1. What did the reviewer notice?</h3>
-  <p>
-    This identifies the friction behind the note. The underlying problem may
-    differ from the solution the reviewer proposed.
-  </p>
 
-  <h3>2. Does the note describe the product accurately?</h3>
-  <p>
-    I compared the wording with the running interface. If the referenced element
-    or text was not present, the note could not be implemented literally.
-  </p>
-
-  <h3>3. What belongs in this version?</h3>
-  <p>
-    Once the concern was clear, I could accept the request, reshape it, split it
-    into separate decisions, or hold it for later.
-  </p>
+  <ol class="loop">
+    {
+      questions.map(([question, how]) => (
+        <li>
+          <span class="loop-actor">{question}</span>
+          <span class="loop-what">{how}</span>
+        </li>
+      ))
+    }
+  </ol>
 
   <p>
     The order mattered. A note that failed the second question could not proceed
