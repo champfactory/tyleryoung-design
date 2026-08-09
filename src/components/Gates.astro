@@ -68,40 +68,52 @@ const { gates, through } = Astro.props;
     counter-reset: gate;
   }
 
-  /* The rule is drawn per item rather than once down the container, so the last
-     node ends the line instead of the line overshooting past it. */
+  /* 26px, the same indent every plain list uses, so a gate's question starts
+     on the same left edge as a list item further down the page. It was 34px
+     and 40px, which put this block on an edge of its own.
+
+     The rule is drawn per item rather than once down the container, so the
+     last node ends the line instead of the line overshooting past it. */
   .gate {
     position: relative;
-    padding: 0 0 26px 34px;
+    padding: 0 0 26px 26px;
     counter-increment: gate;
   }
 
   .gate:not(:last-child)::after {
     content: '';
     position: absolute;
-    left: 4px;
-    top: 14px;
-    bottom: -4px;
+    /* Centred under a 0.78em marker, and starting below it: the marker sits
+       from 0.44em to 1.22em, and a line that starts any higher shows through
+       the knockout in the middle of the glyph. */
+    left: 0.385em;
+    top: 1.34em;
+    bottom: -0.3em;
     width: 1px;
     background: var(--color-rule);
   }
 
+  /* The Alucify bullet, same glyph and same geometry the lists use, so the
+     nodes line up with the markers above and below them. */
   .gate::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 8px;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--color-ink);
+    top: 0.44em;
+    width: 0.78em;
+    height: 0.78em;
+    background: currentColor;
+    -webkit-mask: var(--mark-bullet) center / contain no-repeat;
+    mask: var(--mark-bullet) center / contain no-repeat;
+    color: var(--color-ink);
   }
 
-  /* Not a gate — the way out when nothing stops. Hollow, so the difference is
-     structural rather than decorative. */
+  /* Not a gate — the way out when nothing stops. The hollow glyph, so the
+     difference is a different mark rather than a different treatment. */
   .through::before {
-    background: var(--color-paper);
-    box-shadow: inset 0 0 0 1px var(--color-ink-3);
+    -webkit-mask-image: var(--mark-hollow);
+    mask-image: var(--mark-hollow);
+    color: var(--color-ink-3);
   }
 
   .through {
@@ -137,11 +149,5 @@ const { gates, through } = Astro.props;
 
   .verb {
     color: var(--color-ink-3);
-  }
-
-  @media (min-width: 700px) {
-    .gate {
-      padding-left: 40px;
-    }
   }
 </style>
