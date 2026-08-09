@@ -3,7 +3,7 @@ import DocumentLayout from '../layouts/DocumentLayout.astro';
 
 /** The loop, start to finish. Judgment is not a stage — it runs across all five. */
 const loop = [
-  ['Frame the intent', 'Define what a good result has to be true of'],
+  ['Frame the intent', 'Say what a good result has to do'],
   ['Generate working options', 'Build them, do not describe them'],
   ['Review in context', 'Put running software in front of the people who know different parts of the problem'],
   ['Decide together', 'Rank, choose, and say why'],
@@ -91,7 +91,7 @@ const leverage = [
 
   <p class="sr-only">
     The operating loop runs in five stages. Frame the intent: define what a good
-    result has to be true of. Generate working options: build them rather than
+    result has to do. Generate working options: build them rather than
     describe them. Review in context: put running software in front of the people
     who know different parts of the problem. Decide together: rank, choose, and
     say why. Strengthen the system: fold the decision back into what everything
@@ -112,10 +112,10 @@ const leverage = [
   <p class="note-line">Human judgment runs across all five, not at the end.</p>
 
   <p>
-    Getting from an idea to something a person could actually use took weeks.
+    An idea used to take weeks to become something a person could actually use.
     Now it takes hours. I can try several directions, put them in the real
-    interface, and come back to the team with something they can click instead
-    of something they have to picture.
+    interface, and bring the team something they can click instead of something
+    they have to picture.
   </p>
   <p>What I am responsible for has not moved.</p>
   <p>
@@ -132,7 +132,7 @@ const leverage = [
   </p>
   <p>
     So the work moved upstream of the screen. Four things are mine to build: the
-    brief that says what a good result has to be true of, the system the work is
+    brief that says what a good result has to do, the system the work is
     generated inside, the loop that finds a misunderstanding while it is still
     cheap, and the perimeter around what an agent may decide on its own.
   </p>
@@ -153,7 +153,7 @@ const leverage = [
     }
   </ol>
 
-  <p>That is more specification than a screen drawing carries, not less.</p>
+  <p>That is more specification than a screen drawing carries.</p>
   <h2>The design system moved into the build</h2>
   <p>
     Every colour, type style, spacing value, radius, interaction pattern and
@@ -187,12 +187,12 @@ const leverage = [
   <p>
     At Atheer I rebuilt an ageing system into a pipeline that worked this way.
     Explorations came back as working components, and approved decisions moved
-    toward engineering as code rather than a secondhand reading of redlines.
+    toward engineering as code instead of as redlines someone had to interpret.
   </p>
-  <p>The leverage ran in both directions:</p>
+  <p>It paid off on both sides of the handoff:</p>
   <ul>
     <li>Designers could explore without abandoning product coherence.</li>
-    <li>Engineers received behavior expressed in the implementation medium.</li>
+    <li>Engineers got behaviour as code, not as a description of code.</li>
     <li>Accessibility and brand rules were present before review, not after it.</li>
     <li>A new decision could strengthen the shared system instead of becoming an isolated exception.</li>
   </ul>
@@ -216,14 +216,14 @@ const leverage = [
     responsiveness and edge cases rather than debating static approximations.
   </p>
   <p>
-    That changes the quality of the conversation. A stakeholder can try the
+    Running software changes the conversation. A stakeholder can try the
     workflow. An engineer can see a structural problem. A designer can compare
     hierarchy under real content. The team can discover that two people read the
     same requirement differently — before either reading hardens into production
     work.
   </p>
   <p>
-    It also surfaces the disagreements a specification hides. A designer may use
+    It also surfaces what a specification hides. A designer may use
     a word differently from an engineer. A product manager may assume an edge
     case is included. An agent may satisfy the literal instruction and miss the
     reason behind it. Running software makes those misunderstandings observable
@@ -268,9 +268,9 @@ const leverage = [
   <h2>What the agent may not decide</h2>
   <p>
     An agent can run checks, implement approved patterns, generate options inside
-    the system, and propose an addition when no pattern fits. The limits worth
-    stating are not the obvious operational ones — they are the three places where
-    an agent would otherwise make a design decision by default.
+    the system, and propose an addition when no pattern fits. Three limits are
+    worth stating, and they are the places where it would otherwise make a design
+    decision by default.
   </p>
 
   <ol class="loop">
@@ -286,11 +286,11 @@ const leverage = [
 
   <p>
     None of this assumes the agent behaves badly. It exists because speed
-    magnifies misunderstandings. The goal is not maximum autonomy; it is useful
-    autonomy, with visible consequences and clear accountability.
+    magnifies misunderstandings. What I want is useful autonomy, with visible
+    consequences and clear accountability.
   </p>
   <p>
-    Which means anything that ships still belongs to people. Whoever approves the
+    Anything that ships still belongs to people. Whoever approves the
     work needs to understand what changed, which checks ran, where uncertainty
     remains, and what could be affected. A human name on a change should mean
     informed responsibility, not a ritual click after an automated process.
@@ -313,18 +313,17 @@ const leverage = [
   <p>
     Design leadership used to scale mostly through capacity: how much a team
     could research, draw, review, document and shepherd through implementation.
-    Capacity still matters, but it is no longer the only constraint. The four
-    things above are, and they let me stay close to consequential decisions
-    without becoming the production bottleneck.
+    Capacity still matters, but it is no longer the only constraint. The brief,
+    the system, the loop and the perimeter are the other one, and they let me stay
+    close to consequential decisions without becoming the production bottleneck.
   </p>
   <p>
     I am not presenting myself as a frontend engineer, and I do not think every
     designer needs to become one. I am describing a change in the material of
     design. Less gets lost between the people who decide something and the people
-    who build it, and the opportunity is not to replace designers — it is to
-    remove enough production friction that they spend the time on understanding
-    problems, comparing possibilities, and improving what shapes the next piece
-    of work.
+    who build it, and the opportunity is to remove enough production friction that
+    designers spend more of their time understanding problems, comparing
+    possibilities, and improving what shapes the next piece of work.
   </p>
   <p>
     The tools are new. What the work has to be has not moved: useful, coherent,
