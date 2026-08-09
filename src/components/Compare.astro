@@ -6,6 +6,12 @@
  * someone asked for this, and here is the before and after. Stacked rather than
  * side by side because these are wide, short strips of interface — side by side
  * would halve them to illegibility.
+ *
+ * It used to carry two more parts: a `label` naming the kind of decision, and a
+ * `tell` caption explaining the change. Both repeated what the heading and the
+ * prose immediately above had already said, so the same point arrived three
+ * times in three different type styles. The verbatim note is the only thing
+ * here that exists nowhere else on the page, so it is the only thing kept.
  */
 interface Props {
   /** the reviewer's note, verbatim from FEEDBACK.md */
@@ -14,19 +20,12 @@ interface Props {
   after: string;
   beforeAlt: string;
   afterAlt: string;
-  /** what to look at, if the change is easy to miss */
-  tell?: string;
-  /** the kind of decision this note produced */
-  label?: string;
-  /** one example carries the argument; it gets the room to. */
-  emphasis?: boolean;
 }
 
-const { note, before, after, beforeAlt, afterAlt, tell, label, emphasis = false } = Astro.props;
+const { note, before, after, beforeAlt, afterAlt } = Astro.props;
 ---
 
-<figure class:list={['compare', { emphasis }]}>
-  {label && <p class="decision">{label}</p>}
+<figure class="compare">
   <p class="note">
     <span class="box" aria-hidden="true">☐</span>
     {note}
@@ -43,7 +42,6 @@ const { note, before, after, beforeAlt, afterAlt, tell, label, emphasis = false 
     </div>
   </div>
 
-  {tell && <figcaption>{tell}</figcaption>}
 </figure>
 
 <style>
@@ -51,24 +49,6 @@ const { note, before, after, beforeAlt, afterAlt, tell, label, emphasis = false 
     margin: 0 0 40px;
     border: 1px solid var(--color-rule);
     background: var(--color-paper-raised);
-  }
-
-  /* The second example is the one that proves the page's argument, so it is the
-     one given weight — a heavier frame, not a different component. */
-  .compare.emphasis {
-    border-width: 2px;
-    border-color: var(--color-ink);
-  }
-
-  .decision {
-    margin: 0 !important;
-    padding: 11px 16px;
-    font-family: var(--font-mono) !important;
-    font-size: 10.5px !important;
-    font-weight: 600;
-    letter-spacing: 0;
-    color: var(--color-signal) !important;
-    border-bottom: 1px solid var(--color-rule);
   }
 
   .note {
@@ -119,15 +99,5 @@ const { note, before, after, beforeAlt, afterAlt, tell, label, emphasis = false 
     width: 100%;
     height: auto;
     border: 1px solid var(--color-rule);
-  }
-
-  figcaption {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    line-height: 1.7;
-    letter-spacing: 0;
-    color: var(--color-ink-3);
-    padding: 13px 16px;
-    border-top: 1px solid var(--color-rule);
   }
 </style>

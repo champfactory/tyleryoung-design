@@ -5,7 +5,6 @@ import LiveFrame from '../components/LiveFrame.astro';
 import FeedbackTable from '../components/FeedbackTable.astro';
 import Compare from '../components/Compare.astro';
 import items from '../data/feedback.json';
-import Chevron from '../components/Chevron.astro';
 import LinkRow from '../components/LinkRow.astro';
 
 const REVIEWED = 'https://metin-oasis-v6.fly.dev/';
@@ -50,13 +49,6 @@ const surfaces = ORDER.map((name) => ({
 
 const total = items.length;
 
-/** The four figures the round produced. */
-const results = [
-  ['48', 'Stakeholder notes'],
-  ['36', 'Classified as addressed'],
-  ['12', 'Held for another round'],
-  ['4', 'Files changed'],
-];
 
 ---
 
@@ -89,7 +81,7 @@ const results = [
     generated implementation preserved that decision.
   </p>
 
-  <p class="pull-line">
+  <p>
     AI reduced the cost of producing another version. It increased the importance
     of making sure we were producing the same version everyone thought we had
     agreed to.
@@ -166,9 +158,7 @@ const results = [
     the agent’s code.
   </p>
 
-  <p class="result-line">
-    The agent accelerated one step in the loop. It did not replace the loop.
-  </p>
+  <p>The agent accelerated one step in the loop. It did not replace the loop.</p>
   <h2>Forty-eight notes were evidence, not instructions</h2>
   <p>
     The notes came back grouped by six product surfaces. Most were concrete:
@@ -182,27 +172,23 @@ const results = [
   </p>
   <p>Each note still required three questions.</p>
 
-  <ul class="cells three">
+  <ol>
     {
       questions.map(([q, how]) => (
         <li>
-          <span class="cell-label">{q}</span>
-          <span class="cell-note">{how}</span>
+          {q} {how}
         </li>
       ))
     }
-  </ul>
+  </ol>
 
   <h3>Where the notes landed</h3>
 
-  <ul class="cells three">
+  <ul>
     {
       surfaces.map((s) => (
         <li>
-          <span class="cell-label">{s.name}</span>
-          <span class="cell-note">
-            {s.count} {s.count === 1 ? 'note' : 'notes'} · {s.file}
-          </span>
+          {s.name} — {s.count} {s.count === 1 ? 'note' : 'notes'} · {s.file}
         </li>
       ))
     }
@@ -244,23 +230,12 @@ const results = [
   </p>
 
   <Compare
-    label="Shared understanding"
     note="Progress visuals: Fix color coding — exceeding target vs falling behind should use different colors."
     before={`${R}/kpis-v5.png`}
     after={`${R}/kpis-v6.png`}
     beforeAlt="Four performance cards in a row, all with plain white backgrounds and identical amber value text, so a card 20 percent over target looks the same as one 7 percent short of it."
     afterAlt="The same four cards, each now carrying a coloured left edge with matching value text — orange, red, teal and amber — so over-target and short-of-target read differently at a glance."
-    tell="The request became a reusable semantic treatment instead of four isolated corrections."
   />
-
-  <ul class="cells">
-    <li>
-      <span class="cell-label">When the meaning is shared</span>
-      <span class="cell-note">
-        AI can make a well-understood decision inexpensive to implement.
-      </span>
-    </li>
-  </ul>
 
   <h3>The requested wording was not where the reviewer thought it was</h3>
   <p>
@@ -285,25 +260,12 @@ const results = [
   <p>The note did not land as written. The concern still changed the work.</p>
 
   <Compare
-    emphasis
-    label="Misunderstanding exposed"
     note="Rename “Executive Intervention Queue” to “Intervention Queue.”"
     before={`${R}/anchors-v5.png`}
     after={`${R}/anchors-v6.png`}
     beforeAlt="Anchor bar reading Key Performance Indicators and Intervention Que, with Queue misspelled."
     afterAlt="The same anchor bar, now reading Key Performance Indicators and Intervention Queue."
-    tell="Comparing the note with the artifact prevented a literal change to the wrong text."
   />
-
-  <ul class="cells">
-    <li>
-      <span class="cell-label">When the words do not match the artifact</span>
-      <span class="cell-note">
-        Human review has to repair the shared context before implementation can
-        be trusted.
-      </span>
-    </li>
-  </ul>
 
   <h3>Agreement on the problem did not require agreement on every solution</h3>
   <p>
@@ -326,24 +288,12 @@ const results = [
   </p>
 
   <Compare
-    label="One note, two decisions"
     note="Make intervention rows collapsible. Add filters by status and expand/collapse all icons."
     before={`${R}/queue-v5.png`}
     after={`${R}/queue-v6.png`}
     beforeAlt="Intervention section heading with a single Filter link floated to its right."
     afterAlt="Intervention Queue heading with a Filter button beneath it and a right-aligned toolbar of three controls for filtering, export and sorting."
-    tell="The filtering concern changed the version. The collapsible-row proposal did not."
   />
-
-  <ul class="cells">
-    <li>
-      <span class="cell-label">When one note contains multiple solutions</span>
-      <span class="cell-note">
-        Human judgment separates agreement with the problem from agreement with
-        every proposed response.
-      </span>
-    </li>
-  </ul>
   <h2>AI accelerated execution, not alignment</h2>
   <p>
     I brought the feedback into Claude Code and pointed it at the same repository
@@ -365,7 +315,7 @@ const results = [
   </ul>
   <p>Those remained human questions.</p>
 
-  <p class="pull-line">AI can execute a misunderstanding with exceptional speed.</p>
+  <p>AI can execute a misunderstanding with exceptional speed.</p>
 
   <p>
     The purpose of the review loop was not to slow the agent down. It was to stop
@@ -392,17 +342,6 @@ const results = [
     title="Running application returned after the stakeholder review"
     note="The response remains available beside the build it was reviewed against."
   />
-
-  <ul class="cells four">
-    {
-      results.map(([figure, label]) => (
-        <li>
-          <span class="cell-figure">{figure}</span>
-          <span class="cell-label">{label}</span>
-        </li>
-      ))
-    }
-  </ul>
 
   <p>
     The classifications describe the documented response, not a claim that
