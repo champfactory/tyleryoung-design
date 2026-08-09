@@ -93,7 +93,7 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
     ></iframe>
   </div>
 
-  {note && <figcaption>{note}</figcaption>}
+  {note && <figcaption class="evidence-foot">{note}</figcaption>}
 </figure>
 
 <style>
@@ -170,16 +170,4 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
     pointer-events: none;
   }
 
-  figcaption {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    line-height: 1.4;
-    letter-spacing: 0;
-    color: var(--color-ink-3);
-    /* On the mat, aligned with the art's inset. It used to sit on a white strip
-       below the card, which was a third surface for no reason once the card
-       itself became the mat. */
-    padding: 0 10px 12px;
-    background: none;
-  }
 </style>

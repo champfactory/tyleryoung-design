@@ -189,6 +189,21 @@ export const rules = [
     why: 'The size used to be solved per headline so each one would fill its measure, which made the size depend on where the words broke — three lines came out larger than two. Thirteen pages ran 46px to 105px. A title that ends short of the right edge is normal; thirteen sizes of one component is not.',
   },
   {
+    title: 'Give every card the same corner',
+    statement: 'Anything card-shaped takes radius-mat. Anything sitting on a card takes radius-inset.',
+    why: 'Three values were doing two jobs — 10px, 6px and 4px — with the split falling wherever a component happened to be written, and five card-shaped containers had no radius at all: the feedback table, the surface ledger, the receipt, the needs blocks and the prose aside. Same shape, same job, square corners while everything else was round.',
+  },
+  {
+    title: 'Build an evidence card in four layers',
+    statement: 'Page, then mat, then art inset 10px, then a full-bleed white footer.',
+    why: 'Each layer says which it is, and each was wrong somewhere. The cards were on paper-raised — white holding near-white applications, meeting the page at 1.03:1. The art ran to the card edge, so the mat only showed at the corners. And the footer was written four times: two at 0 10px 12px on the mat, one at 22px 18px on the mat, one with no padding inside the card\u2019s own. One class carries it now.',
+  },
+  {
+    title: 'Reserve the label treatment for labels',
+    statement: 'Mono, eyebrow size, 0.09em tracking, uppercase — for eyebrows, rail keys and column heads.',
+    why: 'The reference names wore it, which made a person\u2019s name the only thing on the site that was shouted. A name is content. It takes the prose face at sentence case, and the hierarchy against the role comes from weight and ink like everywhere else.',
+  },
+  {
     title: 'Test every colour pair that is used',
     statement: 'Each foreground and background pair is checked at the smallest size it appears at.',
     why: 'The check runs before the build and fails it. When a pair fails, the shared token changes rather than the component, so the correction applies everywhere. A second check fails the build if a token exists in the stylesheet and is not documented on this page — the page claimed to be the system while carrying eleven of twenty-four.',

@@ -719,15 +719,13 @@ const {
     border-radius: var(--radius-inset);
   }
 
+  /* Full-bleed out of the card's 18px padding, so this footer sits flush like
+     the embed footers rather than inset on the mat. Type and colour come from
+     .evidence-foot. */
   .doc .capture-note {
-    text-wrap: pretty;
     display: block;
-    margin: 0 !important;
-    padding: 0;
-    font-size: 15px !important;
-    line-height: 1.55 !important;
-    letter-spacing: 0;
-    color: var(--color-ink-2) !important;
+    --foot-bleed: 0 -18px -18px;
+    --foot-pad: 14px 18px;
   }
 
   /* ---- the equipment junction --------------------------------------------- */
@@ -967,7 +965,10 @@ const {
     overflow: hidden;
     margin: 10px;
     border-radius: var(--radius-inset);
-    background: var(--color-paper-sunk);
+    /* White, like the other two embed viewports. This one was on paper-sunk —
+       three embeds, two backstops, for a surface only visible while the frame
+       loads. */
+    background: var(--color-paper-raised);
   }
 
   /* Sits under the iframe: visible while it loads, and all that is left if it
@@ -995,11 +996,6 @@ const {
     background: #ffffff;
   }
 
-  .doc .recon figcaption {
-    padding: 22px 18px;
-    font-size: 15px;
-    line-height: 1.5;
-  }
 
   .doc .figma-viewport {
     aspect-ratio: 16 / 10;
@@ -1266,6 +1262,7 @@ const {
     padding: 18px 20px;
     background: var(--color-paper-sunk);
     border-left: 4px solid var(--color-ink);
+    border-radius: var(--radius-mat);
   }
 
   .doc .prose .aside p {
