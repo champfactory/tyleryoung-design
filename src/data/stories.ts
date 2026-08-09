@@ -28,7 +28,7 @@ export const stories: Story[] = [
   {
     num: '01',
     slug: '/alucify',
-    eyebrow: 'AI-Native Product',
+    eyebrow: 'Reviewing AI-written code',
     claim: 'I designed the control layer for agentic software development.',
     outcome:
       'Agents generate faster than teams can specify and absorb change. Alucify models what a brownfield codebase means, then shows where context is missing, what a change would reach, and where human judgement is still required. Twenty screens across four connected flows.',
@@ -48,7 +48,7 @@ export const stories: Story[] = [
   {
     num: '02',
     slug: '/ops-manager',
-    eyebrow: 'Systems + Practice',
+    eyebrow: 'Design systems',
     claim: 'I design operations software for work already in motion.',
     outcome:
       'A data-dense operations product built around the job already underway, and the component system behind it. The published library documents 69 component states across 11 families plus 6 token references — the empty, dense and missing-content ones, not just the clean screen.',
