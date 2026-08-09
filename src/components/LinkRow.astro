@@ -1,0 +1,61 @@
+---
+import Chevron from './Chevron.astro';
+
+/**
+ * A row of destinations, and nothing else.
+ *
+ * This replaces a three-line cell — a label, the hostname, then the link —
+ * which said the same thing three times. "Build under review /
+ * metin-oasis-v6.fly.dev / Open the reviewed build" is one destination
+ * described twice before you are allowed to go there, and the hostname is the
+ * least useful of the three: a reader does not need the URL of a link they are
+ * about to click, and a Fly subdomain is not evidence of anything.
+ *
+ * So the link text carries it alone, and has to be worth reading on its own —
+ * which is the discipline the pattern is really enforcing.
+ *
+ * The band went with the labels. A tinted cell around a single line of blue
+ * reads as a button that isn't one.
+ */
+interface Props {
+  links: { text: string; href: string }[];
+}
+
+const { links } = Astro.props;
+const external = (href: string) => href.startsWith('http');
+---
+
+<ul class="link-row">
+  {
+    links.map((l) => (
+      <li>
+        <a
+          class="artifact"
+          href={l.href}
+          target={external(l.href) ? '_blank' : undefined}
+          rel={external(l.href) ? 'noopener' : undefined}
+        >
+          {l.text}<Chevron /></a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  /* Sits in the document's block rhythm, so it needs no spacing decisions at
+     the call site. The row gap is the one that matters: at a narrow width the
+     links wrap, and 14px keeps two rows of them from reading as one list. */
+  .link-row {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 34px;
+    margin: var(--space-block) 0;
+    padding: 0;
+  }
+
+  /* The document layout numbers its list items. These are links, not steps. */
+  .link-row > li::before {
+    content: none;
+  }
+</style>

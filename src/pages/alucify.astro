@@ -3,6 +3,7 @@ import { storyEyebrow, storyTitle } from '../data/stories';
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import Reconstruction from '../components/Reconstruction.astro';
 import Chevron from '../components/Chevron.astro';
+import LinkRow from '../components/LinkRow.astro';
 
 const SITE = 'https://alucify.ai/';
 const APP = 'https://alucify-screens.fly.dev/#/dashboard';
@@ -97,29 +98,13 @@ const evidence = [
     required.
   </p>
 
-  <ul class="cells three">
-    <li>
-      <span class="cell-label">Product reconstruction</span>
-      <span class="cell-note">The working screens</span>
-      <a class="artifact" href={APP} target="_blank" rel="noopener">
-        The screens<Chevron />
-      </a>
-    </li>
-    <li>
-      <span class="cell-label">Complete design system</span>
-      <span class="cell-note">20 screens, 4 flows</span>
-      <a class="artifact" href={FIGMA} target="_blank" rel="noopener">
-        The Figma<Chevron />
-      </a>
-    </li>
-    <li>
-      <span class="cell-label">Company</span>
-      <span class="cell-note">The public site</span>
-      <a class="artifact" href={SITE} target="_blank" rel="noopener">
-        The site<Chevron />
-      </a>
-    </li>
-  </ul>
+  <LinkRow
+    links={[
+      { text: 'Open the working screens', href: APP },
+      { text: 'Open the design file', href: FIGMA },
+      { text: 'Open the company site', href: SITE },
+    ]}
+  />
 
   <p>Alucify began with a mismatch.</p>
   <p>

@@ -87,7 +87,11 @@ const { eyebrow, claim, outcome, artifacts, draft } = story;
     color: var(--color-ink);
     margin: 0;
     max-width: 52ch;
-    text-wrap: pretty;
+    /* `balance` rather than `pretty`. Pretty only protects the last line from a
+       one-word widow; balance evens every line, which is what fixes a ragged
+       right edge as well. A summary here is four or five lines, inside the
+       six-line ceiling browsers put on balancing. */
+    text-wrap: balance;
   }
 
   .artifacts {

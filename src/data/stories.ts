@@ -31,7 +31,7 @@ export const stories: Story[] = [
     eyebrow: 'Codebase intelligence',
     claim: 'I designed the control layer for agentic software development.',
     outcome:
-      'Agents generate faster than teams can specify and absorb change. Alucify models what a brownfield codebase means, then shows where context is missing, what a change would reach, and where human judgement is still required. Twenty screens across four connected flows.',
+      'Agents generate faster than teams can specify and absorb change. Alucify models what a brownfield codebase means, then shows where context is missing, what a change would reach, and where human judgement is still required.',
     /*
      * No link to alucify.ai from here. The public site still runs the company's
      * earlier fixed-price-delivery positioning, which contradicts the case study

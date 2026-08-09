@@ -4,6 +4,7 @@ import DocumentLayout from '../layouts/DocumentLayout.astro';
 import LiveFrame from '../components/LiveFrame.astro';
 import StoryFrame from '../components/StoryFrame.astro';
 import Chevron from '../components/Chevron.astro';
+import LinkRow from '../components/LinkRow.astro';
 
 const APP = 'https://atheer-next.fly.dev/';
 const SB = 'https://atheer-next-storybook.fly.dev/';
@@ -97,22 +98,12 @@ const chain = [
   </p>
   <p>The product and the component system it was built from are both running now.</p>
 
-  <ul class="cells two">
-    <li>
-      <span class="cell-label">Running product</span>
-      <span class="cell-host">Operations Manager</span>
-      <a class="artifact" href={APP} target="_blank" rel="noopener">
-        Open the product<Chevron />
-      </a>
-    </li>
-    <li>
-      <span class="cell-label">Component system</span>
-      <span class="cell-host">Published Storybook</span>
-      <a class="artifact" href={SB} target="_blank" rel="noopener">
-        Open the component library<Chevron />
-      </a>
-    </li>
-  </ul>
+  <LinkRow
+    links={[
+      { text: 'Open the product', href: APP },
+      { text: 'Open the component library', href: SB },
+    ]}
+  />
 
   <ul class="cells four">
     {
