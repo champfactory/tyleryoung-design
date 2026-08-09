@@ -5,89 +5,29 @@ import LiveFrame from '../components/LiveFrame.astro';
 import FeedbackTable from '../components/FeedbackTable.astro';
 import Compare from '../components/Compare.astro';
 import items from '../data/feedback.json';
-import Gates from '../components/Gates.astro';
-import Chevron from '../components/Chevron.astro';
 
 const REVIEWED = 'https://metin-oasis-v6.fly.dev/';
 const NEXT = 'https://metin-oasis-v7.fly.dev/';
 const R = '/work/review';
 
-/**
- * The five translations the review moved through.
- *
- * Two rows carried a "Human gate" tag. The sequence already reads as human
- * where it is human — design judgment and human review say so in their own
- * names — and the gated framework above the examples now makes the point
- * properly, so the tag was labelling what the row already said.
- */
+/** The five translations a response passed through, in order. */
 const loop = [
-  ['Stakeholder', 'Experiences the running product'],
-  ['Written feedback', 'Describes what appears wrong'],
-  ['Design judgment', 'Reconciles the note, artifact, system and priority'],
-  ['AI implementation', 'Produces the next coded response'],
-  ['Human review', 'Checks what the implementation now communicates'],
-  ['Next running version', 'Returns to the shared conversation'],
+  ['Stakeholder experience', 'The stakeholder uses the running product.'],
+  ['Written feedback', 'They describe what appears wrong.'],
+  ['Design judgment', 'I compare the note with the product, design system, and current priorities.'],
+  ['AI implementation', 'Claude Code turns the approved decision into code.'],
+  ['Human review', 'I check whether the new build communicates the intended result.'],
 ];
 
-/** The question each note had to answer before it could become a change. */
 /**
- * Three gates in order, not three considerations in a list.
- *
- * The sequence matters and the page already proves it: the three worked
- * examples below are the three outcomes. Answering the third before the second
- * is how a literal change lands on the wrong element and gets reported
- * complete, which is exactly what the second example describes.
- *
- * Each carries what failing it costs, because that is what makes it a gate
- * rather than a checklist.
- */
-const gates = [
-  {
-    question: 'What did the reviewer notice?',
-    answer: 'The underlying friction, which is not always the thing the note names.',
-  },
-  {
-    question: 'Does the note describe it accurately?',
-    answer: 'Compare the written request with the running interface.',
-    exit: {
-      verb: 'Stopped here',
-      what: 'the wording the reviewer misplaced',
-      href: '#note-misplaced',
-    },
-  },
-  {
-    question: 'What belongs in this version?',
-    answer: 'Accept, reshape, separate, or hold.',
-    exit: {
-      verb: 'Split here',
-      what: 'the note carrying two requests',
-      href: '#note-split',
-    },
-  },
-];
-
-/** A note that clears all three. */
-const through = {
-  verb: 'Cleared all three',
-  what: 'the four cards that looked alike',
-  href: '#note-aligned',
-};
-
-/**
- * Surfaces and counts, read from the ledger rather than typed out, so the
- * summary and the notes underneath it cannot drift apart. They did once.
- *
- * The filenames are gone. They sat in the same slot as the word "held", so one
- * column carried a file for four rows and a status for the other two, and
- * App.jsx appeared twice — a name that identifies the root component and
- * therefore nothing. What the list is actually evidence for is the split
- * between what changed and what did not, so that is what it shows. The rail
- * still reports four files and 394 lines.
+ * Surfaces and counts, read from the ledger rather than typed, so the summary
+ * and the notes underneath it cannot drift apart. They did once.
  */
 const HELD = new Set(['Ask OASES', 'Top Nav']);
 const ORDER = ['Home', 'Jobs', 'AiR Sessions', 'Overall Body', 'Ask OASES', 'Top Nav'];
+const LABEL: Record<string, string> = { 'Top Nav': 'Top Navigation' };
 const surfaces = ORDER.map((name) => ({
-  name,
+  name: LABEL[name] ?? name,
   held: HELD.has(name),
   count: items.filter((i: { surface: string }) => i.surface === name).length,
 }));
@@ -95,21 +35,18 @@ const surfaces = ORDER.map((name) => ({
 /** Derived, so the sentence under the list cannot drift from the list. */
 const addressed = surfaces.filter((s) => !s.held).reduce((n, s) => n + s.count, 0);
 const held = surfaces.filter((s) => s.held).reduce((n, s) => n + s.count, 0);
-
 const total = items.length;
-
-
 ---
 
 <DocumentLayout
   title={storyTitle('/review-loop')}
-  metaTitle="Human-in-the-loop design — a stakeholder review on running code | Tyler Young"
-  description="A stakeholder reviewed a running application and returned forty-eight notes. AI made responding fast; it did not make the notes unambiguous. Both builds are still deployed."
+  metaTitle="I turned 48 stakeholder notes into a reviewed, running release | Tyler Young"
+  description="Running software makes feedback concrete, but not self-explanatory. Human judgment translated 48 stakeholder notes before AI accelerated implementation, and both builds are still deployed."
   eyebrow={storyEyebrow('/review-loop')}
   meta={[
     ['Shared artifact', 'Two running versions'],
-    ['Review', `${total} notes · 6 product surfaces`],
-    ['Human decision', `${addressed} addressed · ${held} held`],
+    ['Stakeholder review', `${total} notes · 6 product surfaces`],
+    ['Design decisions', `${addressed} addressed · ${held} held`],
     ['Implementation', 'Claude Code · 4 files · 394 lines'],
   ]}
   links={[
@@ -118,66 +55,65 @@ const total = items.length;
   ]}
 >
   <p class="lede">
-    I sent a stakeholder a working application instead of a prototype. They
-    reviewed it in their own browser and returned forty-eight notes grouped by
-    screen.
+    I gave the stakeholder a working application to review in their browser.
+    They returned 48 notes organized by screen.
   </p>
   <p>
-    Claude Code made responding to those notes fast. It did not make the notes
-    unambiguous.
+    Those notes made the next version possible, but they did not define it. One
+    note described the visible problem accurately. Another referred to wording
+    that was not where the reviewer thought it was. A third combined two
+    requests that required separate decisions.
   </p>
   <p>
-    One described the problem accurately. One referred to wording that was not on
-    the screen where the reviewer believed it was. Another combined two requests
-    when only one was worth building. My role was to reconcile the feedback with
-    the artifact, decide what the next version should mean, and check that the
-    generated implementation preserved that decision.
+    I compared each note with the running product, identified the underlying
+    concern, and decided what belonged in the next version. Claude Code then
+    implemented those decisions. I reviewed the result to confirm that the code
+    preserved their meaning.
+  </p>
+  <p>
+    AI made another version cheaper to produce. That speed increased the need to
+    agree on what the next version should be before producing it.
   </p>
 
+  <h2>Running software made the feedback specific</h2>
   <p>
-    AI reduced the cost of producing another version. It increased the importance
-    of making sure we were producing the same version everyone thought we had
-    agreed to.
-  </p>
-
-  <h2>Running code gave us something concrete to disagree about</h2>
-  <p>
-    A mockup asks reviewers to imagine the missing behavior. A running
-    application puts that behavior into the conversation.
+    A static mockup asks reviewers to imagine how the product will behave. A
+    running application lets them experience that behavior directly.
   </p>
   <p>
-    The stakeholder could scroll the tables, inspect the hierarchy, read the
-    actual labels, and react to controls in context. Their notes used language
-    from the interface and were grouped by the screens they had reviewed.
+    The stakeholder could scroll the tables, use the controls, inspect the
+    hierarchy, and read the final labels in context. Their feedback could
+    therefore refer to the product they had used rather than behavior they had
+    inferred.
   </p>
-  <p>That removed some ambiguity. It did not remove all of it.</p>
+  <p>That made the notes easier to locate. It did not make them self-explanatory.</p>
   <p>
-    People can look at the same interface and form different explanations of what
-    feels wrong. A reviewer may identify a symptom instead of its cause, refer to
-    the wrong label, or bundle several ideas into one request. Running code makes
-    those gaps visible enough to discuss; it does not resolve them automatically.
+    A reviewer may notice a real problem but misidentify its cause. They may
+    refer to the wrong label or combine several possible solutions in one
+    request. The running product exposes these differences because the note can
+    be compared with the interface that prompted it.
   </p>
-
-  <p class="pull-line">A shared artifact is not the same thing as shared understanding.</p>
+  <p>
+    The artifact gives everyone the same object to discuss. Reaching the same
+    interpretation still requires communication.
+  </p>
 
   <LiveFrame
     src={REVIEWED}
     host="metin-oasis-v6.fly.dev · build under review"
     title="Running application reviewed by the stakeholder"
-    note="This is the application the stakeholder reviewed and the forty-eight notes refer to."
+    note="This is the running application the stakeholder reviewed and the 48 notes describe."
     eager
   />
-  <h2>The workflow still depended on communication</h2>
-  <p>The review moved through five translations.</p>
+
+  <h2>Every response passed through two human decisions</h2>
+  <p>Turning feedback into a new release required five translations:</p>
 
   <p class="sr-only">
-    The review is a sequence, not a cycle. The stakeholder experiences the
-    running product. They translate that experience into written feedback
-    describing what appears wrong. Design judgment — a human gate — reconciles
-    the note, the artifact, the design system and the priority. AI implementation
-    produces the next coded response. Human review — the second human gate —
-    checks what the implementation now communicates. The next running version
-    returns to the shared conversation.
+    Five translations. The stakeholder uses the running product. They describe
+    what appears wrong. I compare the note with the product, design system and
+    current priorities. Claude Code turns the approved decision into code. I
+    check whether the new build communicates the intended result.
   </p>
 
   <ol class="loop" aria-hidden="true">
@@ -191,116 +127,153 @@ const total = items.length;
     }
   </ol>
 
-  <p>Every transition could change the meaning.</p>
   <p>
-    The stakeholder’s wording might not match the visible problem. My
-    interpretation might miss their underlying concern. The agent could implement
-    a sentence literally while violating the intent behind it. The next build
-    could be technically correct and still communicate the wrong thing.
+    The next running version then gives the stakeholder another concrete
+    artifact to review.
   </p>
   <p>
-    The loop worked because no participant’s output was treated as
-    self-checking — not the stakeholder’s note, not my interpretation, and not
-    the agent’s code.
-  </p>
-
-  <p>The agent accelerated one step in the loop. It did not replace the loop.</p>
-  <h2>Forty-eight notes were evidence</h2>
-  <p>
-    The notes came back grouped by six product surfaces. Most were concrete:
-    rename a label, distinguish positive from negative performance, keep columns
-    visible during horizontal scrolling.
+    Meaning can change at every transition. The note may name the wrong cause.
+    My interpretation may miss the reviewer’s concern. The agent may follow the
+    words while violating the intent. The resulting code may work correctly
+    while communicating the wrong thing.
   </p>
   <p>
-    Specific language made the notes easier to locate in the product and
-    repository. It did not mean every proposed response should be implemented
-    literally.
+    For that reason, no output was treated as self-validating. The stakeholder’s
+    note was checked against the product. My interpretation was checked in the
+    next build. The agent’s code was checked against the approved decision.
   </p>
   <p>
-    Each note had to clear three questions, in order. The order is the point: a
-    note that fails the second cannot be implemented as written, and one that
-    reaches the third can still be split or held.
+    Claude Code accelerated implementation. It did not replace the decisions
+    before and after it.
   </p>
 
-  <Gates gates={gates} through={through} />
+  <h2>Each note had to answer three questions</h2>
+  <p>
+    The 48 notes covered six product surfaces. Many requested concrete changes:
+    rename a label, distinguish positive from negative performance, or keep
+    columns visible during horizontal scrolling.
+  </p>
+  <p>
+    Specific wording made a note easier to find in the interface and repository.
+    It did not guarantee that the requested solution was correct.
+  </p>
+  <p>I evaluated each note in order:</p>
 
-  <h3>Where the notes landed</h3>
+  <h3>1. What did the reviewer notice?</h3>
+  <p>
+    This identifies the friction behind the note. The underlying problem may
+    differ from the solution the reviewer proposed.
+  </p>
 
-  <ul>
+  <h3>2. Does the note describe the product accurately?</h3>
+  <p>
+    I compared the wording with the running interface. If the referenced element
+    or text was not present, the note could not be implemented literally.
+  </p>
+
+  <h3>3. What belongs in this version?</h3>
+  <p>
+    Once the concern was clear, I could accept the request, reshape it, split it
+    into separate decisions, or hold it for later.
+  </p>
+
+  <p>
+    The order mattered. A note that failed the second question could not proceed
+    as written. A note that reached the third could still contain more work than
+    the current version needed.
+  </p>
+
+  <h2>Where the notes landed</h2>
+
+  <ol class="loop">
     {
       surfaces.map((s) => (
         <li>
-          {s.name} — {s.count} {s.count === 1 ? 'note' : 'notes'}
-          {s.held && ', held this round'}
+          <span class="loop-actor">{s.name}</span>
+          <span class="loop-what">
+            {s.count} {s.count === 1 ? 'note' : 'notes'}
+            {s.held && ' · held this round'}
+          </span>
         </li>
       ))
     }
-  </ul>
+  </ol>
 
   <p>
-    The ledger records {addressed} notes as addressed and {held} as not this
-    round. These classifications describe the documented response across the six
-    surfaces. They do not mean every note mapped literally or completely to one
-    code change.
+    The review ledger records {addressed} notes as addressed and {held} as held.
+  </p>
+  <p>
+    “Addressed” means the concern received a documented response in the
+    resulting build. It does not mean that every sentence became one literal
+    code change. The following examples show why that distinction matters.
   </p>
 
   <details class="all-pairs">
-    <summary><Chevron weight="bold" />Read the complete {total}-note review</summary>
+    <summary>Read the complete {total}-note review</summary>
     <FeedbackTable />
   </details>
-  <h2>Three notes, three different decisions</h2>
-  <p>
-    The most useful evidence is not the number of notes processed. It is the
-    distance between what was written and what the next version needed.
-  </p>
-  <p>These three notes produced three different decisions.</p>
 
-  <h3 id="note-aligned">The note accurately described the problem</h3>
+  <h2>Three notes required three kinds of judgment</h2>
   <p>
-    The stakeholder saw four performance cards using nearly the same amber
-    treatment. A result twenty percent over target looked too similar to one
-    seven percent short of it.
+    The value of the review was not the number of notes processed. It was the
+    reasoning that connected each note to the right product change.
   </p>
-  <p>The note, the visible problem, and the intended outcome aligned.</p>
+
+  <h3>The note described the problem accurately</h3>
   <p>
-    I translated that concern into a system-level treatment rather than changing
-    four cards independently. The next version introduced four semantic states,
-    carried by a colored edge, matching value text, and written language.
+    The stakeholder saw four performance cards with nearly identical amber
+    styling. A result 20% above its target looked too similar to one 7% below
+    it.
   </p>
   <p>
-    The agent accelerated the implementation. The shared understanding already
-    existed.
+    In this case, the note matched the visible problem and the intended outcome:
+    positive and negative performance needed to look different.
+  </p>
+  <p>
+    Because the problem affected a repeated pattern, I solved it at the system
+    level rather than restyling four cards independently. The next version
+    introduced four semantic states. Each state combines a coloured edge,
+    matching value text, and written language.
+  </p>
+  <p>
+    The decision was already clear, so Claude Code could implement it directly
+    and consistently.
   </p>
 
   <Compare
-    note="Progress visuals: Fix color coding — exceeding target vs falling behind should use different colors."
+    note="Fix colour coding — exceeding target and falling behind should use different colours."
     before={`${R}/kpis-v5.png`}
     after={`${R}/kpis-v6.png`}
     beforeAlt="Four performance cards in a row, all with plain white backgrounds and identical amber value text, so a card 20 percent over target looks the same as one 7 percent short of it."
     afterAlt="The same four cards, each now carrying a coloured left edge with matching value text — orange, red, teal and amber — so over-target and short-of-target read differently at a glance."
+    beforeNote="Four cards used the same amber treatment, regardless of performance."
+    afterNote="The cards use distinct semantic treatments for different performance states."
   />
 
-  <h3 id="note-misplaced">The requested wording was not where the reviewer thought it was</h3>
+  <h3>The note named the wrong text</h3>
   <p>
-    The reviewed screen did not say “Executive Intervention Queue” in the
-    location the note described. That wording existed elsewhere in the file, but
-    not in the visible anchor the reviewer was reacting to.
+    Another note asked to rename “Executive Intervention Queue” in a specific
+    part of the screen. That phrase did not appear there.
   </p>
   <p>
-    What the screen did contain was “Intervention Que” — a misspelling — and a
-    heading whose hierarchy was too weak.
+    The visible interface instead contained “Intervention Que,” which was
+    misspelled, and the heading lacked enough visual weight.
   </p>
   <p>
-    A literal implementation could have searched for “Executive,” changed the
-    wrong occurrence, and reported the note complete. That would have satisfied
-    the sentence without repairing the reviewed interface.
+    A literal response could have found “Executive Intervention Queue” elsewhere
+    in the code, changed the wrong occurrence, and marked the request complete.
+    The code would have matched the sentence without fixing the screen the
+    stakeholder reviewed.
   </p>
   <p>
-    Instead, I compared the note with the running build. The next version
-    corrected “Que” to “Queue” and strengthened the heading using the design
-    system.
+    I therefore treated the note as evidence of confusion rather than as an
+    exact instruction. The next version corrected “Que” to “Queue” and
+    strengthened the heading with an existing design-system treatment.
   </p>
-  <p>The note did not land as written. The concern still changed the work.</p>
+  <p>
+    The request was not implemented as written, but the concern it revealed was
+    addressed.
+  </p>
 
   <Compare
     note="Rename “Executive Intervention Queue” to “Intervention Queue.”"
@@ -308,108 +281,120 @@ const total = items.length;
     after={`${R}/anchors-v6.png`}
     beforeAlt="Anchor bar reading Key Performance Indicators and Intervention Que, with Queue misspelled."
     afterAlt="The same anchor bar, now reading Key Performance Indicators and Intervention Queue."
+    beforeNote="The visible anchor read “Intervention Que.”"
+    afterNote="The corrected and strengthened anchor reads “Intervention Queue.”"
   />
 
-  <h3 id="note-split">Agreement on the problem did not require agreement on every solution</h3>
+  <h3>One note contained two decisions</h3>
   <p>
-    The note combined filtering and collapsible rows as if they were one change.
-    They were not.
+    A third note requested filters and collapsible intervention rows as though
+    they formed one change.
   </p>
   <p>
-    The need for better controls was real. A single Filter link did not look like
-    enough, so the next version introduced a control group for filtering, export
-    and sorting.
+    They addressed different needs. The existing Filter link did not provide
+    enough control, so better filtering belonged in the next version. Collapsible
+    rows would add new behavior, controls, and state, so that request required a
+    separate justification.
   </p>
   <p>
-    Collapsible rows would have introduced additional behavior, state, and
-    controls. That part of the request was held.
+    I split the note. The next version introduced a control group for filtering,
+    exporting, and sorting. The collapsible-row behavior was held.
   </p>
   <p>
-    AI could have built both pieces quickly, but speed is not a reason to build
-    something. Splitting the note into two decisions improved the controls
-    without adding complexity nobody had asked for.
+    Claude Code could have built both requests quickly. That did not make both
+    requests valuable. Separating them improved the controls without adding
+    unsupported complexity.
   </p>
 
   <Compare
-    note="Make intervention rows collapsible. Add filters by status and expand/collapse all icons."
+    note="Make intervention rows collapsible, add status filters, and add expand-all and collapse-all controls."
     before={`${R}/queue-v5.png`}
     after={`${R}/queue-v6.png`}
     beforeAlt="Intervention section heading with a single Filter link floated to its right."
     afterAlt="Intervention Queue heading with a Filter button beneath it and a right-aligned toolbar of three controls for filtering, export and sorting."
+    beforeNote="The section contained a single Filter link."
+    afterNote="The section contains a clearer toolbar for filtering, exporting, and sorting. Rows remain expanded."
   />
-  <h2>The agent sped up one step</h2>
+
+  <h2>Claude Code shortened implementation, not interpretation</h2>
   <p>
-    I brought the feedback into Claude Code and pointed it at the same repository
-    that produced the reviewed build.
+    After deciding how to respond, I brought the feedback into Claude Code and
+    pointed it at the repository used to produce the reviewed build.
   </p>
   <p>
-    That shortened the distance between a decision and something stakeholders
-    could use. Changes governed by the design system could be applied
-    consistently, and the next version could come back as running software
-    instead of another picture of work not done yet.
+    This reduced the time between an approved decision and working software. It
+    also allowed changes based on the design system to be applied consistently
+    across the product.
   </p>
-  <p>But the agent had no independent way to know:</p>
+  <p>The agent still could not determine:</p>
   <ul>
-    <li>Whether the reviewer had named the correct element</li>
-    <li>Whether two requests inside one note should stay together</li>
-    <li>Whether a literal change addressed the observed problem</li>
-    <li>Whether a technically valid solution added more complexity than value</li>
-    <li>Whether the generated result communicated what the people involved intended</li>
+    <li>whether a note named the correct element</li>
+    <li>whether several requests should remain together</li>
+    <li>whether a literal edit would solve the observed problem</li>
+    <li>whether new behavior justified its added complexity</li>
+    <li>whether the result communicated the intended meaning</li>
   </ul>
-  <p>Those remained human questions.</p>
-
-  <p>And AI can execute a misunderstanding with exceptional speed.</p>
-
   <p>
-    The loop exists to stop implementation speed from outrunning shared
-    understanding.
-  </p>
-  <h2>The answer came back running</h2>
-  <p>
-    The response changed four files across four of the six reviewed surfaces. It
-    returned at a separate URL so the stakeholder could compare the result with
-    the original build rather than relying on a summary of what had changed.
+    Those questions required knowledge of the conversation, priorities, and
+    product intent. They therefore remained human decisions.
   </p>
   <p>
-    So the next review could start from the same shared artifact instead of from
-    a summary of what had changed.
+    AI can implement a misunderstanding as quickly as it can implement a sound
+    decision. The review process prevents implementation speed from outrunning
+    agreement.
+  </p>
+
+  <h2>The response returned as another running product</h2>
+  <p>
+    The approved changes affected four files across four of the six reviewed
+    surfaces. I published the result at a separate URL rather than replacing the
+    original build.
+  </p>
+  <p>
+    Keeping both versions available served two purposes. The stakeholder could
+    compare the result directly with the product they had reviewed, and the next
+    conversation could begin with working software rather than a written account
+    of the changes.
   </p>
 
   <LiveFrame
     src={NEXT}
     host="metin-oasis-v7.fly.dev · next version"
     title="Running application returned after the stakeholder review"
-    note="The response remains available beside the build it was reviewed against."
+    note="The resulting version remains available beside the build it answered."
   />
 
   <p>
-    The classifications describe the documented response, not a claim that
-    thirty-six sentences were implemented literally. The three examples above
-    show how interpretation changed what “addressed” meant.
-  </p>
-  <h2>Talking it through is the quality system</h2>
-  <p>
-    AI changes the economics of iteration. Another implementation can arrive
-    before the people involved have finished agreeing on what the last one
-    revealed.
-  </p>
-  <p>Which makes talking to each other part of how the product stays good.</p>
-  <p>
-    Stakeholders still need to explain what they experienced. Designers still
-    need to distinguish symptoms from causes and requests from intent. Product
-    and engineering partners still need to negotiate value, cost, and scope.
-    Someone still has to compare the generated result with the decision everyone
-    believed they had made.
-  </p>
-  <p>
-    Running code improves this collaboration because it gives the conversation a
-    concrete object. AI improves it when it makes a clarified decision faster to
-    test. Neither replaces the people responsible for reaching and maintaining
-    that clarity.
+    The ledger’s {addressed} addressed notes describe this documented response.
+    They do not imply that {addressed} requests were implemented word for word.
+    Some were implemented directly, some were reinterpreted, and some were
+    divided into separate decisions.
   </p>
 
-  <p class="pull-line">
-    The faster the implementation loop becomes, the more carefully the human loop
-    has to carry meaning.
+  <h2>Communication is part of the quality system</h2>
+  <p>
+    AI lowers the cost of producing another version. As a result, implementation
+    can finish before the people involved have fully interpreted what the
+    previous version revealed.
+  </p>
+  <p>
+    Faster production does not remove that interpretive work. It makes skipping
+    it easier.
+  </p>
+  <p>
+    Stakeholders still need to describe their experience. Designers still need
+    to distinguish symptoms from causes and proposed solutions from underlying
+    intent. Product and engineering partners still need to weigh value against
+    cost and scope. Someone must then compare the generated result with the
+    decision the group believed it had made.
+  </p>
+  <p>
+    Running software improves this process by giving the conversation a concrete
+    object. AI improves it by turning a clarified decision into something
+    testable sooner.
+  </p>
+  <p>
+    Neither creates shared understanding on its own. The faster implementation
+    becomes, the more deliberately the review process must preserve meaning.
   </p>
 </DocumentLayout>

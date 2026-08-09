@@ -20,9 +20,12 @@ interface Props {
   after: string;
   beforeAlt: string;
   afterAlt: string;
+  /** what each state shows, for a reader who cannot see the difference at a glance */
+  beforeNote?: string;
+  afterNote?: string;
 }
 
-const { note, before, after, beforeAlt, afterAlt } = Astro.props;
+const { note, before, after, beforeAlt, afterAlt, beforeNote, afterNote } = Astro.props;
 ---
 
 <figure class="compare">
@@ -32,10 +35,12 @@ const { note, before, after, beforeAlt, afterAlt } = Astro.props;
     <div class="side">
       <p class="tag">Before</p>
       <img src={before} alt={beforeAlt} loading="lazy" decoding="async" />
+      {beforeNote && <p class="side-note">{beforeNote}</p>}
     </div>
     <div class="side">
       <p class="tag after">After</p>
       <img src={after} alt={afterAlt} loading="lazy" decoding="async" />
+      {afterNote && <p class="side-note">{afterNote}</p>}
     </div>
   </div>
 
@@ -86,6 +91,14 @@ const { note, before, after, beforeAlt, afterAlt } = Astro.props;
   .tag.after {
     font-weight: 600;
     color: var(--color-ink) !important;
+  }
+
+  .side-note {
+    margin: 10px 0 0 !important;
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0;
+    color: var(--color-ink-2) !important;
   }
 
   img {
