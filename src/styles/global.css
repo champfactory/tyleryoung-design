@@ -321,12 +321,8 @@
     /* Sentence case at reading size — the link is a sentence fragment now, not
        a stamped label. */
     font-size: 17px;
-    /* 400, not 500. On apple.com the link is the body copy in blue — identical
-       size, identical weight, colour is the only difference. Ours was a step
-       heavier, which made it read as a small button rather than as a sentence
-       that happens to be a link. */
-    font-weight: 400;
-    letter-spacing: -0.022em;
+    font-weight: 500;
+    letter-spacing: 0;
     color: var(--color-signal);
     text-decoration: none;
     padding-bottom: 3px;
