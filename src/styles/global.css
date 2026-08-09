@@ -10,17 +10,22 @@
    a blue→violet tile ramp, red pill buttons. It read as "this person presents."
 
    This one is built to read as "this person builds." The page is a document;
-   the evidence is a machine embedded in it. Three typefaces, each with a job:
+   the evidence is a machine embedded in it. Two faces, one of them a webfont:
 
-     Archivo      everything but the technical layer — headings, UI and body
-     JetBrains    the technical layer          — code, labels, metadata
-     JetBrains Mono  labels, metadata, receipts — the technical layer, everywhere
+     the platform UI stack   everything but the technical layer — headings,
+                             UI, prose. SF Pro on Apple hardware, Segoe or
+                             Roboto elsewhere. The bargain apple.com makes.
+     JetBrains Mono          the technical layer — code and terminal output,
+                             where the typeface is the content's own.
 
-   The four essay groups are numbered (01–04) rather than color-coded. That drops
-   the old blue→violet ramp entirely — it was the most template-looking element on
-   the old site, and two of its four steps failed contrast (tokens.md §1).
+   The essay groups are named — Planning, Standards, People — rather than
+   numbered or colour-coded. That drops the old blue→violet ramp entirely: it
+   was the most template-looking element on the old site, and two of its four
+   steps failed contrast.
 
-   Every color pair here is validated by scripts/contrast.mjs. Run `npm run contrast`.
+   Every colour pair is validated by scripts/contrast.mjs, every token is
+   checked against this file by scripts/tokens.mjs, and axe runs over the built
+   pages in scripts/a11y.mjs. `npm run audit` runs all of them.
    --------------------------------------------------------------------------- */
 
 @theme {
