@@ -26,10 +26,7 @@ const { note, before, after, beforeAlt, afterAlt } = Astro.props;
 ---
 
 <figure class="compare">
-  <p class="note">
-    <span class="box" aria-hidden="true">☐</span>
-    {note}
-  </p>
+  <p class="note">{note}</p>
 
   <div class="pair">
     <div class="side">
@@ -54,19 +51,12 @@ const { note, before, after, beforeAlt, afterAlt } = Astro.props;
   .note {
     margin: 0 !important;
     padding: 14px 16px;
-    display: flex;
-    gap: 10px;
     font-family: var(--font-mono) !important;
     font-size: 13px !important;
     line-height: 1.6 !important;
     letter-spacing: 0.01em;
     color: var(--color-ink) !important;
     background: var(--color-paper-sunk);
-  }
-
-  .box {
-    color: var(--color-ink-3);
-    flex: none;
   }
 
   .pair {

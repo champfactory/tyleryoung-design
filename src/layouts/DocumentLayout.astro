@@ -1093,16 +1093,18 @@ const {
     counter-increment: item;
   }
 
+  /* The number is part of the sentence, so it is set in the sentence's type —
+     same size, same colour, same face. It was 10px mono in signal blue, which
+     made a list of three questions look like three links to somewhere. The
+     leading zero stays: 01, 02, 03. */
   .doc .prose > ol:not([class]) > li::before {
     content: counter(item, decimal-leading-zero);
     position: absolute;
     left: 0;
-    top: 0.42em;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--color-signal);
+    top: 0;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
   }
 
   /* A small dot, set in the text's own colour at half strength — the same
