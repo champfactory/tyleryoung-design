@@ -119,6 +119,15 @@
 }
 
 @layer base {
+  /* The nav is sticky, so anything an in-page link jumps to has to stop clear
+     of it — otherwise the heading you asked for arrives underneath the header.
+     Set on every id target rather than per link, so a new anchor cannot be
+     added without it. */
+  :target,
+  [id] {
+    scroll-margin-top: 104px;
+  }
+
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;

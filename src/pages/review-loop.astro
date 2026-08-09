@@ -6,6 +6,7 @@ import FeedbackTable from '../components/FeedbackTable.astro';
 import Compare from '../components/Compare.astro';
 import items from '../data/feedback.json';
 import LinkRow from '../components/LinkRow.astro';
+import Gates from '../components/Gates.astro';
 
 const REVIEWED = 'https://metin-oasis-v6.fly.dev/';
 const NEXT = 'https://metin-oasis-v7.fly.dev/';
@@ -33,20 +34,37 @@ const loop = [
  * Each carries what failing it costs, because that is what makes it a gate
  * rather than a checklist.
  */
-const questions = [
-  [
-    'What did the reviewer notice?',
-    'The underlying friction, which is not always the thing the note names.',
-  ],
-  [
-    'Does the note describe it accurately?',
-    'Compare the written request with the running interface. A note that fails here cannot be built as written; the shared context has to be repaired first.',
-  ],
-  [
-    'What belongs in this version?',
-    'Accept, reshape, separate, or hold. A note can be right about the problem and still carry a proposal worth declining.',
-  ],
+const gates = [
+  {
+    question: 'What did the reviewer notice?',
+    answer: 'The underlying friction, which is not always the thing the note names.',
+  },
+  {
+    question: 'Does the note describe it accurately?',
+    answer: 'Compare the written request with the running interface.',
+    exit: {
+      verb: 'Stopped here',
+      what: 'the wording the reviewer misplaced',
+      href: '#note-misplaced',
+    },
+  },
+  {
+    question: 'What belongs in this version?',
+    answer: 'Accept, reshape, separate, or hold.',
+    exit: {
+      verb: 'Split here',
+      what: 'the note carrying two requests',
+      href: '#note-split',
+    },
+  },
 ];
+
+/** A note that clears all three. */
+const through = {
+  verb: 'Cleared all three',
+  what: 'the four cards that looked alike',
+  href: '#note-aligned',
+};
 
 /**
  * Surfaces and counts, read from the ledger rather than typed out, so the
@@ -200,15 +218,7 @@ const total = items.length;
     reaches the third can still be split or held.
   </p>
 
-  <ol>
-    {
-      questions.map(([q, how]) => (
-        <li>
-          {q} {how}
-        </li>
-      ))
-    }
-  </ol>
+  <Gates gates={gates} through={through} />
 
   <h3>Where the notes landed</h3>
 
@@ -239,13 +249,9 @@ const total = items.length;
     The most useful evidence is not the number of notes processed. It is the
     distance between what was written and what the next version needed.
   </p>
-  <p>
-    These three notes produced three different decisions because they stopped at
-    different questions. The first passed all three. The second failed the
-    second. The third reached the third and was split there.
-  </p>
+  <p>These three notes produced three different decisions.</p>
 
-  <h3>The note accurately described the problem</h3>
+  <h3 id="note-aligned">The note accurately described the problem</h3>
   <p>
     The stakeholder saw four performance cards using nearly the same amber
     treatment. A result twenty percent over target looked too similar to one
@@ -270,7 +276,7 @@ const total = items.length;
     afterAlt="The same four cards, each now carrying a coloured left edge with matching value text — orange, red, teal and amber — so over-target and short-of-target read differently at a glance."
   />
 
-  <h3>The requested wording was not where the reviewer thought it was</h3>
+  <h3 id="note-misplaced">The requested wording was not where the reviewer thought it was</h3>
   <p>
     The reviewed screen did not say “Executive Intervention Queue” in the
     location the note described. That wording existed elsewhere in the file, but
@@ -300,7 +306,7 @@ const total = items.length;
     afterAlt="The same anchor bar, now reading Key Performance Indicators and Intervention Queue."
   />
 
-  <h3>Agreement on the problem did not require agreement on every solution</h3>
+  <h3 id="note-split">Agreement on the problem did not require agreement on every solution</h3>
   <p>
     The note combined filtering and collapsible rows as if they were one change.
     They were not.

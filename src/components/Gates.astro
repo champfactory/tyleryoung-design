@@ -1,0 +1,147 @@
+---
+import Chevron from './Chevron.astro';
+
+/**
+ * NEW PATTERN — a gated sequence.
+ *
+ * Nothing in the system carried this shape. `.loop` is a sequence but has no
+ * exits; a plain ordered list has neither. What makes this a framework rather
+ * than a checklist is that a note can leave at any gate, and where it left
+ * decides what happened to it — so the exits have to be visible, and they have
+ * to point at the evidence.
+ *
+ * The rule down the left is the sequence. The nodes are the gates. A note that
+ * stops at a gate hangs off it, and the hanging line links to the worked
+ * example that stopped there, so the framework and its proof are one object
+ * instead of a list followed by an argument that they match.
+ *
+ * The terminal node is open rather than filled: it is not a gate, it is what
+ * happens when nothing stops.
+ *
+ * Everything here is system tokens — ink, ink-2, rule, signal, the existing
+ * type steps. The only invention is the geometry.
+ */
+interface Props {
+  gates: {
+    question: string;
+    answer: string;
+    /** the note that left the sequence here, if one did */
+    exit?: { verb: string; what: string; href: string };
+  }[];
+  /** what happens to a note that clears every gate */
+  through: { verb: string; what: string; href: string };
+}
+
+const { gates, through } = Astro.props;
+---
+
+<ol class="gates">
+  {
+    gates.map((g) => (
+      <li class="gate">
+        <p class="q">{g.question}</p>
+        <p class="a">{g.answer}</p>
+        {g.exit && (
+          <p class="exit">
+            <span class="verb">{g.exit.verb}</span>
+            <a class="link" href={g.exit.href}>
+              {g.exit.what}<Chevron weight="light" /></a>
+          </p>
+        )}
+      </li>
+    ))
+  }
+  <li class="gate through">
+    <p class="exit">
+      <span class="verb">{through.verb}</span>
+      <a class="link" href={through.href}>
+        {through.what}<Chevron weight="light" /></a>
+    </p>
+  </li>
+</ol>
+
+<style>
+  .gates {
+    list-style: none;
+    margin: var(--space-block) 0;
+    padding: 0;
+    counter-reset: gate;
+  }
+
+  /* The rule is drawn per item rather than once down the container, so the last
+     node ends the line instead of the line overshooting past it. */
+  .gate {
+    position: relative;
+    padding: 0 0 26px 34px;
+    counter-increment: gate;
+  }
+
+  .gate:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 14px;
+    bottom: -4px;
+    width: 1px;
+    background: var(--color-rule);
+  }
+
+  .gate::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-ink);
+  }
+
+  /* Not a gate — the way out when nothing stops. Hollow, so the difference is
+     structural rather than decorative. */
+  .through::before {
+    background: var(--color-paper);
+    box-shadow: inset 0 0 0 1px var(--color-ink-3);
+  }
+
+  .through {
+    padding-bottom: 0;
+  }
+
+  .q {
+    margin: 0;
+    font-size: var(--text-body);
+    line-height: 1.45;
+    color: var(--color-ink);
+    text-wrap: pretty;
+  }
+
+  .a {
+    margin: 6px 0 0;
+    font-size: var(--text-note);
+    line-height: 1.55;
+    color: var(--color-ink-2);
+    text-wrap: pretty;
+  }
+
+  /* The exit hangs off the gate it leaves from. */
+  .exit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    margin: 12px 0 0;
+    font-size: var(--text-note);
+    line-height: 1.5;
+  }
+
+  .verb {
+    color: var(--color-ink-3);
+  }
+
+  @media (min-width: 700px) {
+    .gate {
+      padding-left: 40px;
+    }
+  }
+</style>
