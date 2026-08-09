@@ -13,13 +13,18 @@
 import '../styles/global.css';
 
 interface Props {
-  title: string;
   metaTitle: string;
   description: string;
+  /**
+   * The only heading. It is the page's h1 — styled as a label rather than a
+   * display line, because a spec sheet is named, not introduced. There was a
+   * sentence-length title above the first token and a link back to the
+   * portfolio; both were removed, and the tab is the way back.
+   */
   kicker: string;
 }
 
-const { title, metaTitle, description, kicker } = Astro.props;
+const { metaTitle, description, kicker } = Astro.props;
 ---
 
 <!doctype html>
@@ -37,9 +42,7 @@ const { title, metaTitle, description, kicker } = Astro.props;
 
     <header class="sys-head">
       <div class="sys-wrap">
-        <a class="sys-home" href="/">tyleryoung.design</a>
-        <p class="sys-kicker">{kicker}</p>
-        <h1>{title}</h1>
+        <h1 class="sys-kicker">{kicker}</h1>
       </div>
     </header>
 
@@ -107,41 +110,21 @@ const { title, metaTitle, description, kicker } = Astro.props;
   }
 
   .sys-head {
-    padding: 40px 0 64px;
+    padding: 56px 0 8px;
   }
 
-  .sys-home {
+
+
+  body.sys .sys-kicker {
+    margin: 0;
     font-family: var(--font-code);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: var(--color-machine-signal);
-    text-decoration: none;
-  }
-
-  .sys-home:hover,
-  .sys-home:focus-visible {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .sys-kicker {
-    margin: 56px 0 0;
-    font-family: var(--font-code);
-    font-size: 12px;
-    letter-spacing: 0.14em;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-machine-ink-2);
   }
 
-  body.sys h1 {
-    margin: 14px 0 0;
-    font-family: var(--font-code);
-    font-size: clamp(28px, 4.6vw, 46px);
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--color-machine-ink);
-  }
 
   body.sys h2 {
     margin: 88px 0 0;
