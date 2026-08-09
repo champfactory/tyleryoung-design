@@ -3,7 +3,6 @@ import { storyEyebrow, storyTitle } from '../data/stories';
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import LiveFrame from '../components/LiveFrame.astro';
 import StoryFrame from '../components/StoryFrame.astro';
-import Chevron from '../components/Chevron.astro';
 import LinkRow from '../components/LinkRow.astro';
 
 const APP = 'https://atheer-next.fly.dev/';
@@ -11,10 +10,8 @@ const SB = 'https://atheer-next-storybook.fly.dev/';
 const PLAN = 'https://atheer-306090.fly.dev/';
 
 /**
- * Counts read from the library's own index.json, not typed from memory. Every
- * one of these was checked against the published build before it was written
- * down: 75 stories total, 69 of them across 11 component families, 6 token
- * references.
+ * Counts read from the library's own index.json, not typed from memory: 75
+ * stories total, 69 of them across 11 component families, 6 token references.
  */
 const evidence = [
   ['1', 'Running product'],
@@ -32,23 +29,33 @@ const shapes = [
 
 /**
  * Verbatim from the running build, including the two separate Assets entries.
- * The product says this; correcting it here would make the page a nicer
- * description of software that does not exist.
+ * Checked again against atheer-next.fly.dev: the sidebar carries Planning,
+ * Forms, Jobs, Content, Sessions, Assets, Assets, Tickets, Settings. There is
+ * no Analytics item, so the second alert stays on Assets — the product is
+ * public, and renaming it here would describe software that does not exist.
  */
 const nav = [
-  ['Planning', 'Lindgren cert expires tomorrow'],
-  ['Forms', 'Safety step skipped · #4042'],
-  ['Jobs', 'Rework flagged · #4021'],
-  ['Sessions', 'Lindgren + Reeves need guidance'],
-  ['Assets', '1 asset down at Meridian'],
-  ['Assets', 'Rework rate up 40% this week'],
+  ['Planning', 'Lindgren’s certification expires tomorrow'],
+  ['Forms', 'Safety step skipped on job 4042'],
+  ['Jobs', 'Rework flagged on job 4021'],
+  ['Sessions', 'Lindgren and Reeves need guidance'],
+  ['Assets', 'One asset is down at Meridian'],
+  ['Assets', 'Rework increased 40% this week'],
 ];
 
-/** What an equipment record connects to. */
+/** What an equipment record connects the object to. */
 const junction = [
-  ['People', 'Who knows or owns it'],
-  ['Resources', 'Manuals · specifications · safety information'],
+  ['Identity', 'Make, model, and year'],
+  ['People', 'Who knows, uses, or owns it'],
+  ['Resources', 'Manuals, specifications, and safety information'],
   ['Workflows', 'The procedures that act on it'],
+];
+
+/** The three columns the Training surface divides guidance into. */
+const training = [
+  ['Digital workflows', 'Procedures to follow'],
+  ['Resources', 'Material to consult'],
+  ['People', 'Someone who can help'],
 ];
 
 const families = [
@@ -61,23 +68,23 @@ const families = [
 const tokens = [
   ['Base system', 'Typography · spacing · radii · borders · shadows'],
   ['Stable colours', 'Text · page · surface · status · dividers'],
-  ['Theme values', 'Navigation · image mat · highlight · accent · links'],
+  ['Theme values', 'Navigation · image background · highlight · accent · links'],
   ['Palettes', 'Default · Warm · Earth · Slate · Dusk'],
 ];
 
-/** The chain a reusable decision travelled, in order. */
+/** The path every reusable decision followed, in order. */
 const chain = [
-  ['Design node', 'The approved product decision', false],
-  ['Component', 'The reusable implementation and its documented variants', false],
-  ['Storybook variants', 'The states it has to survive', false],
-  ['Running product', 'The component operating inside a real workflow', false],
+  ['Design node', 'Records the approved product decision.'],
+  ['Component', 'Turns that decision into a reusable implementation with defined properties.'],
+  ['Storybook stories', 'Document the content and states the component must support.'],
+  ['Running product', 'Places the component inside the workflow it was designed to serve.'],
 ];
 ---
 
 <DocumentLayout
   title={storyTitle('/ops-manager')}
-  metaTitle="An operations product for work already in motion | Tyler Young"
-  description="A data-dense operations product designed around work already underway, and the component system it was built from. Both are running now: the product, and 69 documented component states across 11 families."
+  metaTitle="An enterprise operations product and the system used to build it | Tyler Young"
+  description="Frontline work is already in motion, so the product surfaces the current task, its dependencies, and anything that threatens completion. The component system then preserves those decisions across variable content."
   eyebrow={storyEyebrow('/ops-manager')}
   meta={[
     ['Role', 'Director of Design · 90-day engagement'],
@@ -87,16 +94,19 @@ const chain = [
   ]}
 >
   <p class="lede">
-    The person opening this product already has work underway. A job is in
-    progress. Another starts at ten. A certification is about to expire. An asset
-    is down somewhere else.
+    A frontline worker rarely opens software before the workday begins. They
+    open it while a job is underway, another is approaching, or a problem needs
+    attention.
   </p>
   <p>
-    I designed the product around that reality: resume the current task first,
-    carry exceptions into navigation, and keep the people, resources, and
-    workflows surrounding the work within reach.
+    The product therefore begins with the work already in progress. It shows the
+    current task first, brings risks into the navigation, and keeps the relevant
+    people, equipment, instructions, and workflows nearby.
   </p>
-  <p>The product and the component system it was built from are both running now.</p>
+  <p>
+    I also built the component system behind the product. Both are available to
+    inspect.
+  </p>
 
   <LinkRow
     links={[
@@ -115,9 +125,14 @@ const chain = [
       ))
     }
   </ul>
-  <p class="note-line">Counted from the currently published build.</p>
-  <h2>The home screen starts with the shift</h2>
-  <p>The first screen answers four questions before asking the user to go anywhere.</p>
+
+  <p class="note-line">Counts reflect the current published build.</p>
+
+  <h2>The home screen begins with the current shift</h2>
+  <p>
+    A worker opening the product needs to regain context before choosing where
+    to go. The home screen therefore answers four questions immediately:
+  </p>
   <ul>
     <li>What am I doing now?</li>
     <li>What comes next?</li>
@@ -125,19 +140,24 @@ const chain = [
     <li>Is anything blocking the work?</li>
   </ul>
   <p>
-    The summary shows three scheduled jobs, one already in progress, five and a
-    half hours remaining, and one certification gap.
+    The example shift contains three scheduled jobs. One is underway, five and a
+    half hours remain in the shift, and one certification issue could affect the
+    schedule.
   </p>
   <p>
-    The current job receives the most space. It carries the site, start time,
-    equipment, model, workflow, current step, estimated time, and elapsed time.
-    Its actions are equally direct: continue the workflow, request help, or open
-    the surrounding context. Upcoming jobs retain enough information to prepare
-    without competing with the work already underway.
+    Because the current job requires the next action, it receives the most
+    space. The card shows the site, start time, equipment, model, workflow,
+    current step, estimated duration, and elapsed time. From the same card, the
+    worker can continue, request help, or open more context.
   </p>
-
-  <p class="pull-line">
-    The hierarchy follows the workday: now, next, and what might stop either one.
+  <p>
+    Upcoming jobs contain enough information for preparation, but they remain
+    visually secondary. This keeps future work visible without allowing it to
+    compete with the task that needs attention now.
+  </p>
+  <p>
+    The resulting hierarchy follows the sequence of the workday: now, next, and
+    anything that could prevent either one.
   </p>
 
   <LiveFrame
@@ -147,11 +167,17 @@ const chain = [
     note="Inspect how the page separates the current job from upcoming work while keeping time, progress, certification, and support actions visible."
     eager
   />
-  <h2>Navigation shows what changed before the user opens it</h2>
+
+  <h2>Navigation shows where attention is needed</h2>
   <p>
-    A conventional sidebar tells the user where features live. This one also
-    tells them where attention is required.
+    The home screen helps a worker understand the shift. Once they move through
+    the product, the navigation must preserve that awareness.
   </p>
+  <p>
+    A conventional sidebar only shows where features live. This sidebar also
+    shows what has changed inside them:
+  </p>
+
   <ol class="loop">
     {
       nav.map(([label, note]) => (
@@ -163,11 +189,18 @@ const chain = [
     }
   </ol>
 
+  <p>
+    These summaries let a worker decide where to go before opening each section.
+    Navigation therefore acts as both a map and an exception queue.
+  </p>
+
   <h3>Status has a shape</h3>
   <p>
-    Operational status appears in dense places: navigation, job identifiers,
-    headers, and tables. I assigned each primary state a hollow shape.
+    Operational status appears in compact places such as the sidebar, job
+    identifiers, headers, and tables. Colour alone would become hard to
+    distinguish in small elements and could disappear in greyscale.
   </p>
+  <p>I therefore gave each primary state a shape:</p>
 
   <ul class="cells three shape-key">
     {
@@ -185,9 +218,9 @@ const chain = [
   </ul>
 
   <p>
-    The same mark can follow an item through the interface. Shape keeps the
-    states distinguishable in greyscale and at small sizes, while leaving colour
-    available for emphasis rather than meaning.
+    The shape follows an item through the interface, so its status remains
+    recognizable across different screens. Colour can then add emphasis without
+    carrying the meaning by itself.
   </p>
 
   <StoryFrame
@@ -197,31 +230,18 @@ const chain = [
     height={620}
     note="The component accepts the active route, labels, subtitles, icons, and status shapes without changing its structure."
   />
-  <h2>Equipment connects to everything around it</h2>
+
+  <h2>Equipment connects the object to the work</h2>
   <p>
-    An equipment record is useful only when it connects the object to the work
-    around it. Each equipment card brings together make, model and year, the
-    people assigned to it, the reference material, and the workflows available.
+    A worker rarely needs an equipment record only to identify the equipment.
+    They usually need the record to prepare for work or recover from a problem.
   </p>
   <p>
-    That relationship model supports both preparation and recovery. A technician
-    can identify the equipment, find the correct document, see who knows it, and
-    open the workflow required to continue.
-  </p>
-  <p>
-    The content varies a lot. One record has two people, two resources,
-    and one workflow. Another has one person, no resource, and nine workflows.
-    The component has to remain coherent across both.
+    The equipment card therefore connects each asset to four kinds of
+    information:
   </p>
 
-  <p class="sr-only">
-    An equipment record is a junction. The equipment itself carries make, model
-    and year. Three things connect to it: people, who knows or owns it;
-    resources, meaning manuals, specifications and safety information; and
-    workflows, the procedures that act on it.
-  </p>
-
-  <ol class="loop" aria-hidden="true">
+  <ol class="loop">
     {
       junction.map(([label, note]) => (
         <li>
@@ -231,6 +251,22 @@ const chain = [
       ))
     }
   </ol>
+
+  <p>
+    Together, these relationships support a complete action. A technician can
+    confirm the equipment, find the correct document, identify someone who can
+    help, and open the procedure needed to continue.
+  </p>
+  <p>
+    The amount of available information varies by asset. One record may contain
+    two people, two resources, and one workflow. Another may contain one person,
+    no resources, and nine workflows.
+  </p>
+  <p>
+    The component must remain understandable in both cases. Its hierarchy
+    therefore stays fixed while each section expands, contracts, or disappears
+    according to the available content.
+  </p>
 
   <StoryFrame
     id="components-equipmentcard--default"
@@ -299,20 +335,38 @@ const chain = [
       </span>
     </li>
   </ul>
-  <h2>Training sits where the job is</h2>
+
+  <h2>Training appears in the form workers need</h2>
   <p>
-    The Training surface is not organised as a course catalogue. It groups
-    guidance into three columns: digital workflows, which are procedures to
-    follow; resources, which are material to consult; and people, who can help.
+    When a worker needs help with a job, the useful answer may be a procedure, a
+    reference document, or a person. A conventional course catalogue would hide
+    those options behind a format that does not match the immediate need.
+  </p>
+  <p>The Training surface instead divides guidance into three columns:</p>
+
+  <ol class="loop">
+    {
+      training.map(([label, note]) => (
+        <li>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{note}</span>
+        </li>
+      ))
+    }
+  </ol>
+
+  <p>
+    Tabs separate Welcome, Job Aids, SOP, and Onboarding material. Within each
+    tab, workers can sort items alphabetically or filter for recent and unread
+    content.
   </p>
   <p>
-    Tabs separate Welcome, Job Aids, SOP, and Onboarding content. Filters switch
-    among alphabetical, recent, and unread views.
+    The layout must also survive uneven content. One category may be empty while
+    another contains many items. Procedure names may occupy one line or several.
   </p>
   <p>
-    The same structure also handles sparse and extreme cases. Storybook documents
-    empty columns, many-item columns, and unusually long item names — not only
-    the balanced default.
+    The component library documents these states so implementation does not
+    depend on an idealized amount of content.
   </p>
 
   <ul class="captures three">
@@ -374,18 +428,34 @@ const chain = [
       </span>
     </li>
   </ul>
-  <h2>The library documents the messy states</h2>
+
+  <h2>The component library documents real variation</h2>
   <p>
-    The published Storybook contains sixty-nine component stories across eleven
-    component families, plus six token references.
+    The published Storybook contains 69 stories across 11 component families,
+    along with six token references.
   </p>
   <p>
-    The useful number is not the total. It is what those stories cover: active,
-    inactive and unselected navigation; jobs in progress and jobs still upcoming;
-    certification attached to work; equipment with many workflows; equipment
-    without imagery; resources that may or may not exist; empty content groups;
-    long names; different border treatments; and five theme palettes.
+    The total matters less than the conditions those stories cover. The library
+    includes:
   </p>
+  <ul>
+    <li>active, inactive, and unselected navigation</li>
+    <li>current and upcoming jobs</li>
+    <li>certifications attached to work</li>
+    <li>equipment with many workflows</li>
+    <li>equipment without imagery</li>
+    <li>present and missing resources</li>
+    <li>empty content groups</li>
+    <li>long names</li>
+    <li>alternate border treatments</li>
+    <li>five theme palettes</li>
+  </ul>
+  <p>
+    These states come from the ways the product’s content actually changes.
+    Documenting them gives implementation a defined response to each condition
+    instead of leaving those decisions to individual screens.
+  </p>
+  <p>The component families are organized by their role in the product:</p>
 
   <ol class="loop">
     {
@@ -398,19 +468,13 @@ const chain = [
     }
   </ol>
 
-  <p class="pull-line">
-    The system was designed around how the content actually varies.
-  </p>
-  <h2>Variation stays inside an approved palette</h2>
+  <h2>Themes vary without changing meaning</h2>
   <p>
-    The colour model separates the values that stay put from the ones a theme is
-    allowed to move. Five palettes vary the second set without touching the
-    first.
+    The product supports five visual palettes. If each component defined its own
+    theme values, those palettes could change the hierarchy or introduce
+    inconsistent colours.
   </p>
-  <p>
-    That allows the interface to change character without changing its hierarchy
-    or inventing values component by component.
-  </p>
+  <p>The token model prevents that by separating fixed values from variable ones.</p>
 
   <ol class="loop">
     {
@@ -422,6 +486,12 @@ const chain = [
       ))
     }
   </ol>
+
+  <p>
+    Every palette changes the same five semantic roles. The interface can
+    therefore change character without changing the meaning of its states or the
+    hierarchy of its content.
+  </p>
 
   <StoryFrame
     id="design-system-tokens--colors"
@@ -452,79 +522,89 @@ const chain = [
       </span>
     </li>
   </ul>
-  <h2>Every reusable component began with a product decision</h2>
-  <p>
-    Each documented component traces to a specific node in the design file. The
-    inventory records where it came from and which properties may vary.
-  </p>
-  <p>
-    A component was added after the product needed it — not because it might
-    become useful later. That kept the library tied to real screens and gave
-    AI-generated implementation a clear boundary.
-  </p>
 
-  <p class="sr-only">
-    The chain ran in one direction, in four stages. A design node carried the
-    approved product decision. That became a component: the reusable
-    implementation and its documented variants. Those variants were published as
-    Storybook states, the conditions it has to survive. The component then ran
-    inside a real workflow in the product. The token system sat alongside all
-    four stages as a shared constraint.
+  <h2>Product decisions become reusable components</h2>
+  <p>
+    A design system is useful only when it preserves decisions the product has
+    already made. I therefore added a component after a real screen required it,
+    not because it might become useful later.
   </p>
+  <p>Each reusable element followed the same path:</p>
 
-  <ol class="loop" aria-hidden="true">
+  <ol class="loop">
     {
-      chain.map(([actor, what]) => (
+      chain.map(([label, note]) => (
         <li>
-          <span class="loop-actor">{actor}</span>
-          <span class="loop-what">{what}</span>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{note}</span>
         </li>
       ))
     }
   </ol>
 
-  <p class="note-line">
-    Tokens are the shared constraint underneath all four: the values every stage
-    above is allowed to use.
+  <p>
+    Tokens constrain every stage by defining the values each design and
+    component may use.
+  </p>
+  <p>
+    This sequence kept the library tied to the product. It also gave
+    AI-generated implementation a boundary: generated code could vary documented
+    properties, but it did not need to invent the underlying design decision.
+  </p>
+  <p>
+    Each reusable component therefore had both a source and a defined range of
+    variation.
   </p>
 
-
-  <p class="pull-line">
-    Every reusable decision had a source, so the library could constrain what
-    was generated.
-  </p>
-  <h2>The plan worked the same way</h2>
+  <h2>The engagement plan made sequencing visible</h2>
+  <p>The same need for explicit decisions applied to the engagement itself.</p>
   <p>
-    The engagement itself began with a sequencing decision: which product surface
-    should be built first, which should follow, and which should take the
-    remaining phase.
+    The work had three phases, so the client needed to decide which product
+    surface should come first, which should follow, and which should use the
+    final phase. That order would determine what the team learned early and what
+    later work could build upon.
   </p>
   <p>
-    I turned that decision into a small shared application. The client selected
-    the first two surfaces inside the plan. The choices were saved on the server,
-    so everyone opening the link saw the same sequence. It remains set to the
-    client’s selection: landing page first, context engine second.
+    I created a small shared application for making the choice. The client
+    selected the first two surfaces, and the application saved the sequence on
+    the server. Everyone who opened the plan then saw the same priorities and
+    their consequences.
   </p>
+  <p>The selected sequence remains visible:</p>
+  <ol>
+    <li>Landing page</li>
+    <li>Context engine</li>
+    <li>Remaining surface</li>
+  </ol>
   <p>
-    The implementation was deliberately small — 73 lines of Flask, one table and
-    persistent storage. It existed to put the decision where its consequences
-    were visible.
+    The planning application used 73 lines of Flask, one table, and persistent
+    storage. Its technical scope was deliberately small because its purpose was
+    narrow: turn a planning discussion into a shared, durable decision.
   </p>
 
   <LinkRow links={[{ text: 'Open the engagement plan', href: PLAN }]} />
-  <h2>What the engagement left behind</h2>
+
+  <h2>What the engagement produced</h2>
+  <p>In 90 days, the engagement produced:</p>
+  <ul>
+    <li>a running operations product</li>
+    <li>a published component library</li>
+    <li>a documented path from design to implementation</li>
+    <li>a shared tool for sequencing the work</li>
+  </ul>
   <p>
-    In ninety days the engagement produced a running operations product, a
-    published component system, a documented path from design to code, and the
-    tool the client used to sequence the work.
+    These outputs show different levels of the same system. The product
+    demonstrates how the workflows operate. Storybook shows how the components
+    respond to variation. The token references define the values those
+    components share.
   </p>
   <p>
-    The product shows how the work runs, Storybook exposes the components and
-    their variation, and the token pages show the boundaries they share — so the
-    work is inspectable beyond the screenshots on this page. The team carried the
-    system forward.
+    Because all three are running and inspectable, the work can be evaluated
+    beyond the screenshots in this case study. The team also had a system it
+    could continue using after the engagement ended.
   </p>
 
+  <h2>Notes</h2>
   <div class="disclosure">
     <p>
       The product and component library are running software produced during the
@@ -532,13 +612,13 @@ const chain = [
     </p>
     <p>
       The equipment, sites, people, jobs, and operational measurements in the
-      public product are invented. They exist to exercise the interface and its
-      component states; they are not customer data or outcomes.
+      public product are fictional. They exist to exercise the interface and its
+      component states. They are not customer data or reported outcomes.
     </p>
     <p>
-      A second surface from the engagement contains a named end customer and
-      dealer-network data. It has not been sanitised and is deliberately not
-      published.
+      A second product surface contains the name of an end customer and data
+      from a dealer network. Because that material has not been sanitized, it is
+      not published.
     </p>
   </div>
 </DocumentLayout>
