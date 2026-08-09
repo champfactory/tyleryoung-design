@@ -77,8 +77,12 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
      while a grey gap between them did not; with the footer white, the space
      above it is white either way and there is nothing left to special-case. */
   footer {
-    margin-top: 72px;
-    padding-block: 44px 48px;
+    /* Balanced, and the margin is why it was not. body and the footer are both
+       white, so a 72px margin above it was not a gap between two things — it
+       was more footer, stacking with the padding to put 116px over the links
+       and 48px under them. The colour change at the edge of <main> does the
+       separating; the padding does the framing, evenly. */
+    padding-block: 64px;
   }
 
   footer > div {
