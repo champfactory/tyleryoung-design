@@ -65,7 +65,7 @@ export const stories: Story[] = [
     eyebrow: 'Human-in-the-loop design',
     claim: 'I own the collaboration between stakeholders and agents.',
     outcome:
-      'I resolved 48 review notes against the running build \u2014 correcting feedback that pointed at the wrong thing, separating problems from proposed solutions, and deciding what not to build. Both builds are still live: thirty-six notes shaped the next version, twelve did not.',
+      'I resolved 48 review notes against the running build: thirty-six shaped the next version, twelve did not. A note about four cards that looked alike became four semantic states, because the fix belonged in the system and not on the cards.',
     artifacts: [
       { label: 'Review build', href: 'https://metin-oasis-v6.fly.dev/' },
       { label: 'Outcome build', href: 'https://metin-oasis-v7.fly.dev/' },
