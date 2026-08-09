@@ -46,8 +46,9 @@
   --color-paper-sunk: #edeae1;
   /* Zebra tint for banded rows. Neutral rather than warm, because the page is
      white now and the warm sunk token reads as beige against it. */
-  /* On a gray page the bands invert: the tinted cell is the white one. */
-  --color-row: #ffffff;
+  /* One step darker than the page, so a banded cell reads as a surface set
+     into it rather than a card lifted off it. */
+  --color-row: #ededf0;
 
   /* ink */
   --color-ink: #3B2923;
@@ -171,6 +172,7 @@
   /* Eyebrows are a lighter shade of the text they introduce, not the accent.
      Blue now belongs to links alone. */
   .label {
+    text-wrap: pretty;
     font-family: var(--font-sans, var(--font-prose));
     font-size: 16px;
     font-weight: 600;
