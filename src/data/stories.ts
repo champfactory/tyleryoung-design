@@ -49,7 +49,7 @@ export const stories: Story[] = [
     num: '02',
     slug: '/ops-manager',
     eyebrow: 'Frontline operations',
-    claim: 'I designed an enterprise operations product and the system used to build it.',
+    claim: 'I designed an enterprise operations product and the system to build it.',
     outcome:
       'A data-dense operations product built around the job already underway, and the component system behind it. The published library documents 69 component states across 11 families plus 6 token references — the empty, dense and missing-content ones, not just the clean screen.',
     artifacts: [
