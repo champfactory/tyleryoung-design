@@ -46,6 +46,14 @@ const references = [
       One ratio for all three frames — a row of embeds that steps up and down
       reads as a layout accident rather than a set.
 
+      The review build carries its own scale. At 0.42 its logical viewport is
+      1267px, eleven pixels narrower than one of its own scroll containers
+      needs, and eleven pixels of overflow is enough to draw a scrollbar across
+      the bottom of the frame. 0.40 gives it 1330 and the bar goes. Its ratio
+      is restated in that scale's units — 1330/1028 is the same shape as
+      1267/980, so the frame stays exactly as tall as the other two. The other
+      two apps were checked at both scales and overflow at neither.
+
       980 is not arbitrary. Measured in a headless browser at the logical width
       these cards give an app (1267, the 532px column over the 0.42 scale), it
       is the height at which the Alucify and Atheer surfaces stop overflowing
@@ -83,7 +91,8 @@ const references = [
         <LiveFrame
           plain
           src="https://metin-oasis-v6.fly.dev/"
-          ratio="1267 / 980"
+          ratio="1330 / 1028"
+          scale={0.4}
           host="metin-oasis-v6.fly.dev"
           title="The operations build that was reviewed, running"
         />
