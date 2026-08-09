@@ -221,6 +221,11 @@ export const rules = [
     why: 'Each layer says which it is, and each was wrong somewhere. The cards were on paper-raised — white holding near-white applications, meeting the page at 1.03:1. The art ran to the card edge, so the mat only showed at the corners. And the note was written four times: two at 0 10px 12px, one at 22px 18px, one with no padding inside the card\u2019s own. A white footer strip was tried and dropped: it needed 24px above its text to hold a boundary between two surfaces, and there is only one surface.',
   },
   {
+    title: 'Let the page own a figure\u2019s margin, not the file',
+    statement: 'Figures are cropped to their drawn content. The white boundary around them is one CSS value.',
+    why: 'The fifteen essay figures carried between 0 and 47px of dead canvas, differing per figure and per edge, and none had a viewBox — so the space between a drawing and its mat was whatever that export happened to leave. Cropped to the content bounds with 2px of slack for stroke width, the boundary became a single padding value, and the same figure now sits identically on the index and inside the essay.',
+  },
+  {
     title: 'Stack cards two pixels apart',
     statement: 'Cards stacked in one section sit 2px apart, and the corners facing each other are square. Only the outer top and outer bottom are rounded.',
     why: 'The group is one object with hairline separations, not separate cards that happen to be near each other. The container owns it rather than the cards, because a card does not know whether it is stacked — the essay pairs were 40px apart with every corner rounded, and the rule list 14px apart with every corner rounded, which is the same idea reached two ways.',

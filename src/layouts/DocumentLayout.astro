@@ -457,14 +457,25 @@ const {
 
 
 
+  /* The same envelope the figures wear on the index: mat, drawing inset on
+     white. These sat bare on the page, so a figure that paints its own
+     background bled to the column edge while one that does not showed page
+     grey behind the drawing. */
   .doc .essay-fig {
-    margin: 34px 0;
+    margin: var(--space-embed) 0;
+    padding: 10px;
+    border-radius: var(--radius-mat);
+    background: var(--color-mount);
   }
 
   .doc .essay-fig img {
     display: block;
+    box-sizing: border-box;
     width: 100%;
     height: auto;
+    padding: 20px;
+    border-radius: var(--radius-inset);
+    background: var(--color-paper-raised);
   }
 
 

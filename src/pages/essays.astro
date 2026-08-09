@@ -209,7 +209,7 @@ const sections = essayGroups.map((g) => ({
      quiet between them. 170px opened a hole; 118 still clearly beats the 40px
      inside a section. */
   .block {
-    padding-top: 118px;
+    padding-top: 148px;
   }
 
   /* The theme. It spans the measure and sits directly on the gray page — the
@@ -232,8 +232,8 @@ const sections = essayGroups.map((g) => ({
 
   .pair {
     display: grid;
-    gap: 72px;
-    margin-top: 40px;
+    gap: 96px;
+    margin-top: 48px;
   }
 
   /* The evidence envelope, same anatomy as every embed on the site: mat,
@@ -249,10 +249,16 @@ const sections = essayGroups.map((g) => ({
     background: var(--color-mount);
   }
 
+  /* The white boundary around a drawing, as one value. The figures used to
+     carry it themselves — between 0 and 47px of dead canvas, differing per
+     figure and per edge — so it is cropped out of the assets and set here
+     instead. */
   .media img {
     display: block;
+    box-sizing: border-box;
     width: 100%;
     height: auto;
+    padding: 20px;
     border-radius: var(--radius-inset);
     background: var(--color-paper-raised);
   }
