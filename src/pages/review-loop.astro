@@ -364,8 +364,8 @@ const total = items.length;
   <p>And AI can execute a misunderstanding with exceptional speed.</p>
 
   <p>
-    The purpose of the review loop was not to slow the agent down. It was to stop
-    implementation speed from outrunning shared understanding.
+    The loop exists to stop implementation speed from outrunning shared
+    understanding.
   </p>
   <h2>The answer came back running</h2>
   <p>
@@ -373,14 +373,10 @@ const total = items.length;
     returned at a separate URL so the stakeholder could compare the result with
     the original build rather than relying on a summary of what had changed.
   </p>
-  <p>That preserved the conversation:</p>
-  <ul>
-    <li>The first build showed what the reviewer experienced.</li>
-    <li>The notes recorded how they described it.</li>
-    <li>The diff showed how the response was implemented.</li>
-    <li>The second build made the interpretation visible.</li>
-    <li>The next review could begin from the same shared artifact.</li>
-  </ul>
+  <p>
+    So the next review could start from the same shared artifact instead of from
+    a summary of what had changed.
+  </p>
 
   <LiveFrame
     src={NEXT}
