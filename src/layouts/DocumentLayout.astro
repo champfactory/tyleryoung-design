@@ -1080,13 +1080,13 @@ const {
     text-wrap: pretty;
   }
 
-  /* Numbered lists keep the wider hanging indent: two digits need the room. */
-  .doc .prose > ol:not([class]) > li {
-    padding-left: 38px;
-  }
-
+  /* One indent for both list kinds, so the sentences start on the same left
+     edge whether they are numbered or bulleted. They were 38px and 22px, which
+     put two lists in the same column on two different edges. 26px is what a
+     single digit needs; the wider number indent existed for the leading zero. */
+  .doc .prose > ol:not([class]) > li,
   .doc .prose > ul:not([class]) > li {
-    padding-left: 22px;
+    padding-left: 26px;
   }
 
   .doc .prose > ol:not([class]) > li {
@@ -1098,7 +1098,7 @@ const {
      made a list of three questions look like three links to somewhere. The
      leading zero stays: 01, 02, 03. */
   .doc .prose > ol:not([class]) > li::before {
-    content: counter(item, decimal-leading-zero);
+    content: counter(item, decimal);
     position: absolute;
     left: 0;
     top: 0;
@@ -1114,7 +1114,9 @@ const {
   .doc .prose > ul:not([class]) > li::before {
     content: '';
     position: absolute;
-    left: 2px;
+    /* Centred on the same axis the digit sits on, so a numbered list and a
+       bulleted list read as one column with two markers. */
+    left: 3px;
     top: 0.62em;
     width: 5px;
     height: 5px;
