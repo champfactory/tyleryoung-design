@@ -193,12 +193,18 @@ const references = [
     gap: 4px 10px;
   }
 
+  /* Prose face, sentence case. These were mono at eyebrow size with 0.09em
+     tracking and uppercased — the site's label treatment, which is for labels:
+     eyebrows, rail keys, table headers. A person's name is not a label, and it
+     was the only place on the site where one was shouted. The hierarchy between
+     the name and the role comes from weight and ink instead, the way it does
+     everywhere else. */
   .ref-name,
   .ref-title {
-    font-family: var(--font-mono);
-    font-size: var(--text-eyebrow);
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
+    font-family: var(--font-prose);
+    font-size: var(--text-note);
+    letter-spacing: 0;
+    text-transform: none;
   }
 
   .ref-name {
