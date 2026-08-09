@@ -48,7 +48,7 @@
      white now and the warm sunk token reads as beige against it. */
   /* One step darker than the page, so a banded cell reads as a surface set
      into it rather than a card lifted off it. */
-  --color-row: #ededf0;
+  --color-row: #e9e9ed;
 
   /* ink */
   --color-ink: #3B2923;
