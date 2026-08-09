@@ -4,19 +4,23 @@ import Chevron from '../components/Chevron.astro';
 import { REPO, REPO_LABEL } from '../data/site.mjs';
 
 /**
- * Three stages, in order, each producing the foundation for the next: explore
- * and collect, organise into a system, build from the system. Tyler's copy.
+ * Three stages, stated as a loop rather than a schedule.
  *
- * Everything here is a pattern that already exists — the lede, the section
+ * The previous version read as greenfield only — every verb assumed nothing
+ * existed yet — which is wrong about the work and wrong for the audience, who
+ * mostly have a codebase already. The maturity of the system is now the axis:
+ * same three stages, different entry point, and each stage says what changes
+ * when a system is already in place.
+ *
+ * Both receipts were already on the page and mislabelled by that framing.
+ * Atheer is the brownfield one; this site is the greenfield one.
+ *
+ * Everything here is a pattern the site already had — the lede, the section
  * headings, the prose lists and their marks, the artifact link with its
- * chevron. No new component was introduced to carry it.
- *
- * The colour-pair table, the requirements ledger and the proof cells the
- * previous version ended on went with that version. `src/data/rubric.mjs` was
- * their only consumer and is now unreferenced.
+ * chevron. No new component carries it.
  */
 
-/** What a working option can surface that a specification cannot. */
+/** What a working option surfaces that a specification cannot. */
 const questions = [
   'Do two people understand the same requirement differently?',
   'Does the proposed hierarchy survive real content?',
@@ -34,26 +38,19 @@ const review = [
   'Can people perceive and operate it in real conditions?',
   'Is the behavior credible in the production environment?',
 ];
-
-/** The loop, stated once at the end. */
-const compound = [
-  'Exploration produces better evidence.',
-  'The system turns that evidence into reusable decisions.',
-  'Implementation applies those decisions to working software.',
-];
 ---
 
 <DocumentLayout
   title="I explore broadly, turn what I learn into a system, and build from it"
   metaTitle="How I design with AI | Tyler Young"
-  description="AI can turn an idea into working software in minutes. It cannot make the idea sound. I use it in three stages: explore the problem and collect evidence, organise what we learn into a system, then build from that system."
+  description="Three stages — explore the problem, turn what we learn into a system, build from that system. They are a loop, not a schedule. Every product is already somewhere on it, and where it sits depends on how much its design system and codebase have already decided."
   descriptionDraft
   eyebrow="How I design with AI"
   current="building"
   meta={[
     ['Practice', 'AI-assisted product design'],
     ['My role', 'Explore · systematize · build'],
-    ['Output', 'More informed options · clearer decisions · working software'],
+    ['Applies to', 'New products and established ones. Only the entry point moves.'],
     [
       'Principle',
       'AI expands what I can produce. I remain responsible for what it means and what ships.',
@@ -66,32 +63,32 @@ const compound = [
 >
   <p class="lede">
     AI can turn an idea into working software in minutes. That makes execution
-    faster, but it does not make the idea sound.
+    faster. It does not make the idea sound.
   </p>
   <p>
-    The quality of the result still depends on what the team understands before
-    building: the problem, the people affected, the behavior required, and the
-    decisions that should remain consistent across the product.
+    I work in three stages — explore the problem, turn what we learn into a
+    system, build from that system. They are a loop, not a schedule. Every
+    product is already somewhere on it, and where it sits depends on how much
+    its design system and codebase have already decided.
   </p>
   <p>
-    I use AI in three stages. First, I explore the problem and collect evidence.
-    Then I organize what we learn into a system. Finally, I build from that
-    system.
+    A new product has decided nothing, so exploration is wide and the system
+    gets written from what it settles. An established one has decided a great
+    deal — some of it still true, some of it drifted, some of it never examined.
+    There the work is narrower: find what the system already answers, find where
+    it answers wrongly, and change it at that level rather than at the screen.
   </p>
-  <p>Each stage produces the foundation for the next.</p>
 
   <h2>1. Explore and collect</h2>
-  <p>I begin by expanding the team’s understanding of the problem.</p>
   <p>
-    AI helps me examine source material, compare approaches, test assumptions,
-    and turn early ideas into working options. Because those options are
-    inexpensive to produce, the team can explore more of the problem before
+    I start by widening what the team understands. AI helps me examine source
+    material, compare approaches, and turn early ideas into working options.
+    Because options are cheap, the team can explore more of the problem before
     committing to one answer.
   </p>
-  <p>The goal at this stage is not volume for its own sake. It is evidence.</p>
   <p>
-    A working option can reveal questions that a specification or static screen
-    leaves hidden:
+    The point is not volume. It is evidence — the questions a specification or a
+    static screen leaves hidden:
   </p>
 
   <ul>
@@ -99,144 +96,101 @@ const compound = [
   </ul>
 
   <p>
-    I define the inquiry before generating solutions. The brief identifies the
-    user’s goal, the required behavior, the known constraints, the open
-    questions, and the conditions that would make a result wrong.
+    So I define the inquiry before generating solutions — the goal, the required
+    behavior, the constraints, and what would make a result wrong. Without that,
+    AI produces polished answers to an unresolved question.
   </p>
   <p>
-    That framing gives the exploration a purpose. Without it, AI can produce
-    many polished answers to an unresolved question.
+    In an established product the brief has one more line: what the system
+    already claims. Much of what a team calls a new problem is a rule that
+    exists and stopped being followed.
   </p>
   <p>
-    Running software makes the findings more concrete. A team can use an option,
-    encounter its behavior, and respond to what it does — not what they imagine
-    it might do.
+    Running software makes findings concrete. A team can use an option and
+    respond to what it does, not to what they imagine it might do.
   </p>
   <p>
-    In one stakeholder review, I published a working application and received 48
-    notes across six product surfaces. The artifact made the feedback specific.
-    It also revealed where the reviewer’s wording, the visible interface, and
-    the right product response did not align.
+    In one stakeholder review I published a working application and got 48 notes
+    across six product surfaces. It made the feedback specific, and it showed
+    where the reviewer’s wording, the visible interface, and the right product
+    response did not agree.
   </p>
   <p>
     <a class="artifact" href="/review-loop">See the stakeholder review<Chevron /></a>
   </p>
-  <p>
-    Exploration ends when the team has learned enough to make decisions. Those
-    decisions become the system.
-  </p>
 
-  <h2>2. Organize what we learned into a system</h2>
+  <h2>2. Turn what we learned into a system</h2>
   <p>
-    Individual findings do not create a coherent product. They must be turned
-    into rules that can survive beyond the screen where they first appeared.
+    Findings do not make a coherent product. They have to become rules that
+    survive past the screen where they first appeared — principles, behaviors,
+    components, content patterns, accessibility requirements — which is what
+    turns a resolved question into a reusable constraint.
   </p>
   <p>
-    I organize the decisions from exploration into a system: principles,
-    behaviors, components, content patterns, accessibility requirements, and
-    visual relationships.
+    If several operational states have to stay distinguishable in dense
+    interfaces, that gets solved once — how each state reads through language,
+    shape, and color — not card by card. Every later component inherits it.
   </p>
   <p>
-    The system records what should remain consistent and what may vary. It turns
-    a resolved question into a reusable constraint.
-  </p>
-  <p>
-    For example, if several operational states must remain distinguishable in
-    dense interfaces, the solution should not be recreated card by card. The
-    system should define how each state communicates through language, shape,
-    and color. Every later component can then inherit that decision.
-  </p>
-  <p>
-    This is why tokens and components matter. They are not the story; they are
+    This is what tokens and components are for. They are not the story. They are
     how a decision becomes enforceable.
   </p>
   <p>
-    If the system contains an approved pattern, AI can apply it. If no pattern
-    exists, the missing value remains visible as a design question. The agent
-    should not hide that question by inventing a local answer.
+    When a system already exists, this stage is mostly subtraction: the rules
+    that contradict each other, the patterns nobody follows, and the decisions
+    that were never written down and so get re-argued every quarter.
   </p>
   <p>
-    At Atheer, I used this approach to rebuild an aging design system. Product
-    decisions became working components with documented states. Designers could
-    explore without breaking coherence. Engineers received behavior in code.
-    Brand and accessibility rules applied during implementation instead of being
-    repaired afterward.
-  </p>
-  <p>
-    The running product and its published component library show both sides of
-    that system.
+    At Atheer I rebuilt an aging design system this way. Product decisions became
+    working components with documented states: designers explored without
+    breaking coherence, engineers received behavior as code, and brand and
+    accessibility rules applied during implementation rather than being repaired
+    after it.
   </p>
   <p>
     <a class="artifact" href="/ops-manager">See the operations product and component library<Chevron /></a>
   </p>
-  <p>
-    A useful system does more than make a product consistent. It carries what
-    the team learned into the next implementation.
-  </p>
 
   <h2>3. Build from the system</h2>
   <p>
-    Once the intent is clear and the decisions are encoded, AI can build without
-    redefining the product along the way.
+    Once the intent is clear and the decisions are encoded, the agent can build
+    without redefining the product along the way. Where a pattern exists it
+    applies it. Where none exists, the gap stays visible as a design question
+    rather than being closed with a local answer.
   </p>
-  <p>
-    The agent works from the brief and the system. It can assemble approved
-    components, apply established patterns, implement required states, and run
-    defined checks. Because those decisions already exist, implementation
-    becomes faster without becoming arbitrary.
-  </p>
-  <p>The resulting software then returns to people for review.</p>
-  <p>I evaluate it against the problem we agreed to solve:</p>
+  <p>Then the result comes back to people. I read it against the problem we agreed to solve:</p>
 
   <ul>
     {review.map((q) => <li>{q}</li>)}
   </ul>
 
   <p>
-    A result can pass its technical checks and still be the wrong thing to ship.
-    AI can confirm that an implementation follows the instructions. It cannot
-    independently confirm that the instructions reflect the right product
-    decision.
+    A result can pass every check and still be the wrong thing to ship. AI can
+    confirm that an implementation follows the instructions, not that the
+    instructions were the right decision — and it implements an assumption with
+    the same speed and confidence as an approved one. So I use AI to accelerate
+    execution, never to cover unresolved judgment.
   </p>
   <p>
-    That boundary matters most when the requirements are ambiguous. An agent can
-    implement an assumption with the same confidence and speed as an approved
-    decision. I therefore use AI to accelerate execution, not to conceal
-    unresolved judgment.
-  </p>
-  <p>
-    In Alucify, I designed product surfaces that make this boundary visible:
-    what the system knows, what it inferred, what a change could affect, and
-    where a person still needs to decide.
+    In Alucify I designed the surfaces that make that boundary visible: what the
+    system knows, what it inferred, what a change could affect, and where a
+    person still has to decide.
   </p>
   <p>
     <a class="artifact" href="/alucify">See the Alucify case study<Chevron /></a>
   </p>
+
+  <h2>Where this leaves the work</h2>
   <p>
-    The build is not the end of the process. Once people use it, the product
-    produces new evidence. That evidence begins another round of exploration.
-  </p>
-
-  <h2>The three stages compound</h2>
-  <p>The value of AI does not come from generating a screen faster.</p>
-  <p>It comes from connecting three kinds of work:</p>
-
-  <ol>
-    {compound.map((c) => <li>{c}</li>)}
-  </ol>
-
-  <p>
-    The built product then reveals new information, and the process begins again
-    with a stronger foundation.
+    Once people use what was built, it produces new evidence and the loop starts
+    again with more encoded than before. This site was the greenfield case,
+    Atheer the established one; the stages were the same, only how much was
+    already decided and how much of it still held.
   </p>
   <p>
-    This changes where design has leverage. I spend less time reproducing
-    settled decisions and more time investigating the problem, making those
-    decisions explicit, and judging their results.
-  </p>
-  <p>
-    AI increases the range and speed of the work. The system preserves what the
-    team has learned. I remain responsible for the meaning and quality of what
-    ships.
+    What moves is where design has leverage: less time reproducing settled
+    decisions, more on the ones not yet made. AI widens the range and the speed.
+    The system keeps what the team learned. I stay responsible for the meaning
+    and quality of what ships.
   </p>
 </DocumentLayout>
