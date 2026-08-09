@@ -10,13 +10,12 @@ const APP = 'https://alucify-screens.fly.dev/#/dashboard';
 const FIGMA = 'https://www.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1';
 const FIGMA_EMBED =
   'https://embed.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1&embed-host=share';
-const W = '/work/alucify';
 
-/** Where the work sits, and where it can move to as context improves. */
+/** Where the work sits, and where it moves as context improves. */
 const allocation = [
-  ['Agent-ready', 'Grounded enough for an agent to build from'],
-  ['Needs clarification', 'A person has to resolve the ambiguity first'],
-  ['Requires expert judgement', 'Systemic impact warrants a deeper look'],
+  ['Agent-ready', 'The context is strong enough for an agent to proceed.'],
+  ['Needs clarification', 'A person must resolve an ambiguity first.'],
+  ['Requires expert judgement', 'The possible system-wide impact needs closer review.'],
 ];
 
 const flows = [
@@ -29,28 +28,27 @@ const flows = [
 /** Engagement results from the Alucify system, not from the interface alone. */
 const evidence = [
   ['15%', 'Requirements gap identified', 'Missing intent became visible before it became code.'],
-  ['97%', 'Prototype fidelity', 'Design decisions stayed connected to what was implemented.'],
-  ['62.5%', 'Implementation time saved', 'Better grounding reduced avoidable interpretation and rework.'],
+  ['97%', 'Prototype fidelity', 'The implemented product preserved the design decisions.'],
+  ['62.5%', 'Implementation time saved', 'Better context reduced interpretation and rework.'],
 ];
 ---
 
 <DocumentLayout
   title={storyTitle('/alucify')}
   metaTitle="Alucify — the control layer for agentic software development | Tyler Young"
-  description="Agents generate faster than teams can specify and absorb change. Alucify models what a brownfield codebase means, then shows where context is missing, what a change would reach, and where human judgement is still required."
+  description="Coding agents can write software faster than teams can specify, review and absorb it. Alucify connects requirements, schemas, interfaces, code and tests in one queryable model, then shows where context is missing, what a change would affect, and where a person still has to decide."
   eyebrow="Semantic intelligence for software teams"
   meta={[
-    ['Company', 'Semantic intelligence for brownfield software'],
+    ['Company', 'Semantic intelligence for existing software'],
     ['Contribution', 'Product design · information architecture · company narrative'],
-    ['Product scope', '4 connected flows · 20 documented screens'],
-    ['Status', 'Active venture · shown with the founder’s agreement'],
+    ['Scope', '4 connected flows · 20 documented screens'],
+    ['Status', 'Active venture · shown with the founder’s permission'],
   ]}
 >
   <p class="lede">
-    Alucify makes complex codebases legible to people and coding agents. I
-    designed the product surfaces that expose missing context, predict the
-    consequences of a change, and show teams where human judgement is still
-    required.
+    Alucify helps people and coding agents understand complex codebases. I
+    designed the product surfaces that reveal missing context, predict the
+    effects of a change, and show where people still need to make a decision.
   </p>
 
   <LinkRow
@@ -62,105 +60,122 @@ const evidence = [
   />
 
   <p>
-    Coding agents write implementation far faster than a team can specify it,
-    check it, and absorb it. But commercial software is rarely a clean project.
-    It is a system shaped by years of requirements, dependencies and exceptions,
-    and that context is scattered: product managers hold the intent, engineers
-    hold the architectural history, and the code holds another version of the
-    truth. An agent that cannot see those relationships writes code that is
-    reasonable on its own and wrong for the system.
+    Coding agents can write software faster than teams can specify, review, and
+    absorb it. But commercial software is rarely a clean project. Years of
+    requirements, dependencies, and exceptions shape every codebase.
+  </p>
+  <p>
+    That context is scattered. Product managers know the intent. Engineers know
+    the architectural history. The code reflects another version of the truth.
+    Without those relationships, an agent can write code that looks reasonable
+    but is wrong for the system.
   </p>
 
   <h2>Showing what to do next</h2>
   <p>
-    Alucify turns requirements, schemas, interfaces, code and tests into one
-    queryable model of the application — the AppGraph. It can hand an agent the
-    part of the system a task actually touches, instead of a pile of
-    undifferentiated context.
+    Alucify connects requirements, schemas, interfaces, code, and tests in a
+    queryable model called the AppGraph. For each task, it gives an agent the
+    relevant part of the system instead of an undifferentiated mass of context.
   </p>
   <p>
-    That model can produce a great deal of technical evidence, and raw graphs and
-    scores would only move the interpretation problem somewhere else. So the
-    design job was the decision on the other side of the analysis.
-    Every score opens into the evidence beneath it. Verified context is separated
-    from agent inference. A finding says why it matters, not only how severe it
-    is. And nothing pretends the software can make the final call.
+    The AppGraph can produce more evidence than a person can use at once. Raw
+    graphs and scores would simply shift the interpretation work to the user. I
+    designed the product around the decisions that evidence should support.
   </p>
   <p>
-    The dashboard opens on three questions — what has been created, which
-    decisions are grounded, and where a change could propagate.
+    Every score links to its source. Verified context is distinct from agent
+    inference. Each finding explains why it matters, not just how severe it is.
+    The product informs the decision without pretending to make it.
   </p>
-
+  <p>The dashboard starts with three questions:</p>
+  <ul>
+    <li>What has been created?</li>
+    <li>Which decisions are grounded in evidence?</li>
+    <li>Where could a change spread?</li>
+  </ul>
   <p>
-    Agent hours and token usage sit beside them as planning evidence — what the
-    work is likely to cost in effort — not as a bill.
+    Agent hours and token use appear alongside these signals. They estimate
+    effort rather than present a bill.
   </p>
 
   <Reconstruction
     route="dashboard"
     label="Dashboard"
     title="Alucify code-review dashboard reconstruction"
-    caption="Three starting points, and no single score presented as a verdict."
+    caption="Three starting points, with no single score presented as a verdict."
     eager
   />
-  <h2>Three analyses, one job</h2>
+
+  <h2>Three analyses, one purpose</h2>
   <p>
-    Each answers a question a team would otherwise guess at, and each ends by
-    handing the decision back.
+    Each analysis answers a question the team would otherwise have to guess at.
+    Each gives the final decision back to the team.
   </p>
 
-  <h3>Where the team still has to agree</h3>
+  <h3>Where does the team still need to agree?</h3>
   <p>
-    Coverage Analysis measures how much of a decision rests on verified context
-    and how much rests on inference. Incomplete decisions sort to the top,
-    because those are where an agent is most likely to invent something. A
-    coverage score is not a quality grade — it says where the conversation
-    should start.
+    Coverage Analysis shows how much of a decision rests on verified context and
+    how much depends on inference.
+  </p>
+  <p>
+    Decisions with missing context appear first because those are the places
+    where an agent is most likely to invent an answer. The coverage score is not
+    a grade. It shows the team where to begin a conversation.
   </p>
 
   <Reconstruction
     route="coverage"
     label="Coverage analysis"
     title="Alucify coverage-analysis reconstruction"
-    caption="Every summary stays traceable to a named decision and the evidence supporting it. The sample score is computed from the 27 decisions beneath it."
+    caption="Every summary links to a named decision and its supporting evidence. The sample score is calculated from the 27 decisions below it."
   />
 
-  <h3>What a change would touch</h3>
+  <h3>What would this change affect?</h3>
   <p>
-    Impact Analysis runs a proposed change through the AppGraph before anyone
-    writes it: how far it reaches, what could break, what data it exposes, and
-    what may stop working. A team can revise the requirement while it is still
-    cheap, rather than after an agent has built the wrong reading of it. Severity
-    arrives as a label, a marker and a sentence together, so nobody has to infer
-    what a colour means.
+    Impact Analysis checks a proposed change against the AppGraph before
+    implementation begins. It shows how far the change could spread, what might
+    break, what data it could expose, and which behavior may stop working.
+  </p>
+  <p>
+    The team can then revise an unclear requirement before an agent builds the
+    wrong interpretation.
+  </p>
+  <p>
+    Every severity level includes a label, a marker, and an explanation, so the
+    meaning never depends on colour alone.
   </p>
 
   <Reconstruction
     route="impact-detail"
     label="Impact detail"
     title="Alucify impact-detail reconstruction"
-    caption="A finding names the affected concept, explains the risk, and preserves a path back to the evidence."
+    caption="Each finding names the affected concept, explains the risk, and links back to the evidence."
   />
 
-  <h3>Conventions nobody wrote down</h3>
+  <h3>Which conventions were never documented?</h3>
   <p>
-    Every mature codebase has conventions that most files follow and nobody wrote
-    down, and they usually live in one person's head until that person leaves. Invariance Analysis recovers them from the code, then names the one
-    call site that broke the pattern — 48 of 49 sibling tests pair setup with
-    cleanup; one does not. Some exceptions are drift and some are intent, so the
-    product supplies the evidence and stops there.
+    Mature codebases contain conventions that most files follow but no one wrote
+    down. These rules often live in one person’s memory until that person
+    leaves.
   </p>
-
-  <p class="pull-line">
-    Each analysis narrows where a person has to look. None of them decides.
+  <p>
+    Invariance Analysis finds those patterns in the code and identifies
+    exceptions. For example, 48 of 49 related tests may pair setup with cleanup
+    while one does not.
+  </p>
+  <p>
+    Some exceptions are mistakes. Others are intentional. Alucify presents the
+    evidence and leaves that judgement to the team.
+  </p>
+  <p>
+    Together, the three analyses narrow where a person needs to look. None
+    claims to make the decision.
   </p>
 
   <h2>Where the product hands the work back</h2>
   <p>
-    A coverage gap means someone has to say what they meant. An impact finding
-    means someone has to weigh it. So the product sorts work into three states,
-    and it moves between them as the context improves — which is the point of
-    measuring it.
+    A coverage gap means someone needs to clarify the intent. An impact finding
+    means someone needs to judge the risk. Alucify sorts work into three states.
   </p>
 
   <ol class="loop">
@@ -175,24 +190,28 @@ const evidence = [
   </ol>
 
   <p>
-    The same honesty applies to the analysis itself. It may still be running, or
-    return nothing, or have gone stale when the repository moved underneath it.
-    A stale audit does not sit on screen as though it were valid: the product
-    says the result is out of date and puts the fix beside the admission.
+    These states change as the available context improves. That is the reason to
+    measure them.
+  </p>
+  <p>
+    The product is equally clear about the status of its own analysis. A result
+    may still be running, return nothing, or become outdated after the
+    repository changes. When an audit is stale, Alucify says so and places the
+    corrective action beside the warning.
   </p>
 
   <Reconstruction
     route="artifact-reaudit"
     label="Stale audit"
     title="Alucify stale-audit reconstruction"
-    caption="The product identifies its own result as outdated and puts the corrective action beside it."
+    caption="The product identifies an outdated result and shows how to refresh it."
   />
 
-  <h2>Twenty screens, four flows</h2>
+  <h2>Twenty screens across four flows</h2>
   <p>
-    Onboarding establishes the codebase context every later analysis depends on.
-    The dashboard provides orientation. The detailed flows let the user trace
-    each signal back to the evidence underneath it.
+    Onboarding establishes the codebase context used by every later analysis.
+    The dashboard provides orientation. The detailed views let users trace each
+    signal back to its evidence.
   </p>
 
   <div class="flows">
@@ -237,11 +256,12 @@ const evidence = [
         allowfullscreen></iframe>
     </div>
   </figure>
-  <h2>What it changed</h2>
+
+  <h2>What changed</h2>
   <p>
-    On the LangBuilder engagement, analysis identified a requirements gap before
-    implementation, AppGraph-grounded prototyping held fidelity between prototype
-    and product, and the team reported time saved during implementation.
+    During the LangBuilder engagement, Alucify found a requirements gap before
+    implementation. Prototypes grounded in the AppGraph also remained close to
+    the finished product, and the team reported less implementation time.
   </p>
 
   <ul class="cells three">
@@ -257,44 +277,46 @@ const evidence = [
   </ul>
 
   <p>
-    Those figures come from the Alucify system and the whole engagement, not from
-    the interface design alone.
+    These figures describe the Alucify system and the engagement as a whole.
+    They are not results of the interface design alone.
   </p>
+
   <h2>What I did</h2>
+  <p>I was the product designer.</p>
   <p>
-    I was the product designer. The product sits between complex machine
-    analysis and consequential human decisions, and my job was to make that
-    boundary legible: what the system knows, what it inferred, what a change
-    could reach, and where a person still has to step in.
+    Alucify sits between complex machine analysis and consequential human
+    decisions. My job was to make that boundary clear: what the system knows,
+    what it inferred, what a change could affect, and where a person needs to
+    step in.
   </p>
   <p>
-    I designed the company website and its narrative too. Alucify sits between
-    code intelligence, development infrastructure and agent governance — a
-    category with no name to borrow — so the story opens on a constraint the
-    reader already recognises, then shows the model underneath it.
+    I also designed the company website and its narrative. Alucify spans code
+    intelligence, development infrastructure, and agent governance. Because that
+    category has no familiar name, the story begins with a problem software
+    teams already recognize, then introduces the model behind the solution.
+  </p>
+  <p>
+    The result makes three things easier to see: the codebase, the uncertainty
+    within it, and the consequences of a change.
   </p>
 
-  <p class="pull-line">
-    Alucify makes the codebase, the uncertainty, and the consequences of a change
-    easier to see.
-  </p>
-
+  <h2>Notes</h2>
   <div class="disclosure">
     <p>
-      The interactive product screens are a working reconstruction of my designs,
-      built so the states can be explored rather than viewed only as screenshots.
-      The reconstruction is not the shipping product.
+      The interactive screens are a working reconstruction of my designs. They
+      allow people to explore the product states, but they are not the shipping
+      product.
     </p>
     <p>
-      The tenant, people, and measurements in it are invented. The sample
-      summaries reconcile with their underlying rows but are not customer
-      results.
+      The tenant, people, and measurements shown in the reconstruction are
+      fictional. The sample summaries match their underlying rows but do not
+      represent customer results.
     </p>
+    <p>The LangBuilder figures are company-level engagement results.</p>
     <p>
-      The LangBuilder figures are company-level engagement results. The public
-      website currently reflects the company’s earlier positioning; the narrative
-      described above is the current one.
+      The public company website still uses Alucify’s earlier positioning. This
+      case study describes its current narrative.
     </p>
-    <p>This work is shown with the founder’s agreement.</p>
+    <p>This work appears with the founder’s permission.</p>
   </div>
 </DocumentLayout>
