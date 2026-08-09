@@ -1,6 +1,7 @@
 ---
 import { REPO, EMAIL, YEAR as year } from '../data/site.mjs';
 import { storyLinks } from '../data/stories';
+import Chevron from './Chevron.astro';
 
 /**
  * The left column is the three case studies, on every page. Related work used to
@@ -42,9 +43,7 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
           <span class="foot-left">
             {row.left && (
               <a class="artifact" href={row.left[0]}>
-                {row.left[1]}
-                <span aria-hidden="true">›</span>
-              </a>
+                {row.left[1]}<Chevron /></a>
             )}
           </span>
           <span class="foot-right">
@@ -55,9 +54,7 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
                 target={row.right[2] ? '_blank' : undefined}
                 rel={row.right[2] ? 'noopener' : undefined}
               >
-                {row.right[1]}
-                <span aria-hidden="true">›</span>
-              </a>
+                {row.right[1]}<Chevron /></a>
             )}
           </span>
         </div>

@@ -1,4 +1,5 @@
 ---
+import Chevron from './Chevron.astro';
 /**
  * Embeds a live deployment, scaled to fit its container exactly.
  *
@@ -72,7 +73,7 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
   <div class="chrome">
     <span class="host">{host}</span>
     <a class="open" href={src} target="_blank" rel="noopener">
-      Open <span aria-hidden="true">›</span>
+      Open<Chevron weight="bold" />
     </a>
   </div>
   )}

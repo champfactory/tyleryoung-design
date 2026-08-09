@@ -274,13 +274,19 @@
   .link:focus-visible {
     text-decoration: underline;
     text-underline-offset: 3px;
+    /* The line is currentColor, same as the text — but `auto` thickness draws a
+       solid opaque band while the letterforms are antialiased and blend toward
+       the page at their edges, so the rule reads darker than the words it sits
+       under. 1px matches the stem weight and the two look like one colour. */
+    text-decoration-thickness: 1px;
   }
 
   /* An artifact link — concrete label, arrow, mono. "Live product", "Case study". */
   .artifact {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    /* No gap: the chevron carries its own margin so the space in front of it
+       scales with the type and never joins the underlined text run. */
     font-family: var(--font-prose);
     /* Sentence case at reading size — the link is a sentence fragment now, not
        a stamped label. */
@@ -297,16 +303,19 @@
   .artifact:focus-visible {
     text-decoration: underline;
     text-underline-offset: 3px;
+    /* The line is currentColor, same as the text — but `auto` thickness draws a
+       solid opaque band while the letterforms are antialiased and blend toward
+       the page at their edges, so the rule reads darker than the words it sits
+       under. 1px matches the stem weight and the two look like one colour. */
+    text-decoration-thickness: 1px;
   }
 
-  /* The chevron is a marker, not part of the phrase, so it stays out of the
-     rule. Text decoration propagates into inline children but not into an
-     inline-block — that is the whole mechanism. */
-  .artifact > span[aria-hidden],
-  .link > span[aria-hidden] {
-    display: inline-block;
-    text-decoration: none;
-  }
+  /* The chevron is the <Chevron> component — the Alucify glyph at three
+     optical weights, filled with `currentColor` and sized in `em`, so it takes
+     the colour and the scale of whatever link it ends. It is a marker, not part
+     of the phrase, so it stays out of the underline: text decoration propagates
+     into inline children but not into an atomic inline like an <svg>. That is
+     the whole mechanism, and the component's own style is where it lives. */
 
 
 }

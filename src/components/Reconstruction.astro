@@ -1,4 +1,5 @@
 ---
+import Chevron from './Chevron.astro';
 /**
  * One presentation for every running screen: status header, the live app, a
  * caption saying what to inspect.
@@ -50,7 +51,7 @@ const OVERSCAN_Y = 40;
     <span class="recon-label">{label}</span>
     <span class="recon-host">{HOST}</span>
     <a class="recon-open" href={src} target="_blank" rel="noopener">
-      Open <span aria-hidden="true">›</span>
+      Open<Chevron weight="bold" />
     </a>
   </div>
 

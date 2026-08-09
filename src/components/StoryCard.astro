@@ -1,6 +1,7 @@
 ---
 import Draft from './Draft.astro';
 import type { Story } from '../data/stories';
+import Chevron from './Chevron.astro';
 
 interface Props {
   story: Story;
@@ -33,9 +34,7 @@ const { eyebrow, claim, outcome, artifacts, draft } = story;
                 target={a.href.startsWith('http') ? '_blank' : undefined}
                 rel={a.href.startsWith('http') ? 'noopener' : undefined}
               >
-                {a.label}
-                <span aria-hidden="true">›</span>
-              </a>
+                {a.label}<Chevron /></a>
             ) : (
               <span class="pending">
                 {a.label} — <em>{a.needs}</em>

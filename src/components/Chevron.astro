@@ -1,0 +1,50 @@
+---
+/**
+ * The chevron that ends a link, from the Alucify pattern file (nodes 257:1333,
+ * 257:1334, 257:1335) — one glyph at three optical weights.
+ *
+ * Two things make it behave. It is sized in `em`, so it tracks whatever text it
+ * sits beside instead of needing a size per call site. And it fills with
+ * `currentColor`, so it is blue in a link, ink in a caption, and correct on any
+ * future surface without being told.
+ *
+ * `display: inline-block` is load-bearing: text decoration propagates into
+ * inline children but not into an inline-block, which is what keeps a hover
+ * underline under the words and off the marker.
+ */
+interface Props {
+  /** Match the weight of the text it follows: regular text takes `light`,
+      medium takes `medium`, semibold and above take `bold`. */
+  weight?: 'light' | 'medium' | 'bold';
+}
+
+const { weight = 'medium' } = Astro.props;
+
+const GLYPH = {
+  light: { w: '3.97656', h: '6.91797', d: 'M3.97656 3.45703C3.97656 3.52474 3.96354 3.58724 3.9375 3.64453C3.91146 3.70182 3.8724 3.75651 3.82031 3.80859L0.777344 6.78516C0.691406 6.8737 0.584635 6.91797 0.457031 6.91797C0.373698 6.91797 0.296875 6.89714 0.226562 6.85547C0.15625 6.81641 0.10026 6.76172 0.0585938 6.69141C0.0195312 6.6237 0 6.54818 0 6.46484C0 6.33984 0.046875 6.22917 0.140625 6.13281L2.88281 3.45703L0.140625 0.78125C0.046875 0.684896 0 0.575521 0 0.453125C0 0.367188 0.0195312 0.290365 0.0585938 0.222656C0.10026 0.154948 0.15625 0.101562 0.226562 0.0625C0.296875 0.0208333 0.373698 0 0.457031 0C0.584635 0 0.691406 0.0429688 0.777344 0.128906L3.82031 3.10547C3.8724 3.15755 3.91146 3.21224 3.9375 3.26953C3.96354 3.32682 3.97656 3.38932 3.97656 3.45703Z' },
+  medium: { w: '4.08984', h: '7.01562', d: 'M4.08984 3.50781C4.08984 3.58594 4.07422 3.66016 4.04297 3.73047C4.01432 3.79818 3.96745 3.86328 3.90234 3.92578L0.898438 6.86719C0.796875 6.96615 0.673177 7.01562 0.527344 7.01562C0.433594 7.01562 0.346354 6.99219 0.265625 6.94531C0.184896 6.89844 0.119792 6.83594 0.0703125 6.75781C0.0234375 6.67969 0 6.59115 0 6.49219C0 6.34896 0.0546875 6.22135 0.164062 6.10938L2.83984 3.50781L0.164062 0.90625C0.0546875 0.796875 0 0.669271 0 0.523438C0 0.427083 0.0234375 0.339844 0.0703125 0.261719C0.119792 0.18099 0.184896 0.117188 0.265625 0.0703125C0.346354 0.0234375 0.433594 0 0.527344 0C0.673177 0 0.796875 0.0494792 0.898438 0.148438L3.90234 3.08984C3.96484 3.15234 4.01172 3.21745 4.04297 3.28516C4.07422 3.35286 4.08984 3.42708 4.08984 3.50781Z' },
+  bold: { w: '4.24609', h: '7.15625', d: 'M4.24609 3.57812C4.24609 3.67448 4.22656 3.76432 4.1875 3.84766C4.15104 3.92839 4.09245 4.00781 4.01172 4.08594L1.0625 6.97656C0.942708 7.09635 0.796875 7.15625 0.625 7.15625C0.513021 7.15625 0.408854 7.1276 0.3125 7.07031C0.216146 7.01562 0.139323 6.94141 0.0820312 6.84766C0.0273438 6.75391 0 6.64974 0 6.53516C0 6.36328 0.0664062 6.20964 0.199219 6.07422L2.77344 3.57422L0.199219 1.07812C0.0664062 0.947917 0 0.795573 0 0.621094C0 0.50651 0.0273438 0.402344 0.0820312 0.308594C0.139323 0.214844 0.216146 0.140625 0.3125 0.0859375C0.408854 0.0286458 0.513021 0 0.625 0C0.796875 0 0.942708 0.0585938 1.0625 0.175781L4.01172 3.06641C4.09245 3.14453 4.15104 3.22526 4.1875 3.30859C4.22396 3.38932 4.24349 3.47917 4.24609 3.57812Z' },
+};
+
+const g = GLYPH[weight];
+---
+
+<svg class="chev" viewBox={`0 0 ${g.w} ${g.h}`} aria-hidden="true" focusable="false">
+  <path d={g.d} fill="currentColor" />
+</svg>
+
+<style>
+  .chev {
+    display: inline-block;
+    height: 0.62em;
+    width: auto;
+    flex: none;
+    vertical-align: -0.01em;
+    text-decoration: none;
+    /* The chevron owns the space in front of it, and no call site writes a
+       literal one. A typed space belongs to the text run, so a hover underline
+       runs under it and overshoots the last letter — which is exactly what a
+       gap or a margin does not do. One mechanism, so it can only be right. */
+    margin-left: 0.34em;
+  }
+</style>

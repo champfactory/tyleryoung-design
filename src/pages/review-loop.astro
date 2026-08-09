@@ -5,6 +5,7 @@ import LiveFrame from '../components/LiveFrame.astro';
 import FeedbackTable from '../components/FeedbackTable.astro';
 import Compare from '../components/Compare.astro';
 import items from '../data/feedback.json';
+import Chevron from '../components/Chevron.astro';
 
 const REVIEWED = 'https://metin-oasis-v6.fly.dev/';
 const NEXT = 'https://metin-oasis-v7.fly.dev/';
@@ -98,14 +99,14 @@ const results = [
       <span class="cell-label">Build under review</span>
       <span class="cell-host">metin-oasis-v6.fly.dev</span>
       <a class="artifact" href={REVIEWED} target="_blank" rel="noopener">
-        Open the reviewed build <span aria-hidden="true">›</span>
+        Open the reviewed build<Chevron />
       </a>
     </li>
     <li>
       <span class="cell-label">Next version</span>
       <span class="cell-host">metin-oasis-v7.fly.dev</span>
       <a class="artifact" href={NEXT} target="_blank" rel="noopener">
-        Open the resulting build <span aria-hidden="true">›</span>
+        Open the resulting build<Chevron />
       </a>
     </li>
   </ul>

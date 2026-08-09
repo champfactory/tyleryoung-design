@@ -1,4 +1,5 @@
 ---
+import Chevron from './Chevron.astro';
 /**
  * The card anatomy is inherited from the live site because it works:
  * media → eyebrow → short title → two-beat description → concrete artifact link.
@@ -44,9 +45,7 @@ const { eyebrow, title, description, artifacts = [], lead = false } = Astro.prop
                 <a class="artifact" href={a.href}
                    target={a.href.startsWith('http') ? '_blank' : undefined}
                    rel={a.href.startsWith('http') ? 'noopener' : undefined}>
-                  {a.label}
-                  <span aria-hidden="true">›</span>
-                </a>
+                  {a.label}<Chevron /></a>
               ) : (
                 <span class="artifact-pending">
                   {a.label} — <em>{a.needs ?? 'link pending'}</em>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHead from '../components/PageHead.astro';
+import Chevron from '../components/Chevron.astro';
 
 /**
  * Three dimensions of the work, equal in weight — related, not sequential, so
@@ -146,7 +147,7 @@ const sections = [
               {c.paras.map((p) => <p class="summary">{p}</p>)}
               <p class="evidence">{c.evidence}</p>
               <a class="artifact link-gap" href={c.href}>
-                {c.link} <span aria-hidden="true">›</span>
+                {c.link}<Chevron />
               </a>
             </div>
           </article>
