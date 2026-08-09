@@ -1,30 +1,57 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
+import Chevron from '../components/Chevron.astro';
+import { audit } from '../data/palette.mjs';
+import { REPO, REPO_LABEL } from '../data/site.mjs';
+import { principles, requirements, PREVIEW_PAIRS } from '../data/rubric.mjs';
 
 /**
- * One premise: AI makes production cheaper, so design effort shifts toward
- * defining the problem, constraining the output, comparing alternatives, and
- * reserving consequential decisions for people. Four sections, one per thing.
+ * One page, because the argument and its evidence should not be two clicks
+ * apart behind two different affordances. The method used to live here and the
+ * proof used to live at /colophon, in the footer — the claim in the navigation
+ * and the thing that made it credible in the site's lowest-value real estate.
  *
- * The brief, the six criteria and the three limits are written out as headed
- * sections rather than ledger rows. A ledger is right when a row is a label and
- * a line; each of these carries a paragraph explaining why it is on the list,
- * and that does not fit in a cell.
+ * The thesis is the inversion: a brief can be written before anything exists,
+ * and a design system cannot. So the page runs in that order — write the brief,
+ * build enough real output for the families to surface, and only then let the
+ * system constrain what comes next.
+ *
+ * Dropped in the merge: the old site's before/after comparison and the account
+ * of reading it. Both are about the decision to redesign, not about designing
+ * with an agent.
  */
+
+// Computed at build time from the same module the pre-build check runs against.
+// A hand-typed table of passing numbers would be a claim; this is the check.
+const rows = audit();
+const passing = rows.filter((r) => r.pass).length;
+
+// The preview and the full table read the same rows, so they cannot disagree.
+const preview = PREVIEW_PAIRS.map(([fg, bg]) => rows.find((r) => r.fg === fg && r.bg === bg)).filter(
+  Boolean,
+);
+
+const proof = [
+  ['16', 'Static pages'],
+  ['0', 'Client-side scripts on content pages'],
+  [`${passing} / ${rows.length}`, 'Colour pairs passing'],
+  ['10', 'Old essay URLs preserved'],
+];
 ---
 
 <DocumentLayout
   title="I define the conditions in which AI produces design work"
-  metaTitle="I define the conditions in which AI produces design work | Tyler Young"
-  description="An agent can produce a polished interface in minutes. That speed does not tell the team whether the interface solves the right problem. The brief, system, review loop and perimeter I build for agents to work inside."
+  metaTitle="I design with AI, and this site is the evidence | Tyler Young"
+  description="An agent can produce a polished interface in minutes. That speed does not tell the team whether the interface solves the right problem. The brief, system, review loop and perimeter I build for agents to work inside — and this site, built that way."
   eyebrow="AI-assisted product design"
   current="building"
   meta={[
     ['Practice', 'AI-assisted product design'],
     ['My role', 'Frame · constrain · evaluate · decide'],
-    ['Output', 'Working options · production-ready systems · clearer decisions'],
+    ['This site', 'Astro · Tailwind · static · no client JavaScript'],
     ['Principle', 'AI expands the available options. People remain responsible for what those options mean and what ships.'],
   ]}
+  links={[{ label: REPO_LABEL, href: REPO }]}
 >
   <p class="lede">
     An agent can produce a polished interface in minutes. That speed does not
@@ -111,7 +138,67 @@ import DocumentLayout from '../layouts/DocumentLayout.astro';
     result will be judged.
   </p>
 
-  <h2>The design system constrains what AI can produce</h2>
+  <h2>A design system cannot be written first</h2>
+  <p>
+    The brief can be written before anything exists. The design system cannot.
+    A system is a set of families — of colour, type, spacing, component,
+    sentence — and a family is not visible from a single instance. You have to
+    produce enough real output for the pattern to show itself.
+  </p>
+  <p>
+    So on new work I move to running software quickly, then look for what
+    repeats. The point of the speed is not the output. It is that families only
+    become legible in the aggregate, and until they are legible there is nothing
+    to standardise.
+  </p>
+  <p>
+    This site is the example. It was built from nothing in four days, and every
+    system decision in it surfaced the same way — as a pattern I could not have
+    specified in advance:
+  </p>
+  <ul>
+    <li>
+      one alternating row treatment turned out to be five separate
+      implementations across four files, invisible until two of them were seen
+      disagreeing
+    </li>
+    <li>
+      a single heading construction turned out to be a tic repeated twenty
+      times, invisible until it was counted
+    </li>
+    <li>
+      pull-quotes on every page turned out to be restating the paragraph above
+      them, which is only obvious once you have several to compare
+    </li>
+    <li>
+      one banded colour took six rendered rounds to settle, because the right
+      value was only judgeable against real content
+    </li>
+  </ul>
+  <p>
+    Each of those started as a single defect and ended as a change to the
+    system. That is the move: fix the family, not the instance. A token changed
+    once propagates everywhere, and the same page never has to be corrected
+    twice.
+  </p>
+  <p>
+    The four principles this site is held to were written before any of it
+    existed, which is the other half of the same point. The standard is
+    specifiable up front; the system that satisfies it is not.
+  </p>
+
+  <ul class="principles">
+    {
+      principles.map((p) => (
+        <li>
+          <p class="principle">{p.principle}</p>
+          <p class="principle-detail">{p.detail}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Then the system constrains what AI can produce</h2>
   <p>
     A brief defines the problem. The design system defines the approved language
     for solving it.
@@ -266,6 +353,124 @@ import DocumentLayout from '../layouts/DocumentLayout.astro';
     I automate execution more readily than judgment because execution follows an
     established decision. Judgment determines which decision the product should
     embody.
+  </p>
+
+
+  <h2 id="this-site">What gets checked, and by whom</h2>
+  <p>
+    A perimeter is only real if something enforces it. On this site the build
+    does. Every requirement names its verifier, and the page says which are
+    machine-checked and which are read by a person, because those are not the
+    same promise.
+  </p>
+
+  <ul class="ledger">
+    {
+      requirements.map((r) => (
+        <li class:list={['gate', { human: r.mode === 'HUMAN REVIEW' }]}>
+          <p class="gate-req">{r.req}</p>
+          <p class="gate-meta">
+            <span class="gate-mode">{r.mode}</span>
+            <span class="gate-how">{r.how.replace('{pairs}', String(rows.length))}</span>
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p>
+    The first gate matters most. The site argues that every claim can be opened,
+    so a dead deployment fails the build the same way a broken link does.
+  </p>
+  <p>
+    Colour is the clearest case. Every pairing is checked at the smallest size
+    it appears, and it failed twice during the build. Both times the token
+    changed rather than the component, so the fix propagated everywhere — the
+    family, not the instance.
+  </p>
+
+  <p class="result-line">{passing} of {rows.length} documented colour pairs pass.</p>
+
+  <table class="ratios">
+    <caption class="sr-only">
+      Four representative colour pairs, computed at build time from src/data/palette.mjs
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Pair</th>
+        <th scope="col">Ratio</th>
+        <th scope="col">Needs</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        preview.map((r) => (
+          <tr>
+            <td>
+              <span class="swatch" style={`--fg:var(--color-${r.fg});--bg:var(--color-${r.bg})`}>
+                Aa
+              </span>
+              {r.fg} on {r.bg}
+            </td>
+            <td class="num">{r.ratio.toFixed(2)}</td>
+            <td class="num dim">{r.need.toFixed(2)}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+
+  <details class="all-pairs">
+    <summary><Chevron weight="bold" />View all {rows.length} colour-pair results</summary>
+    <div class="scroller">
+      <table class="ratios">
+        <caption class="label">
+          Computed at build time from <code>src/data/palette.mjs</code> — {passing} of{' '}
+          {rows.length} pairs passing
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Pair</th>
+            <th scope="col">Ratio</th>
+            <th scope="col">Needs</th>
+            <th scope="col">Used for</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            rows.map((r) => (
+              <tr>
+                <td>
+                  <span class="swatch" style={`--fg:var(--color-${r.fg});--bg:var(--color-${r.bg})`}>
+                    Aa
+                  </span>
+                  {r.fg} on {r.bg}
+                </td>
+                <td class="num">{r.ratio.toFixed(2)}</td>
+                <td class="num dim">{r.need.toFixed(2)}</td>
+                <td class="use">{r.use}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <ul class="cells four">
+    {
+      proof.map(([figure, label]) => (
+        <li>
+          <span class="cell-figure">{figure}</span>
+          <span class="cell-label">{label}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p>
+    The code is public. Reading it is the last check, and the one I cannot run
+    on my own behalf.
   </p>
 
   <h2>AI changes the material of design work</h2>
