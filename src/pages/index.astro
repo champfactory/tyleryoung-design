@@ -43,12 +43,14 @@ const references = [
        Three. Attention collapses after the third; a fourth would not be read. -->
   <section class="shell stories" aria-labelledby="work">
     <!--
-      Each frame carries its own ratio rather than a shared 16/10. The height
-      is the one measured in a headless browser as the point where nothing
-      inside the app overflows any more, at the logical width these cards
-      actually give it — 1267, which is the 532px column divided by the 0.42
-      scale. Required height depends on width, so these are tuned for the
-      desktop layout; a much narrower column would need re-measuring.
+      One ratio for all three frames — a row of embeds that steps up and down
+      reads as a layout accident rather than a set.
+
+      980 is not arbitrary. Measured in a headless browser at the logical width
+      these cards give an app (1267, the 532px column over the 0.42 scale), it
+      is the height at which the Alucify and Atheer surfaces stop overflowing
+      entirely. The review build wants 1520 and is the one that pays: it keeps
+      a cropped first screen so the three stay level.
     -->
     <h2 class="sr-only" id="work">Selected work</h2>
 
@@ -57,7 +59,7 @@ const references = [
         <LiveFrame
           plain
           src="https://alucify-screens.fly.dev/#/dashboard"
-          ratio="1267 / 840"
+          ratio="1267 / 980"
           host="alucify-screens.fly.dev"
           title="The Alucify dashboard, running"
         />
@@ -81,7 +83,7 @@ const references = [
         <LiveFrame
           plain
           src="https://metin-oasis-v6.fly.dev/"
-          ratio="1267 / 1520"
+          ratio="1267 / 980"
           host="metin-oasis-v6.fly.dev"
           title="The operations build that was reviewed, running"
         />
