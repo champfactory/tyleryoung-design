@@ -95,16 +95,16 @@
   --space-page-bottom: 88px;
 
   /* The two bands every alternating row on the site uses.
-     Teal, at hue 182. Adjacent to the signal blue at 210 rather than the same
-     hue — close enough to belong to the palette, far enough that a banded
-     block never reads as a large inert link. Cool, so it agrees with the grey
-     page, and it echoes the dark teal in the product screenshots.
+     Grey. Blue read as a second link colour and orange sat against the page;
+     any hue here ends up looking like it was chosen to mean something, and it
+     does not mean anything — it is a reading aid.
 
-     Both rows are tinted. One band alternating with the bare page made half
-     the rows look absent; two make the block a graphical object that breaks up
-     the prose above and below it. */
-  --color-band-a: #e6f4f4;
-  --color-band-b: #f3f9fa;
+     Both rows are tinted, which is the part that mattered. One band
+     alternating with the bare page made half the rows look absent; two make
+     the block a single object. band-a is the same value as --color-row, so the
+     ledger and the older banded surfaces agree. */
+  --color-band-a: #e9e9ed;
+  --color-band-b: #f1f1f5;
 
   --color-header: #e2eefb;
   --color-header-rule: #a3c6e2;

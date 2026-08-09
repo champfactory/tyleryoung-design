@@ -227,23 +227,16 @@ const chain = [
     workflows, the procedures that act on it.
   </p>
 
-  <div aria-hidden="true">
-    <p class="junction-head">
-      <span class="cell-label">Equipment</span>
-      <span class="cell-note">Make · model · year</span>
-    </p>
-    <p class="junction-arrow">Connects to</p>
-    <ol class="loop">
-      {
-        junction.map(([label, note]) => (
-          <li>
-            <span class="loop-actor">{label}</span>
-            <span class="loop-what">{note}</span>
-          </li>
-        ))
-      }
-    </ol>
-  </div>
+  <ol class="loop" aria-hidden="true">
+    {
+      junction.map(([label, note]) => (
+        <li>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{note}</span>
+        </li>
+      ))
+    }
+  </ol>
 
   <StoryFrame
     id="components-equipmentcard--default"
