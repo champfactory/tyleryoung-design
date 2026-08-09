@@ -19,13 +19,6 @@ export type Story = {
   claim: string;
   /** What it was. The 30-second read. */
   outcome: string;
-  /**
-   * The phrases the card sets in full ink while the rest of the passage stays
-   * quiet. With no headline above it, this is what carries the structure: a
-   * reader skimming only the dark words should still land on the claim.
-   * Short noun phrases — a bolded clause is just a second paragraph.
-   */
-  emphasis?: string[];
   artifacts: { label: string; href?: string; needs?: string }[];
   /** true where the claim/outcome are words I wrote, not Tyler-approved copy */
   draft?: boolean;
@@ -37,14 +30,6 @@ export const stories: Story[] = [
     slug: '/alucify',
     eyebrow: 'Codebase intelligence',
     claim: 'I designed the control layer for agentic software development.',
-    emphasis: [
-      'control layer',
-      'agentic software development',
-      'brownfield codebase',
-      'human judgement',
-      'Twenty screens across four connected flows',
-    ],
-   
     outcome:
       'Agents generate faster than teams can specify and absorb change. Alucify models what a brownfield codebase means, then shows where context is missing, what a change would reach, and where human judgement is still required. Twenty screens across four connected flows.',
     /*
@@ -65,13 +50,6 @@ export const stories: Story[] = [
     slug: '/ops-manager',
     eyebrow: 'Frontline operations',
     claim: 'I design operations software for work already in motion.',
-    emphasis: [
-      'operations software',
-      'already in motion',
-      '69 component states across 11 families',
-      'not just the clean screen',
-    ],
-   
     outcome:
       'A data-dense operations product built around the job already underway, and the component system behind it. The published library documents 69 component states across 11 families plus 6 token references — the empty, dense and missing-content ones, not just the clean screen.',
     artifacts: [
@@ -86,12 +64,6 @@ export const stories: Story[] = [
     slug: '/review-loop',
     eyebrow: 'Human-in-the-loop design',
     claim: 'I own the collaboration between stakeholders and agents.',
-    emphasis: [
-      'stakeholders and agents',
-      '48 notes',
-      'what each note actually meant',
-    ],
-   
     outcome:
       'A stakeholder reviewed a working app and returned 48 notes. Claude Code made responding fast; it did not make the notes unambiguous — one asked me to rename wording that was not on the screen. Deciding what each note actually meant was the work. Both versions are still running.',
     artifacts: [
@@ -130,23 +102,3 @@ export const storyTitle = (slug: string) => (storyBySlug(slug)?.claim ?? '').rep
  * series that the page itself shows.
  */
 export const storyLinks = stories.map((s) => [s.slug, s.eyebrow] as [string, string]);
-
-/**
- * Split a passage into runs, marking the ones that should be set in full ink.
- *
- * The titleless card has no headline to carry the claim, so the emphasis does
- * it: a reader who skims only the dark words should still land on what the work
- * was. Longest phrases match first, so a phrase that contains another does not
- * get chopped in half by it.
- */
-export function emphasise(text: string, phrases: string[] = []) {
-  if (phrases.length === 0) return [{ text, on: false }];
-  const escaped = [...phrases]
-    .sort((a, b) => b.length - a.length)
-    .map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-  const re = new RegExp(`(${escaped.join('|')})`, 'g');
-  return text
-    .split(re)
-    .filter((run) => run !== '')
-    .map((run) => ({ text: run, on: phrases.includes(run) }));
-}

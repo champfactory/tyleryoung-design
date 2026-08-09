@@ -17,11 +17,6 @@ export const TOKENS = {
   ink: '#3B2923',
   'ink-2': '#55534b',
   'ink-3': '#6b6961',
-  /* The quiet grey the story paragraphs sit in, so the emphasised phrases in
-     full ink carry the meaning. Set at the limit, like `deep`: #7a6e6b is the
-     lightest step from ink toward paper that still holds AA 4.5 (4.52). Going
-     lighter would widen the gap but stop being readable on its own. */
-  'ink-quiet': '#7a6e6b',
   rule: '#d0ccbe',
   'rule-strong': '#b9b4a6',
   machine: '#16161a',
@@ -49,8 +44,6 @@ export const PAIRS = [
   ['deep-ink', 'deep', 'AA', 'footer links @ 17px'],
   ['deep-ink', 'deep', 'AA-large', 'footer focus ring'],
   ['ink', 'paper', 'AA', 'body + headings'],
-  ['ink-quiet', 'paper', 'AA', 'story paragraph base'],
-  ['ink-quiet', 'paper-raised', 'AA', 'story paragraph on a card'],
   ['ink-2', 'paper', 'AA', 'secondary prose'],
   ['ink-3', 'paper', 'AA', 'mono labels @ 11px'],
   ['signal', 'paper', 'AA', 'links, section numbers'],
