@@ -24,7 +24,7 @@ interface Props {
 const { id, title, note } = Astro.props;
 ---
 
-<dialog class="sheet" id={id} aria-labelledby={`${id}-title`}>
+<dialog class="sheet" id={id} tabindex="-1" aria-labelledby={`${id}-title`}>
   <header class="sheet-head">
     <div class="sheet-titles">
       <h2 class="sheet-title" id={`${id}-title`}>{title}</h2>
@@ -49,6 +49,9 @@ const { id, title, note } = Astro.props;
     background: var(--color-paper-raised);
     color: var(--color-ink);
     overflow: hidden;
+    box-shadow:
+      0 2px 8px color-mix(in srgb, var(--color-ink) 10%, transparent),
+      0 18px 50px color-mix(in srgb, var(--color-ink) 22%, transparent);
   }
 
   .sheet[open] {
@@ -56,10 +59,20 @@ const { id, title, note } = Astro.props;
     flex-direction: column;
   }
 
-  /* Mixed from ink rather than a flat black, so the scrim belongs to the same
-     palette as everything it covers. */
+  /* No ring on the panel. Focus is moved here programmatically so the dialog
+     announces itself; it is a container, not a control, and every control
+     inside it keeps its own ring. */
+  .sheet:focus,
+  .sheet:focus-visible {
+    outline: none;
+  }
+
+  /* No scrim. A tinted curtain over the page turned every surface behind it
+     brown, because ink is a warm brown and 62% of it over paper is mud. The
+     panel lifts off the page with a shadow instead — the page stays the colour
+     it is, and depth does the separating. */
   .sheet::backdrop {
-    background: color-mix(in srgb, var(--color-ink) 62%, transparent);
+    background: none;
   }
 
   /* The page behind a modal must not scroll under it. */
@@ -99,10 +112,11 @@ const { id, title, note } = Astro.props;
     padding: 0;
     border: 0;
     background: none;
-    font-family: var(--font-mono);
-    font-size: 13px;
+    font-family: var(--font-prose);
+    font-size: var(--text-caption);
     letter-spacing: 0;
     color: var(--color-signal);
+    text-decoration: none;
     cursor: pointer;
   }
 
@@ -112,10 +126,18 @@ const { id, title, note } = Astro.props;
     text-underline-offset: 3px;
   }
 
+  /* No padding at the top. A sticky heading's offset is measured from the
+     padding box, so 22px here left a 22px strip above every pinned heading
+     with rows scrolling through it. The gap is a margin on the first child
+     instead, which scrolls away like the content it belongs to. */
   .sheet-body {
     overflow-y: auto;
     overscroll-behavior: contain;
-    padding: 22px 24px 26px;
+    padding: 0 24px 26px;
+  }
+
+  .sheet-body > :first-child {
+    margin-top: 22px;
   }
 
   /* A trigger is a button, because it opens something rather than going
@@ -150,8 +172,13 @@ const { id, title, note } = Astro.props;
       padding: 18px 18px 14px;
     }
 
+    /* Still no top padding, for the same reason. */
     .sheet-body {
-      padding: 18px 18px 24px;
+      padding: 0 18px 24px;
+    }
+
+    .sheet-body > :first-child {
+      margin-top: 18px;
     }
   }
 </style>
@@ -160,7 +187,13 @@ const { id, title, note } = Astro.props;
   for (const t of document.querySelectorAll<HTMLElement>('[data-sheet]')) {
     t.addEventListener('click', () => {
       const d = document.getElementById(t.dataset.sheet!) as HTMLDialogElement | null;
-      d?.showModal();
+      if (!d) return;
+      d.showModal();
+      /* showModal focuses the first focusable descendant, which put a focus
+         ring on Close every time the sheet opened. Move it to the dialog, which
+         is labelled by its own title. */
+      d.focus();
+      d.querySelector('.sheet-body')!.scrollTop = 0;
     });
   }
 
