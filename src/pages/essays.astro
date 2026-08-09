@@ -167,28 +167,25 @@ const sections = essayGroups.map((g) => ({
   }
 
   /* The site's banded row: equal boxes, every other one surfaced. */
+  /* Three cards, not a banded strip. These are the same thing as the essay
+     cards below them — a heading and a line of prose, standing on the page —
+     so they wear the same envelope: raised, mat radius, separate. The banded
+     treatment is for rows in a list, and three framing statements are not
+     rows. */
   .frames {
     list-style: none;
     display: grid;
-    gap: 0;
+    gap: 10px;
     margin: 44px 0 0;
     padding: 0;
   }
 
   .frames li {
-    padding: 20px 18px;
+    padding: 22px 20px;
+    border-radius: var(--radius-mat);
+    background: var(--color-paper-raised);
   }
 
-  /* The same two bands the document layout uses. This page is on BaseLayout,
-     so it cannot inherit that rule — it takes the tokens instead, which is the
-     part that has to stay shared. */
-  .frames li:nth-child(odd) {
-    background: var(--color-band-a);
-  }
-
-  .frames li:nth-child(even) {
-    background: var(--color-band-b);
-  }
 
   .frame-name {
     margin: 0;
