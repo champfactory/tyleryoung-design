@@ -26,7 +26,7 @@ export const TOKENS = {
   signal: '#0066CC',
   'signal-ink': '#ffffff',
   header: '#e2eefb',
-  'band-a': '#f7ecdf',
+  'band-a': '#f9f0e6',
   'band-b': '#fbf5ed',
   'header-rule': '#a3c6e2',
   /* The disclosure tint. A caveat should look like a caveat — grey read as
