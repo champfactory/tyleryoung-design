@@ -41,6 +41,12 @@ const g = GLYPH[weight];
     flex: none;
     vertical-align: -0.01em;
     text-decoration: none;
+    /* The path's vertices sit exactly on the viewBox bounds, and an <svg>
+       clips to its viewport by default, so the right-hand tip was being shaved
+       by a subpixel at every size. Figma's own export carried this attribute;
+       dropping it when the component was rebuilt is what introduced the
+       clipping. */
+    overflow: visible;
     /* The chevron owns the space in front of it, and no call site writes a
        literal one. A typed space belongs to the text run, so a hover underline
        runs under it and overshoots the last letter — which is exactly what a

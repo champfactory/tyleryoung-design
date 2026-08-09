@@ -53,8 +53,11 @@ const pct = `${100 / scale}%`;
 /**
  * Logical px trimmed off each edge to hide the app's own scrollbars.
  *
- * Asymmetric on purpose. The bottom takes 40px, which removes the horizontal bar
- * completely and costs nothing — no content sits along that edge.
+ * Both are 0 now. The bottom used to take 40px to remove the horizontal bar,
+ * which was free while every frame was cropped to a fixed 16/10 anyway. Now
+ * that each frame is sized to the height its app actually needs, nothing
+ * overflows, there is no bar to hide, and a 40px crop would cut real content
+ * off the bottom of a frame that was measured to fit exactly.
  *
  * The right takes nothing. The app's inner scroll container is inset from the
  * viewport, so widening the iframe drags the container and its bar along with it;
@@ -63,7 +66,7 @@ const pct = `${100 / scale}%`;
  * Clipped text is the worse defect, so the bar stays.
  */
 const OVERSCAN_X = 0;
-const OVERSCAN_Y = 40;
+const OVERSCAN_Y = 0;
 const dimX = `calc(${pct} + ${OVERSCAN_X}px)`;
 const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
 ---

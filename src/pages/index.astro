@@ -42,6 +42,14 @@ const references = [
   <!-- ----------------------------------------------------------- STORIES ---
        Three. Attention collapses after the third; a fourth would not be read. -->
   <section class="shell stories" aria-labelledby="work">
+    <!--
+      Each frame carries its own ratio rather than a shared 16/10. The height
+      is the one measured in a headless browser as the point where nothing
+      inside the app overflows any more, at the logical width these cards
+      actually give it — 1267, which is the 532px column divided by the 0.42
+      scale. Required height depends on width, so these are tuned for the
+      desktop layout; a much narrower column would need re-measuring.
+    -->
     <h2 class="sr-only" id="work">Selected work</h2>
 
     <StoryCard story={stories[0]}>
@@ -49,6 +57,7 @@ const references = [
         <LiveFrame
           plain
           src="https://alucify-screens.fly.dev/#/dashboard"
+          ratio="1267 / 840"
           host="alucify-screens.fly.dev"
           title="The Alucify dashboard, running"
         />
@@ -60,6 +69,7 @@ const references = [
         <LiveFrame
           plain
           src="https://atheer-next.fly.dev/"
+          ratio="1267 / 980"
           host="atheer-next.fly.dev"
           title="The operations surface, live"
         />
@@ -71,6 +81,7 @@ const references = [
         <LiveFrame
           plain
           src="https://metin-oasis-v6.fly.dev/"
+          ratio="1267 / 1520"
           host="metin-oasis-v6.fly.dev"
           title="The operations build that was reviewed, running"
         />

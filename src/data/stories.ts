@@ -39,7 +39,7 @@ export const stories: Story[] = [
      * so; on a card there is no room for that context.
      */
     artifacts: [
-      { label: 'Screens', href: 'https://alucify-screens.fly.dev/#/dashboard' },
+      { label: 'Product', href: 'https://alucify-screens.fly.dev/#/dashboard' },
       { label: 'Figma', href: 'https://www.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1' },
       { label: 'Story', href: '/alucify' },
     ],
