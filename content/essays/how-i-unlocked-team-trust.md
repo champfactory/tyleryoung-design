@@ -31,7 +31,7 @@ The pandemic narrowed business scope. Downsizing reshaped the team, roles were u
 I recognized that building for the future meant doing more with less. So I restructured the team from segmented UX-only and VIS-only roles into a unified product design model, staffed by junior generalists. I coached them to own the full design process, from early framing to final delivery, and supported them with scalable design system tools. The shift didn’t just maintain output. It created flexibility. We could reassign resources as project needs changed, scale work more efficiently, and pivot without bottlenecks. Instead of relying on handoffs between specialists, the team operated as a collaborative unit—delivering faster and aligning product and engineering more effectively.
 
 <figure class="essay-fig">
-  <img src="/work/essays/how-i-unlocked-team-trust/fig-1.svg" alt="Before and after diagram of the team's shape. Before, two separate rounded squares labelled UX and VIS. After, three overlapping circles each labelled PROD." loading="lazy" decoding="async" />
+  <img width="844" height="211" src="/work/essays/how-i-unlocked-team-trust/fig-1.svg" alt="Before and after diagram of the team's shape. Before, two separate rounded squares labelled UX and VIS. After, three overlapping circles each labelled PROD." loading="lazy" decoding="async" />
 </figure>
 
 ## The Win
@@ -39,7 +39,7 @@ I recognized that building for the future meant doing more with less. So I restr
  Junior designers, supported by clear expectations and strong systems, delivered the same caliber of execution once handled by senior specialists, but with greater speed, fewer dependencies, and stronger alignment across teams. As the nature of work shifted from urgency to strategy, their growth kept pace. Execution strength evolved into collaboration strength. Designers began contributing to cross-functional planning, clarifying intent, and influencing direction. The team hadn’t just adapted. It had elevated—a success that inspired a new ask: mentoring front-end developers in India as they transitioned into product design.
 
 <figure class="essay-fig">
-  <img src="/work/essays/how-i-unlocked-team-trust/fig-2.svg" alt="Before and after table on team resiliency. Talent Growth Path moves from retention conversations to strategic growth, Execution Flexibility from brittle individual execution to flexible team-led delivery, Staffing Structure from two senior specialists to two junior generalists, and Ownership Model from fragmented handoffs to start-to-finish ownership." loading="lazy" decoding="async" />
+  <img width="873" height="390" src="/work/essays/how-i-unlocked-team-trust/fig-2.svg" alt="Before and after table on team resiliency. Talent Growth Path moves from retention conversations to strategic growth, Execution Flexibility from brittle individual execution to flexible team-led delivery, Staffing Structure from two senior specialists to two junior generalists, and Ownership Model from fragmented handoffs to start-to-finish ownership." loading="lazy" decoding="async" />
 </figure>
 
 ## Key Outcomes

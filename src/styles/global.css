@@ -1,7 +1,6 @@
 @import 'tailwindcss';
 
 /* Latin subsets only download for English content — unicode-range gates the rest. */
-@import '@fontsource-variable/archivo/wght.css';
 @import '@fontsource-variable/jetbrains-mono/wght.css';
 
 /* ---------------------------------------------------------------------------
@@ -35,9 +34,12 @@
      bargain apple.com makes. A Windows reader sees Segoe UI, not SF Pro. */
   --font-prose: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI',
     Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  /* One family. Everything that wore JetBrains as chrome now wears Archivo;
-     the only mono left is --font-code, for literal terminal output, where the
-     typeface is the content's own. */
+  /* One family. Everything that wore JetBrains as chrome now wears the system
+     stack; the only webfont left is --font-code, for literal terminal output,
+     where the typeface is the content's own.
+
+     Archivo was still being imported after that change and no token referenced
+     it — three woff2 files, 84K, downloaded to render nothing. */
   --font-mono: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI',
     Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-code: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;

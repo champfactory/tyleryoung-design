@@ -39,11 +39,11 @@ I built three instruments that worked as a set. Each is simple alone; the value 
 **A rubric for the tradeoff.** A four-part framework scored decisions across User Value, Business Value, Implementation Ease, and Risk Management. That gave teams a way to assess not only what an idea could deliver, but what it would cost the business to say yes. Every initiative had to be weighed against the ROI of what it would displace.
 
 <figure class="essay-fig">
-  <img src="/work/essays/how-i-translated-design-work/fig-1.svg" alt="Table of four business levers. Growth Impact estimates impact on desired action targets and helps leadership recognise revenue potential. Efficiency Impact estimates reduction in internal effort and quantifies productivity gains. Retention Impact estimates effect on repeat usage and shows loyalty impact. Strategic Alignment estimates alignment with current priorities and confirms roadmap relevance." loading="lazy" decoding="async" />
+  <img width="844" height="344" src="/work/essays/how-i-translated-design-work/fig-1.svg" alt="Table of four business levers. Growth Impact estimates impact on desired action targets and helps leadership recognise revenue potential. Efficiency Impact estimates reduction in internal effort and quantifies productivity gains. Retention Impact estimates effect on repeat usage and shows loyalty impact. Strategic Alignment estimates alignment with current priorities and confirms roadmap relevance." loading="lazy" decoding="async" />
 </figure>
 
 <figure class="essay-fig">
-  <img src="/work/essays/how-i-translated-design-work/fig-2.svg" alt="Two-by-two placing the four levers. The vertical axis runs from operation up to customer, the horizontal from now to future. Efficiency sits in operation and now, Growth in operation and future, Retention in customer and now, Strategic Alignment in customer and future." loading="lazy" decoding="async" />
+  <img width="841" height="369" src="/work/essays/how-i-translated-design-work/fig-2.svg" alt="Two-by-two placing the four levers. The vertical axis runs from operation up to customer, the horizontal from now to future. Efficiency sits in operation and now, Growth in operation and future, Retention in customer and now, Strategic Alignment in customer and future." loading="lazy" decoding="async" />
 </figure>
 
 ## The Win
@@ -53,11 +53,11 @@ Design moved upstream. Stakeholders expected proposals to be framed before prior
 Executives began referencing design levers in funding meetings. Cross-functional partners aligned proposals to strategic business goals.
 
 <figure class="essay-fig">
-  <img src="/work/essays/how-i-translated-design-work/fig-3.svg" alt="Before and after table on investment readiness. Planning Influence moves from expressed vaguely to tied to business levers, Stakeholder Confidence from presented as promise to grounded in impact, Proposal Strength from low to high, and Problem Framing from skipped in early planning to included in roadmap input." loading="lazy" decoding="async" />
+  <img width="873" height="390" src="/work/essays/how-i-translated-design-work/fig-3.svg" alt="Before and after table on investment readiness. Planning Influence moves from expressed vaguely to tied to business levers, Stakeholder Confidence from presented as promise to grounded in impact, Proposal Strength from low to high, and Problem Framing from skipped in early planning to included in roadmap input." loading="lazy" decoding="async" />
 </figure>
 
 <figure class="essay-fig">
-  <img src="/work/essays/how-i-translated-design-work/fig-4.svg" alt="Two-by-two of user insight clarity against business value clarity. Low on both is a Noisy Idea. High insight with low business clarity is an Advocacy Pitch. Low insight with high business clarity is a Speculative Bet. High on both is a Strategic Proposal. An arrow labelled User Value Framework runs from Advocacy Pitch to Strategic Proposal." loading="lazy" decoding="async" />
+  <img width="873" height="398" src="/work/essays/how-i-translated-design-work/fig-4.svg" alt="Two-by-two of user insight clarity against business value clarity. Low on both is a Noisy Idea. High insight with low business clarity is an Advocacy Pitch. Low insight with high business clarity is a Speculative Bet. High on both is a Strategic Proposal. An arrow labelled User Value Framework runs from Advocacy Pitch to Strategic Proposal." loading="lazy" decoding="async" />
 </figure>
 
 ## Key Outcomes

@@ -31,11 +31,11 @@ Research was used to justify features, not reduce complexity. Teams tried to add
 Everyone agreed simplicity mattered. But we lacked a shared way to prioritize what was essential or measure what users could reasonably absorb. Instead of questioning what belonged, we focused on organizing it through layout, hierarchy, and visual polish. Simplification became a late-stage clean-up effort. It was well-intentioned, but too late to change what shipped.
 
 <figure class="essay-fig">
-  <img src="/work/essays/how-i-managed-ux-complexity/fig-1.svg" alt="Four-row scoring rubric on a simplicity axis. Easy is confident and relaxed, “this is no problem”. Manageable is focused and capable, “this takes effort”. Challenging is hesitant and uncertain, “this is a stretch”. Frustrating is confused and negative, “this is too much”." loading="lazy" decoding="async" />
+  <img width="873" height="379" src="/work/essays/how-i-managed-ux-complexity/fig-1.svg" alt="Four-row scoring rubric on a simplicity axis. Easy is confident and relaxed, “this is no problem”. Manageable is focused and capable, “this takes effort”. Challenging is hesitant and uncertain, “this is a stretch”. Frustrating is confused and negative, “this is too much”." loading="lazy" decoding="async" />
 </figure>
 
 <figure class="essay-fig">
-  <img src="/work/essays/how-i-managed-ux-complexity/fig-2.svg" alt="Heat map scoring four flows — activation flow, product listings, product details and check out — against three stages: decision, attention and orientation. Each cell carries E, M, C or F, with the harder scores shaded darker." loading="lazy" decoding="async" />
+  <img width="855" height="534" src="/work/essays/how-i-managed-ux-complexity/fig-2.svg" alt="Heat map scoring four flows — activation flow, product listings, product details and check out — against three stages: decision, attention and orientation. Each cell carries E, M, C or F, with the harder scores shaded darker." loading="lazy" decoding="async" />
 </figure>
 
 ## My Response
@@ -45,7 +45,7 @@ I realized we couldn’t reduce complexity without first making it measurable. S
 The core of the framework was a complexity budget—a constraint model that treated complexity like technical debt: it accumulates quietly, erodes the experience over time, and can only be reduced through better decisions earlier in the process. It defined how far a flow could push before it became too much to absorb—too many decisions, too many clicks, too many places to go. The framework changed how teams scoped. We stopped debating polish and started questioning cost. What friction were we adding? Was it worth it? The questions shifted—and so did the outcomes. We built the model into planning cycles. Researchers surfaced recurring friction patterns. PMs mapped effort and alternatives. Designers used the budget to prioritize, challenge scope, and make reductions defensible.
 
 <figure class="essay-fig">
-  <img src="/work/essays/how-i-managed-ux-complexity/fig-3.svg" alt="The three kinds of load, defined. Decision load: how many comparisons, clicks or choices are required to move forward. Attention load: how many things one has to actively process. Orientation load: how many pages, scrolls or overlays are required. All three sit above an arrow labelled complexity score." loading="lazy" decoding="async" />
+  <img width="886" height="300" src="/work/essays/how-i-managed-ux-complexity/fig-3.svg" alt="The three kinds of load, defined. Decision load: how many comparisons, clicks or choices are required to move forward. Attention load: how many things one has to actively process. Orientation load: how many pages, scrolls or overlays are required. All three sit above an arrow labelled complexity score." loading="lazy" decoding="async" />
 </figure>
 
 ## The Win
@@ -53,7 +53,7 @@ The core of the framework was a complexity budget—a constraint model that trea
 The complexity budget gave teams a credible way to recognize when scope had gone too far—and a shared language to scale it back.  Teams could justify reduction not by opinion, but by impact. Simplification happened earlier, and we shipped leaner.
 
 <figure class="essay-fig">
-  <img src="/work/essays/how-i-managed-ux-complexity/fig-4.svg" alt="Before and after table across three simplification stages. User Experience moves from cognitive overload to coherent flow, Scope Control from feature bloat to selective inclusion, and Team Alignment from siloed judgment to shared criteria." loading="lazy" decoding="async" />
+  <img width="873" height="298" src="/work/essays/how-i-managed-ux-complexity/fig-4.svg" alt="Before and after table across three simplification stages. User Experience moves from cognitive overload to coherent flow, Scope Control from feature bloat to selective inclusion, and Team Alignment from siloed judgment to shared criteria." loading="lazy" decoding="async" />
 </figure>
 
 ## What it changed about planning

@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHead from '../components/PageHead.astro';
 import { essayGroups } from '../data/essayGroups';
 import Chevron from '../components/Chevron.astro';
+import images from '../data/images.json';
 
 /**
  * Groups, their order and their headings come from essayGroups.ts. This file
@@ -13,6 +14,9 @@ import Chevron from '../components/Chevron.astro';
  */
 const essays = await getCollection('essays');
 const titleFor = (slug: string) => essays.find((e) => e.data.slug === slug)!.data.title;
+
+/** Intrinsic size, so a figure reserves its box before the file arrives. */
+const size = (src: string) => (images as Record<string, { w: number; h: number }>)[src] ?? null;
 
 const cards: Record<string, { title: string; paras: string[]; evidence: string; fig: string; alt: string; legend?: string }> = {
   'how-i-translated-design-work': {
@@ -117,7 +121,7 @@ const sections = essayGroups.map((g) => ({
           {sec.cards.map((c) => (
             <article class="card">
             <a class="media" href={`/${c.slug}`} tabindex="-1" aria-hidden="true">
-              <img src={c.fig} alt={c.alt} loading="lazy" decoding="async" />
+              <img src={c.fig} alt={c.alt} width={size(c.fig)?.w} height={size(c.fig)?.h} loading="lazy" decoding="async" />
               {c.legend && <span class="legend evidence-foot">{c.legend}</span>}
             </a>
             <div class="body">

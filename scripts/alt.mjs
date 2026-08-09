@@ -44,6 +44,7 @@ try {
 }
 
 const missing = [];
+const unsized = [];
 const byAlt = new Map();
 let count = 0;
 
@@ -62,9 +63,15 @@ for (const f of files) {
     const key = alt[1].trim();
     if (!byAlt.has(key)) byAlt.set(key, []);
     byAlt.get(key).push({ page, src });
+
+    /* An <img> with no intrinsic size reserves no box, so everything under it
+       jumps when the file arrives. Twenty-seven of thirty-four were missing
+       both when anyone counted. */
+    if (!/\bwidth=/.test(tag) || !/\bheight=/.test(tag)) unsized.push({ page, src });
   }
 }
 
+const unsizedList = unsized;
 const shared = [...byAlt.entries()].filter(([, uses]) => uses.length > 1);
 
 console.log(`\n  ${count} image(s) across ${files.length} page(s)\n`);
@@ -84,5 +91,11 @@ if (shared.length) {
   console.error('');
 }
 
-if (missing.length || shared.length) process.exit(1);
-console.log(`  every image has alt text, and no two share it.\n`);
+if (unsizedList.length) {
+  console.error('  IMAGES WITH NO WIDTH/HEIGHT (they reserve no box, so the page jumps):');
+  for (const u of unsizedList) console.error(`    ${u.page}  ${u.src}`);
+  console.error('');
+}
+
+if (missing.length || shared.length || unsizedList.length) process.exit(1);
+console.log(`  every image has alt text, no two share it, and every one states its size.\n`);

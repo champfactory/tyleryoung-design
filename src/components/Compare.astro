@@ -1,4 +1,5 @@
 ---
+import images from '../data/images.json';
 /**
  * A note, and what it did.
  *
@@ -26,6 +27,15 @@ interface Props {
 }
 
 const { note, before, after, beforeAlt, afterAlt, beforeNote, afterNote } = Astro.props;
+
+/**
+ * Intrinsic size, so the browser reserves the box before the file arrives.
+ * Read from a manifest generated off the files themselves rather than typed
+ * here, because a wrong number is worse than none — it reserves the wrong box.
+ */
+const size = (src: string) => (images as Record<string, { w: number; h: number }>)[src] ?? null;
+const b = size(before);
+const a = size(after);
 ---
 
 <figure class="compare">
@@ -34,12 +44,12 @@ const { note, before, after, beforeAlt, afterAlt, beforeNote, afterNote } = Astr
   <div class="pair">
     <div class="side">
       <p class="tag">Before</p>
-      <img src={before} alt={beforeAlt} loading="lazy" decoding="async" />
+      <img src={before} alt={beforeAlt} width={b?.w} height={b?.h} loading="lazy" decoding="async" />
       {beforeNote && <p class="side-note evidence-foot">{beforeNote}</p>}
     </div>
     <div class="side">
       <p class="tag after">After</p>
-      <img src={after} alt={afterAlt} loading="lazy" decoding="async" />
+      <img src={after} alt={afterAlt} width={a?.w} height={a?.h} loading="lazy" decoding="async" />
       {afterNote && <p class="side-note evidence-foot">{afterNote}</p>}
     </div>
   </div>
