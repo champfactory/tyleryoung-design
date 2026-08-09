@@ -137,11 +137,6 @@ const {
     border: 0;
   }
 
-  .doc .principles > li:nth-child(odd),
-  .doc .ledger > li:nth-child(odd) {
-    background: var(--color-row);
-  }
-
   .doc .principle {
     margin: 0;
     font-size: 18px;
@@ -284,10 +279,6 @@ const {
   .doc .ratios td {
     padding: 10px 14px 10px 16px;
     vertical-align: middle;
-  }
-
-  .doc .ratios tbody tr:nth-child(odd) {
-    background: var(--color-row);
   }
 
   .doc .ratios .num {
@@ -535,10 +526,6 @@ const {
     content: none !important;
   }
 
-  .doc .cells > li:nth-child(odd) {
-    background: var(--color-row);
-  }
-
   /* A column of single numbers wastes a phone screen; two-up is still legible. */
   .doc .cells.four {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -722,11 +709,25 @@ const {
     content: none !important;
   }
 
-  .doc .loop > li:nth-child(odd) {
+  /* ONE banding rule for the whole site.
+     There were five of these, in four places, with three different treatments —
+     which is why changing the ledger's colours left the principles list, the
+     before/now ledger, the ratio table and the cells grid on the old grey. A
+     new banded pattern joins this selector list; it does not get its own
+     nth-child rule with its own colours. */
+  .doc .loop > li:nth-child(odd),
+  .doc .principles > li:nth-child(odd),
+  .doc .ledger > li:nth-child(odd),
+  .doc .cells > li:nth-child(odd),
+  .doc .ratios tbody tr:nth-child(odd) {
     background: var(--color-band-a);
   }
 
-  .doc .loop > li:nth-child(even) {
+  .doc .loop > li:nth-child(even),
+  .doc .principles > li:nth-child(even),
+  .doc .ledger > li:nth-child(even),
+  .doc .cells > li:nth-child(even),
+  .doc .ratios tbody tr:nth-child(even) {
     background: var(--color-band-b);
   }
 

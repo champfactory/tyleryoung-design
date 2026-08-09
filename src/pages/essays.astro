@@ -202,8 +202,15 @@ const sections = [
     padding: 20px 18px;
   }
 
+  /* The same two bands the document layout uses. This page is on BaseLayout,
+     so it cannot inherit that rule — it takes the tokens instead, which is the
+     part that has to stay shared. */
   .frames li:nth-child(odd) {
-    background: var(--color-row);
+    background: var(--color-band-a);
+  }
+
+  .frames li:nth-child(even) {
+    background: var(--color-band-b);
   }
 
   .frame-name {

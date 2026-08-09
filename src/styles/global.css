@@ -94,17 +94,17 @@
      value as the top, so a page is framed rather than just started. */
   --space-page-bottom: 88px;
 
-  /* The ledger's two bands: warm, at hue 30, which is the complement of the
-     signal blue at hue 210. Not more blue — a ledger in the link colour's own
-     family reads as a large inert link, and the page already spends blue on
-     the references band. Warm also agrees with the ink, which is a brown
-     rather than a black.
+  /* The two bands every alternating row on the site uses.
+     Teal, at hue 182. Adjacent to the signal blue at 210 rather than the same
+     hue — close enough to belong to the palette, far enough that a banded
+     block never reads as a large inert link. Cool, so it agrees with the grey
+     page, and it echoes the dark teal in the product screenshots.
 
      Both rows are tinted. One band alternating with the bare page made half
      the rows look absent; two make the block a graphical object that breaks up
      the prose above and below it. */
-  --color-band-a: #f8eee3;
-  --color-band-b: #fbf5ed;
+  --color-band-a: #e6f4f4;
+  --color-band-b: #f3f9fa;
 
   --color-header: #e2eefb;
   --color-header-rule: #a3c6e2;
