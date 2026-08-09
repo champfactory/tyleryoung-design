@@ -10,13 +10,14 @@
     "check": "astro check",
     "contrast": "node scripts/contrast.mjs",
     "needs": "node scripts/needs.mjs",
-    "audit": "npm run contrast && npm run tokens && npm run js && npm run alt && npm run a11y && npm run links && npm run evidence && npm run needs",
+    "audit": "npm run contrast && npm run tokens && npm run stale && npm run js && npm run alt && npm run a11y && npm run links && npm run evidence && npm run needs",
     "links": "node scripts/links.mjs",
     "evidence": "node scripts/evidence.mjs",
     "alt": "node scripts/alt.mjs",
     "tokens": "node scripts/tokens.mjs",
     "js": "node scripts/js.mjs",
-    "a11y": "node scripts/a11y.mjs"
+    "a11y": "node scripts/a11y.mjs",
+    "stale": "node scripts/stale.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",

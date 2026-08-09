@@ -3,9 +3,9 @@
  *
  * One source of truth, used by two consumers:
  *   - scripts/contrast.mjs  — fails the build if a pair drops below threshold
- *   - src/pages/colophon    — renders the same audit on the page, computed live
+ *   - src/pages/how-i-design-with-ai — was the colophon; the audit moved with it
  *
- * The colophon showing a hand-typed table of passing numbers would be a claim.
+ * A page showing a hand-typed table of passing numbers would be a claim.
  * Computing it from the same module the check runs against makes it evidence.
  */
 
