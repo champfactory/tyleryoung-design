@@ -63,7 +63,7 @@ const references = [
     <h2 class="sr-only" id="work">Selected work</h2>
 
     <StoryCard story={stories[0]}>
-      <div slot="media">
+      <a class="media-link" slot="media" href="/alucify" tabindex="-1" aria-hidden="true">
         <LiveFrame
           plain
           src="https://alucify-screens.fly.dev/#/dashboard"
@@ -71,11 +71,11 @@ const references = [
           host="alucify-screens.fly.dev"
           title="The Alucify dashboard, running"
         />
-      </div>
+      </a>
     </StoryCard>
 
     <StoryCard story={stories[1]}>
-      <div slot="media">
+      <a class="media-link" slot="media" href="/ops-manager" tabindex="-1" aria-hidden="true">
         <LiveFrame
           plain
           src="https://atheer-next.fly.dev/"
@@ -83,11 +83,11 @@ const references = [
           host="atheer-next.fly.dev"
           title="The operations surface, live"
         />
-      </div>
+      </a>
     </StoryCard>
 
     <StoryCard story={stories[2]}>
-      <div slot="media">
+      <a class="media-link" slot="media" href="/review-loop" tabindex="-1" aria-hidden="true">
         <LiveFrame
           plain
           src="https://metin-oasis-v6.fly.dev/"
@@ -96,7 +96,7 @@ const references = [
           host="metin-oasis-v6.fly.dev"
           title="The operations build that was reviewed, running"
         />
-      </div>
+      </a>
     </StoryCard>
   </section>
 
@@ -127,6 +127,16 @@ const references = [
 </BaseLayout>
 
 <style>
+  /* The whole embed opens the story it illustrates. It is a convenience for a
+     pointer, not a second route: the card already carries a "Story" link, so
+     this one is hidden from assistive technology and taken out of the tab
+     order rather than becoming a duplicate stop that reads as an unlabelled
+     image link. Same treatment the essay cards use for their diagrams. */
+  .media-link {
+    display: block;
+    cursor: pointer;
+  }
+
   .sr-only {
     position: absolute;
     width: 1px;

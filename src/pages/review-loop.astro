@@ -13,14 +13,21 @@ const REVIEWED = 'https://metin-oasis-v6.fly.dev/';
 const NEXT = 'https://metin-oasis-v7.fly.dev/';
 const R = '/work/review';
 
-/** The five translations the review moved through, and who was accountable for each. */
+/**
+ * The five translations the review moved through.
+ *
+ * Two rows carried a "Human gate" tag. The sequence already reads as human
+ * where it is human — design judgment and human review say so in their own
+ * names — and the gated framework above the examples now makes the point
+ * properly, so the tag was labelling what the row already said.
+ */
 const loop = [
-  ['Stakeholder', 'Experiences the running product', false],
-  ['Written feedback', 'Describes what appears wrong', false],
-  ['Design judgment', 'Reconciles the note, artifact, system and priority', true],
-  ['AI implementation', 'Produces the next coded response', false],
-  ['Human review', 'Checks what the implementation now communicates', true],
-  ['Next running version', 'Returns to the shared conversation', false],
+  ['Stakeholder', 'Experiences the running product'],
+  ['Written feedback', 'Describes what appears wrong'],
+  ['Design judgment', 'Reconciles the note, artifact, system and priority'],
+  ['AI implementation', 'Produces the next coded response'],
+  ['Human review', 'Checks what the implementation now communicates'],
+  ['Next running version', 'Returns to the shared conversation'],
 ];
 
 /** The question each note had to answer before it could become a change. */
@@ -178,11 +185,10 @@ const total = items.length;
 
   <ol class="loop" aria-hidden="true">
     {
-      loop.map(([actor, what, gate]) => (
+      loop.map(([actor, what]) => (
         <li>
           <span class="loop-actor">{actor}</span>
           <span class="loop-what">{what}</span>
-          {gate && <span class="loop-gate">Human gate</span>}
         </li>
       ))
     }

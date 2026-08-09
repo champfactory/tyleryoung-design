@@ -324,15 +324,18 @@ const {
 
   .doc .all-pairs {
     margin: 0 0 34px;
-    border-top: 1px solid var(--color-rule);
   }
 
+  /* The banded row the loop steps use, rather than a rule with small mono type
+     under it. A disclosure is a thing you press, and a tinted band says that
+     without a border and a type change having to say it between them. */
   .doc .all-pairs summary {
     display: flex;
     align-items: center;
     min-height: 44px;
-    font-family: var(--font-mono);
-    font-size: 11px;
+    padding: 12px 18px;
+    background: var(--color-row);
+    font-size: var(--text-note);
     letter-spacing: 0;
     color: var(--color-ink);
     cursor: pointer;
@@ -356,28 +359,18 @@ const {
     list-style: none;
   }
 
-  /* The caret hangs in the indent and the label starts at 26px — the same
-     edge every list item uses. Positioned rather than laid out inline, so the
-     label lands on that edge whatever width the glyph happens to be. Without
-     this the summary sat on a third left edge of its own: 393px, between the
-     paragraphs at 380 and the lists at 406. */
-  .doc .all-pairs summary {
-    position: relative;
-    padding-left: 26px;
-  }
-
+  /* Caret and label sit together as a pair, spaced for each other rather than
+     for the page grid. They are already inset by the band's own padding, and
+     nothing outside the band shares that edge, so making them line up with the
+     list markers would only pull them apart. */
   .doc .all-pairs summary .chev {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    margin: 0;
-    transform: translateY(-50%);
+    margin: 0 10px 0 0;
     transition: transform 140ms ease;
   }
 
   /* Rotates to point down at what it opened. */
   .doc .all-pairs[open] summary .chev {
-    transform: translateY(-50%) rotate(90deg);
+    transform: rotate(90deg);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -751,15 +744,6 @@ const {
     line-height: 1.45 !important;
   }
 
-  .doc .loop-gate {
-    display: block;
-    margin: 6px 0 0 !important;
-    font-family: var(--font-mono) !important;
-    font-size: 13px !important;
-    font-weight: 650;
-    letter-spacing: 0;
-    color: var(--color-ink-2) !important;
-  }
 
   @media (min-width: 700px) {
     .doc .cells.two {
@@ -782,23 +766,18 @@ const {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    /* Three columns: who, what, and whether a person has to sign it off. The
-       first is sized to the longest actor name, not to a fraction of the page —
-       a wide column holding an 11px label is just a gap. */
+    /* Two columns now: who, and what they do. The third held the sign-off tag
+       and went with it. The first is sized to the longest actor name, not to a
+       fraction of the page — a wide column holding a short label is a gap. */
     .doc .loop > li {
       display: grid;
-      grid-template-columns: minmax(0, 13rem) minmax(0, 1fr) auto;
+      grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
       gap: 24px;
       align-items: baseline;
     }
 
-    .doc .loop-what,
-    .doc .loop-gate {
+    .doc .loop-what {
       margin: 0 !important;
-    }
-
-    .doc .loop-gate {
-      text-align: right;
     }
   }
 
@@ -826,9 +805,13 @@ const {
   /* The opening paragraph of a case study. This was declared four times across
      four page files as .opening or .answer, and none of them emitted anything —
      so every lede on the site was rendering unstyled. One class, one place. */
+  /* 500, not 400. The lede was separated from the paragraph after it by four
+     pixels of size alone, which is not enough to read as a different rank —
+     they looked like one paragraph that had been resized. */
   .doc .lede {
     margin: 0 0 20px;
     font-size: var(--text-lede);
+    font-weight: 500;
     line-height: 1.45;
     letter-spacing: -0.004em;
     text-wrap: pretty;
