@@ -241,9 +241,9 @@ export const rules = [
     why: 'The reference names wore it, which made a person\u2019s name the only thing on the site that was shouted. A name is content. It takes the prose face at sentence case, and the hierarchy against the role comes from weight and ink like everywhere else.',
   },
   {
-    title: 'Use a real dialog for a modal',
-    statement: 'A sheet is a <dialog> opened with showModal(), and it is the only client-side script on the site.',
-    why: 'It buys what a styled div has to reimplement and usually gets wrong: focus moves into the panel and is trapped, Escape closes it, the page behind goes inert, and the backdrop is a real ::backdrop rather than a sibling stacked underneath. The forty-eight notes were a <details> before — a disclosure, which announces itself as one and cannot be dismissed with a key — and a :target overlay has no focus management at all.',
+    title: 'Spend JavaScript against a budget',
+    statement: 'One page of eighteen ships script, 328 bytes of it, and the build fails if that grows past 2KB or spreads to a page not on the allowlist.',
+    why: 'The site used to claim it shipped none. That claim lived in a data file nothing rendered, so nothing ever checked it, and the modal made it false. A modal is where the spend is worth it: a <dialog> opened with showModal() moves focus into the panel and traps it, closes on Escape, makes the page behind inert, and draws a real ::backdrop — all of which a styled div has to reimplement and usually gets wrong. A <details> is a disclosure and announces itself as one; a :target overlay has no focus management at all. An absolute nobody measures is worth less than a budget the build enforces.',
   },
   {
     title: 'Test every colour pair that is used',
