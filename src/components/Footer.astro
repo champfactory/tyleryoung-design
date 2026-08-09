@@ -72,14 +72,24 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
      content above — and the dark field is what ends the document. The blue
      links inside turn white through the `.on-dark` alternate in global.css;
      nothing here restates that. */
-  /* No top margin. The 96px was there when the footer was more page and needed
-     separating from the content above it; a dark full-bleed band separates
-     itself, and the gap only read as a strip of loose grey between the last
-     section and the baseplate. The footer's own padding does the spacing now,
-     from inside the dark. */
+  /* Two cases, and they want opposite things. Ordinary page content ending on
+     paper needs air before the baseplate — without it a paragraph or a
+     disclosure panel collides with the dark edge. A full-bleed band already
+     ends on its own colour, and a gap there reads as a loose strip of grey
+     between two bands. So the margin is the default and the band cancels it.
+
+     The band is not the footer's sibling — it is the last child of <main>, so
+     the test has to reach inside. `:global()` is load-bearing too: Astro scopes
+     every compound selector in a rule, so an unwrapped selector would look for
+     a `.refs-band` carrying this component's attribute and match nothing. */
   footer {
+    margin-top: 72px;
     padding-block: 44px 48px;
     background: var(--color-deep);
+  }
+
+  :global(main:has(> .refs-band:last-child)) + footer {
+    margin-top: 0;
   }
 
 
