@@ -1093,36 +1093,45 @@ const {
     counter-increment: item;
   }
 
-  /* The number is part of the sentence, so it is set in the sentence's type —
-     same size, same colour, same face. It was 10px mono in signal blue, which
-     made a list of three questions look like three links to somewhere. The
-     leading zero stays: 01, 02, 03. */
-  .doc .prose > ol:not([class]) > li::before {
-    content: counter(item, decimal);
+  /* The marker is the Alucify circled numeral, painted as a mask so it takes
+     `currentColor` — the same rule the chevron follows. The counter still runs
+     underneath: it is what selects the glyph, and it is what shows if a list
+     ever runs past five. */
+  .doc .prose > ol:not([class]) > li::before,
+  .doc .prose > ul:not([class]) > li::before {
+    content: '';
     position: absolute;
     left: 0;
+    top: 0.44em;
+    width: 0.78em;
+    height: 0.78em;
+    background: currentColor;
+    -webkit-mask: var(--mark) center / contain no-repeat;
+    mask: var(--mark) center / contain no-repeat;
+  }
+
+  .doc .prose > ol:not([class]) > li:nth-child(1) { --mark: var(--mark-1); }
+  .doc .prose > ol:not([class]) > li:nth-child(2) { --mark: var(--mark-2); }
+  .doc .prose > ol:not([class]) > li:nth-child(3) { --mark: var(--mark-3); }
+  .doc .prose > ol:not([class]) > li:nth-child(4) { --mark: var(--mark-4); }
+  .doc .prose > ol:not([class]) > li:nth-child(5) { --mark: var(--mark-5); }
+  .doc .prose > ul:not([class]) > li { --mark: var(--mark-bullet); }
+
+  /* Past the fifth there is no glyph, so the counter shows instead of a blank
+     space. A missing marker would look like a defect; a plain 6 does not. */
+  .doc .prose > ol:not([class]) > li:nth-child(n + 6)::before {
+    content: counter(item, decimal);
+    background: none;
+    -webkit-mask: none;
+    mask: none;
+    width: auto;
+    height: auto;
     top: 0;
     font-size: inherit;
     line-height: inherit;
     color: inherit;
   }
 
-  /* A small dot, set in the text's own colour at half strength — the same
-     relationship the underlines use. The previous marker was a 22px rule in a
-     fixed grey, sitting 38px out: long enough to read as a horizontal line of
-     its own and far enough away that the eye had to travel back to the text. */
-  .doc .prose > ul:not([class]) > li::before {
-    content: '';
-    position: absolute;
-    /* Centred on the same axis the digit sits on, so a numbered list and a
-       bulleted list read as one column with two markers. */
-    left: 3px;
-    top: 0.62em;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: color-mix(in srgb, currentColor 50%, transparent);
-  }
 
   /* These used to set `border-bottom: 1px solid currentColor`, at full strength
      and with no hover state. Because the banded `.cells` lists are a <ul> inside
