@@ -274,11 +274,6 @@
   .link:focus-visible {
     text-decoration: underline;
     text-underline-offset: 3px;
-    /* The line is currentColor, same as the text — but `auto` thickness draws a
-       solid opaque band while the letterforms are antialiased and blend toward
-       the page at their edges, so the rule reads darker than the words it sits
-       under. 1px matches the stem weight and the two look like one colour. */
-    text-decoration-thickness: 1px;
   }
 
   /* An artifact link — concrete label, arrow, mono. "Live product", "Case study". */
@@ -303,10 +298,20 @@
   .artifact:focus-visible {
     text-decoration: underline;
     text-underline-offset: 3px;
-    /* The line is currentColor, same as the text — but `auto` thickness draws a
-       solid opaque band while the letterforms are antialiased and blend toward
-       the page at their edges, so the rule reads darker than the words it sits
-       under. 1px matches the stem weight and the two look like one colour. */
+  }
+
+  /* Thickness lives in its own rule, deliberately, and never beside a
+     `text-decoration` declaration. Put next to one, the minifier folds the two
+     into the Level 4 shorthand — `text-decoration: underline 1px` — which
+     Safari cannot parse and so drops whole, taking the underline with it. Put
+     in the same block as `text-decoration: none` it is discarded outright.
+     A selector of its own is the only place it survives intact.
+
+     Why set it: `auto` draws a solid opaque band under letterforms that are
+     antialiased and blend toward the page at their edges, so at an identical
+     colour value the rule reads darker than its own text. */
+  a.link,
+  a.artifact {
     text-decoration-thickness: 1px;
   }
 
