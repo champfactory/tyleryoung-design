@@ -12,56 +12,11 @@ const FIGMA_EMBED =
   'https://embed.figma.com/design/N7vnpK60xZfzI8luYKbevA/Alucify-Patterns?node-id=0-1&embed-host=share';
 const W = '/work/alucify';
 
-/** Fragmented context becomes a model, and the model becomes decisions. */
-const transformation = [
-  ['Fragmented context', 'Requirements · designs · code · tests · tribal knowledge'],
-  ['The AppGraph', 'One queryable model of what the system means'],
-  ['Grounded decisions', 'Evidence people and agents can both act on'],
-];
-
-/** What an agent still cannot answer on its own. */
-const unanswered = [
-  'Which requirements are authoritative?',
-  'Which parts of the system will this change reach?',
-  'Which decisions are supported by verified context?',
-  'Which conventions exist only in the code?',
-  'Where is human interpretation unavoidable?',
-  'Has the system changed since the analysis was produced?',
-];
-
-/** The four domains the graph spans. */
-const domains = [
-  ['Schema', 'Entities and the relationships between them'],
-  ['Logic', 'States, flows and the rules that move between them'],
-  ['Interface', 'Screens and the components that compose them'],
-  ['Validation', 'Acceptance tests and the checks that prove behaviour'],
-];
-
-/** The three starting points the dashboard offers. */
-const starting = [
-  ['Artifacts', 'What information has been created, integrated, or flagged?'],
-  ['Coverage', 'Which decisions are grounded — and which still require interpretation?'],
-  ['Impact', 'Where could a proposed change propagate through the system?'],
-];
-
-const severity = [
-  ['Blast radius', 'How far the change reaches'],
-  ['Regression risk', 'What existing behaviour could break'],
-  ['Data integrity', 'What information may be exposed'],
-  ['Backward compatibility', 'What existing use may stop working'],
-];
-
 /** Where the work sits, and where it can move to as context improves. */
 const allocation = [
   ['Agent-ready', 'Grounded enough for an agent to build from'],
   ['Needs clarification', 'A person has to resolve the ambiguity first'],
   ['Requires expert judgement', 'Systemic impact warrants a deeper look'],
-];
-
-const invariance = [
-  ['Convention', '48 of 49 sibling tests pair setup with cleanup'],
-  ['Exception', 'One named test omits the cleanup call'],
-  ['Human decision', 'Fix it, document it, or accept it as intentional'],
 ];
 
 const flows = [
@@ -116,24 +71,6 @@ const evidence = [
     reasonable on its own and wrong for the system.
   </p>
 
-  <p class="sr-only">
-    The transformation runs in three stages. Fragmented context — requirements,
-    designs, code, tests and tribal knowledge — becomes the AppGraph, one
-    queryable model of what the system means, which in turn produces grounded
-    decisions that people and agents can both act on.
-  </p>
-
-  <ol class="loop" aria-hidden="true">
-    {
-      transformation.map(([actor, what]) => (
-        <li>
-          <span class="loop-actor">{actor}</span>
-          <span class="loop-what">{what}</span>
-        </li>
-      ))
-    }
-  </ol>
-
   <h2>Showing what to do next</h2>
   <p>
     Alucify turns requirements, schemas, interfaces, code and tests into one
@@ -149,18 +86,10 @@ const evidence = [
     from agent inference. A finding says why it matters, not only how severe it
     is. And nothing pretends the software can make the final call.
   </p>
-  <p>The dashboard offers three ways in.</p>
-
-  <ol class="loop">
-    {
-      starting.map(([label, q]) => (
-        <li>
-          <span class="loop-actor">{label}</span>
-          <span class="loop-what">{q}</span>
-        </li>
-      ))
-    }
-  </ol>
+  <p>
+    The dashboard opens on three questions — what has been created, which
+    decisions are grounded, and where a change could propagate.
+  </p>
 
   <p>
     Agent hours and token usage sit beside them as planning evidence — what the
