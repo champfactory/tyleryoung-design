@@ -3,7 +3,6 @@ import { storyEyebrow, storyTitle } from '../data/stories';
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import Reconstruction from '../components/Reconstruction.astro';
 import Chevron from '../components/Chevron.astro';
-import LinkRow from '../components/LinkRow.astro';
 
 const SITE = 'https://alucify.ai/';
 const APP = 'https://alucify-screens.fly.dev/#/dashboard';
@@ -44,6 +43,11 @@ const evidence = [
     ['Scope', '4 connected flows · 20 documented screens'],
     ['Status', 'Active venture · shown with the founder’s permission'],
   ]}
+  links={[
+    { label: 'Working screens', href: APP },
+    { label: 'Design file', href: FIGMA },
+    { label: 'Company site', href: SITE },
+  ]}
 >
   <p class="lede">
     Alucify builds a model of an existing codebase so people and coding agents
@@ -51,13 +55,6 @@ const evidence = [
     knows, what it has inferred, and where a person still needs to decide.
   </p>
 
-  <LinkRow
-    links={[
-      { text: 'Open the working screens', href: APP },
-      { text: 'Open the design file', href: FIGMA },
-      { text: 'Open the company site', href: SITE },
-    ]}
-  />
 
   <p>
     Coding agents make implementation faster. That speed is useful only when the

@@ -3,7 +3,6 @@ import { storyEyebrow, storyTitle } from '../data/stories';
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import LiveFrame from '../components/LiveFrame.astro';
 import StoryFrame from '../components/StoryFrame.astro';
-import LinkRow from '../components/LinkRow.astro';
 
 const APP = 'https://atheer-next.fly.dev/';
 const SB = 'https://atheer-next-storybook.fly.dev/';
@@ -92,6 +91,11 @@ const chain = [
     ['Contribution', 'Product direction · design system · implementation'],
     ['Public evidence', 'Running product · published Storybook'],
   ]}
+  links={[
+    { label: 'Product', href: APP },
+    { label: 'Component library', href: SB },
+    { label: 'Engagement plan', href: PLAN },
+  ]}
 >
   <p class="lede">
     A frontline worker rarely opens software before the workday begins. They
@@ -108,12 +112,6 @@ const chain = [
     inspect.
   </p>
 
-  <LinkRow
-    links={[
-      { text: 'Open the product', href: APP },
-      { text: 'Open the component library', href: SB },
-    ]}
-  />
 
   <ul class="cells four">
     {
@@ -582,7 +580,6 @@ const chain = [
     narrow: turn a planning discussion into a shared, durable decision.
   </p>
 
-  <LinkRow links={[{ text: 'Open the engagement plan', href: PLAN }]} />
 
   <h2>What the engagement produced</h2>
   <p>In 90 days, the engagement produced:</p>

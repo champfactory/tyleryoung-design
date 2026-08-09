@@ -10,11 +10,13 @@
  * essays rather than a bolt-on.
  */
 import PageHead from '../components/PageHead.astro';
+import Chevron from '../components/Chevron.astro';
 import BaseLayout from './BaseLayout.astro';
 import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
 
 export type MetaPair = [label: string, value: string];
+export type RailLink = { label: string; href: string };
 
 interface Props {
   title: string;
@@ -29,6 +31,13 @@ interface Props {
   descriptionDraft?: boolean;
   eyebrow: string;
   meta: MetaPair[];
+  /**
+   * The artifacts this page can be checked against. They sit in the rail with
+   * the rest of the metadata rather than in a row across the prose, because
+   * that is what they are — where to go to verify the page, not a step in its
+   * argument.
+   */
+  links?: RailLink[];
   current?: string;
   related?: [string, string][];
 }
@@ -43,6 +52,7 @@ const {
   descriptionDraft,
   eyebrow,
   meta,
+  links = [],
   current,
   related,
 } = Astro.props;
@@ -72,6 +82,27 @@ const {
             ))
           }
         </dl>
+
+        {
+          links.length > 0 && (
+            <div class="rail-links">
+              <p class="rail-links-label">Open</p>
+              <ul>
+                {links.map((l) => (
+                  <li>
+                    <a
+                      class="link"
+                      href={l.href}
+                      target={l.href.startsWith('http') ? '_blank' : undefined}
+                      rel={l.href.startsWith('http') ? 'noopener' : undefined}
+                    >
+                      {l.label}<Chevron weight="light" /></a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
       </aside>
 
       <div class="prose">
@@ -1214,6 +1245,39 @@ const {
       top: 96px;
       align-self: start;
     }
+  }
+
+  /* The artifacts, in the rail. Same label treatment the metadata rows use, so
+     the rail reads as one list with a heading rather than two components. */
+  .doc .rail-links {
+    margin-top: 26px;
+  }
+
+  .doc .rail-links-label {
+    margin: 0 0 8px !important;
+    font-size: 13px !important;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--color-ink-2) !important;
+  }
+
+  .doc .rail-links ul {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .doc .rail-links li {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .doc .rail-links li::before {
+    content: none !important;
   }
 
   @media (min-width: 1200px) {

@@ -5,7 +5,6 @@ import LiveFrame from '../components/LiveFrame.astro';
 import FeedbackTable from '../components/FeedbackTable.astro';
 import Compare from '../components/Compare.astro';
 import items from '../data/feedback.json';
-import LinkRow from '../components/LinkRow.astro';
 import Gates from '../components/Gates.astro';
 import Chevron from '../components/Chevron.astro';
 
@@ -113,6 +112,10 @@ const total = items.length;
     ['Human decision', `${addressed} addressed · ${held} held`],
     ['Implementation', 'Claude Code · 4 files · 394 lines'],
   ]}
+  links={[
+    { label: 'Reviewed build', href: REVIEWED },
+    { label: 'Resulting build', href: NEXT },
+  ]}
 >
   <p class="lede">
     I sent a stakeholder a working application instead of a prototype. They
@@ -137,12 +140,6 @@ const total = items.length;
     agreed to.
   </p>
 
-  <LinkRow
-    links={[
-      { text: 'Open the reviewed build', href: REVIEWED },
-      { text: 'Open the resulting build', href: NEXT },
-    ]}
-  />
   <h2>Running code gave us something concrete to disagree about</h2>
   <p>
     A mockup asks reviewers to imagine the missing behavior. A running
