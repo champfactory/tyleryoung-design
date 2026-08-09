@@ -85,7 +85,9 @@ const done = items.filter((i: { surface: string }) => REWORKED.has(i.surface)).l
     gap: 10px 24px;
     padding: 13px 16px;
     border-bottom: 1px solid var(--color-rule);
-    background: var(--color-paper-sunk);
+    /* The page's banded row. This was --color-paper-sunk, a warm beige left
+       over from the earlier palette, which read as a different site. */
+    background: var(--color-row);
   }
 
   .key {
@@ -99,19 +101,28 @@ const done = items.filter((i: { surface: string }) => REWORKED.has(i.surface)).l
     color: var(--color-ink);
   }
 
-  .swatch {
-    width: 9px;
-    height: 9px;
+  /* The same two marks the gated framework uses: filled for a note that
+     landed, hollow for one that did not. They were blue and grey squares —
+     blue is the link colour on this site and nothing else, so a blue square
+     beside a piece of status was reading as an affordance that wasn't there. */
+  .swatch,
+  .dot {
     flex: none;
+    background: currentColor;
+    -webkit-mask: var(--mark-bullet) center / contain no-repeat;
+    mask: var(--mark-bullet) center / contain no-repeat;
   }
 
-  .swatch.on {
-    background: var(--color-signal);
+  .swatch {
+    width: 11px;
+    height: 11px;
+    color: var(--color-ink);
   }
 
   .swatch.off {
-    background: transparent;
-    box-shadow: inset 0 0 0 1px var(--color-rule-strong);
+    -webkit-mask-image: var(--mark-hollow);
+    mask-image: var(--mark-hollow);
+    color: var(--color-ink-3);
   }
 
   .group + .group {
@@ -167,15 +178,16 @@ const done = items.filter((i: { surface: string }) => REWORKED.has(i.surface)).l
   }
 
   .dot {
-    width: 7px;
-    height: 7px;
-    margin-top: 6px;
-    background: var(--color-signal);
+    width: 9px;
+    height: 9px;
+    margin-top: 5px;
+    color: var(--color-ink);
   }
 
   .off .dot {
-    background: transparent;
-    box-shadow: inset 0 0 0 1px var(--color-rule-strong);
+    -webkit-mask-image: var(--mark-hollow);
+    mask-image: var(--mark-hollow);
+    color: var(--color-ink-3);
   }
 
   .off .name,

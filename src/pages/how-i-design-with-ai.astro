@@ -10,14 +10,21 @@ const loop = [
   ['Strengthen the system', 'Fold the decision back into what everything else is generated from'],
 ];
 
-/** What a brief has to carry before anything is generated. */
+/**
+ * What a brief has to carry before anything is generated.
+ *
+ * Each slot holds the question it answers. The section used to ask seven
+ * questions in a list, then name six slots, then close by naming seven
+ * concepts — three passes over the same idea, none of which was the artifact.
+ * The brief is the artifact, so the questions live inside it.
+ */
 const brief = [
-  ['Intent', 'Who is trying to do what, and which decision should get easier'],
-  ['Required behavior', 'States, transitions, permissions, failure paths'],
-  ['System constraints', 'The tokens, components and patterns the work must resolve to'],
-  ['Prohibited actions', 'What the agent may not do without a person'],
-  ['Open questions', 'What the work should help us resolve'],
-  ['Evaluation criteria', 'How we will judge the working experience'],
+  ['Intent', 'Who is trying to do what, and which decision should get easier?'],
+  ['Required behavior', 'What has to remain true across every state, transition, permission and failure path?'],
+  ['System constraints', 'Which tokens, components and patterns must the work resolve to?'],
+  ['Prohibited actions', 'What may the agent not do without a person?'],
+  ['Open questions', 'What should the work help us resolve?'],
+  ['Evaluation criteria', 'What would make this wrong even if it looked finished?'],
 ];
 
 /** Design intent becomes an interface through the system, not around it. */
@@ -27,15 +34,6 @@ const encode = [
   ['Components', 'The patterns already agreed, and their documented states'],
   ['Behavioral rules', 'Accessibility minimums and brand rules, as constraints rather than notes'],
   ['Working interface', 'Generated inside all four, not compared against them afterwards'],
-];
-
-/** The loop that finds a misunderstanding while it is still cheap. */
-const collaborate = [
-  ['Frame', 'State the intended outcome'],
-  ['Generate', 'Build the smallest working expression of it'],
-  ['Review', 'Put it in front of people who understand different parts of the problem'],
-  ['Find the mismatch', 'Where do the mental models diverge?'],
-  ['Correct both', 'The implementation, and the brief and system that produced it'],
 ];
 
 /** Six lenses, one question each. */
@@ -135,35 +133,21 @@ const leverage = [
   <h2>I begin with intent, not instructions for a picture</h2>
   <p>
     An agent can build a polished version of a poorly framed idea remarkably
-    quickly. So before generating anything, I define the conditions of a good
-    result:
+    quickly. So before generating anything, I write a brief that answers six
+    questions.
   </p>
-  <ul>
-    <li>Who is trying to accomplish what?</li>
-    <li>What decision should become easier?</li>
-    <li>What must remain true across every state?</li>
-    <li>What can the system do autonomously?</li>
-    <li>What requires confirmation or human judgment?</li>
-    <li>What would make the result wrong, even if it looked finished?</li>
-    <li>How will we evaluate the working experience?</li>
-  </ul>
-
-  <ul class="cells three">
+  <ol class="loop">
     {
-      brief.map(([label, note]) => (
+      brief.map(([label, question]) => (
         <li>
-          <span class="cell-label">{label}</span>
-          <span class="cell-note">{note}</span>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{question}</span>
         </li>
       ))
     }
-  </ul>
+  </ol>
 
-  <p>
-    That is more specification than a screen drawing carries, not less —
-    behavior, hierarchy, states, content, accessibility, system constraints, and
-    the questions the work should help us answer.
-  </p>
+  <p>That is more specification than a screen drawing carries, not less.</p>
   <h2>The design system becomes part of the production environment</h2>
   <p>
     Every colour, type style, spacing value, radius, interaction pattern and
@@ -245,24 +229,6 @@ const leverage = [
     observable.
   </p>
 
-  <p class="sr-only">
-    The collaboration loop runs in five steps: frame the intended outcome;
-    generate the smallest working expression of it; review it with people who
-    understand different parts of the problem; find where the mental models
-    diverge; then correct both the implementation and the brief and system that
-    produced it.
-  </p>
-
-  <ol class="loop" aria-hidden="true">
-    {
-      collaborate.map(([actor, what]) => (
-        <li>
-          <span class="loop-actor">{actor}</span>
-          <span class="loop-what">{what}</span>
-        </li>
-      ))
-    }
-  </ol>
 
   <p>
     None of this is a workaround for unreliable AI. Talking it through has always
@@ -277,16 +243,16 @@ const leverage = [
   <h2>I read the screen for the decisions inside it</h2>
   <p>A generated screen can be clean, consistent, and still wrong.</p>
 
-  <ul class="cells three">
+  <ol class="loop">
     {
       lenses.map(([label, q]) => (
         <li>
-          <span class="cell-label">{label}</span>
-          <span class="cell-note">{q}</span>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{q}</span>
         </li>
       ))
     }
-  </ul>
+  </ol>
 
   <p>
     This is where design leadership stays close to the work. I do not need to
@@ -302,44 +268,41 @@ const leverage = [
     an agent would otherwise make a design decision by default.
   </p>
 
-  <ul class="cells three">
+  <ol class="loop">
     {
       boundaries.map(([label, note]) => (
         <li>
-          <span class="cell-label">{label}</span>
-          <span class="cell-note">{note}</span>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{note}</span>
         </li>
       ))
     }
-  </ul>
+  </ol>
 
   <p>
     None of this assumes the agent behaves badly. It exists because speed
     magnifies misunderstandings. The goal is not maximum autonomy; it is useful
     autonomy, with visible consequences and clear accountability.
   </p>
-
-  <p class="pull-line">
-    I automate execution more readily than I automate judgment.
-  </p>
-  <h2>Whoever approves it owns it</h2>
-  <p>Anything that ships still belongs to people.</p>
   <p>
-    Whoever approves the work needs to understand what changed, which checks ran,
-    where uncertainty remains, and what could be affected. A human name on a
-    change should mean informed responsibility, not a ritual click after an
-    automated process.
+    Which means anything that ships still belongs to people. Whoever approves the
+    work needs to understand what changed, which checks ran, where uncertainty
+    remains, and what could be affected. A human name on a change should mean
+    informed responsibility, not a ritual click after an automated process.
   </p>
   <p>
     The same idea runs through my product work. In
     <a class="link" href="/alucify">Alucify</a> I designed the surfaces that expose coverage gaps,
     downstream impact, stale analysis, and the places where human interpretation
-    is still required. I hold my own work to the same rule: automation should
-    make its output inspectable and its limits explicit.
+    is still required.
   </p>
   <p>
     I do not ask whether an agent is trustworthy in the abstract. I ask whether
     this result is grounded, reviewable, and safe to advance.
+  </p>
+
+  <p class="pull-line">
+    I automate execution more readily than I automate judgment.
   </p>
   <h2>AI changes the leverage of a design leader</h2>
   <p>
@@ -347,8 +310,11 @@ const leverage = [
     could research, draw, review, document and shepherd through implementation.
     Capacity still matters, but it is no longer the only constraint.
   </p>
-  <p>Increasingly the leverage is in the environment the work comes out of:</p>
-  <ul>{leverage.map((x) => <li>{x}</li>)}</ul>
+  <p>
+    Increasingly the leverage is in the environment the work comes out of — the
+    intent, the system, the evaluation criteria, the perimeter and the review
+    loop this page has been describing.
+  </p>
   <p>
     That lets me stay close to consequential decisions without becoming the
     production bottleneck, and lets a team explore more widely while holding one
@@ -372,12 +338,8 @@ const leverage = [
     design.
   </p>
   <p>
-    A decision about behavior can be built the same day it is made. A design
-    system can decide what an agent is allowed to produce instead of being
-    checked afterwards. Options can be tried instead of imagined. A
-    misunderstanding can surface in an afternoon rather than in a sprint review.
-    And less gets lost between the people who decide something and the people
-    who build it.
+    Less gets lost between the people who decide something and the people who
+    build it.
   </p>
   <p>
     The tools are new. What the work has to be has not moved: useful, coherent,
