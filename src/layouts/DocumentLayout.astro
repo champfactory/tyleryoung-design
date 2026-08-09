@@ -1253,10 +1253,13 @@ const {
     margin-top: 26px;
   }
 
+  /* Exactly the dt treatment, so "Open" is another label in the same list and
+     not a heading above a different component. */
   .doc .rail-links-label {
-    margin: 0 0 8px !important;
-    font-size: 13px !important;
-    font-weight: 600;
+    margin: 0 0 6px !important;
+    font-family: var(--font-mono) !important;
+    font-size: 10px !important;
+    font-weight: 650;
     letter-spacing: 0;
     color: var(--color-ink-2) !important;
   }
@@ -1269,11 +1272,15 @@ const {
     padding: 0 !important;
   }
 
+  /* And the dd treatment, so the links sit at the same size and rhythm as the
+     values above them. Only the colour and the chevron mark them as links. */
   .doc .rail-links li {
     margin: 0;
     padding: 0;
-    font-size: 15px;
-    line-height: 1.4;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.65;
   }
 
   .doc .rail-links li::before {
