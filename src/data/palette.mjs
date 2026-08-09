@@ -46,6 +46,7 @@ export const PAIRS = [
   ['ink-3', 'paper', 'AA', 'mono labels @ 11px'],
   ['signal', 'paper', 'AA', 'links, section numbers'],
   ['ink', 'paper-raised', 'AA', 'card text'],
+  ['ink-3', 'paper-raised', 'AA', 'figure card label'],
   ['ink', 'paper-sunk', 'AA', 'sunk panel text'],
   ['ink', 'row', 'AA', 'banded row text'],
   ['ink-3', 'row', 'AA', 'banded row detail @ 16px'],

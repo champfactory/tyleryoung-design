@@ -508,18 +508,24 @@ const {
      for a short row of parallel things — a pair of links, three questions, four
      figures. `.shape-key` above is the same pattern carrying a glyph, and reuses
      these rules rather than restating them. */
+  /* Separate cards, not one continuous grid. Every remaining use of this is a
+     strip of figures — three or four independent facts — and running them
+     together in a banded block asked the reader to see a table where there is
+     no table. A gap and a card each says they are peers, and nothing more. */
   .doc .cells {
     list-style: none;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 0;
+    gap: 14px;
     margin: 26px 0 var(--space-block);
     padding: 0;
   }
 
   .doc .cells > li {
     margin: 0;
-    padding: 20px 18px;
+    padding: 22px 20px;
+    border-radius: 10px;
+    background: var(--color-paper-raised);
   }
 
   .doc .cells > li::before {
@@ -702,7 +708,6 @@ const {
   .doc .loop > li:nth-child(odd),
   .doc .principles > li:nth-child(odd),
   .doc .ledger > li:nth-child(odd),
-  .doc .cells > li:nth-child(odd),
   .doc .ratios tbody tr:nth-child(odd) {
     background: var(--color-band-a);
   }
@@ -710,7 +715,6 @@ const {
   .doc .loop > li:nth-child(even),
   .doc .principles > li:nth-child(even),
   .doc .ledger > li:nth-child(even),
-  .doc .cells > li:nth-child(even),
   .doc .ratios tbody tr:nth-child(even) {
     background: var(--color-band-b);
   }
