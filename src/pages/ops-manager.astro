@@ -117,7 +117,7 @@ const chain = [
   </ul>
   <p class="note-line">Counted from the currently published build.</p>
   <h2>The home screen starts with the shift</h2>
-  <p>The first screen answers four questions before it asks the user to navigate:</p>
+  <p>The first screen answers four questions before asking the user to go anywhere.</p>
   <ul>
     <li>What am I doing now?</li>
     <li>What comes next?</li>
@@ -410,7 +410,8 @@ const chain = [
   </p>
   <h2>Variation stays inside an approved palette</h2>
   <p>
-    Its colour model separates stable base values from thematic ones. Primary
+    The design system's colour model separates stable base values from thematic
+    ones. Primary
     text, secondary text, page background, surface, status red, and dividers
     remain consistent. Five palettes then vary the active-navigation background,
     image mat, highlight, accent, and link colour.
@@ -514,9 +515,9 @@ const chain = [
     client’s selection: landing page first, context engine second.
   </p>
   <p>
-    The implementation was deliberately small — 73 lines of Flask, one table, and
-    persistent storage. Its purpose was not technical sophistication. It was to
-    put the decision where its consequences were visible.
+    The implementation was deliberately small — 73 lines of Flask, one table and
+    persistent storage. It existed to put the decision where its consequences
+    were visible.
   </p>
 
   <LinkRow links={[{ text: 'Open the engagement plan', href: PLAN }]} />
@@ -527,12 +528,10 @@ const chain = [
     decision tool used to sequence the work.
   </p>
   <p>
-    The product shows the operating model. Storybook exposes the components and
-    their variation. The token pages show the boundaries they share.
-  </p>
-  <p>
-    Together, they make the work inspectable beyond the screenshots on this page.
-    The team carried the system forward.
+    The product shows the operating model, Storybook exposes the components and
+    their variation, and the token pages show the boundaries they share — so the
+    work is inspectable beyond the screenshots on this page. The team carried the
+    system forward.
   </p>
 
   <div class="disclosure">
