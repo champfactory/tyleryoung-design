@@ -54,7 +54,6 @@
      white now and the warm sunk token reads as beige against it. */
   /* One step darker than the page, so a banded cell reads as a surface set
      into it rather than a card lifted off it. */
-  --color-row: #e9e9ed;
 
   /* ink */
   --color-ink: #3B2923;
@@ -101,8 +100,12 @@
 
      Both rows are tinted, which is the part that mattered. One band
      alternating with the bare page made half the rows look absent; two make
-     the block a single object. band-a is the same value as --color-row, so the
-     ledger and the older banded surfaces agree. */
+     the block a single object.
+
+     There were two names for #e9e9ed — band-a and row — kept in step by hand
+     so the ledger and the older banded surfaces would agree. Two names for one
+     value is the banding defect in miniature, so row is gone and everything
+     reads band-a. */
   /* The mat that evidence is mounted on: the compare block and the capture
      cards. It is its own token because it does a different job from the
      alternating rows — those separate items in a list, this one lifts a
@@ -115,8 +118,6 @@
   --color-band-b: #f1f1f5;
 
   --color-header: #e2eefb;
-  --color-header-rule: #a3c6e2;
-  /* The header blue rotated to blue, same saturation and lightness. */
   --color-note: #fefbe4;
 
   --color-rule: #d0ccbe;
@@ -296,24 +297,25 @@
   }
 
   /* --- structural type ----------------------------------------------------- */
-  /* The one display style. Size is not set here: it is computed per title by
-     src/data/display-fit.mjs and passed in, so a 16-character headline and a
-     61-character one both fill the measure instead of sharing a size and
-     landing in different places. `balance` is deliberately absent — it evens
-     line lengths, which is the opposite of filling the column.
+  /* The one display style, and one size for every page that uses it.
 
-     Any element using this class must sit inside `.display-fit`, which is the
-     container the computed size is a percentage of. */
+     The size used to be computed per title so each headline would fill its
+     measure. That made the size a function of where the words broke — three
+     lines came out larger than two — and the site ran 46px to 105px across
+     thirteen pages. Filling the column is not worth thirteen sizes of one
+     component.
+
+     No `text-wrap: balance`. Balance wraps early to even the line lengths,
+     which pulls a headline in from the right edge and makes short lines to
+     keep the block compact. One declared size, filling the measure the way the
+     browser fills it, and the last line ends wherever it ends. */
   .display {
     font-family: var(--font-display);
+    font-size: var(--text-display);
     font-weight: 620;
     letter-spacing: -0.025em;
     line-height: 1.02;
     overflow-wrap: break-word;
-  }
-
-  .display-fit {
-    container-type: inline-size;
   }
 
   .heading {

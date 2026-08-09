@@ -36,15 +36,16 @@ function tokens(prefix) {
 const colour = tokens('color-');
 const value = (name) => colour.find((c) => c.name === name)?.value ?? '';
 
-/** The surfaces a thing can sit on, darkest page-side first. */
+/** What a thing sits on. */
 export const surfaces = [
-  ['paper', 'The page itself.'],
-  ['paper-raised', 'A card lifted off the page: story cards, figure cards, the nav.'],
-  ['band-a', 'The darker of the two alternating rows.'],
-  ['band-b', 'The lighter of the two.'],
-  ['mount', 'The mat a screenshot is mounted on, in the compare blocks and the capture cards.'],
-  ['header', 'The references band.'],
-  ['note', 'A disclosure that needs to look like a caveat.'],
+  ['paper', 'Page background.'],
+  ['paper-raised', 'Raised cards, figures, and navigation.'],
+  ['paper-sunk', 'A panel set into the page rather than lifted off it.'],
+  ['band-a', 'Darker row in an alternating list.'],
+  ['band-b', 'Lighter row in an alternating list.'],
+  ['mount', 'Background for screenshots and other visual evidence.'],
+  ['header', 'Background for reference headers.'],
+  ['note', 'Background for caveats and disclosures.'],
 ].map(([name, use]) => ({
   name,
   use,
@@ -52,35 +53,93 @@ export const surfaces = [
   onInk: ratio(value('color-ink'), value(`color-${name}`)),
 }));
 
-/** Ink, in the three weights the site allows. */
+/** Text hierarchy. Signal is reserved for links. */
 export const inks = [
-  ['ink', 'Body, headings, anything that carries the argument.'],
-  ['ink-2', 'Secondary prose and labels.'],
-  ['ink-3', 'Detail that must not compete: captions, metadata.'],
-  ['signal', 'Links. Nothing else is ever this colour.'],
+  ['ink', 'Headings and primary text.'],
+  ['ink-2', 'Secondary text and labels.'],
+  ['ink-3', 'Captions, metadata, and supporting detail.'],
+  ['signal', 'Links only.'],
+  ['signal-ink', 'Text on a signal background.'],
 ].map(([name, use]) => ({ name, use, value: value(`color-${name}`) }));
+
+/** Hairlines. Two weights, because a divider and a boundary are not the same. */
+export const lines = [
+  ['rule', 'Divider between items in the same block.'],
+  ['rule-strong', 'Boundary between one block and the next.'],
+].map(([name, use]) => ({ name, use, value: value(`color-${name}`) }));
+
+/**
+ * The dark counterpart, for terminals, code and receipts — and for this page,
+ * which is why it is documented here rather than treated as a local exception.
+ */
+export const machine = [
+  ['machine', 'Page background.'],
+  ['machine-raised', 'Darker row in an alternating list, and raised panels.'],
+  ['machine-band', 'Lighter row in an alternating list.'],
+  ['machine-rule', 'Hairline.'],
+  ['machine-ink', 'Primary text.'],
+  ['machine-ink-2', 'Secondary text and labels.'],
+  ['machine-signal', 'Links. Signal scores 3.24 here and fails, so this set carries its own.'],
+].map(([name, use]) => ({ name, use, value: value(`color-${name}`) }));
+
+/** What each text role is for. */
+const TYPE_USE = {
+  eyebrow: 'Section label above a heading.',
+  meta: 'Rail labels and values.',
+  caption: 'Figure captions and legends.',
+  note: 'Secondary prose and list detail.',
+  body: 'Running prose.',
+  h3: 'Subheading inside a section.',
+  lede: 'Opening paragraph.',
+  h2: 'Section heading.',
+  display: 'Page title.',
+};
 
 /**
  * Sorted by rendered size rather than source order: the file happens to declare
  * h2 above lede, which reads as a broken scale when the whole set is shown at
  * once. The clamped display step has no single px and sorts last.
  */
-export const type = tokens('text-').sort((a, b) => {
-  const px = (t) => (t.value.startsWith('clamp') ? Infinity : parseFloat(t.value));
-  return px(a) - px(b);
-});
-export const space = tokens('space-');
+export const type = tokens('text-')
+  .sort((a, b) => {
+    const px = (t) => (t.value.startsWith('clamp') ? Infinity : parseFloat(t.value));
+    return px(a) - px(b);
+  })
+  .map((t) => ({ ...t, use: TYPE_USE[t.name.replace('text-', '')] ?? '' }));
 
-/** The marks, and what each one means when it appears. */
+/** What each interval sits between. */
+const SPACE_USE = {
+  section: 'Between sections.',
+  heading: 'Between a section heading and its content.',
+  block: 'Between related content blocks.',
+  embed: 'Around embedded media and interactive examples.',
+  'page-top': 'Above the main page content.',
+  'page-bottom': 'Below the main page content.',
+};
+
+export const space = tokens('space-').map((t) => ({
+  ...t,
+  use: SPACE_USE[t.name.replace('space-', '')] ?? '',
+}));
+
+/** List items and sequence states. Each mark takes the colour of its text. */
 export const marks = [
-  ['bullet', 'An item in an unordered list.'],
-  ['1', 'The first item in an ordered list. Five exist; a sixth falls back to a plain numeral.'],
-  ['2', 'The second.'],
-  ['3', 'The third.'],
-  ['4', 'The fourth.'],
-  ['5', 'The fifth, and the last one drawn.'],
-  ['hollow', 'A point in a sequence that is not a step — the way out rather than another gate.'],
+  ['bullet', 'Unordered-list item.'],
+  ['1', 'First ordered-list item.'],
+  ['2', 'Second ordered-list item.'],
+  ['3', 'Third ordered-list item.'],
+  ['4', 'Fourth ordered-list item.'],
+  ['5', 'Fifth ordered-list item. Orders longer than five use plain numerals.'],
+  ['hollow', 'An outcome or exit from a sequence rather than another step.'],
 ];
+
+/**
+ * Every colour token this file documents. The check in scripts/tokens.mjs
+ * compares it against global.css and fails the build on a gap, because the
+ * page claims to be the system rather than a description of it — and it
+ * documented eleven of twenty-four the first time anyone counted.
+ */
+export const documented = [...surfaces, ...inks, ...lines, ...machine].map((t) => t.name);
 
 /**
  * The rules. These are the system, more than the values are: a token can be

@@ -1,23 +1,20 @@
 ---
 /**
- * A page headline, sized to fill its measure.
+ * A page headline. Every H1 outside the landing page goes through here, and
+ * they are all one size.
  *
- * Every H1 on the site goes through here. The class was always shared; the
- * size is what was not, and a shared size is what made one title span the
- * column while another stopped two-thirds of the way across. `fitDisplay`
- * measures the actual text and returns the size at which it fills the line.
+ * This used to compute a size per title so each one would span its measure.
+ * It worked, and it was the wrong goal: the size then depended on where the
+ * words happened to break, so three lines came out bigger than two and the
+ * site ran 46px to 105px across thirteen pages. A title that ends short of the
+ * right edge is normal. Thirteen sizes of the same component is not.
+ *
+ * The size is --text-display. There is nothing to pass and nothing to tune.
  */
-import { fitDisplay } from '../data/display-fit.mjs';
-
 interface Props {
-  /** The headline text, used to compute the size. Markup goes in the slot. */
+  /** The headline text. Kept for the default slot; it no longer sizes anything. */
   text: string;
 }
-
-const { text } = Astro.props;
-const fit = fitDisplay(text);
 ---
 
-<div class="display-fit">
-  <h1 class="display" style={`font-size:${fit.fontSize}`}><slot /></h1>
-</div>
+<h1 class="display"><slot /></h1>

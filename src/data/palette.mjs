@@ -31,7 +31,6 @@ export const TOKENS = {
   mount: '#e6e6eb',
   'band-a': '#e9e9ed',
   'band-b': '#f1f1f5',
-  'header-rule': '#a3c6e2',
   /* The disclosure tint. A caveat should look like a caveat — grey read as
      another quiet panel among several. */
   note: '#fefbe4',
@@ -59,8 +58,7 @@ export const PAIRS = [
   ['ink', 'paper-raised', 'AA', 'card text'],
   ['ink-3', 'paper-raised', 'AA', 'figure card label'],
   ['ink', 'paper-sunk', 'AA', 'sunk panel text'],
-  ['ink', 'row', 'AA', 'banded row text'],
-  ['ink-3', 'row', 'AA', 'banded row detail @ 16px'],
+  ['ink-3', 'band-a', 'AA', 'banded row detail @ 16px'],
   ['machine-ink', 'machine', 'AA', 'terminal body text'],
   ['machine-ink-2', 'machine', 'AA', 'terminal dim text'],
   ['machine-ink', 'machine-raised', 'AA', 'raised panel text'],
@@ -71,7 +69,6 @@ export const PAIRS = [
   ['ink-2', 'header', 'AA', 'reference attribution @ 11px on the band'],
   ['ink-2', 'header', 'AA', 'header sentence @ 11px'],
   ['signal', 'header', 'AA', 'current-page marker on the header'],
-  ['header-rule', 'header', 'UI', 'header hairline'],
   ['rule-strong', 'paper', 'UI', 'hairline rules'],
   ['rule', 'paper', 'UI', 'hairline rules (subtle)'],
 ];
