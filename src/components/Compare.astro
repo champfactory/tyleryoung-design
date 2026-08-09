@@ -35,12 +35,12 @@ const { note, before, after, beforeAlt, afterAlt, beforeNote, afterNote } = Astr
     <div class="side">
       <p class="tag">Before</p>
       <img src={before} alt={beforeAlt} loading="lazy" decoding="async" />
-      {beforeNote && <p class="side-note">{beforeNote}</p>}
+      {beforeNote && <p class="side-note evidence-foot">{beforeNote}</p>}
     </div>
     <div class="side">
       <p class="tag after">After</p>
       <img src={after} alt={afterAlt} loading="lazy" decoding="async" />
-      {afterNote && <p class="side-note">{afterNote}</p>}
+      {afterNote && <p class="side-note evidence-foot">{afterNote}</p>}
     </div>
   </div>
 
@@ -54,15 +54,17 @@ const { note, before, after, beforeAlt, afterAlt, beforeNote, afterNote } = Astr
   .compare {
     display: grid;
     gap: 24px;
-    margin: 0 0 40px;
-    padding: 26px 26px 30px;
+    margin: var(--space-embed) 0;
+    /* 10px, the one inset every envelope on the site uses. This card was at
+       26/30 and the capture cards at 18 — three numbers for one convention. */
+    padding: 10px 10px 12px;
     border-radius: var(--radius-mat);
     background: var(--color-mount);
   }
 
   /* The reviewer's own words, and the only text in here. */
   .note {
-    margin: 0 !important;
+    margin: 2px 0 0 !important;
     font-size: 17px !important;
     line-height: 1.5 !important;
     letter-spacing: 0;
@@ -93,12 +95,10 @@ const { note, before, after, beforeAlt, afterAlt, beforeNote, afterNote } = Astr
     color: var(--color-ink) !important;
   }
 
+  /* Type and colour come from .evidence-foot; the side already sits at the
+     mat inset, so this adds only the gap under the art. */
   .side-note {
-    margin: 10px 0 0 !important;
-    font-size: 15px !important;
-    line-height: 1.5 !important;
-    letter-spacing: 0;
-    color: var(--color-ink-2) !important;
+    --foot-pad: 10px 0 0;
   }
 
   img {

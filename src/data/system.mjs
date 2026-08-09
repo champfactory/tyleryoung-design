@@ -216,9 +216,9 @@ export const rules = [
     why: 'Three values were doing two jobs — 10px, 6px and 4px — with the split falling wherever a component happened to be written, and five card-shaped containers had no radius at all: the feedback table, the surface ledger, the receipt, the needs blocks and the prose aside. Same shape, same job, square corners while everything else was round.',
   },
   {
-    title: 'Build an evidence card in three layers',
-    statement: 'Page, then mat, then art inset 10px. The note sits on the mat, 10px under the art.',
-    why: 'Each layer says which it is, and each was wrong somewhere. The cards were on paper-raised — white holding near-white applications, meeting the page at 1.03:1. The art ran to the card edge, so the mat only showed at the corners. And the note was written four times: two at 0 10px 12px, one at 22px 18px, one with no padding inside the card\u2019s own. A white footer strip was tried and dropped: it needed 24px above its text to hold a boundary between two surfaces, and there is only one surface.',
+    title: 'Build every envelope the same way',
+    statement: 'Mount, radius-mat, everything inside inset 10px, art on radius-inset, note on the mat 10px under it.',
+    why: 'Seven components draw this envelope — the three embeds, the reconstruction, the compare block, the capture cards and the figures — and they agreed on none of it. The cards were on paper-raised, white holding near-white applications, meeting the page at 1.03:1. The art ran to the card edge on some, so the mat showed only at the corners. The inset was 10px, 18px and 26px. The note was written four times, at four paddings. And one component was missed by an edit that matched the others by exact text, because its rule carried a comment. A white footer strip was tried and dropped: it needed 24px above its text to hold a boundary between two surfaces, and there is only one surface.',
   },
   {
     title: 'Let the page own a figure\u2019s margin, not the file',
