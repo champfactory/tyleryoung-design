@@ -42,52 +42,58 @@ const { note, before, after, beforeAlt, afterAlt } = Astro.props;
 </figure>
 
 <style>
+  /* One warm surface, no outlines and no rules.
+     The screenshots are mostly white and dark-teal interface, so mounting them
+     on the page's warm band separates them from the document without drawing a
+     box — a border around a border around a screenshot was three edges to say
+     one thing. Space does the dividing that a horizontal rule used to. */
   .compare {
+    display: grid;
+    gap: 24px;
     margin: 0 0 40px;
-    border: 1px solid var(--color-rule);
-    background: var(--color-paper-raised);
+    padding: 26px 26px 30px;
+    border-radius: 10px;
+    background: var(--color-band-b);
   }
 
+  /* The reviewer's own words, and the only text in here. */
   .note {
     margin: 0 !important;
-    padding: 14px 16px;
-    font-family: var(--font-mono) !important;
-    font-size: 13px !important;
-    line-height: 1.6 !important;
-    letter-spacing: 0.01em;
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0;
     color: var(--color-ink) !important;
-    background: var(--color-paper-sunk);
   }
 
   .pair {
     display: grid;
+    gap: 24px;
   }
 
   .side {
-    padding: 16px;
+    padding: 0;
   }
 
-  .side + .side {
-    border-top: 1px solid var(--color-rule);
-  }
-
+  /* Before and after separate by weight, not by hue. The after tag used to be
+     signal blue, which is the link colour and nothing else on this site. */
   .tag {
-    margin: 0 0 10px !important;
-    font-family: var(--font-mono) !important;
-    font-size: 10px !important;
-    font-weight: 600;
+    margin: 0 0 9px !important;
+    font-size: 13px !important;
+    font-weight: 500;
     letter-spacing: 0;
     color: var(--color-ink-3) !important;
   }
 
   .tag.after {
-    color: var(--color-signal) !important;
+    font-weight: 600;
+    color: var(--color-ink) !important;
   }
 
   img {
     display: block;
     width: 100%;
     height: auto;
-    border: 1px solid var(--color-rule);
+    border: 0;
+    border-radius: 6px;
   }
 </style>

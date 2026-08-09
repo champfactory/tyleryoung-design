@@ -26,7 +26,7 @@ export const TOKENS = {
   signal: '#0066CC',
   'signal-ink': '#ffffff',
   header: '#e2eefb',
-  'band-a': '#f9f0e6',
+  'band-a': '#f8eee3',
   'band-b': '#fbf5ed',
   'header-rule': '#a3c6e2',
   /* The disclosure tint. A caveat should look like a caveat — grey read as
@@ -41,6 +41,7 @@ export const PAIRS = [
   ['ink', 'band-b', 'AA', 'ledger row text, alternate'],
   ['ink-2', 'band-a', 'AA', 'ledger row label'],
   ['ink-2', 'band-b', 'AA', 'ledger row label, alternate'],
+  ['ink-3', 'band-b', 'AA', 'before/after tag on the compare surface'],
   ['ink-2', 'paper', 'AA', 'secondary prose'],
   ['ink-3', 'paper', 'AA', 'mono labels @ 11px'],
   ['signal', 'paper', 'AA', 'links, section numbers'],

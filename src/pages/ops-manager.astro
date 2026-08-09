@@ -158,21 +158,16 @@ const chain = [
     identifies two people who need guidance. Assets reports both an asset outage
     and a rising rework rate.
   </p>
-  <p>
-    The user can choose a destination based on the work happening inside it, not
-    only the feature’s name.
-  </p>
-
-  <ul class="cells three">
+  <ol class="loop">
     {
       nav.map(([label, note]) => (
         <li>
-          <span class="cell-label">{label}</span>
-          <span class="cell-note">{note}</span>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{note}</span>
         </li>
       ))
     }
-  </ul>
+  </ol>
 
   <h3>Status has a shape</h3>
   <p>
@@ -238,16 +233,16 @@ const chain = [
       <span class="cell-note">Make · model · year</span>
     </p>
     <p class="junction-arrow">Connects to</p>
-    <ul class="cells three">
+    <ol class="loop">
       {
         junction.map(([label, note]) => (
           <li>
-            <span class="cell-label">{label}</span>
-            <span class="cell-note">{note}</span>
+            <span class="loop-actor">{label}</span>
+            <span class="loop-what">{note}</span>
           </li>
         ))
       }
-    </ul>
+    </ol>
   </div>
 
   <StoryFrame
@@ -405,30 +400,22 @@ const chain = [
     without imagery; resources that may or may not exist; empty content groups;
     long names; different border treatments; and five theme palettes.
   </p>
-  <p>
-    These are the states where a component system proves whether it can support a
-    product rather than only reproduce its cleanest screen.
-  </p>
 
-  <ul class="cells four">
+  <ol class="loop">
     {
       families.map(([label, note]) => (
         <li>
-          <span class="cell-label">{label}</span>
-          <span class="cell-note">{note}</span>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{note}</span>
         </li>
       ))
     }
-  </ul>
+  </ol>
 
   <p class="pull-line">
     The system was designed around the ways content changes.
   </p>
   <h2>Variation stays inside an approved palette</h2>
-  <p>
-    The design system defines shared values for colour, typography, spacing,
-    radii, borders, and shadows.
-  </p>
   <p>
     Its colour model separates stable base values from thematic ones. Primary
     text, secondary text, page background, surface, status red, and dividers
@@ -440,16 +427,16 @@ const chain = [
     or inventing values component by component.
   </p>
 
-  <ul class="cells four">
+  <ol class="loop">
     {
       tokens.map(([label, note]) => (
         <li>
-          <span class="cell-label">{label}</span>
-          <span class="cell-note">{note}</span>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{note}</span>
         </li>
       ))
     }
-  </ul>
+  </ol>
 
   <StoryFrame
     id="design-system-tokens--colors"
@@ -511,20 +498,11 @@ const chain = [
     }
   </ol>
 
-  <ul class="cells" aria-hidden="true">
-    <li>
-      <span class="cell-label">Shared constraint · tokens</span>
-      <span class="cell-note">
-        The values every stage above is allowed to use.
-      </span>
-    </li>
-  </ul>
-
-  <p>
-    If a component had not appeared in a design, it did not belong in the
-    library. If an approved token did not exist, the implementation was not
-    allowed to invent one.
+  <p class="note-line">
+    Tokens are the shared constraint underneath all four: the values every stage
+    above is allowed to use.
   </p>
+
 
   <p class="pull-line">
     Every reusable decision had a source, so the library could constrain what
@@ -548,15 +526,7 @@ const chain = [
     put the decision where its consequences were visible.
   </p>
 
-  <ul class="cells">
-    <li>
-      <span class="cell-label">The shared 90-day plan</span>
-      <span class="cell-note">A persistent sequence chosen inside the plan itself.</span>
-      <a class="artifact" href={PLAN} target="_blank" rel="noopener">
-        Open the engagement plan<Chevron />
-      </a>
-    </li>
-  </ul>
+  <LinkRow links={[{ text: 'Open the engagement plan', href: PLAN }]} />
   <h2>What the engagement left behind</h2>
   <p>
     In ninety days, the engagement produced a running operations product, a
