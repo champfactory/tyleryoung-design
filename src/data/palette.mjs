@@ -23,9 +23,9 @@ export const TOKENS = {
   'machine-raised': '#202027',
   'machine-ink': '#e6e4dc',
   'machine-ink-2': '#9d9a90',
-  signal: '#005FC5',
+  signal: '#0066CC',
   'signal-ink': '#ffffff',
-  header: '#d6e9f8',
+  header: '#e2eefb',
   'header-rule': '#a3c6e2',
   /* The disclosure tint. A caveat should look like a caveat — grey read as
      another quiet panel among several. */

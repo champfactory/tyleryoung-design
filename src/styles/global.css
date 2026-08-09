@@ -25,15 +25,21 @@
    --------------------------------------------------------------------------- */
 
 @theme {
-  --font-display: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI',
+    Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   /* Body is sans now. The serif gave the essays an editorial authority that read
      as the old portfolio's argument; one typeface across headings and prose reads
      as a product. Kept as its own token so prose can diverge again later. */
-  --font-prose: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+  /* Apple's stack. SF Pro is not licensable as a webfont, so this resolves to
+     it on Apple hardware and to the platform's own UI face elsewhere — the same
+     bargain apple.com makes. A Windows reader sees Segoe UI, not SF Pro. */
+  --font-prose: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI',
+    Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   /* One family. Everything that wore JetBrains as chrome now wears Archivo;
      the only mono left is --font-code, for literal terminal output, where the
      typeface is the content's own. */
-  --font-mono: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI',
+    Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-code: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
 
   /* paper — warm, not white. white is a browser default; this is a choice. */
@@ -85,7 +91,7 @@
   /* Where the first line of every page sits, measured from under the header. */
   --space-page-top: 88px;
 
-  --color-header: #d6e9f8;
+  --color-header: #e2eefb;
   --color-header-rule: #a3c6e2;
   /* The header blue rotated to blue, same saturation and lightness. */
   --color-note: #fefbe4;
@@ -101,7 +107,7 @@
   --color-machine-ink-2: #9d9a90;
 
   /* signal — one accent, used only for things that are live or interactive */
-  --color-signal: #005FC5;
+  --color-signal: #0066CC;
   --color-signal-ink: #ffffff;
 
   --spacing-rail: 168px;
@@ -291,6 +297,15 @@
   .artifact:focus-visible {
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+
+  /* The chevron is a marker, not part of the phrase, so it stays out of the
+     rule. Text decoration propagates into inline children but not into an
+     inline-block — that is the whole mechanism. */
+  .artifact > span[aria-hidden],
+  .link > span[aria-hidden] {
+    display: inline-block;
+    text-decoration: none;
   }
 
 
