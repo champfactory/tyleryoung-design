@@ -109,6 +109,12 @@ const deepLink = `${SB}/?path=/story/${id}`;
        measured content height, so there is nothing to scroll to. A scrollbar
        here would mean the height is wrong — fix the height, not this rule. */
     overflow: hidden;
+    /* Inset on all four sides so the mat frames the art, like every other
+       embed. This rule carried a comment, so an earlier edit that matched the
+       other two components by exact text silently skipped it and left this one
+       running to the card edge. */
+    margin: 10px;
+    border-radius: var(--radius-inset);
     background: #ffffff;
   }
 
