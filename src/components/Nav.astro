@@ -36,19 +36,6 @@ const { current } = Astro.props as { current?: string };
     z-index: 20;
   }
 
-  /* Overscroll at the top of the page pulls the document down and exposes the
-     canvas behind it, which is the grey page — so rubber-banding revealed a
-     grey band above a white nav. This paints a viewport-tall band of the nav's
-     own colour immediately above it. Sticky positioning makes the nav the
-     containing block, so the band travels with it; once the page scrolls, the
-     band sits off-screen above the viewport and covers nothing. */
-  .nav::before {
-    content: '';
-    position: absolute;
-    inset: auto 0 100% 0;
-    height: 100vh;
-    background: inherit;
-  }
 
   .inner {
     display: flex;

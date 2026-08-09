@@ -124,6 +124,23 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    /* Rubber-banding past either end does not reveal the document — it reveals
+       the canvas, and the canvas takes its background from the root element.
+       That is why painting a band above the nav did nothing: content in the
+       overscroll region is not what the browser draws there.
+
+       `fixed` attachment sizes this gradient to the viewport rather than the
+       document, so the top half is always the nav's white and the bottom half
+       always the footer's near-black, whatever the page length. Overscroll at
+       the top shows white under a white nav; at the bottom, black under a
+       black footer. In normal scroll it is invisible: body paints paper over
+       all of it. */
+    background: linear-gradient(
+        to bottom,
+        var(--color-paper-raised) 0 50%,
+        var(--color-deep) 50% 100%
+      )
+      fixed;
   }
 
   body {
