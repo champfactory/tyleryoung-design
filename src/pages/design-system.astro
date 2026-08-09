@@ -1,0 +1,312 @@
+---
+import DocumentLayout from '../layouts/DocumentLayout.astro';
+import { REPO, REPO_LABEL } from '../data/site.mjs';
+import { surfaces, inks, type, space, marks, rules } from '../data/system.mjs';
+
+/**
+ * The system this site is built from, documented by the rule it was derived
+ * from: a family is a set of members answering one question, and it only
+ * becomes visible once there is enough real output to compare.
+ *
+ * So this is organised by family, and every family says what went wrong that
+ * made it necessary. A component catalogue documents the output. The defect is
+ * what documents the decision.
+ *
+ * Every value is read from global.css at build time. Nothing here is typed
+ * twice.
+ */
+const swatch = (v) => `background:${v}`;
+---
+
+<DocumentLayout
+  title="The system this site is built from"
+  metaTitle="Design system — tokens, marks and rules | Tyler Young"
+  description="The tokens, marks and rules this site is built from, read out of the stylesheet that defines them, and organised by family rather than by component."
+  eyebrow="Design system"
+  meta={[
+    ['Scope', 'One site, four days, built from nothing'],
+    ['Families', 'Surface · ink · type · space · mark'],
+    ['Rules', 'Six, each with the defect that produced it'],
+    ['Source of truth', 'src/styles/global.css, read at build time'],
+  ]}
+  links={[{ label: REPO_LABEL, href: REPO }]}
+>
+  <p class="lede">
+    This is not a component catalogue. It is the set of families this site is
+    made of, and for each one, the defect that made it necessary.
+  </p>
+  <p>
+    A design system cannot be written before the work. A family — of surface,
+    of ink, of mark — only becomes visible once there is enough real output to
+    compare, and until it is visible there is nothing to standardise. Everything
+    below started as a single wrong thing on a single page.
+  </p>
+  <p>
+    Every value here is read out of <code>global.css</code> at build time. A
+    hand-copied value would be a claim about the system; this has to be the
+    system.
+  </p>
+
+  <h2>Surface</h2>
+  <p>
+    One question: what is this thing sitting on? The page, something lifted off
+    it, a banded row, or a mat under evidence.
+  </p>
+
+  <ul class="sys-grid">
+    {
+      surfaces.map((s) => (
+        <li>
+          <span class="sys-swatch" style={swatch(s.value)} aria-hidden="true" />
+          <span class="sys-name">{s.name}</span>
+          <span class="sys-value">{s.value}</span>
+          <span class="sys-use">{s.use}</span>
+          <span class="sys-meta">{s.onInk.toFixed(2)}:1 against ink</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Ink</h2>
+  <p>Three weights of text and one link colour, and the link colour is spent nowhere else.</p>
+
+  <ul class="sys-grid">
+    {
+      inks.map((i) => (
+        <li>
+          <span class="sys-swatch" style={swatch(i.value)} aria-hidden="true" />
+          <span class="sys-name">{i.name}</span>
+          <span class="sys-value">{i.value}</span>
+          <span class="sys-use">{i.use}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Type</h2>
+  <p>Nine steps, each rendered here at its own size.</p>
+
+  <ol class="loop">
+    {
+      type.map((t) => (
+        <li>
+          <span class="loop-actor">{t.name.replace('text-', '')}</span>
+          <span class="loop-what" style={`font-size:${t.value};line-height:1.2`}>
+            {t.value}
+          </span>
+        </li>
+      ))
+    }
+  </ol>
+
+  <h2>Space</h2>
+  <p>Six steps, each drawn at its own height.</p>
+
+  <ul class="sys-space">
+    {
+      space.map((s) => (
+        <li>
+          <span class="sys-name">{s.name.replace('space-', '')}</span>
+          <span class="sys-bar" style={`height:${s.value}`} aria-hidden="true" />
+          <span class="sys-value">{s.value}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Mark</h2>
+  <p>
+    Seven glyphs from the Alucify pattern file, drawn as masks so each one takes
+    its colour from the text it belongs to.
+  </p>
+
+  <ul class="sys-marks">
+    {
+      marks.map(([name, use]) => (
+        <li>
+          <span class="sys-mark" style={`-webkit-mask-image:var(--mark-${name});mask-image:var(--mark-${name})`} aria-hidden="true" />
+          <span class="sys-name">{name}</span>
+          <span class="sys-use">{use}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>The rules, and what produced them</h2>
+  <p>
+    A token can be looked up. A rule is what stops the same decision being made
+    twice, and every one of these exists because it was already made twice.
+  </p>
+
+  <ol class="sys-rules">
+    {
+      rules.map((r) => (
+        <li>
+          <p class="sys-rule">{r.rule}</p>
+          <p class="sys-why">{r.why}</p>
+        </li>
+      ))
+    }
+  </ol>
+</DocumentLayout>
+
+<style is:global>
+  /* Members of a family, side by side, because a family is only judgeable in
+     comparison. Each row carries what it is, what it is worth, and where it is
+     used — the three things a token page usually leaves to a name. */
+  .doc .sys-grid,
+  .doc .sys-marks,
+  .doc .sys-rules,
+  .doc .sys-space {
+    list-style: none;
+    display: grid;
+    gap: 2px;
+    margin: 30px 0 var(--space-block);
+    padding: 0;
+  }
+
+  .doc .sys-grid > li::before,
+  .doc .sys-marks > li::before,
+  .doc .sys-rules > li::before,
+  .doc .sys-space > li::before {
+    content: none !important;
+  }
+
+  .doc .sys-grid > li {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 8rem) minmax(0, 6rem) minmax(0, 1fr);
+    align-items: center;
+    gap: 6px 16px;
+    margin: 0;
+    padding: 12px 14px;
+    background: var(--color-band-b);
+  }
+
+  .doc .sys-grid > li:nth-child(odd) {
+    background: var(--color-band-a);
+  }
+
+  .doc .sys-swatch {
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+  }
+
+  .doc .sys-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .doc .sys-value {
+    font-family: var(--font-code);
+    font-size: 13px;
+    color: var(--color-ink-2);
+  }
+
+  .doc .sys-use {
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--color-ink-2);
+    text-wrap: pretty;
+  }
+
+  .doc .sys-meta {
+    grid-column: 2 / -1;
+    font-family: var(--font-code);
+    font-size: 12px;
+    color: var(--color-ink-3);
+  }
+
+  /* Space is the one family you cannot show with a label, so it is drawn. */
+  .doc .sys-space > li {
+    display: grid;
+    grid-template-columns: minmax(0, 8rem) minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 16px;
+    margin: 0;
+    padding: 10px 14px;
+    background: var(--color-band-b);
+  }
+
+  .doc .sys-space > li:nth-child(odd) {
+    background: var(--color-band-a);
+  }
+
+  .doc .sys-bar {
+    display: block;
+    width: 100%;
+    background: var(--color-ink);
+    opacity: 0.14;
+  }
+
+  .doc .sys-marks > li {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 8rem) minmax(0, 1fr);
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+    padding: 12px 14px;
+    background: var(--color-band-b);
+  }
+
+  .doc .sys-marks > li:nth-child(odd) {
+    background: var(--color-band-a);
+  }
+
+  .doc .sys-mark {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-inline: auto;
+    background: var(--color-ink);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  /* The rules get the mount, because they are the evidence on this page. */
+  .doc .sys-rules {
+    gap: 14px;
+  }
+
+  .doc .sys-rules > li {
+    margin: 0;
+    padding: 20px;
+    border-radius: 10px;
+    background: var(--color-mount);
+  }
+
+  .doc .sys-rule {
+    margin: 0 !important;
+    font-size: var(--text-note) !important;
+    font-weight: 600;
+    line-height: 1.45 !important;
+    color: var(--color-ink) !important;
+  }
+
+  .doc .sys-why {
+    margin: 8px 0 0 !important;
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+    color: var(--color-ink-2) !important;
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 700px) {
+    .doc .sys-grid > li,
+    .doc .sys-marks > li {
+      grid-template-columns: 34px minmax(0, 1fr);
+    }
+
+    .doc .sys-value,
+    .doc .sys-use,
+    .doc .sys-meta {
+      grid-column: 2 / -1;
+    }
+  }
+</style>
