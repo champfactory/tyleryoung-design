@@ -221,6 +221,11 @@ export const rules = [
     why: 'Each layer says which it is, and each was wrong somewhere. The cards were on paper-raised — white holding near-white applications, meeting the page at 1.03:1. The art ran to the card edge, so the mat only showed at the corners. And the note was written four times: two at 0 10px 12px, one at 22px 18px, one with no padding inside the card\u2019s own. A white footer strip was tried and dropped: it needed 24px above its text to hold a boundary between two surfaces, and there is only one surface.',
   },
   {
+    title: 'Stack cards two pixels apart',
+    statement: 'Cards stacked in one section sit 2px apart, and the corners facing each other are square. Only the outer top and outer bottom are rounded.',
+    why: 'The group is one object with hairline separations, not separate cards that happen to be near each other. The container owns it rather than the cards, because a card does not know whether it is stacked — the essay pairs were 40px apart with every corner rounded, and the rule list 14px apart with every corner rounded, which is the same idea reached two ways.',
+  },
+  {
     title: 'Build the neutrals from the accent hue',
     statement: 'Every cool surface is hue 210 — the signal\u2019s own — at a tenth of its saturation.',
     why: 'Four of them sat at 240, a violet-leaning blue, while the signal and the references band sat at 210. Thirty degrees is enough to notice and not enough to name: the neutrals read as a second family rather than as quiet versions of the one accent. The references band came down from 76% saturation to 45% at the same time. Each surface now prints its hue, saturation and lightness on this page, so the next drift is visible rather than felt.',

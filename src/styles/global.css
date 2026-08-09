@@ -341,6 +341,35 @@
     text-wrap: balance;
   }
 
+  /* Cards stacked inside one section.
+
+     Two pixels apart, and the corners that face each other are square, so the
+     group reads as one object with hairline separations rather than as
+     separate cards that happen to be near each other. Only the outer top and
+     the outer bottom are rounded.
+
+     The container owns it, not the cards. A card does not know whether it is
+     stacked, and the two places this applies — the essay pairs and the rule
+     list — were reaching that answer two different ways. */
+  .stack {
+    display: grid;
+    gap: 2px;
+  }
+
+  .stack > * {
+    border-radius: 0;
+  }
+
+  .stack > *:first-child {
+    border-start-start-radius: var(--radius-mat);
+    border-start-end-radius: var(--radius-mat);
+  }
+
+  .stack > *:last-child {
+    border-end-start-radius: var(--radius-mat);
+    border-end-end-radius: var(--radius-mat);
+  }
+
   /* The note on an evidence card.
 
      One class, in the library, because there were four of these written four

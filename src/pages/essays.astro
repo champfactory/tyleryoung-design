@@ -113,8 +113,9 @@ const sections = essayGroups.map((g) => ({
         <p class="label">{sec.label}</p>
         <h2 class="heading statement" id={`sec-${si}`}>{sec.statement}</h2>
 
-        {sec.cards.map((c) => (
-          <article class="card">
+        <div class="stack">
+          {sec.cards.map((c) => (
+            <article class="card">
             <a class="media" href={`/${c.slug}`} tabindex="-1" aria-hidden="true">
               <img src={c.fig} alt={c.alt} loading="lazy" decoding="async" />
               {c.legend && <span class="legend">{c.legend}</span>}
@@ -126,9 +127,10 @@ const sections = essayGroups.map((g) => ({
               <a class="artifact link-gap" href={`/${c.slug}`}>
                 {c.link}<Chevron />
               </a>
-            </div>
-          </article>
-        ))}
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
     ))
   }
@@ -219,13 +221,17 @@ const sections = essayGroups.map((g) => ({
   }
 
 
+  /* The corners and the 2px between them come from .stack; this is what a card
+     is made of. */
   .card {
     display: grid;
     gap: 26px;
-    margin-top: 40px;
     background: var(--color-paper-raised);
-    border-radius: var(--radius-mat);
     padding: 30px 28px;
+  }
+
+  .stack {
+    margin-top: 40px;
   }
 
   .media {

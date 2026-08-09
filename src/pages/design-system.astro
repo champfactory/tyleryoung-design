@@ -196,7 +196,7 @@ const swatch = (v) => `background:${v}`;
     the part of this page that could not have been copied from anywhere else.
   </p>
 
-  <ol class="sys-rules">
+  <ol class="sys-rules stack">
     {
       rules.map((r) => (
         <li>
@@ -227,8 +227,7 @@ const swatch = (v) => `background:${v}`;
     overflow: hidden;
   }
 
-  /* The rules are separate cards rather than one banded block, so the block
-     radius would clip their own. */
+  /* The rules are a stack: .stack owns the 2px and the outer corners. */
   .sys-rules {
     border-radius: 0;
     overflow: visible;
@@ -359,14 +358,9 @@ const swatch = (v) => `background:${v}`;
 
   /* A rule you can cite: an imperative title, the rule itself, then what went
      wrong that made it necessary. */
-  .sys-rules {
-    gap: 14px;
-  }
-
   .sys-rules > li {
     margin: 0;
     padding: 20px;
-    border-radius: var(--radius-mat);
     background: var(--color-machine-raised);
   }
 
