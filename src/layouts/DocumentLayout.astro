@@ -925,8 +925,11 @@ const {
     flex-wrap: wrap;
     align-items: baseline;
     gap: 8px 16px;
-    padding: 11px 14px;
-    border-bottom: 1px solid var(--color-rule);
+    /* No rule under it. The bar and the art are already two surfaces — mat and
+       white — so a hairline was a third edge saying what the surfaces said.
+       Inline padding matches the envelope inset, so the host text starts on the
+       art's left edge; 2px at the bottom plus the art's own 10px is the gap. */
+    padding: 12px 10px 2px;
     font-family: var(--font-mono);
     font-size: 13px;
     letter-spacing: 0;
