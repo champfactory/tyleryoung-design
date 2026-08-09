@@ -23,6 +23,13 @@ interface Props {
 }
 
 const { id, label, source, note, height = 520 } = Astro.props;
+/**
+ * The white boundary inside the viewport, so a specimen has the same margin on
+ * all four sides. `height` is the story's own content height; this is added to
+ * it rather than taken out of it.
+ */
+const PAD = 20;
+
 const src = `${SB}/iframe.html?id=${id}&viewMode=story`;
 const deepLink = `${SB}/?path=/story/${id}`;
 ---
@@ -36,7 +43,7 @@ const deepLink = `${SB}/?path=/story/${id}`;
     </a>
   </div>
 
-  <div class="viewport" style={`height:${height}px`}>
+  <div class="viewport" style={`height:${height + PAD * 2}px`}>
     <iframe
       src={src}
       title={`${label} — live from the component library`}
@@ -107,11 +114,13 @@ const deepLink = `${SB}/?path=/story/${id}`;
   }
 
   .viewport {
-    /* No scrollbars in a specimen. Every embedded story is narrower than this
-       column (the widest is 352px) and each `height` below is the story's
-       measured content height, so there is nothing to scroll to. A scrollbar
-       here would mean the height is wrong — fix the height, not this rule. */
+    /* No scrollbars in a specimen. Each `height` passed in is the story's own
+       measured content height, so there is nothing to scroll to. A story cut
+       off at the bottom means that number is stale — fix the number, not this
+       rule. Two of the three were, by 84px and 524px. */
     overflow: hidden;
+    box-sizing: border-box;
+    padding: 20px;
     /* Inset on all four sides so the mat frames the art, like every other
        embed. This rule carried a comment, so an earlier edit that matched the
        other two components by exact text silently skipped it and left this one
