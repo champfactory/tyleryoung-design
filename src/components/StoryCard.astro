@@ -94,6 +94,24 @@ const { eyebrow, claim, outcome, artifacts, draft } = story;
     text-wrap: balance;
   }
 
+  /* On a phone the fix is the type size, not the wrapping mode.
+
+     At 20px a summary runs to eight or ten lines in a 335px column, which is
+     past the six-line ceiling where browsers stop balancing — so the rag
+     collapses and a single word ends up alone on the last line. Dropping to
+     17px brings the same text back under the ceiling and balance re-engages.
+
+     Measured against the alternative of swapping balance for `pretty`, which
+     is the obvious move and the wrong one: at 430px pretty gives last lines of
+     61%, 28% and 24% across the three cards, where 17px balanced gives 95%,
+     100% and 93%. 17px is also what iOS sets body text at, so this is not a
+     compromise size. */
+  @media (max-width: 480px) {
+    .outcome {
+      font-size: 17px;
+    }
+  }
+
   .artifacts {
     list-style: none;
     margin: 26px 0 0;

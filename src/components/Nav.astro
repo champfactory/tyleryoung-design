@@ -84,7 +84,10 @@ const { current } = Astro.props as { current?: string };
   nav {
     font-family: var(--font-mono);
     font-size: 15px;
-    font-weight: 500;
+    /* 400, matching .role beside it. The wordmark's name is 600 and carries the
+       emphasis; the role and this sentence are the same rank and were reading
+       at two different weights on one line. */
+    font-weight: 400;
     letter-spacing: 0.015em;
     color: var(--color-ink);
   }
