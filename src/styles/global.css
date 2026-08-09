@@ -142,15 +142,26 @@
     background-color: var(--color-paper-raised);
   }
 
+  /* Apple's arrangement. The page grey does not live here — body is the same
+     white as the nav, so the canvas it propagates is white and rubber-banding
+     at the top cannot reveal a colour the nav does not have. The grey belongs
+     to the content, and moves to <main> below. */
   body {
-    background-color: var(--color-paper);
-    /* very fine grain — warmth without texture-as-decoration */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+    background-color: var(--color-paper-raised);
     color: var(--color-ink);
     font-family: var(--font-prose);
     font-size: 19px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* The page field: the grey, and the grain that goes with it. Both were on
+     body, which is what made the canvas grey. Here they cover exactly the
+     content between the nav and the footer, which is the only place they were
+     ever meant to be. */
+  main {
+    background-color: var(--color-paper);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
   }
 
   ::selection {
