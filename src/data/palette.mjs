@@ -26,6 +26,8 @@ export const TOKENS = {
   signal: '#0066CC',
   'signal-ink': '#ffffff',
   header: '#e2eefb',
+  'band-a': '#e2eefb',
+  'band-b': '#f0f6fd',
   'header-rule': '#a3c6e2',
   /* The disclosure tint. A caveat should look like a caveat — grey read as
      another quiet panel among several. */
@@ -35,6 +37,10 @@ export const TOKENS = {
 /** Pairs that must pass, at the smallest size each is actually used. */
 export const PAIRS = [
   ['ink', 'paper', 'AA', 'body + headings'],
+  ['ink', 'band-a', 'AA', 'ledger row text'],
+  ['ink', 'band-b', 'AA', 'ledger row text, alternate'],
+  ['ink-2', 'band-a', 'AA', 'ledger row label'],
+  ['ink-2', 'band-b', 'AA', 'ledger row label, alternate'],
   ['ink-2', 'paper', 'AA', 'secondary prose'],
   ['ink-3', 'paper', 'AA', 'mono labels @ 11px'],
   ['signal', 'paper', 'AA', 'links, section numbers'],

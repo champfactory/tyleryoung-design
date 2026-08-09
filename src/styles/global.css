@@ -94,6 +94,14 @@
      value as the top, so a page is framed rather than just started. */
   --space-page-bottom: 88px;
 
+  /* The ledger's two bands. Both are tinted now, rather than one grey stripe
+     alternating with the page — which made the block read as absent rows. Two
+     steps of the site's own blue turn a long ledger into a graphical element
+     that breaks up the prose above and below it. Same family as the references
+     band, so the page has one blue in two weights rather than a second hue. */
+  --color-band-a: #e2eefb;
+  --color-band-b: #f0f6fd;
+
   --color-header: #e2eefb;
   --color-header-rule: #a3c6e2;
   /* The header blue rotated to blue, same saturation and lightness. */
