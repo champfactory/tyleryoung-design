@@ -342,6 +342,50 @@ const {
     color: var(--color-signal);
   }
 
+  /* The disclosure gets the system caret rather than the browser's triangle,
+     on the left where the affordance belongs — it points at the thing it will
+     open. Same component the links use, so there is one caret on the site.
+
+     It carries a left margin for its usual job of trailing a link, which is
+     the wrong side here. */
+  .doc .all-pairs summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .doc .all-pairs summary {
+    list-style: none;
+  }
+
+  /* The caret hangs in the indent and the label starts at 26px — the same
+     edge every list item uses. Positioned rather than laid out inline, so the
+     label lands on that edge whatever width the glyph happens to be. Without
+     this the summary sat on a third left edge of its own: 393px, between the
+     paragraphs at 380 and the lists at 406. */
+  .doc .all-pairs summary {
+    position: relative;
+    padding-left: 26px;
+  }
+
+  .doc .all-pairs summary .chev {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin: 0;
+    transform: translateY(-50%);
+    transition: transform 140ms ease;
+  }
+
+  /* Rotates to point down at what it opened. */
+  .doc .all-pairs[open] summary .chev {
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .doc .all-pairs summary .chev {
+      transition: none;
+    }
+  }
+
   /* The table scrolls inside its own box rather than pushing the document
      sideways on a narrow screen. */
   .doc .scroller {

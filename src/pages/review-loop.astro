@@ -7,6 +7,7 @@ import Compare from '../components/Compare.astro';
 import items from '../data/feedback.json';
 import LinkRow from '../components/LinkRow.astro';
 import Gates from '../components/Gates.astro';
+import Chevron from '../components/Chevron.astro';
 
 const REVIEWED = 'https://metin-oasis-v6.fly.dev/';
 const NEXT = 'https://metin-oasis-v7.fly.dev/';
@@ -241,7 +242,7 @@ const total = items.length;
   </p>
 
   <details class="all-pairs">
-    <summary>Read the complete {total}-note review</summary>
+    <summary><Chevron weight="bold" />Read the complete {total}-note review</summary>
     <FeedbackTable />
   </details>
   <h2>Three notes that prove a point: human collaboration is still paramount</h2>

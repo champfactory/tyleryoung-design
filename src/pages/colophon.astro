@@ -1,6 +1,7 @@
 ---
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import { audit } from '../data/palette.mjs';
+import Chevron from '../components/Chevron.astro';
 import { REPO, REPO_LABEL } from '../data/site.mjs';
 import { principles, comparison, requirements, automatic, PREVIEW_PAIRS } from '../data/rubric.mjs';
 
@@ -193,7 +194,7 @@ const proof = [
   {/* Native disclosure — the evidence stays available without dominating the page,
       and without a line of client JavaScript. */}
   <details class="all-pairs">
-    <summary>View all {rows.length} colour-pair results</summary>
+    <summary><Chevron weight="bold" />View all {rows.length} colour-pair results</summary>
     <div class="scroller">
       <table class="ratios">
         <caption class="label">
