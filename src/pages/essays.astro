@@ -113,12 +113,12 @@ const sections = essayGroups.map((g) => ({
         <p class="label">{sec.label}</p>
         <h2 class="heading statement" id={`sec-${si}`}>{sec.statement}</h2>
 
-        <div class="stack">
+        <div class="pair">
           {sec.cards.map((c) => (
             <article class="card">
             <a class="media" href={`/${c.slug}`} tabindex="-1" aria-hidden="true">
               <img src={c.fig} alt={c.alt} loading="lazy" decoding="async" />
-              {c.legend && <span class="legend">{c.legend}</span>}
+              {c.legend && <span class="legend evidence-foot">{c.legend}</span>}
             </a>
             <div class="body">
               <h3 class="heading card-title">{c.title}</h3>
@@ -221,37 +221,46 @@ const sections = essayGroups.map((g) => ({
   }
 
 
-  /* The corners and the 2px between them come from .stack; this is what a card
-     is made of. */
+  /* No envelope. The text sits on the page the way the story cards on the
+     landing page do; the artwork carries the envelope, because the artwork is
+     the evidence. A card around both put a white box behind prose that did not
+     need one. */
   .card {
     display: grid;
     gap: 26px;
-    background: var(--color-paper-raised);
-    padding: 30px 28px;
   }
 
-  .stack {
+  .pair {
+    display: grid;
+    gap: 72px;
     margin-top: 40px;
   }
 
+  /* The evidence envelope, same anatomy as every embed on the site: mat,
+     art inset 10px, radius on both. */
   .media {
     display: block;
     align-self: center;
+    padding: 10px;
+    border-radius: var(--radius-mat);
+    background: var(--color-mount);
   }
 
   .media img {
     display: block;
     width: 100%;
     height: auto;
+    border-radius: var(--radius-inset);
+    background: var(--color-paper-raised);
   }
 
   /* A diagram that speaks in letters says what they mean, right under itself. */
+  /* The note on this evidence card. Type and colour come from .evidence-foot;
+     the card's own 10px padding is already the inset, so it adds only the gap
+     under the art. */
   .legend {
     display: block;
-    margin-top: 12px;
-    text-align: center;
-    font-size: 13px;
-    color: var(--color-ink-3);
+    --foot-pad: 10px 0 0;
   }
 
   .card-title {
@@ -292,7 +301,6 @@ const sections = essayGroups.map((g) => ({
       grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
       gap: 48px;
       align-items: start;
-      padding: 34px 36px;
     }
 
     .media {
