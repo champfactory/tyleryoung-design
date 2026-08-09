@@ -20,10 +20,11 @@ const { related = storyLinks } = Astro.props;
 
 /** The links this site carries on every page. */
 const site: [string, string, boolean][] = [
-  // Was /how-i-design-with-ai#this-site. That section is gone, and the design
-  // system is what answers this label now — same destination and same new-tab
-  // behaviour as the rail link that points at it.
-  ['/design-system', 'How this site is built', true],
+  // The story, not the design system. It was pointed at /design-system when the
+  // #this-site anchor went, which sent a reader to a spec sheet when the label
+  // promises an account. The design system is still reachable from that story's
+  // rail, which is where an artifact belongs.
+  ['/how-i-design-with-ai', 'How this site is built', false],
   [REPO, 'Source', true],
   [`mailto:${EMAIL}`, EMAIL, false],
 ];
