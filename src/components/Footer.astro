@@ -35,7 +35,7 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
 }));
 ---
 
-<footer class="footer on-dark">
+<footer class="footer">
   <div class="shell inner">
     {
       rows.map((row) => (
@@ -67,31 +67,19 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
   /* Element selectors, not `.inner`. A scoped class rule on this wrapper did not
      apply — the same thing happened to the header's `.statement` — and the links
      fell back to inline flow, running together on one line at the left edge. */
-  /* The footer is the page's baseplate now, not more page. It bleeds the full
-     width — the `.shell` inside keeps the links on the same measure as the
-     content above — and the dark field is what ends the document. The blue
-     links inside turn white through the `.on-dark` alternate in global.css;
-     nothing here restates that. */
-  /* Two cases, and they want opposite things. Ordinary page content ending on
-     paper needs air before the baseplate — without it a paragraph or a
-     disclosure panel collides with the dark edge. A full-bleed band already
-     ends on its own colour, and a gap there reads as a loose strip of grey
-     between two bands. So the margin is the default and the band cancels it.
+  /* No background. body is white and so is the canvas, so the footer, the gap
+     above it and the bottom overscroll are all one colour — the apple.com
+     arrangement, where nothing has to be matched because nothing differs. The
+     grey belongs to <main> and ends where the content ends.
 
-     The band is not the footer's sibling — it is the last child of <main>, so
-     the test has to reach inside. `:global()` is load-bearing too: Astro scopes
-     every compound selector in a rule, so an unwrapped selector would look for
-     a `.refs-band` carrying this component's attribute and match nothing. */
+     That also retires the refs-band exception this rule used to carry. It
+     existed because a dark baseplate butting a full-bleed band looked right
+     while a grey gap between them did not; with the footer white, the space
+     above it is white either way and there is nothing left to special-case. */
   footer {
     margin-top: 72px;
     padding-block: 44px 48px;
-    background: var(--color-deep);
   }
-
-  :global(main:has(> .refs-band:last-child)) + footer {
-    margin-top: 0;
-  }
-
 
   footer > div {
     display: grid;

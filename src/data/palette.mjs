@@ -30,19 +30,10 @@ export const TOKENS = {
   /* The disclosure tint. A caveat should look like a caveat — grey read as
      another quiet panel among several. */
   note: '#fefbe4',
-  /* The footer baseplate, set at the exact limit: #767676 is the lightest
-     grey that still holds white type at AA 4.5 (it scores 4.542). One step
-     lighter, #777777, falls to 4.478 and fails. Distinct from `machine`,
-     which is reserved for literal instrument surfaces (terminals, receipts),
-     so moving one never drags the other with it. */
-  deep: '#767676',
-  'deep-ink': '#ffffff',
 };
 
 /** Pairs that must pass, at the smallest size each is actually used. */
 export const PAIRS = [
-  ['deep-ink', 'deep', 'AA', 'footer links @ 17px'],
-  ['deep-ink', 'deep', 'AA-large', 'footer focus ring'],
   ['ink', 'paper', 'AA', 'body + headings'],
   ['ink-2', 'paper', 'AA', 'secondary prose'],
   ['ink-3', 'paper', 'AA', 'mono labels @ 11px'],

@@ -96,11 +96,6 @@
   /* The header blue rotated to blue, same saturation and lightness. */
   --color-note: #fefbe4;
 
-  /* deep — the footer baseplate. Not `machine`: that is reserved for literal
-     instrument surfaces, and the two should be able to move independently. */
-  --color-deep: #767676;
-  --color-deep-ink: #ffffff;
-
   --color-rule: #d0ccbe;
   --color-rule-strong: #b9b4a6;
 
@@ -348,25 +343,6 @@
   a.link,
   a.artifact {
     text-decoration-thickness: 1px;
-  }
-
-  /* THE ONE ALTERNATE to the link rule. On a near-black surface blue is
-     unreadable, so it stops being an affordance and white takes over the job.
-     Nothing else changes: same weight, same size, same hover underline at the
-     same offset, and the chevron follows for free because it fills with
-     currentColor. Scope it by putting `on-dark` on the dark surface itself —
-     the links inside need no new class, so a link is still a link. */
-  .on-dark .link,
-  .on-dark .artifact {
-    color: var(--color-deep-ink);
-  }
-
-  /* The focus ring is part of the alternate. Signal blue scores 1.23 against
-     the footer grey where a focus indicator needs 3.0 — it was already failing
-     on the near-black, and lightening the surface only made it plainer. White
-     is the same colour the links wear, at 4.54. */
-  .on-dark :focus-visible {
-    outline-color: var(--color-deep-ink);
   }
 
   /* The chevron is the <Chevron> component — the Alucify glyph at three
