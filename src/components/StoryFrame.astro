@@ -56,7 +56,12 @@ const deepLink = `${SB}/?path=/story/${id}`;
        paragraph introducing it while the reconstructions had room on both
        sides. */
     margin: var(--space-embed) 0 calc(var(--space-embed) + 12px);
-    background: var(--color-paper-raised);
+    /* The mat, not the card surface. The page is #f5f5f7 and these embeds are
+       screenshots of near-white applications, so on paper-raised the art met
+       the page at 1.03:1 and its edge disappeared. mount exists for exactly
+       this — it is the token that was introduced when the compare blocks had
+       the same defect — and the inset below is what makes it visible. */
+    background: var(--color-mount);
   
     /* A card, not an outlined panel: small radius, no border, the radius alone. */
     border: 0;
