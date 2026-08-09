@@ -45,7 +45,7 @@ const { eyebrow, title, description, artifacts = [], lead = false } = Astro.prop
                    target={a.href.startsWith('http') ? '_blank' : undefined}
                    rel={a.href.startsWith('http') ? 'noopener' : undefined}>
                   {a.label}
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">›</span>
                 </a>
               ) : (
                 <span class="artifact-pending">

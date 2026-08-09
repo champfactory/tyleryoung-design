@@ -23,7 +23,7 @@ export const TOKENS = {
   'machine-raised': '#202027',
   'machine-ink': '#e6e4dc',
   'machine-ink-2': '#9d9a90',
-  signal: '#5353E6',
+  signal: '#005FC5',
   'signal-ink': '#ffffff',
   header: '#d6e9f8',
   'header-rule': '#a3c6e2',

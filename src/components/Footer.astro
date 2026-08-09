@@ -43,7 +43,7 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
             {row.left && (
               <a class="artifact" href={row.left[0]}>
                 {row.left[1]}
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">›</span>
               </a>
             )}
           </span>
@@ -56,7 +56,7 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
                 rel={row.right[2] ? 'noopener' : undefined}
               >
                 {row.right[1]}
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">›</span>
               </a>
             )}
           </span>

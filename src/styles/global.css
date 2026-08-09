@@ -101,7 +101,7 @@
   --color-machine-ink-2: #9d9a90;
 
   /* signal — one accent, used only for things that are live or interactive */
-  --color-signal: #5353E6;
+  --color-signal: #005FC5;
   --color-signal-ink: #ffffff;
 
   --spacing-rail: 168px;
@@ -266,7 +266,8 @@
 
   .link:hover,
   .link:focus-visible {
-    opacity: 0.75;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   /* An artifact link — concrete label, arrow, mono. "Live product", "Case study". */
@@ -288,7 +289,8 @@
 
   .artifact:hover,
   .artifact:focus-visible {
-    opacity: 0.75;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
 
