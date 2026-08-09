@@ -29,7 +29,7 @@ const GLYPH = {
 const g = GLYPH[weight];
 ---
 
-<svg class="chev" viewBox={`0 0 ${g.w} ${g.h}`} aria-hidden="true" focusable="false">
+<svg class="chev" width={g.w} height={g.h} viewBox={`0 0 ${g.w} ${g.h}`} aria-hidden="true" focusable="false">
   <path d={g.d} fill="currentColor" />
 </svg>
 

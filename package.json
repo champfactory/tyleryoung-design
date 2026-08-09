@@ -30,6 +30,7 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
+    "playwright": "^1.62.1",
     "puppeteer-core": "^23.11.1"
   }
 }
