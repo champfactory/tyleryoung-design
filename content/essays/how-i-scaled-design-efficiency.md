@@ -17,7 +17,7 @@ contribution: >-
 role: >-
   Led in partnership with senior leadership
 scope: >-
-  Cross-Functional System Implementation & Process Optimization
+  Cross-Functional System Implementation &amp; Process Optimization
 takeaway: >-
   Replaced inconsistent, individual workflows with a system teams trusted to deliver at scale
 ---

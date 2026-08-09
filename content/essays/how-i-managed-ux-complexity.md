@@ -17,7 +17,7 @@ contribution: >-
 role: >-
   Led in partnership with product
 scope: >-
-  Cross-Functional System Implementation & Process Optimization
+  Cross-Functional System Implementation &amp; Process Optimization
 takeaway: >-
   Made complexity measurable, enabling teams to act earlier, reduce scope bloat, and simplify with intent
 ---

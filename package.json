@@ -10,12 +10,13 @@
     "check": "astro check",
     "contrast": "node scripts/contrast.mjs",
     "needs": "node scripts/needs.mjs",
-    "audit": "npm run contrast && npm run tokens && npm run js && npm run alt && npm run links && npm run evidence && npm run needs",
+    "audit": "npm run contrast && npm run tokens && npm run js && npm run alt && npm run a11y && npm run links && npm run evidence && npm run needs",
     "links": "node scripts/links.mjs",
     "evidence": "node scripts/evidence.mjs",
     "alt": "node scripts/alt.mjs",
     "tokens": "node scripts/tokens.mjs",
-    "js": "node scripts/js.mjs"
+    "js": "node scripts/js.mjs",
+    "a11y": "node scripts/a11y.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
@@ -26,6 +27,8 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
+    "axe-core": "^4.13.0",
+    "html-validate": "^11.6.2",
     "playwright": "^1.62.1",
     "puppeteer-core": "^23.11.1"
   }

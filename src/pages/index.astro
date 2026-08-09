@@ -63,7 +63,7 @@ const references = [
     <h2 class="sr-only" id="work">Selected work</h2>
 
     <StoryCard story={stories[0]}>
-      <a class="media-link" slot="media" href="/alucify" tabindex="-1" aria-hidden="true">
+      <div class="media-link" slot="media">
         <LiveFrame
           plain
           src="https://alucify-screens.fly.dev/#/dashboard"
@@ -72,11 +72,12 @@ const references = [
           note={stories[0].credit}
           title="The Alucify dashboard, running"
         />
-      </a>
+        <a class="media-hit" href="/alucify" tabindex="-1" aria-hidden="true"></a>
+      </div>
     </StoryCard>
 
     <StoryCard story={stories[1]}>
-      <a class="media-link" slot="media" href="/ops-manager" tabindex="-1" aria-hidden="true">
+      <div class="media-link" slot="media">
         <LiveFrame
           plain
           src="https://atheer-next.fly.dev/"
@@ -85,11 +86,12 @@ const references = [
           note={stories[1].credit}
           title="The operations surface, live"
         />
-      </a>
+        <a class="media-hit" href="/ops-manager" tabindex="-1" aria-hidden="true"></a>
+      </div>
     </StoryCard>
 
     <StoryCard story={stories[2]}>
-      <a class="media-link" slot="media" href="/review-loop" tabindex="-1" aria-hidden="true">
+      <div class="media-link" slot="media">
         <LiveFrame
           plain
           src="https://metin-oasis-v6.fly.dev/"
@@ -99,7 +101,8 @@ const references = [
           note={stories[2].credit}
           title="The operations build that was reviewed, running"
         />
-      </a>
+        <a class="media-hit" href="/review-loop" tabindex="-1" aria-hidden="true"></a>
+      </div>
     </StoryCard>
   </section>
 
@@ -135,8 +138,18 @@ const references = [
      this one is hidden from assistive technology and taken out of the tab
      order rather than becoming a duplicate stop that reads as an unlabelled
      image link. Same treatment the essay cards use for their diagrams. */
+  /* The anchor sits over the embed rather than around it: an <iframe> is not
+     permitted inside an <a>, and it was three invalid elements on the page.
+     Same click target, and it stays out of the tab order because the card's
+     own links are the real affordance. */
   .media-link {
+    position: relative;
     display: block;
+  }
+
+  .media-hit {
+    position: absolute;
+    inset: 0;
     cursor: pointer;
   }
 

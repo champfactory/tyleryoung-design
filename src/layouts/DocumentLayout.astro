@@ -960,8 +960,11 @@ const {
     color: var(--color-ink);
   }
 
+  /* ink-2, not ink-3. ink-3 is tuned for white and measures 4.47 against the
+     mount — under the floor, and not a pair anything had declared, so the
+     contrast script never looked at it. axe reads what renders. */
   .doc .recon-host {
-    color: var(--color-ink-3);
+    color: var(--color-ink-2);
     text-transform: none;
     letter-spacing: 0;
   }
