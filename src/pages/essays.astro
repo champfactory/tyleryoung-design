@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHead from '../components/PageHead.astro';
+import { essayGroups } from '../data/essayGroups';
 import Chevron from '../components/Chevron.astro';
 
 /**
@@ -15,8 +16,8 @@ const frames = [
 
 const sections = [
   {
-    label: 'Planning',
-    statement: 'I put design into the decision, not just the delivery',
+    label: essayGroups[0].label,
+    statement: essayGroups[0].statement,
     cards: [
       {
         title: 'I translated design into business terms',
@@ -44,8 +45,8 @@ const sections = [
     ],
   },
   {
-    label: 'Standards',
-    statement: 'I made quality something other teams could rely on',
+    label: essayGroups[1].label,
+    statement: essayGroups[1].statement,
     cards: [
       {
         title: 'I built a design system five functions chose to use',
@@ -72,8 +73,8 @@ const sections = [
     ],
   },
   {
-    label: 'People',
-    statement: 'I developed designers to own more than execution',
+    label: essayGroups[2].label,
+    statement: essayGroups[2].statement,
     cards: [
       {
         title: 'I rebuilt specialist roles around product ownership',

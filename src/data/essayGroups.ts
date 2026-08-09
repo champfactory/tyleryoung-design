@@ -1,44 +1,38 @@
 /**
- * Seven essays, two groups.
+ * Six essays, three groups.
  *
- * Grouped by what each one *is* — an instrument — rather than by leadership
- * virtue. Every essay here describes the same move: take a judgment that lived
- * in someone's head and make it explicit, portable and enforceable. That is the
- * same move the operating spec makes, a decade later, with a machine on the
- * other end of it.
+ * This is the only definition of that taxonomy. There were two: this file said
+ * Instruments and Teams, while /essays said Planning, Standards and People, so
+ * every essay page was labelled from a scheme the index had replaced. Same
+ * class of drift as five stylesheets each implementing one zebra rule.
  *
- * Three essays were merged into one: they described a single system three times
- * and shared identical sections on the live site. Both retired URLs redirect.
+ * `label` is what a reader sees in a rail or an eyebrow. `statement` is the
+ * first-person heading the index uses, which is too long for either.
+ *
+ * Three earlier essays were merged into these; their URLs redirect in
+ * astro.config.mjs and are checked by `npm run links`.
  */
 export type EssayGroup = {
-  eyebrow: string;
-  title: string;
-  blurb: string;
+  label: string;
+  statement: string;
   slugs: string[];
 };
 
 export const essayGroups: EssayGroup[] = [
   {
-    eyebrow: 'Instruments',
-    title: 'Making decisions explicit',
-    blurb:
-      'A decision rule, written down, that outlives the person who made it. Scoring models, budgets, thresholds, systems.',
-    slugs: [
-      'how-i-translated-design-work',
-      'how-i-managed-ux-complexity',
-      'how-i-scaled-design-efficiency',
-      'how-i-built-culture-around-paradox',
-    ],
+    label: 'Planning',
+    statement: 'I put design into the decision, not just the delivery',
+    slugs: ['how-i-translated-design-work', 'how-i-managed-ux-complexity'],
   },
   {
-    eyebrow: 'Teams',
-    title: 'Changing how teams work',
-    blurb:
-      'Structure, roles and growth paths rebuilt so the standard holds without anyone enforcing it.',
-    slugs: [
-      'how-i-unlocked-team-trust',
-      'how-i-shaped-cross-functional-reputation',
-    ],
+    label: 'Standards',
+    statement: 'I made quality something other teams could rely on',
+    slugs: ['how-i-scaled-design-efficiency', 'how-i-built-culture-around-paradox'],
+  },
+  {
+    label: 'People',
+    statement: 'I developed designers to own more than execution',
+    slugs: ['how-i-unlocked-team-trust', 'how-i-shaped-cross-functional-reputation'],
   },
 ];
 

@@ -38,6 +38,8 @@ interface Props {
    * argument.
    */
   links?: RailLink[];
+  /** The heading above the rail links. Artifacts say "Open"; essays name their group. */
+  linksLabel?: string;
   current?: string;
   related?: [string, string][];
 }
@@ -53,6 +55,7 @@ const {
   eyebrow,
   meta,
   links = [],
+  linksLabel = 'Open',
   current,
   related,
 } = Astro.props;
@@ -86,7 +89,7 @@ const {
         {
           links.length > 0 && (
             <div class="rail-links">
-              <p class="rail-links-label">Open</p>
+              <p class="rail-links-label">{linksLabel}</p>
               <ul>
                 {links.map((l) => (
                   <li>

@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
 import DocumentLayout from '../layouts/DocumentLayout.astro';
-import CrossLinks from '../components/CrossLinks.astro';
 import { groupForSlug, essayGroups } from '../data/essayGroups';
 
 export async function getStaticPaths() {
@@ -14,7 +13,12 @@ const { Content } = await render(entry);
 const d = entry.data;
 
 const group = groupForSlug(d.slug);
-const groupIndex = group ? essayGroups.indexOf(group) + 1 : 0;
+
+/**
+ * The rest of the group, in the rail rather than in a block after the essay.
+ * They are where to go next, not part of the argument — the same reason the
+ * case studies keep their artifacts there.
+ */
 const siblings = group
   ? (await getCollection('essays'))
       .filter((e) => group.slugs.includes(e.data.slug) && e.data.slug !== d.slug)
@@ -31,15 +35,15 @@ const siblings = group
   metaTitle={d.metaTitle}
   description={d.description}={d.descriptionDraft}
   metaWarning={d.metaWarning}
-  eyebrow={group?.eyebrow ?? 'Essay'}
+  eyebrow={group?.label ?? 'Essay'}
   meta={[
     ['Contribution', d.contribution],
     ['Role', d.role],
     ['Scope', d.scope],
     ['Takeaway', d.takeaway],
   ]}
+  links={siblings}
+  linksLabel={group ? `More in ${group.label}` : 'More essays'}
 >
   <Content />
-
-  <CrossLinks slot="after" title={group?.title ?? ''} links={siblings} />
 </DocumentLayout>
