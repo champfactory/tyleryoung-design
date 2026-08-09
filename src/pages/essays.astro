@@ -240,7 +240,10 @@ const sections = essayGroups.map((g) => ({
      art inset 10px, radius on both. */
   .media {
     display: block;
-    align-self: center;
+    /* Top, not centre. The card sets align-items: start and this was overriding
+       it, so a short figure floated to the middle of a tall text column and its
+       top edge landed nowhere. */
+    align-self: start;
     padding: 10px;
     border-radius: var(--radius-mat);
     background: var(--color-mount);
