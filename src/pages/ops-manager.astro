@@ -495,7 +495,10 @@ const chain = [
     id="design-system-tokens--colors"
     label="Design System · Colors"
     source="Live token reference"
-    height={1204}
+    {/* 680, not the story's full 1204. Deliberately a cropped slice: at full
+        height it is the tallest thing on the page by a wide margin, and the
+        chrome bar's "Open in library" is the way to the rest. */}
+    height={680}
     note="Stable base colours sit above five coordinated theme palettes. Each palette changes the same five semantic roles."
   />
 
