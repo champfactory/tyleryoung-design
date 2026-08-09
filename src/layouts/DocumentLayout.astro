@@ -611,33 +611,38 @@ const {
     padding: 0;
   }
 
+  /* One tinted surface per capture, the same one the compare block uses. It
+     had a border around the card and a rule under the header and another above
+     the note — three edges dividing three things that space already separates,
+     on a screenshot that has its own edges. */
   .doc .captures > li {
+    display: grid;
+    gap: 14px;
     margin: 0;
-    padding: 0;
+    padding: 18px;
     align-self: start;
-    border: 1px solid var(--color-rule);
-    background: var(--color-paper-raised);
+    border: 0;
+    border-radius: 10px;
+    background: var(--color-band-b);
   }
 
   .doc .captures > li::before {
     content: none !important;
   }
 
-  /* The same header a running embed wears. */
   .doc .capture-head {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 6px 14px;
-    padding: 11px 14px;
-    border-bottom: 1px solid var(--color-rule);
-    font-family: var(--font-mono);
+    gap: 4px 12px;
+    padding: 0;
     font-size: 13px;
     letter-spacing: 0;
   }
 
   .doc .capture-name {
     text-wrap: pretty;
+    font-weight: 600;
     color: var(--color-ink);
   }
 
@@ -645,23 +650,24 @@ const {
     color: var(--color-ink-3);
   }
 
+  /* The screenshot keeps a corner so it reads as mounted on the surface rather
+     than bleeding out of it. */
   .doc .capture-shot {
     display: block;
     width: 100%;
     height: auto;
+    border-radius: 6px;
   }
 
   .doc .capture-note {
     text-wrap: pretty;
     display: block;
     margin: 0 !important;
-    padding: 13px 14px;
-    border-top: 1px solid var(--color-rule);
-    font-family: var(--font-mono) !important;
-    font-size: 13.5px !important;
-    line-height: 1.7 !important;
+    padding: 0;
+    font-size: 15px !important;
+    line-height: 1.55 !important;
     letter-spacing: 0;
-    color: var(--color-ink-3) !important;
+    color: var(--color-ink-2) !important;
   }
 
   /* ---- the equipment junction --------------------------------------------- */

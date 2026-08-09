@@ -41,7 +41,7 @@ export const PAIRS = [
   ['ink', 'band-b', 'AA', 'ledger row text, alternate'],
   ['ink-2', 'band-a', 'AA', 'ledger row label'],
   ['ink-2', 'band-b', 'AA', 'ledger row label, alternate'],
-  ['ink-3', 'band-b', 'AA', 'before/after tag on the compare surface'],
+  ['ink-3', 'band-b', 'AA', 'before/after tag and capture surface label'],
   ['ink-2', 'paper', 'AA', 'secondary prose'],
   ['ink-3', 'paper', 'AA', 'mono labels @ 11px'],
   ['signal', 'paper', 'AA', 'links, section numbers'],
