@@ -677,7 +677,7 @@ const {
      on a screenshot that has its own edges. */
   .doc .captures > li {
     display: grid;
-    gap: 14px;
+    gap: 10px;
     margin: 0;
     padding: 18px;
     align-self: start;
@@ -719,13 +719,11 @@ const {
     border-radius: var(--radius-inset);
   }
 
-  /* Full-bleed out of the card's 18px padding, so this footer sits flush like
-     the embed footers rather than inset on the mat. Type and colour come from
-     .evidence-foot. */
+  /* Inside the card's own padding. The grid gap above it is the only space it
+     needs, so it carries none of its own. */
   .doc .capture-note {
     display: block;
-    --foot-bleed: 0 -18px -18px;
-    --foot-pad: 14px 18px;
+    --foot-pad: 0;
   }
 
   /* ---- the equipment junction --------------------------------------------- */

@@ -334,28 +334,34 @@
     text-wrap: balance;
   }
 
-  /* The footer on an evidence card.
+  /* The note on an evidence card.
 
      One class, in the library, because there were four of these written four
-     times: two at `0 10px 12px` on the mat, one at `22px 18px` on the mat, one
-     with no padding inside the card's own. Full-bleed white under the mat, so
-     the caption reads as the card's own strip rather than as text floating on
-     the mount — the card is then page, mat, art, footer, and each one says
-     which it is. */
+     times: two at `0 10px 12px`, one at `22px 18px`, one with no padding inside
+     the card's own.
+
+     On the mat, not on a white strip. A white footer needed 24px above the text
+     to hold the boundary between two surfaces; with one surface there is no
+     boundary to hold, so the art's own 10px inset is the whole gap. Text lines
+     up with the art's left edge rather than the card's.
+
+     Geometry comes through variables, not fixed values. This rule is inside a
+     layer and carries !important, and a layered !important beats an unlayered
+     one however specific the unlayered selector is — so a host that needs
+     different spacing cannot get it by writing a more specific rule. It sets
+     the variable instead.
+
+     ink-2, not ink-3: ink-3 is tuned for white and is not an audited pair
+     against the mount. */
   .evidence-foot {
-    /* Through variables, not fixed values. This rule is inside a layer and
-       carries !important, and a layered !important beats an unlayered one no
-       matter how specific the unlayered selector is — so a host that needs to
-       break out of its own padding cannot do it by writing a more specific
-       rule. It sets the variable instead. */
     margin: var(--foot-bleed, 0) !important;
-    padding: var(--foot-pad, 14px 16px) !important;
-    background: var(--color-paper-raised);
+    padding: var(--foot-pad, 0 10px 12px) !important;
+    background: none;
     font-family: var(--font-mono);
     font-size: 13px !important;
     line-height: 1.45 !important;
     letter-spacing: 0;
-    color: var(--color-ink-3) !important;
+    color: var(--color-ink-2) !important;
     text-wrap: pretty;
   }
 

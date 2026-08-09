@@ -194,9 +194,9 @@ export const rules = [
     why: 'Three values were doing two jobs — 10px, 6px and 4px — with the split falling wherever a component happened to be written, and five card-shaped containers had no radius at all: the feedback table, the surface ledger, the receipt, the needs blocks and the prose aside. Same shape, same job, square corners while everything else was round.',
   },
   {
-    title: 'Build an evidence card in four layers',
-    statement: 'Page, then mat, then art inset 10px, then a full-bleed white footer.',
-    why: 'Each layer says which it is, and each was wrong somewhere. The cards were on paper-raised — white holding near-white applications, meeting the page at 1.03:1. The art ran to the card edge, so the mat only showed at the corners. And the footer was written four times: two at 0 10px 12px on the mat, one at 22px 18px on the mat, one with no padding inside the card\u2019s own. One class carries it now.',
+    title: 'Build an evidence card in three layers',
+    statement: 'Page, then mat, then art inset 10px. The note sits on the mat, 10px under the art.',
+    why: 'Each layer says which it is, and each was wrong somewhere. The cards were on paper-raised — white holding near-white applications, meeting the page at 1.03:1. The art ran to the card edge, so the mat only showed at the corners. And the note was written four times: two at 0 10px 12px, one at 22px 18px, one with no padding inside the card\u2019s own. A white footer strip was tried and dropped: it needed 24px above its text to hold a boundary between two surfaces, and there is only one surface.',
   },
   {
     title: 'Reserve the label treatment for labels',
