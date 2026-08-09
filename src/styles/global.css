@@ -60,6 +60,7 @@
   --color-ink: #3B2923;
   --color-ink-2: #55534b;
   --color-ink-3: #6b6961;
+  --color-ink-quiet: #7a6e6b;
 
   /* rules — the visible grid */
   /* The header is the one flat field of colour on the site, so it has to hold
@@ -132,15 +133,22 @@
        `fixed` attachment sizes this gradient to the viewport rather than the
        document, so the top half is always the nav's white and the bottom half
        always the footer's near-black, whatever the page length. Overscroll at
-       the top shows white under a white nav; at the bottom, black under a
-       black footer. In normal scroll it is invisible: body paints paper over
-       all of it. */
-    background: linear-gradient(
-        to bottom,
-        var(--color-paper-raised) 0 50%,
-        var(--color-deep) 50% 100%
-      )
-      fixed;
+       the top shows white under a white nav; at the bottom, grey under a grey
+       footer. In normal scroll it is invisible: body paints paper over it.
+
+       The background-color is not redundant with the gradient, and using the
+       `background` shorthand here is a bug: the shorthand resets the colour to
+       transparent, and Safari fills the rubber-band area from the root's
+       background-COLOR rather than its image — so it fell through to body's
+       grey and the page colour showed above the nav anyway. Longhands, and an
+       explicit colour matching the top of the gradient. */
+    background-color: var(--color-paper-raised);
+    background-image: linear-gradient(
+      to bottom,
+      var(--color-paper-raised) 0 50%,
+      var(--color-deep) 50% 100%
+    );
+    background-attachment: fixed;
   }
 
   body {

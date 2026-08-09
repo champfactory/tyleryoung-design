@@ -1,26 +1,33 @@
 ---
 import Draft from './Draft.astro';
-import type { Story } from '../data/stories';
+import { emphasise, type Story } from '../data/stories';
 import Chevron from './Chevron.astro';
 
 interface Props {
   story: Story;
 }
 const { story } = Astro.props;
-const { eyebrow, claim, outcome, artifacts, draft } = story;
+const { eyebrow, claim, outcome, artifacts, emphasis, draft } = story;
+
+/**
+ * No headline. The claim and what followed it are one passage now, and the
+ * emphasis carries the structure the title used to.
+ */
+const passage = emphasise(`${claim} ${outcome}`, emphasis);
 ---
 
 <article class="story">
   <header class="head">
-    <span class="eyebrow">{eyebrow}</span>
+    <h3 class="eyebrow">{eyebrow}</h3>
   </header>
 
   <div class="body">
-    <h3 class="heading claim">
-      {draft ? <Draft>{claim}</Draft> : claim}
-    </h3>
-    <p class="outcome">
-      {draft ? <Draft>{outcome}</Draft> : outcome}
+    <p class="passage">
+      {
+        passage.map((run) =>
+          run.on ? <strong>{run.text}</strong> : run.text
+        )
+      }
     </p>
 
     <ul class="artifacts">
@@ -64,7 +71,11 @@ const { eyebrow, claim, outcome, artifacts, draft } = story;
     gap: 14px;
   }
 
+  /* The card's heading. It was a span beside an h3 claim; with the claim gone
+     the outline had a card with no heading in it at all, so the eyebrow takes
+     the role. Same text, same look — it just exists in the outline now. */
   .eyebrow {
+    margin: 0;
     font-family: var(--font-prose);
     font-size: 16px;
     font-weight: 600;
@@ -72,22 +83,28 @@ const { eyebrow, claim, outcome, artifacts, draft } = story;
     color: var(--color-ink-2);
   }
 
-  /* The claim is the 15-second read. It gets headline weight. */
-  .claim {
-    font-size: clamp(28px, 4.4vw, 44px);
-    margin: 0 0 18px;
+  /* NEW STYLE — the titleless story passage.
+     No headline above it, so the passage has to do both jobs: be scannable and
+     be readable. It is set large and at 500 in the quiet grey, with the phrases
+     that carry the claim in full ink at 700. A reader taking only the dark
+     words gets the claim; a reader taking all of it gets the story. The
+     contrast between the two weights is what the headline used to be, which is
+     why the base cannot simply be light grey — --color-ink-quiet is the
+     lightest step that still holds AA on its own. */
+  .passage {
+    font-size: clamp(24px, 2.5vw, 30px);
+    font-weight: 500;
+    line-height: 1.42;
+    letter-spacing: -0.012em;
+    color: var(--color-ink-quiet);
+    margin: 0;
+    max-width: 30ch;
+    text-wrap: pretty;
   }
 
-  .outcome {
-    font-size: 20px;
-    /* One step up from body. At 400 the card's only paragraph read lighter than
-       the ink around it; 500 gives it the weight of the claim it supports. */
-    font-weight: 500;
-    line-height: 1.55;
+  .passage strong {
+    font-weight: 700;
     color: var(--color-ink);
-    margin: 0;
-    max-width: 52ch;
-    text-wrap: pretty;
   }
 
   .artifacts {
