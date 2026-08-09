@@ -821,7 +821,11 @@ const {
     font-size: clamp(23px, 3.1vw, 30px);
     line-height: 1.28;
     color: var(--color-ink);
-    text-wrap: balance;
+    /* Not `balance`. The cap is already off, but balancing evens the lines
+       rather than filling them, so a two-line quote wraps early and sits in
+       half the width it was given. `pretty` keeps the widow protection without
+       shortening the measure. */
+    text-wrap: pretty;
   }
 
   /* ---- case-study evidence patterns ------------------------------------- */

@@ -28,9 +28,33 @@ const { title, label = 'More in this group', links } = Astro.props;
 }
 
 <style>
+  /* The same two columns the document uses, with the rail column left empty,
+     so this block starts exactly where the prose does. It used to sit at the
+     shell edge — 80px against the prose at 380 — because it renders outside
+     `.columns`. Matching the grid rather than hardcoding an offset means it
+     cannot drift when the rail or the gap changes. */
   .crosslinks {
     margin-top: 96px;
     padding-top: 20px;
+  }
+
+  @media (min-width: 810px) {
+    .crosslinks {
+      display: grid;
+      grid-template-columns: 200px minmax(0, 1fr);
+      gap: 56px;
+    }
+
+    .crosslinks > * {
+      grid-column: 2;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .crosslinks {
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 80px;
+    }
   }
 
   h2 {

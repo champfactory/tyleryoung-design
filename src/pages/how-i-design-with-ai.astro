@@ -6,27 +6,17 @@ import { REPO, REPO_LABEL } from '../data/site.mjs';
 import { principles, requirements, PREVIEW_PAIRS } from '../data/rubric.mjs';
 
 /**
- * One page, because the argument and its evidence should not be two clicks
- * apart behind two different affordances. The method used to live here and the
- * proof used to live at /colophon, in the footer — the claim in the navigation
- * and the thing that made it credible in the site's lowest-value real estate.
+ * Three beats: before a system exists, the moment it starts to constrain, and
+ * after. Written from that shape rather than assembled from the method page and
+ * the colophon, which is what the previous version was.
  *
- * The thesis is the inversion: a brief can be written before anything exists,
- * and a design system cannot. So the page runs in that order — write the brief,
- * build enough real output for the families to surface, and only then let the
- * system constrain what comes next.
- *
- * Dropped in the merge: the old site's before/after comparison and the account
- * of reading it. Both are about the decision to redesign, not about designing
- * with an agent.
+ * The six brief questions and the six review criteria are ledgers here, not
+ * headed sections with a paragraph each. They were the argument when the page
+ * was a list of four things I build. They are reference material inside phase
+ * two now, and explaining each one twice was the fluff.
  */
-
-// Computed at build time from the same module the pre-build check runs against.
-// A hand-typed table of passing numbers would be a claim; this is the check.
 const rows = audit();
 const passing = rows.filter((r) => r.pass).length;
-
-// The preview and the full table read the same rows, so they cannot disagree.
 const preview = PREVIEW_PAIRS.map(([fg, bg]) => rows.find((r) => r.fg === fg && r.bg === bg)).filter(
   Boolean,
 );
@@ -37,19 +27,46 @@ const proof = [
   [`${passing} / ${rows.length}`, 'Colour pairs passing'],
   ['10', 'Old essay URLs preserved'],
 ];
+
+/** What a brief has to answer. Writable before anything exists. */
+const brief = [
+  ['Intent', 'Who is trying to do what, and which decision should get easier?'],
+  ['Required behavior', 'What has to hold across every state, transition, permission and failure path?'],
+  ['System constraints', 'Which tokens, components and patterns must the work resolve to?'],
+  ['Prohibited actions', 'What may the agent not do without a person?'],
+  ['Open questions', 'What should the work help us resolve?'],
+  ['Evaluation criteria', 'What would make this wrong even if it looked finished?'],
+];
+
+/** What I read a generated screen against. */
+const lenses = [
+  ['Intent', 'Does it solve the problem we agreed to solve?'],
+  ['Behavior', 'Do the states, transitions, permissions and failure paths make sense?'],
+  ['System', 'Does it strengthen the product’s patterns, or erode them?'],
+  ['Content', 'Does it explain what happened and what to do next?'],
+  ['Accessibility', 'Can people perceive, understand and operate it in real conditions?'],
+  ['Implementation', 'Is the behavior credible in the actual product?'],
+];
+
+/** The three places an agent would otherwise decide by default. */
+const limits = [
+  ['Invent a system value', 'If no approved value exists, name the gap. Do not fill it.'],
+  ['Resolve product ambiguity', 'An assumption made at speed is still an assumption, and it arrives looking finished.'],
+  ['Treat valid as approved', 'Passing every check is not the same as being worth building.'],
+];
 ---
 
 <DocumentLayout
   title="I define the conditions in which AI produces design work"
   metaTitle="I design with AI, and this site is the evidence | Tyler Young"
-  description="An agent can produce a polished interface in minutes. That speed does not tell the team whether the interface solves the right problem. The brief, system, review loop and perimeter I build for agents to work inside — and this site, built that way."
+  description="Before a design system exists, you cannot specify it — you build real output until the patterns show. After it exists, it constrains what gets built. The work reverses at that point, and this site is the worked example."
   eyebrow="AI-assisted product design"
   current="building"
   meta={[
     ['Practice', 'AI-assisted product design'],
     ['My role', 'Frame · constrain · evaluate · decide'],
     ['This site', 'Astro · Tailwind · static · no client JavaScript'],
-    ['Principle', 'AI expands the available options. People remain responsible for what those options mean and what ships.'],
+    ['Built', 'From nothing, in four days'],
   ]}
   links={[
     { label: 'The design system', href: '/design-system' },
@@ -57,137 +74,61 @@ const proof = [
   ]}
 >
   <p class="lede">
-    An agent can produce a polished interface in minutes. That speed does not
-    tell the team whether the interface solves the right problem.
+    An agent can build a polished interface in minutes. It cannot tell you
+    whether that interface is the right one.
   </p>
   <p>
-    Someone still has to define the intended outcome, specify the behavior,
-    protect the product’s system, compare the options, and decide what is good
-    enough to ship. Those are design decisions, and I remain accountable for
-    them.
-  </p>
-  <p>
-    AI changes how quickly those decisions become working software. A process
-    that once produced one direction in several weeks can now produce several
-    working directions in a few hours. The team can compare actual behavior
-    instead of predicting how static screens might behave.
-  </p>
-  <p>
-    Because implementation happens earlier, my decisions must also happen
-    earlier. A rule cannot wait for a handoff document if the agent is already
-    building. It must be part of the environment the agent works within.
-  </p>
-  <p>I build that environment from four things:</p>
-  <ul>
-    <li>a brief that defines the problem</li>
-    <li>a system that constrains the output</li>
-    <li>a review loop that compares the options</li>
-    <li>a perimeter that reserves certain decisions for people</li>
-  </ul>
-
-  <h2>The brief defines what the work must accomplish</h2>
-  <p>
-    An agent can produce a convincing answer to a poorly framed problem. The
-    quality of the output therefore depends first on the quality of the brief.
-  </p>
-  <p>Before generating an interface, I answer six questions.</p>
-
-  <h3>Intent</h3>
-  <p>Who is trying to do what, and which decision should become easier?</p>
-  <p>
-    This establishes the purpose of the work. Without it, the agent can optimize
-    the screen without improving the user’s situation.
+    So my work moved to the conditions the agent produces inside. Those
+    conditions change once, sharply, at the point a design system becomes real
+    enough to constrain what gets built. Everything about how I work reverses
+    there.
   </p>
 
-  <h3>Required behavior</h3>
+  <h2>Before the system exists</h2>
   <p>
-    What must remain true across every state, transition, permission, and
-    failure path?
+    A brief can be written before anything exists. A design system cannot.
   </p>
   <p>
-    A default screen shows only one moment. The behavioral requirements define
-    the product across the moments the screen does not show.
+    A system is a set of families — of surface, ink, type, space, mark,
+    sentence — and a family is invisible in a single instance. You need enough
+    real output to compare before there is anything to standardise.
   </p>
-
-  <h3>System constraints</h3>
-  <p>Which tokens, components, and patterns must the work use?</p>
   <p>
-    These constraints connect the new interface to the existing product. They
-    prevent each generated option from creating its own visual and behavioral
-    rules.
+    So I write the brief, then move to running software fast and look for what
+    repeats. Speed is not the point. Legibility is.
   </p>
 
-  <h3>Prohibited actions</h3>
-  <p>Which actions require a person?</p>
-  <p>
-    Some decisions affect access, safety, money, or other people. The brief
-    identifies where the product may assist and where it must stop for approval.
-  </p>
-
-  <h3>Open questions</h3>
-  <p>What should the work help the team learn?</p>
-  <p>
-    Not every part of the problem is settled before exploration begins. Naming
-    the uncertainty turns generated options into a way to investigate it.
-  </p>
-
-  <h3>Evaluation criteria</h3>
-  <p>What would make the result wrong even if it looked complete?</p>
-  <p>These criteria prevent polish from becoming evidence of quality.</p>
+  <ol class="loop">
+    {
+      brief.map(([label, question]) => (
+        <li>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{question}</span>
+        </li>
+      ))
+    }
+  </ol>
 
   <p>
-    Together, the six answers describe more than a screen. They define the
-    purpose, behavior, constraints, risks, unknowns, and standard by which the
-    result will be judged.
-  </p>
-
-  <h2>A design system cannot be written first</h2>
-  <p>
-    The brief can be written before anything exists. The design system cannot.
-    A system is a set of families — of colour, type, spacing, component,
-    sentence — and a family is not visible from a single instance. You have to
-    produce enough real output for the pattern to show itself.
-  </p>
-  <p>
-    So on new work I move to running software quickly, then look for what
-    repeats. The point of the speed is not the output. It is that families only
-    become legible in the aggregate, and until they are legible there is nothing
-    to standardise.
-  </p>
-  <p>
-    This site is the example. It was built from nothing in four days, and every
-    system decision in it surfaced the same way — as a pattern I could not have
-    specified in advance:
+    This site is the worked example. Four days, from nothing. Every system
+    decision in it arrived as a defect first:
   </p>
   <ul>
     <li>
-      one alternating row treatment turned out to be five separate
-      implementations across four files, invisible until two of them were seen
-      disagreeing
+      one alternating row treatment was five implementations across four files,
+      invisible until two were seen disagreeing
     </li>
-    <li>
-      a single heading construction turned out to be a tic repeated twenty
-      times, invisible until it was counted
-    </li>
-    <li>
-      pull-quotes on every page turned out to be restating the paragraph above
-      them, which is only obvious once you have several to compare
-    </li>
-    <li>
-      one banded colour took six rendered rounds to settle, because the right
-      value was only judgeable against real content
-    </li>
+    <li>one heading construction was a tic repeated twenty times, invisible until counted</li>
+    <li>pull-quotes on every page were restating the paragraph above them</li>
+    <li>one banded colour took six rendered rounds, because the value was only judgeable against real content</li>
   </ul>
   <p>
-    Each of those started as a single defect and ended as a change to the
-    system. That is the move: fix the family, not the instance. A token changed
-    once propagates everywhere, and the same page never has to be corrected
-    twice.
+    Each began as one wrong thing on one page and ended as a change to the
+    system. That is the move: fix the family, not the instance.
   </p>
   <p>
-    The four principles this site is held to were written before any of it
-    existed, which is the other half of the same point. The standard is
-    specifiable up front; the system that satisfies it is not.
+    The standard, though, was written first — before any of it existed. That is
+    the half of the work that does not need the output.
   </p>
 
   <ul class="principles">
@@ -201,170 +142,99 @@ const proof = [
     }
   </ul>
 
-  <h2>Then the system constrains what AI can produce</h2>
+  <h2>The tipping point</h2>
   <p>
-    A brief defines the problem. The design system defines the approved language
-    for solving it.
+    The system becomes real when it can answer a question before the work
+    starts. Until then it is a record of what was built. After it, it decides
+    what may be.
+  </p>
+  <p>The direction of the work reverses at that line.</p>
+  <p>
+    Before: output produces the system. I am reading generated work to find
+    families.
   </p>
   <p>
-    Every colour, type style, spacing value, radius, component, interaction
-    pattern, and accessibility rule resolves to the system. If the required
-    value or pattern does not exist, the agent reports the gap instead of
-    inventing a local solution.
+    After: the system produces the output. I am setting constraints, and the
+    agent reports a gap instead of inventing a local answer.
   </p>
   <p>
-    This changes the role of the system. It is no longer a reference that
-    someone checks after implementation. It becomes part of the environment from
-    which the implementation is generated.
-  </p>
-  <p>
-    At Atheer, I rebuilt an aging design system into this kind of production
-    pipeline. Exploration returned as working components. Designers could test
-    new directions without breaking the product’s coherence. Engineers received
-    behavior in code. Brand and accessibility rules applied before review rather
-    than being corrected afterward.
-  </p>
-  <p>
-    The product and its component library are both running. The library
-    documents the states and variations that connect the system to the product.
-  </p>
-  <p>
-    <a class="link" href="/ops-manager">See the operations product and its design system</a>
-  </p>
-  <p>
-    When the system directly governs production, it does more than keep the
-    interface consistent. It defines which changes the product can accept
-    without creating a new rule.
+    Miss the crossing and you keep hand-correcting instances of a rule you
+    already know — which is the expensive failure, because AI makes producing
+    those instances almost free.
   </p>
 
-  <h2>The review loop turns options into decisions</h2>
+  <h2>After the system exists</h2>
   <p>
-    The brief and system can produce several credible options. They cannot
-    decide which option best resolves the problem.
+    Every colour, type style, spacing value, radius, component and accessibility
+    rule resolves to the system. Where a value does not exist, the agent names
+    the gap. The system stops being a document someone checks against and
+    becomes the environment the interface is generated inside.
   </p>
   <p>
-    Generating three versions may now be cheap. Comparing their behavior,
-    consequences, and tradeoffs still requires judgment.
+    At Atheer I rebuilt an ageing system into that kind of pipeline.
+    Explorations came back as working components, engineers received behaviour
+    as code, and brand and accessibility rules applied before review instead of
+    after it.
   </p>
   <p>
-    On a recent engagement, I built three approaches to the same problem and
-    published each at a separate URL. The team could use the alternatives, read
-    their real content, and encounter their edge cases. That gave us stronger
-    evidence than three static pictures could provide.
+    <a class="link" href="/ops-manager">The product and the system it was built from</a> are both
+    running.
   </p>
   <p>
-    Running software also exposes disagreements that specifications can hide. A
-    designer and engineer may use the same term but expect different behavior.
-    An agent may satisfy a sentence while missing the reason behind it. Once
-    those interpretations become working software, the team can see and discuss
-    the difference.
-  </p>
-  <p>I compare every option against six criteria.</p>
-
-  <h3>Intent</h3>
-  <p>Does it solve the problem the team agreed to solve?</p>
-
-  <h3>Behavior</h3>
-  <p>Do its states, transitions, permissions, and failure paths make sense?</p>
-
-  <h3>System</h3>
-  <p>Does it strengthen the product’s existing patterns or weaken them?</p>
-
-  <h3>Content</h3>
-  <p>
-    Does the interface explain what happened and what the user should do next?
+    Generating three directions is cheap now; choosing between them is not. I
+    build them, deploy each to its own URL, and read every one against six
+    questions.
   </p>
 
-  <h3>Accessibility</h3>
-  <p>Can people perceive, understand, and operate it under real conditions?</p>
-
-  <h3>Implementation</h3>
-  <p>Can the proposed behavior work credibly in the actual product?</p>
-
-  <p>
-    An interface can be clean and consistent while failing one of these tests.
-    That is why visual polish is not the end of the review.
-  </p>
-  <p>
-    I do not need to draw every artifact by hand to maintain a standard. I need
-    to distinguish work that is coherent from work that is merely plausible,
-    explain the difference, and improve the system when the same weakness
-    appears repeatedly.
-  </p>
-  <p>
-    A stakeholder review on this site shows that process in practice: two
-    running builds, 48 notes, and three examples in which the written request
-    and the right product decision were not the same.
-  </p>
-  <p>
-    <a class="link" href="/review-loop">See the stakeholder review loop</a>
-  </p>
-
-  <h2>The perimeter defines what AI may decide</h2>
-  <p>
-    The brief directs the work, the system constrains it, and the review loop
-    evaluates it. The perimeter determines which decisions the agent may make
-    along the way.
-  </p>
-  <p>An agent can:</p>
-  <ul>
-    <li>generate options within approved patterns</li>
-    <li>implement an approved direction</li>
-    <li>run defined checks</li>
-    <li>identify a missing pattern</li>
-    <li>propose an addition to the system</li>
-  </ul>
-  <p>
-    It cannot make every unresolved choice by default. I set three limits.
-  </p>
-
-  <h3>Do not invent design-system values</h3>
-  <p>
-    If the system has no approved value or pattern, the agent identifies the
-    gap. It does not hide the missing decision inside a component-specific
-    solution.
-  </p>
-
-  <h3>Do not resolve product ambiguity</h3>
-  <p>
-    When the requirements support several interpretations, the agent returns the
-    question to the team. Choosing one interpretation at speed would still be an
-    assumption, even if the result looked finished.
-  </p>
-
-  <h3>Do not confuse valid with approved</h3>
-  <p>
-    A result can compile, pass its checks, and follow the design system while
-    still being the wrong thing to build. Technical validity establishes that
-    the implementation works as specified. Human approval establishes that the
-    specification was worth implementing.
-  </p>
+  <ol class="loop">
+    {
+      lenses.map(([label, q]) => (
+        <li>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{q}</span>
+        </li>
+      ))
+    }
+  </ol>
 
   <p>
-    These limits matter because faster production also makes misunderstandings
-    faster to produce. Before work ships, a person must know what changed, which
-    checks ran, what assumptions remain, and what else the change could affect.
+    A screen can be clean, consistent and still wrong. Running software also
+    exposes what a specification hides — two people using one word for two
+    behaviours, an agent satisfying a sentence and missing its reason.
   </p>
   <p>
-    In Alucify, I designed the product surfaces that make those distinctions
-    visible.
-  </p>
-  <p>
-    <a class="link" href="/alucify">See the Alucify case study</a>
-  </p>
-  <p>
-    I automate execution more readily than judgment because execution follows an
-    established decision. Judgment determines which decision the product should
-    embody.
+    <a class="link" href="/review-loop">A stakeholder review run this way</a> is on the site: two
+    running builds, forty-eight notes, and the three where the written request
+    and the right decision were not the same.
   </p>
 
+  <h2>What holds on both sides</h2>
+  <p>
+    Three decisions stay mine regardless of how much system exists, because they
+    are the places an agent would otherwise decide by default.
+  </p>
+
+  <ol class="loop">
+    {
+      limits.map(([label, note]) => (
+        <li>
+          <span class="loop-actor">{label}</span>
+          <span class="loop-what">{note}</span>
+        </li>
+      ))
+    }
+  </ol>
+
+  <p>
+    In <a class="link" href="/alucify">Alucify</a> I designed the surfaces that make those
+    distinctions visible in a product. Here they are enforced by the build.
+  </p>
 
   <h2 id="this-site">What gets checked, and by whom</h2>
   <p>
-    A perimeter is only real if something enforces it. On this site the build
-    does. Every requirement names its verifier, and the page says which are
-    machine-checked and which are read by a person, because those are not the
-    same promise.
+    A perimeter is only real if something enforces it. Every requirement on this
+    site names its verifier, and the page says which are machine-checked and
+    which a person reads, because those are not the same promise.
   </p>
 
   <ul class="ledger">
@@ -382,14 +252,9 @@ const proof = [
   </ul>
 
   <p>
-    The first gate matters most. The site argues that every claim can be opened,
-    so a dead deployment fails the build the same way a broken link does.
-  </p>
-  <p>
     Colour is the clearest case. Every pairing is checked at the smallest size
-    it appears, and it failed twice during the build. Both times the token
-    changed rather than the component, so the fix propagated everywhere — the
-    family, not the instance.
+    it appears, and two failed during this build. Both times the token changed
+    rather than the component — the family, not the instance.
   </p>
 
   <p class="result-line">{passing} of {rows.length} documented colour pairs pass.</p>
@@ -422,8 +287,7 @@ const proof = [
       }
     </tbody>
   </table>
-
-  <details class="all-pairs">
+\n  <details class="all-pairs">
     <summary><Chevron weight="bold" />View all {rows.length} colour-pair results</summary>
     <div class="scroller">
       <table class="ratios">
@@ -472,40 +336,19 @@ const proof = [
   </ul>
 
   <p>
-    The code is public. Reading it is the last check, and the one I cannot run
-    on my own behalf.
+    The code is public, and reading it is the one check I cannot run on my own
+    behalf.
   </p>
 
-  <h2>AI changes the material of design work</h2>
+  <h2>What changed is the material</h2>
   <p>
-    AI does not remove the need for design. It changes where design decisions
-    have the most leverage.
+    I am not a frontend engineer and I do not think designers need to become
+    one. What changed is where the leverage sits. When each screen was expensive
+    to make, the work was making them. When working software is cheap, the work
+    is the environment producing it.
   </p>
   <p>
-    When producing each screen was expensive, much of the work centered on
-    creating and handing off individual artifacts. When working software becomes
-    cheap to generate, the larger constraint is the quality of the environment
-    producing it.
-  </p>
-  <p>That environment includes:</p>
-  <ul>
-    <li>the brief that defines the outcome</li>
-    <li>the system that limits the available solutions</li>
-    <li>the loop that evaluates working options</li>
-    <li>the perimeter that assigns responsibility</li>
-  </ul>
-  <p>
-    Building these conditions allows more of the original decision to survive
-    implementation. The designer, engineer, and agent work from the same
-    constraints, so fewer assumptions have to cross a handoff through prose
-    alone.
-  </p>
-  <p>
-    The tools are new. The standard is not. The product must still be useful,
-    coherent, accessible, explainable, and right for the people it serves.
-  </p>
-  <p>
-    AI increases the amount of work a team can produce. My leverage comes from
-    improving the system that determines what kind of work gets produced.
+    The tools are new. The standard is not: useful, coherent, accessible,
+    explainable, and right for the people it serves.
   </p>
 </DocumentLayout>
