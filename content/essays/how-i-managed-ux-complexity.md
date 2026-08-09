@@ -15,7 +15,7 @@ descriptionDraft: true
 contribution: >-
   Introduced a “complexity budget” to reduce UX friction and anchor scope decisions in measurable user effort
 role: >-
-  Led in partnership with with product
+  Led in partnership with product
 scope: >-
   Cross-Functional System Implementation & Process Optimization
 takeaway: >-

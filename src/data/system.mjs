@@ -60,7 +60,15 @@ export const inks = [
   ['signal', 'Links. Nothing else is ever this colour.'],
 ].map(([name, use]) => ({ name, use, value: value(`color-${name}`) }));
 
-export const type = tokens('text-');
+/**
+ * Sorted by rendered size rather than source order: the file happens to declare
+ * h2 above lede, which reads as a broken scale when the whole set is shown at
+ * once. The clamped display step has no single px and sorts last.
+ */
+export const type = tokens('text-').sort((a, b) => {
+  const px = (t) => (t.value.startsWith('clamp') ? Infinity : parseFloat(t.value));
+  return px(a) - px(b);
+});
 export const space = tokens('space-');
 
 /** The marks, and what each one means when it appears. */

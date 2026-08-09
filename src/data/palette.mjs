@@ -21,8 +21,10 @@ export const TOKENS = {
   'rule-strong': '#b9b4a6',
   machine: '#16161a',
   'machine-raised': '#202027',
+  'machine-band': '#1b1b21',
   'machine-ink': '#e6e4dc',
   'machine-ink-2': '#9d9a90',
+  'machine-signal': '#4da3ff',
   signal: '#0066CC',
   'signal-ink': '#ffffff',
   header: '#e2eefb',
@@ -37,6 +39,13 @@ export const TOKENS = {
 
 /** Pairs that must pass, at the smallest size each is actually used. */
 export const PAIRS = [
+  ['machine-ink', 'machine', 'AA', 'design-system page body'],
+  ['machine-ink-2', 'machine', 'AA', 'design-system page labels'],
+  ['machine-signal', 'machine', 'AA', 'design-system page links'],
+  ['machine-ink', 'machine-raised', 'AA', 'design-system row text'],
+  ['machine-ink-2', 'machine-raised', 'AA', 'design-system row detail'],
+  ['machine-ink', 'machine-band', 'AA', 'design-system row text, alternate'],
+  ['machine-ink-2', 'machine-band', 'AA', 'design-system row detail, alternate'],
   ['ink', 'paper', 'AA', 'body + headings'],
   ['ink', 'band-a', 'AA', 'ledger row text'],
   ['ink', 'band-b', 'AA', 'ledger row text, alternate'],

@@ -125,9 +125,15 @@
   /* machine — dark instrument panels: terminals, code, receipts */
   --color-machine: #16161a;
   --color-machine-raised: #202027;
+  /* the second of the two dark alternating rows, on the design-system page */
+  --color-machine-band: #1b1b21;
   --color-machine-rule: #33333d;
   --color-machine-ink: #e6e4dc;
   --color-machine-ink-2: #9d9a90;
+  /* Signal blue scores 3.24 on the machine surface and fails. The dark
+     property gets its own link colour rather than borrowing one that only
+     works on paper. */
+  --color-machine-signal: #4da3ff;
 
   /* signal — one accent, used only for things that are live or interactive */
   --color-signal: #0066CC;

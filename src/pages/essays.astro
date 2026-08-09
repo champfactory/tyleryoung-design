@@ -1,106 +1,82 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHead from '../components/PageHead.astro';
 import { essayGroups } from '../data/essayGroups';
 import Chevron from '../components/Chevron.astro';
 
 /**
- * Three dimensions of the work, equal in weight — related, not sequential, so
- * nothing here draws an arrow between them.
+ * Groups, their order and their headings come from essayGroups.ts. This file
+ * holds only what is particular to a card here — the claim, the summary, the
+ * result and the figure. The link text is the essay's own title, read from the
+ * collection, because it was being typed here as well and the two could drift.
  */
-const frames = [
-  ['Planning', 'Decide what is worth building before the roadmap hardens.'],
-  ['Standards', 'Keep quality consistent without me in every review.'],
-  ['People', 'Grow designers who can own a problem end to end.'],
-];
+const essays = await getCollection('essays');
+const titleFor = (slug: string) => essays.find((e) => e.data.slug === slug)!.data.title;
 
-const sections = [
-  {
-    label: essayGroups[0].label,
-    statement: essayGroups[0].statement,
-    cards: [
-      {
+const cards: Record<string, { title: string; paras: string[]; evidence: string; fig: string; alt: string; legend?: string }> = {
+  'how-i-translated-design-work': {
         title: 'I translated design into business terms',
         paras: [
           'Design proposals were being read as visual improvements because nobody had priced their value. Working with product leadership, I built a taxonomy of design work, mapped it to company metrics, and wrote a rubric that weighed user value, business value, effort and risk in the same conversation.',
         ],
         evidence: 'Executives started using the design levers in funding meetings.',
-        link: 'Three models that tied design to business metrics',
-        href: '/how-i-translated-design-work',
         fig: '/work/essays/how-i-translated-design-work/fig-2.svg',
         alt: 'Two-by-two placing the four business levers: efficiency in operation and now, growth in operation and future, retention in customer and now, strategic alignment in customer and future.',
-      },
-      {
+  },
+  'how-i-managed-ux-complexity': {
         title: 'I made complexity a scoping constraint',
         paras: [
           'Everyone agreed simplicity mattered, but nobody had a way to defend it. The complexity budget scored each flow on decision, attention and orientation load, which gave product, research, design and engineering a shared way to see where scope was asking too much of users and cut it before it reached the interface.',
         ],
         evidence: 'Complexity stopped being something to polish and became a cost to justify.',
-        link: 'A complexity budget for scope decisions',
-        href: '/how-i-managed-ux-complexity',
         fig: '/work/essays/how-i-managed-ux-complexity/fig-2.svg',
         alt: 'Heat map scoring four product flows against decision, attention and orientation load on the easy, manageable, challenging, frustrating scale, the heaviest cells shaded darkest.',
         legend: 'Easy · Manageable · Challenging · Frustrating',
-      },
-    ],
   },
-  {
-    label: essayGroups[1].label,
-    statement: essayGroups[1].statement,
-    cards: [
-      {
+  'how-i-scaled-design-efficiency': {
         title: 'I built a design system five functions chose to use',
         paras: [
           'Quality was drifting across siloed teams, conflicting standards and repeated handoff failures, so I led a system of more than 200 components that connected product, engineering, creative, marketing and planning. Nobody was ordered to use it — product managers learned it, engineering mirrored it, and teams began planning around it.',
         ],
         evidence: 'A design project became infrastructure that five functions rely on.',
-        link: 'A design system five functions chose to adopt',
-        href: '/how-i-scaled-design-efficiency',
         fig: '/work/essays/how-i-scaled-design-efficiency/fig-1.svg',
         alt: 'Three layers of design-system trust: shared language produces alignment, shared structure produces consistency, shared infrastructure produces velocity.',
-      },
-      {
+  },
+  'how-i-built-culture-around-paradox': {
         title: 'I made “good enough” a deliberate threshold',
         paras: [
           'Teams were rushing through problem definition and then polishing execution forever, so I flipped the standard: exceed the bar while you are defining the problem, and defend “good enough” once the work has done its job.',
         ],
         evidence: 'The team got more rigorous up front and stopped sooner at the end.',
-        link: 'Knowing when to stop building',
-        href: '/how-i-built-culture-around-paradox',
         fig: '/work/essays/how-i-built-culture-around-paradox/fig-1.svg',
         alt: 'Before and after table on team decision maturity: problem framing, alignment on success and knowing when to stop each move from implicit to deliberate.',
-      },
-    ],
   },
-  {
-    label: essayGroups[2].label,
-    statement: essayGroups[2].statement,
-    cards: [
-      {
+  'how-i-unlocked-team-trust': {
         title: 'I rebuilt specialist roles around product ownership',
         paras: [
           'After the pandemic shrank the team, a structure built on handoffs between UX and visual specialists was too brittle for the pace of the work. I rebuilt the group around junior product-design generalists and coached them to own everything from first framing to final delivery.',
         ],
         evidence: 'Junior designers delivered what senior specialists once had, faster and with fewer dependencies, then grew into planning and mentorship.',
-        link: 'Rebuilding the team from specialists to generalists',
-        href: '/how-i-unlocked-team-trust',
         fig: '/work/essays/how-i-unlocked-team-trust/fig-1.svg',
         alt: 'Before and after diagram of the team’s shape: separate specialist groups become one ring of product-design generalists around the product.',
-      },
-      {
+  },
+  'how-i-shaped-cross-functional-reputation': {
         title: 'I rewarded influence, not just output',
         paras: [
           'The career path rewarded execution, which kept capable designers out of strategic conversations. I made problem framing, recommendations, influence and mentorship count toward advancement, and gave designers room to practice them in roadmap and tradeoff meetings rather than only in critique.',
         ],
         evidence: 'Designers advanced by shaping direction, not by shipping more.',
-        link: 'Promoting designers for influence, not output',
-        href: '/how-i-shaped-cross-functional-reputation',
         fig: '/work/essays/how-i-shaped-cross-functional-reputation/fig-1.svg',
         alt: 'A five-stage growth loop running from structure to trust to opportunity to visibility to advancement, and back.',
-      },
-    ],
   },
-];
+};
+
+const sections = essayGroups.map((g) => ({
+  label: g.label,
+  statement: g.statement,
+  cards: g.slugs.map((slug) => ({ ...cards[slug], slug, link: titleFor(slug) })),
+}));
 ---
 
 <BaseLayout
@@ -121,10 +97,10 @@ const sections = [
 
     <ul class="frames">
       {
-        frames.map(([name, what]) => (
+        essayGroups.map((g) => (
           <li>
-            <h2 class="frame-name">{name}</h2>
-            <p class="frame-what">{what}</p>
+            <h2 class="frame-name">{g.label}</h2>
+            <p class="frame-what">{g.frame}</p>
           </li>
         ))
       }
@@ -137,9 +113,9 @@ const sections = [
         <p class="label">{sec.label}</p>
         <h2 class="heading statement" id={`sec-${si}`}>{sec.statement}</h2>
 
-        {sec.cards.map((c, ci) => (
+        {sec.cards.map((c) => (
           <article class="card">
-            <a class="media" href={c.href} tabindex="-1" aria-hidden="true">
+            <a class="media" href={`/${c.slug}`} tabindex="-1" aria-hidden="true">
               <img src={c.fig} alt={c.alt} loading="lazy" decoding="async" />
               {c.legend && <span class="legend">{c.legend}</span>}
             </a>
@@ -147,7 +123,7 @@ const sections = [
               <h3 class="heading card-title">{c.title}</h3>
               {c.paras.map((p) => <p class="summary">{p}</p>)}
               <p class="evidence">{c.evidence}</p>
-              <a class="artifact link-gap" href={c.href}>
+              <a class="artifact link-gap" href={`/${c.slug}`}>
                 {c.link}<Chevron />
               </a>
             </div>

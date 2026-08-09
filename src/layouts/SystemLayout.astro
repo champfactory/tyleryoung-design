@@ -1,0 +1,199 @@
+---
+/**
+ * A separate property, not a page of the portfolio.
+ *
+ * No nav, no footer, no metadata rail — arriving here should feel like opening
+ * the Storybook or the Figma file, because that is what it is: an artifact the
+ * case study points at. It carries the site's tokens so it cannot describe a
+ * system it does not use, and nothing else.
+ *
+ * Dark on purpose. The portfolio is paper; a spec sheet is an instrument
+ * panel, and the machine tokens already existed for exactly that.
+ */
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  metaTitle: string;
+  description: string;
+  kicker: string;
+}
+
+const { title, metaTitle, description, kicker } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="sys-root">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{metaTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="robots" content="index,follow" />
+  </head>
+  <body class="sys">
+    <a class="sys-skip" href="#main">Skip to content</a>
+
+    <header class="sys-head">
+      <div class="sys-wrap">
+        <a class="sys-home" href="/">tyleryoung.design</a>
+        <p class="sys-kicker">{kicker}</p>
+        <h1>{title}</h1>
+      </div>
+    </header>
+
+    <main id="main" class="sys-wrap">
+      <slot />
+    </main>
+
+    <footer class="sys-foot">
+      <div class="sys-wrap">
+        <a class="sys-link" href="/how-i-design-with-ai">The case this system belongs to</a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  /* Its own type: mono for every label and heading, because a spec sheet reads
+     as one. The portfolio's prose face carries the descriptions so the two are
+     never confused for each other. */
+  /* The canvas, not just the body: overscroll paints the root's background, so
+     rubber-banding on the portfolio's white would flash paper over this. Same
+     rule the main site follows, pointed at the other surface. */
+  html.sys-root {
+    background-color: var(--color-machine);
+  }
+
+  /* global.css puts the page grey on <main> — the arrangement the portfolio
+     needs and this property does not. */
+  body.sys main {
+    background: none;
+    padding: 0;
+  }
+
+  body.sys {
+    margin: 0;
+    background: var(--color-machine);
+    color: var(--color-machine-ink);
+    font-family: var(--font-prose);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sys-wrap {
+    max-width: 1080px;
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  @media (min-width: 810px) {
+    .sys-wrap {
+      padding-inline: 48px;
+    }
+  }
+
+  .sys-skip {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 40;
+    padding: 12px 20px;
+    background: var(--color-machine-ink);
+    color: var(--color-machine);
+    font-family: var(--font-code);
+    font-size: 12px;
+  }
+
+  .sys-skip:focus {
+    left: 0;
+  }
+
+  .sys-head {
+    padding: 40px 0 64px;
+    border-bottom: 1px solid var(--color-machine-rule);
+  }
+
+  .sys-home,
+  .sys-link {
+    font-family: var(--font-code);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--color-machine-signal);
+    text-decoration: none;
+  }
+
+  .sys-home:hover,
+  .sys-link:hover,
+  .sys-home:focus-visible,
+  .sys-link:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .sys-kicker {
+    margin: 56px 0 0;
+    font-family: var(--font-code);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-machine-ink-2);
+  }
+
+  body.sys h1 {
+    margin: 14px 0 0;
+    font-family: var(--font-code);
+    font-size: clamp(28px, 4.6vw, 46px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-machine-ink);
+  }
+
+  body.sys h2 {
+    margin: 88px 0 0;
+    font-family: var(--font-code);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-machine-ink-2);
+  }
+
+  body.sys main > p {
+    max-width: 62ch;
+    margin: 18px 0 0;
+    color: var(--color-machine-ink-2);
+    text-wrap: pretty;
+  }
+
+  body.sys main > h2 + p {
+    margin-top: 16px;
+  }
+
+  body.sys code {
+    font-family: var(--font-code);
+    font-size: 0.92em;
+    color: var(--color-machine-ink);
+  }
+
+  .sys-foot {
+    margin-top: 120px;
+    padding: 40px 0 72px;
+    border-top: 1px solid var(--color-machine-rule);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-machine-signal);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+</style>

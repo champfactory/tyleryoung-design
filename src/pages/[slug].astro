@@ -15,16 +15,23 @@ const d = entry.data;
 const group = groupForSlug(d.slug);
 
 /**
- * The rest of the group, in the rail rather than in a block after the essay.
- * They are where to go next, not part of the argument — the same reason the
- * case studies keep their artifacts there.
+ * The group, in the rail rather than in a block after the essay: where to go
+ * next, not part of the argument — the same reason the case studies keep their
+ * artifacts there.
+ *
+ * The whole group is listed, including this essay, because a rail showing only
+ * the others reports a group of one and gives no sense of what it belongs to.
+ * The heading is the group's own statement, read from essayGroups.ts, so it is
+ * the sentence the index uses rather than a second phrasing written here.
  */
-const siblings = group
-  ? (await getCollection('essays'))
-      .filter((e) => group.slugs.includes(e.data.slug) && e.data.slug !== d.slug)
-      .sort((a, b) => group.slugs.indexOf(a.data.slug) - group.slugs.indexOf(b.data.slug))
-      .map((e) => ({ href: `/${e.data.slug}`, label: e.data.title }))
+const all = await getCollection('essays');
+const inGroup = group
+  ? group.slugs.map((slug) => {
+      const e = all.find((x) => x.data.slug === slug)!;
+      return { href: `/${slug}`, label: e.data.title, current: slug === d.slug };
+    })
   : [];
+const siblings = [...inGroup, { href: '/essays', label: 'All six essays' }];
 ---
 
 <DocumentLayout
@@ -33,7 +40,8 @@ const siblings = group
   titleDraft={d.titleDraft}
   pull={d.pull}
   metaTitle={d.metaTitle}
-  description={d.description}={d.descriptionDraft}
+  description={d.description}
+  descriptionDraft={d.descriptionDraft}
   metaWarning={d.metaWarning}
   eyebrow={group?.label ?? 'Essay'}
   meta={[
@@ -43,7 +51,8 @@ const siblings = group
     ['Takeaway', d.takeaway],
   ]}
   links={siblings}
-  linksLabel={group ? `More in ${group.label}` : 'More essays'}
+  linksLabel={group?.label ?? 'Essays'}
+  linksTitle={group?.statement}
 >
   <Content />
 </DocumentLayout>

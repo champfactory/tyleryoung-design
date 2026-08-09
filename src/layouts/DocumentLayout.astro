@@ -16,7 +16,13 @@ import Needs from '../components/Needs.astro';
 import Draft from '../components/Draft.astro';
 
 export type MetaPair = [label: string, value: string];
-export type RailLink = { label: string; href: string };
+/** `current` renders the page you are already on: listed, not linked. */
+/**
+ * `current` renders the page you are already on: listed, not linked.
+ * `external` opens in a new tab. The design system is on this domain but is its
+ * own property, so it behaves like the Storybook and the repo, not like a page.
+ */
+export type RailLink = { label: string; href: string; current?: boolean; external?: boolean };
 
 interface Props {
   title: string;
@@ -38,8 +44,14 @@ interface Props {
    * argument.
    */
   links?: RailLink[];
-  /** The heading above the rail links. Artifacts say "Open"; essays name their group. */
+  /** The label above the rail links. Artifacts say "Open"; essays name their group. */
   linksLabel?: string;
+  /**
+   * The group's own heading, carried verbatim from essayGroups.ts so the rail
+   * says what the index says. Its presence switches the list to the prose face,
+   * because essay titles are sentences and the artifact labels are not.
+   */
+  linksTitle?: string;
   current?: string;
   related?: [string, string][];
 }
@@ -56,6 +68,7 @@ const {
   meta,
   links = [],
   linksLabel = 'Open',
+  linksTitle,
   current,
   related,
 } = Astro.props;
@@ -88,20 +101,27 @@ const {
 
         {
           links.length > 0 && (
-            <div class="rail-links">
+            <div class:list={['rail-links', { 'rail-group': linksTitle }]}>
               <p class="rail-links-label">{linksLabel}</p>
+              {linksTitle && <p class="rail-links-title">{linksTitle}</p>}
               <ul>
-                {links.map((l) => (
-                  <li>
-                    <a
-                      class="link"
-                      href={l.href}
-                      target={l.href.startsWith('http') ? '_blank' : undefined}
-                      rel={l.href.startsWith('http') ? 'noopener' : undefined}
-                    >
-                      {l.label}<Chevron weight="light" /></a>
-                  </li>
-                ))}
+                {links.map((l) =>
+                  l.current ? (
+                    <li class="is-current" aria-current="page">
+                      {l.label}
+                    </li>
+                  ) : (
+                    <li>
+                      <a
+                        class="link"
+                        href={l.href}
+                        target={l.external || l.href.startsWith('http') ? '_blank' : undefined}
+                        rel={l.external || l.href.startsWith('http') ? 'noopener' : undefined}
+                      >
+                        {l.label}<Chevron weight="light" /></a>
+                    </li>
+                  ),
+                )}
               </ul>
             </div>
           )
@@ -1292,6 +1312,44 @@ const {
 
   .doc .rail-links li::before {
     content: none !important;
+  }
+
+  /* An essay's group, rather than a page's artifacts. Titles here are whole
+     sentences, so they take the prose face — the mono is sized for labels like
+     "Storybook" and turns a nine-word title into four ragged lines. */
+  /* Ruled off, because this is a different thing from the rows above it: those
+     describe this page, these are other pages. */
+  .doc .rail-group {
+    margin-top: 30px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .doc .rail-group .rail-links-title {
+    margin: 0 0 12px !important;
+    font-family: var(--font-prose) !important;
+    font-size: 13px !important;
+    font-weight: 500;
+    line-height: 1.4 !important;
+    color: var(--color-ink) !important;
+    text-wrap: pretty;
+  }
+
+  .doc .rail-group ul {
+    gap: 10px;
+  }
+
+  .doc .rail-group li {
+    font-family: var(--font-prose);
+    font-size: 13px;
+    line-height: 1.45;
+    text-wrap: pretty;
+  }
+
+  /* The essay you are reading. Listed so the group's size is visible — one of
+     two, not one alone — and unlinked so it is not a route back to itself. */
+  .doc .rail-group li.is-current {
+    color: var(--color-ink-3);
   }
 
   @media (min-width: 1200px) {

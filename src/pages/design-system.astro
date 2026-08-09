@@ -1,6 +1,5 @@
 ---
-import DocumentLayout from '../layouts/DocumentLayout.astro';
-import { REPO, REPO_LABEL } from '../data/site.mjs';
+import SystemLayout from '../layouts/SystemLayout.astro';
 import { surfaces, inks, type, space, marks, rules } from '../data/system.mjs';
 
 /**
@@ -18,20 +17,13 @@ import { surfaces, inks, type, space, marks, rules } from '../data/system.mjs';
 const swatch = (v) => `background:${v}`;
 ---
 
-<DocumentLayout
+<SystemLayout
   title="The system this site is built from"
   metaTitle="Design system — tokens, marks and rules | Tyler Young"
   description="The tokens, marks and rules this site is built from, read out of the stylesheet that defines them, and organised by family rather than by component."
-  eyebrow="Design system"
-  meta={[
-    ['Scope', 'One site, four days, built from nothing'],
-    ['Families', 'Surface · ink · type · space · mark'],
-    ['Rules', 'Six, each with the defect that produced it'],
-    ['Source of truth', 'src/styles/global.css, read at build time'],
-  ]}
-  links={[{ label: REPO_LABEL, href: REPO }]}
+  kicker="Design system"
 >
-  <p class="lede">
+  <p class="sys-lede">
     This is not a component catalogue. It is the set of families this site is
     made of, and for each one, the defect that made it necessary.
   </p>
@@ -86,18 +78,17 @@ const swatch = (v) => `background:${v}`;
   <h2>Type</h2>
   <p>Nine steps, each rendered here at its own size.</p>
 
-  <ol class="loop">
+  <ul class="sys-type">
     {
       type.map((t) => (
         <li>
-          <span class="loop-actor">{t.name.replace('text-', '')}</span>
-          <span class="loop-what" style={`font-size:${t.value};line-height:1.2`}>
-            {t.value}
-          </span>
+          <span class="sys-name">{t.name.replace('text-', '')}</span>
+          <span class="sys-value">{t.value}</span>
+          <span class="sys-specimen" style={`font-size:${t.value}`}>Aa</span>
         </li>
       ))
     }
-  </ol>
+  </ul>
 
   <h2>Space</h2>
   <p>Six steps, each drawn at its own height.</p>
@@ -148,16 +139,17 @@ const swatch = (v) => `background:${v}`;
       ))
     }
   </ol>
-</DocumentLayout>
+</SystemLayout>
 
 <style is:global>
   /* Members of a family, side by side, because a family is only judgeable in
      comparison. Each row carries what it is, what it is worth, and where it is
      used — the three things a token page usually leaves to a name. */
-  .doc .sys-grid,
-  .doc .sys-marks,
-  .doc .sys-rules,
-  .doc .sys-space {
+  .sys-grid,
+  .sys-marks,
+  .sys-rules,
+  .sys-space,
+  .sys-type {
     list-style: none;
     display: grid;
     gap: 2px;
@@ -165,102 +157,118 @@ const swatch = (v) => `background:${v}`;
     padding: 0;
   }
 
-  .doc .sys-grid > li::before,
-  .doc .sys-marks > li::before,
-  .doc .sys-rules > li::before,
-  .doc .sys-space > li::before {
-    content: none !important;
-  }
-
-  .doc .sys-grid > li {
+  .sys-grid > li {
     display: grid;
     grid-template-columns: 34px minmax(0, 8rem) minmax(0, 6rem) minmax(0, 1fr);
     align-items: center;
     gap: 6px 16px;
     margin: 0;
     padding: 12px 14px;
-    background: var(--color-band-b);
+    background: var(--color-machine-raised);
   }
 
-  .doc .sys-grid > li:nth-child(odd) {
-    background: var(--color-band-a);
+  .sys-grid > li:nth-child(odd) {
+    background: var(--color-machine-band);
   }
 
-  .doc .sys-swatch {
+  .sys-swatch {
     width: 34px;
     height: 34px;
     border-radius: 6px;
-    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
   }
 
-  .doc .sys-name {
+  .sys-name {
     font-size: 15px;
     font-weight: 600;
-    color: var(--color-ink);
+    color: var(--color-machine-ink);
   }
 
-  .doc .sys-value {
+  .sys-value {
     font-family: var(--font-code);
     font-size: 13px;
-    color: var(--color-ink-2);
+    color: var(--color-machine-ink-2);
   }
 
-  .doc .sys-use {
+  .sys-use {
     font-size: 15px;
     line-height: 1.45;
-    color: var(--color-ink-2);
+    color: var(--color-machine-ink-2);
     text-wrap: pretty;
   }
 
-  .doc .sys-meta {
+  .sys-meta {
     grid-column: 2 / -1;
     font-family: var(--font-code);
     font-size: 12px;
-    color: var(--color-ink-3);
+    color: var(--color-machine-ink-2);
+  }
+
+  /* Type is shown at its own size rather than described, which is the only way
+     a step is judgeable against its neighbours. */
+  .sys-type > li {
+    display: grid;
+    grid-template-columns: minmax(0, 8rem) minmax(0, 6rem) minmax(0, 1fr);
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+    padding: 12px 14px;
+    background: var(--color-machine-raised);
+    overflow: hidden;
+  }
+
+  .sys-type > li:nth-child(odd) {
+    background: var(--color-machine-band);
+  }
+
+  .sys-specimen {
+    font-family: var(--font-prose);
+    line-height: 1;
+    color: var(--color-machine-ink);
   }
 
   /* Space is the one family you cannot show with a label, so it is drawn. */
-  .doc .sys-space > li {
+  .sys-space > li {
     display: grid;
     grid-template-columns: minmax(0, 8rem) minmax(0, 1fr) auto;
     align-items: end;
     gap: 16px;
     margin: 0;
     padding: 10px 14px;
-    background: var(--color-band-b);
+    background: var(--color-machine-raised);
   }
 
-  .doc .sys-space > li:nth-child(odd) {
-    background: var(--color-band-a);
+  .sys-space > li:nth-child(odd) {
+    background: var(--color-machine-band);
   }
 
-  .doc .sys-bar {
+  .sys-bar {
     display: block;
     width: 100%;
-    background: var(--color-ink);
+    background: var(--color-machine-ink);
     opacity: 0.14;
   }
 
-  .doc .sys-marks > li {
+  .sys-marks > li {
     display: grid;
     grid-template-columns: 34px minmax(0, 8rem) minmax(0, 1fr);
     align-items: center;
     gap: 16px;
     margin: 0;
     padding: 12px 14px;
-    background: var(--color-band-b);
+    background: var(--color-machine-raised);
   }
 
-  .doc .sys-marks > li:nth-child(odd) {
-    background: var(--color-band-a);
+  .sys-marks > li:nth-child(odd) {
+    background: var(--color-machine-band);
   }
 
-  .doc .sys-mark {
+  .sys-mark {
     display: block;
     width: 20px;
     height: 20px;
     margin-inline: auto;
-    background: var(--color-ink);
+    background: var(--color-machine-ink);
     -webkit-mask-size: contain;
     mask-size: contain;
     -webkit-mask-position: center;
@@ -270,42 +278,42 @@ const swatch = (v) => `background:${v}`;
   }
 
   /* The rules get the mount, because they are the evidence on this page. */
-  .doc .sys-rules {
+  .sys-rules {
     gap: 14px;
   }
 
-  .doc .sys-rules > li {
+  .sys-rules > li {
     margin: 0;
     padding: 20px;
     border-radius: 10px;
-    background: var(--color-mount);
+    background: var(--color-machine-raised);
   }
 
-  .doc .sys-rule {
+  .sys-rule {
     margin: 0 !important;
-    font-size: var(--text-note) !important;
+    font-size: 17px;
     font-weight: 600;
     line-height: 1.45 !important;
-    color: var(--color-ink) !important;
+    color: var(--color-machine-ink) !important;
   }
 
-  .doc .sys-why {
+  .sys-why {
     margin: 8px 0 0 !important;
     font-size: 15px !important;
     line-height: 1.55 !important;
-    color: var(--color-ink-2) !important;
+    color: var(--color-machine-ink-2) !important;
     text-wrap: pretty;
   }
 
   @media (max-width: 700px) {
-    .doc .sys-grid > li,
-    .doc .sys-marks > li {
+    .sys-grid > li,
+    .sys-marks > li {
       grid-template-columns: 34px minmax(0, 1fr);
     }
 
-    .doc .sys-value,
-    .doc .sys-use,
-    .doc .sys-meta {
+    .sys-value,
+    .sys-use,
+    .sys-meta {
       grid-column: 2 / -1;
     }
   }
