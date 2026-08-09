@@ -53,14 +53,20 @@ const swatch = (v) => `background:${v}`;
           <span class="sys-name">{s.name}</span>
           <span class="sys-value">{s.value}</span>
           <span class="sys-use">{s.use}</span>
-          <span class="sys-meta">{s.onInk.toFixed(2)}:1 against ink</span>
+          <span class="sys-meta">
+            {Math.round(s.h)}° · {s.s.toFixed(0)}% · {s.l.toFixed(0)}% — {s.onInk.toFixed(2)}:1 against ink
+          </span>
         </li>
       ))
     }
   </ul>
 
   <h2>Ink</h2>
-  <p>Ink tokens establish text hierarchy. The signal colour is reserved for links.</p>
+  <p>
+    Ink tokens establish text hierarchy. The signal colour is reserved for
+    links, and every surface above is that same hue at a tenth of its
+    saturation.
+  </p>
 
   <ul class="sys-grid">
     {
@@ -70,6 +76,7 @@ const swatch = (v) => `background:${v}`;
           <span class="sys-name">{i.name}</span>
           <span class="sys-value">{i.value}</span>
           <span class="sys-use">{i.use}</span>
+          <span class="sys-meta">{Math.round(i.h)}° · {i.s.toFixed(0)}% · {i.l.toFixed(0)}%</span>
         </li>
       ))
     }

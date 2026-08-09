@@ -16,6 +16,27 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { ratio } from './palette.mjs';
 
+/**
+ * Hue, saturation and lightness of a token, computed rather than recorded.
+ *
+ * The page showed hex and contrast and nothing about hue, so four neutrals sat
+ * at 240 while the accent sat at 210 — a second colour family, invisible on a
+ * page whose job is to make the family visible. Shown now, so the next one is
+ * a thing you can see instead of a thing you notice.
+ */
+export function hsl(hex) {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  const d = max - min;
+  if (!d) return { h: 0, s: 0, l: l * 100 };
+  const s = d / (1 - Math.abs(2 * l - 1));
+  const h =
+    max === r ? ((g - b) / d + (g < b ? 6 : 0)) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  return { h: h * 60, s: s * 100, l: l * 100 };
+}
+
 // Resolved from the project root, not from import.meta.url: this module gets
 // bundled into dist/.prerender before it runs, so a path relative to the module
 // points at the build output rather than the source it is supposed to read.
@@ -51,6 +72,7 @@ export const surfaces = [
   use,
   value: value(`color-${name}`),
   onInk: ratio(value('color-ink'), value(`color-${name}`)),
+  ...hsl(value(`color-${name}`)),
 }));
 
 /** Text hierarchy. Signal is reserved for links. */
@@ -60,7 +82,7 @@ export const inks = [
   ['ink-3', 'Captions, metadata, and supporting detail.'],
   ['signal', 'Links only.'],
   ['signal-ink', 'Text on a signal background.'],
-].map(([name, use]) => ({ name, use, value: value(`color-${name}`) }));
+].map(([name, use]) => ({ name, use, value: value(`color-${name}`), ...hsl(value(`color-${name}`)) }));
 
 /** Hairlines. Two weights, because a divider and a boundary are not the same. */
 export const lines = [
@@ -197,6 +219,11 @@ export const rules = [
     title: 'Build an evidence card in three layers',
     statement: 'Page, then mat, then art inset 10px. The note sits on the mat, 10px under the art.',
     why: 'Each layer says which it is, and each was wrong somewhere. The cards were on paper-raised — white holding near-white applications, meeting the page at 1.03:1. The art ran to the card edge, so the mat only showed at the corners. And the note was written four times: two at 0 10px 12px, one at 22px 18px, one with no padding inside the card\u2019s own. A white footer strip was tried and dropped: it needed 24px above its text to hold a boundary between two surfaces, and there is only one surface.',
+  },
+  {
+    title: 'Build the neutrals from the accent hue',
+    statement: 'Every cool surface is hue 210 — the signal\u2019s own — at a tenth of its saturation.',
+    why: 'Four of them sat at 240, a violet-leaning blue, while the signal and the references band sat at 210. Thirty degrees is enough to notice and not enough to name: the neutrals read as a second family rather than as quiet versions of the one accent. The references band came down from 76% saturation to 45% at the same time. Each surface now prints its hue, saturation and lightness on this page, so the next drift is visible rather than felt.',
   },
   {
     title: 'Reserve the label treatment for labels',

@@ -47,7 +47,7 @@
      #edeae1 tuned against it. Kept here so the warm palette can be restored in
      one line if white turns out to be too cold for the type. */
   /* A light, light gray page; the cards on it are the white. */
-  --color-paper: #f5f5f7;
+  --color-paper: #f5f6f7;
   --color-paper-raised: #ffffff;
   --color-paper-sunk: #edeae1;
   /* Zebra tint for banded rows. Neutral rather than warm, because the page is
@@ -94,6 +94,13 @@
   --space-page-bottom: 88px;
 
   /* The two bands every alternating row on the site uses.
+
+     Hue 210, the signal's own, at a tenth of its saturation. They used to sit
+     at 240 — a violet-leaning blue — while the accent and the references band
+     sat at 210, so the neutrals read as a second family rather than as quiet
+     versions of the one accent. Thirty degrees apart is enough to notice
+     without being able to name.
+
      Grey. Blue read as a second link colour and orange sat against the page;
      any hue here ends up looking like it was chosen to mean something, and it
      does not mean anything — it is a reading aid.
@@ -112,12 +119,12 @@
      screenshot off the page. Both were reading from --color-band-b, so
      changing one would have moved the other, and the mat sat four units from
      the page background and disappeared. */
-  --color-mount: #e6e6eb;
+  --color-mount: #e5e8eb;
 
-  --color-band-a: #e9e9ed;
-  --color-band-b: #f1f1f5;
+  --color-band-a: #e9ebed;
+  --color-band-b: #f1f3f5;
 
-  --color-header: #e2eefb;
+  --color-header: #e7eef6;
   --color-note: #fefbe4;
 
   --color-rule: #d0ccbe;
