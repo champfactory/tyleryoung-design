@@ -31,7 +31,7 @@ export const stories: Story[] = [
     eyebrow: 'Codebase intelligence',
     claim: 'I designed a control layer for agentic software development.',
     outcome:
-      'Agents generate faster than teams can specify and absorb change. Alucify models what a brownfield codebase means, then shows where context is missing, what a change would reach, and where human judgement is still required.',
+      'Agents write code faster than teams can absorb it. I designed the surfaces that show what the system knows, what it inferred, and where a person still has to decide.',
     /*
      * No link to alucify.ai from here. The public site still runs the company's
      * earlier fixed-price-delivery positioning, which contradicts the case study
@@ -51,7 +51,7 @@ export const stories: Story[] = [
     eyebrow: 'Frontline operations',
     claim: 'I designed an enterprise operations product and the system to build it.',
     outcome:
-      'Technicians see today\u2019s work, what comes next, and what could block it. Each job connects to the equipment, procedures, certifications, and people needed to complete it.',
+      'Technicians see the job in front of them, what comes next, and what could block it. I built the product and the component system behind it, so the team could keep building without me.',
     artifacts: [
       { label: 'Product', href: 'https://atheer-next.fly.dev/' },
       { label: 'Library', href: 'https://atheer-next-storybook.fly.dev/' },
