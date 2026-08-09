@@ -47,11 +47,6 @@ const { title, metaTitle, description, kicker } = Astro.props;
       <slot />
     </main>
 
-    <footer class="sys-foot">
-      <div class="sys-wrap">
-        <a class="sys-link" href="/how-i-design-with-ai">The case this system belongs to</a>
-      </div>
-    </footer>
   </body>
 </html>
 
@@ -84,7 +79,7 @@ const { title, metaTitle, description, kicker } = Astro.props;
   }
 
   .sys-wrap {
-    max-width: 1080px;
+    max-width: 900px;
     margin-inline: auto;
     padding-inline: 24px;
   }
@@ -115,8 +110,7 @@ const { title, metaTitle, description, kicker } = Astro.props;
     padding: 40px 0 64px;
   }
 
-  .sys-home,
-  .sys-link {
+  .sys-home {
     font-family: var(--font-code);
     font-size: 12px;
     letter-spacing: 0.04em;
@@ -125,9 +119,7 @@ const { title, metaTitle, description, kicker } = Astro.props;
   }
 
   .sys-home:hover,
-  .sys-link:hover,
-  .sys-home:focus-visible,
-  .sys-link:focus-visible {
+  .sys-home:focus-visible {
     text-decoration: underline;
     text-underline-offset: 3px;
   }
@@ -161,8 +153,11 @@ const { title, metaTitle, description, kicker } = Astro.props;
     color: var(--color-machine-ink-2);
   }
 
+  /* No measure cap. These are one- to three-line descriptions above the family
+     they describe, and a cap made them stop at 62ch while the table under them
+     ran the full column — two left edges agreeing and two right edges not. The
+     wrap is narrower than the portfolio's for the same reason. */
   body.sys main > p {
-    max-width: 62ch;
     margin: 18px 0 0;
     color: var(--color-machine-ink-2);
     text-wrap: pretty;
@@ -178,11 +173,6 @@ const { title, metaTitle, description, kicker } = Astro.props;
     color: var(--color-machine-ink);
   }
 
-  .sys-foot {
-    margin-top: 120px;
-    padding: 40px 0 72px;
-    border-top: 1px solid var(--color-machine-rule);
-  }
 
   :focus-visible {
     outline: 1px solid var(--color-machine-signal);

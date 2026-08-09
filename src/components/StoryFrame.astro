@@ -125,7 +125,10 @@ const deepLink = `${SB}/?path=/story/${id}`;
     line-height: 1.4;
     letter-spacing: 0;
     color: var(--color-ink-3);
-    padding: 22px 18px;
-    background: #ffffff;
+    /* On the mat, aligned with the art's inset. It used to sit on a white strip
+       below the card, which was a third surface for no reason once the card
+       itself became the mat. */
+    padding: 0 10px 12px;
+    background: none;
   }
 </style>

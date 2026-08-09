@@ -26,14 +26,31 @@ const { current } = Astro.props as { current?: string };
 
 <style>
   .nav {
-    /* Solid, not the translucent paper this used to be. A sticky header tinted
-       88% paper let the page show through; a flat colour at partial opacity over
-       scrolling content turns muddy, and the point of the field is that it is
-       flat. */
-    background: var(--color-paper-raised);
+    /* Translucent over a blur. A tint alone was tried and reverted — a flat
+       colour at partial opacity over scrolling content goes muddy — but the
+       blur is what fixes that: it removes the detail underneath and leaves an
+       even field, which is why every implementation of this ships the two
+       together and none ships the tint alone.
+
+       Derived from paper-raised rather than given its own value, so the nav
+       cannot drift from the card surface it matches when nothing is under it.
+       The canvas above the nav is still solid paper-raised, set on <html>, so
+       rubber-banding at the top of the page reveals the nav's own colour and
+       not the page grey. */
+    background: color-mix(in srgb, var(--color-paper-raised) 72%, transparent);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
     position: sticky;
     top: 0;
     z-index: 20;
+  }
+
+  /* Firefox before 103 and anything with the filter disabled gets the flat
+     surface rather than a see-through bar over live text. */
+  @supports not (backdrop-filter: blur(1px)) {
+    .nav {
+      background: var(--color-paper-raised);
+    }
   }
 
 

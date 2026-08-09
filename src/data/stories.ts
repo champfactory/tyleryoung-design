@@ -15,6 +15,13 @@ export type Story = {
   num: string;
   slug: string;
   eyebrow: string;
+  /**
+   * The credit under the embed on the homepage: the company, and what the
+   * project is. Drafted — the pages never name a product, only "the Atheer
+   * operations product", so the second half reuses the approved eyebrow rather
+   * than inventing a product name.
+   */
+  credit: string;
   /** The claim. One sentence, first person. This is the 15-second read. */
   claim: string;
   /** What it was. The 30-second read. */
@@ -29,6 +36,7 @@ export const stories: Story[] = [
     num: '01',
     slug: '/alucify',
     eyebrow: 'Codebase intelligence',
+    credit: 'Alucify — codebase intelligence',
     claim: 'I designed a control layer for agentic software development.',
     outcome:
       'Agents write code faster than teams can absorb it. I designed the surfaces that show what the system knows, what it inferred, and where a person still has to decide.',
@@ -49,6 +57,7 @@ export const stories: Story[] = [
     num: '02',
     slug: '/ops-manager',
     eyebrow: 'Frontline operations',
+    credit: 'Atheer — frontline operations',
     claim: 'I designed an enterprise operations product and the system to build it.',
     outcome:
       'Technicians see the job in front of them, what comes next, and what could block it. I built the product and the component system behind it, so the team could keep building without me.',
@@ -63,6 +72,7 @@ export const stories: Story[] = [
     num: '03',
     slug: '/review-loop',
     eyebrow: 'Human-in-the-loop design',
+    credit: 'Atheer — human-in-the-loop design',
     claim: 'I own the collaboration between stakeholders and agents.',
     outcome:
       'I turned 48 stakeholder notes\u2014some vague, some inaccurate\u2014into clear requirements an agent could act on. That meant checking each against the product, separating the problem from the proposed solution, and deciding what belonged in the next build.',
