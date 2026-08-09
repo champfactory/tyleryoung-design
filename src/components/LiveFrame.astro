@@ -114,7 +114,7 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
     background: var(--color-mount);
     /* A card, not an outlined panel: small radius, no border, the radius alone. */
     border: 0;
-    border-radius: 10px;
+    border-radius: var(--radius-mat);
     overflow: hidden;
   }
 
@@ -156,7 +156,7 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
        stays a literal white: it stands in for the embedded application's own
        canvas while it loads, not for a site surface. */
     margin: 10px;
-    border-radius: 4px;
+    border-radius: var(--radius-inset);
     background: #ffffff;
   }
 

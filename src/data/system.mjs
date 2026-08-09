@@ -122,6 +122,17 @@ export const space = tokens('space-').map((t) => ({
   use: SPACE_USE[t.name.replace('space-', '')] ?? '',
 }));
 
+/** How round a corner is. Two jobs, so two members. */
+const RADIUS_USE = {
+  mat: 'A mat or card sitting on the page.',
+  inset: 'Something sitting on a mat.',
+};
+
+export const radii = tokens('radius-').map((t) => ({
+  ...t,
+  use: RADIUS_USE[t.name.replace('radius-', '')] ?? '',
+}));
+
 /** List items and sequence states. Each mark takes the colour of its text. */
 export const marks = [
   ['bullet', 'Unordered-list item.'],
@@ -148,27 +159,38 @@ export const documented = [...surfaces, ...inks, ...lines, ...machine].map((t) =
  */
 export const rules = [
   {
-    rule: 'One banding rule, for every alternating row on the site.',
-    why: 'There were five zebra implementations in four files with three different treatments. Changing the ledger left the principles list, the before/now ledger and the ratio table on the old grey. A new banded pattern joins the selector list; it does not get its own colours.',
+    title: 'Use one pattern for alternating rows',
+    statement: 'All alternating rows use band-a and band-b, through one selector list.',
+    why: 'There were five implementations across four files in three treatments. Updating one did not update the others, so changing the ledger left the principles list, the before/now ledger and the ratio table on the old grey. A new banded pattern joins the selector list; it does not get its own colours. The same defect had produced two names for one value — band-a and row were both #e9e9ed, kept in step by hand — and row is gone.',
   },
   {
-    rule: 'Blue is a link. Nothing else is ever blue.',
-    why: 'Status swatches in the feedback table were blue squares, which read as an affordance that was not there. The colour is the only thing that says “link”, so spending it elsewhere costs the one place it has to work.',
+    title: 'Reserve blue for links',
+    statement: 'Only links use signal.',
+    why: 'Status indicators in the feedback table were blue squares, which made them look interactive when they were not. The colour is the only thing that says "link", so spending it anywhere else costs the one place it has to work.',
   },
   {
-    rule: 'A marker hangs in the indent; the text starts at 26px.',
-    why: 'Numbered lists indented 38px and bulleted lists 22px, so two lists in the same column started on different edges. The disclosure caret later landed on a third edge at 393px. All of them now share one.',
+    title: 'Align text to one edge',
+    statement: 'List markers and disclosure controls hang in the indent. Their text starts at 26px.',
+    why: 'Numbered lists indented 38px and bulleted lists 22px, so two lists in the same column started on different edges. The disclosure caret later landed on a third at 393px. 26px is what a single digit needs; the wider indent existed for a leading zero that is no longer used.',
   },
   {
-    rule: 'A mark takes its colour from currentColor.',
-    why: 'The chevron and the list markers are masks rather than images, so a marker is blue inside a link and ink inside a caption without being told. An <img> would freeze the fill.',
+    title: 'Let marks inherit text colour',
+    statement: 'Marks are masks painted with currentColor.',
+    why: 'A marker is signal inside a link and ink inside a caption without being told which. A fixed image would freeze the fill, and a pseudo-element cannot render a component. Each mask also carries width and height as well as a viewBox, so its intrinsic ratio does not depend on the engine.',
   },
   {
-    rule: 'Evidence sits on the mount; lists sit on the bands.',
-    why: 'The compare blocks and capture cards were reading the alternating row’s lighter band — a token tuned for separating list items, doing the job of lifting a screenshot off the page. It sat four units from the page background and disappeared.',
+    title: 'Use the mount for evidence and the bands for lists',
+    statement: 'Screenshots and embedded applications sit on mount. Alternating list items sit on band-a and band-b.',
+    why: 'Both were reading band-b — a token tuned for separating rows in a list, doing the job of lifting a screenshot off the page. It sat four units from the page background and disappeared. The embed cards had the same defect a second time, on paper-raised: white cards holding near-white applications, meeting the page at 1.03:1.',
   },
   {
-    rule: 'Every colour pair is checked at the smallest size it is used.',
-    why: 'The check runs before the build and fails it. Two pairs failed during this build; both times the token changed rather than the component, so the fix propagated everywhere.',
+    title: 'Declare one size for a page title',
+    statement: 'Every page title is --text-display. Nothing is computed per title.',
+    why: 'The size used to be solved per headline so each one would fill its measure, which made the size depend on where the words broke — three lines came out larger than two. Thirteen pages ran 46px to 105px. A title that ends short of the right edge is normal; thirteen sizes of one component is not.',
+  },
+  {
+    title: 'Test every colour pair that is used',
+    statement: 'Each foreground and background pair is checked at the smallest size it appears at.',
+    why: 'The check runs before the build and fails it. When a pair fails, the shared token changes rather than the component, so the correction applies everywhere. A second check fails the build if a token exists in the stylesheet and is not documented on this page — the page claimed to be the system while carrying eleven of twenty-four.',
   },
 ];

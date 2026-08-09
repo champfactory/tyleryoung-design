@@ -578,7 +578,7 @@ const {
   .doc .cells > li {
     margin: 0;
     padding: 22px 20px;
-    border-radius: 10px;
+    border-radius: var(--radius-mat);
     background: var(--color-paper-raised);
   }
 
@@ -682,7 +682,7 @@ const {
     padding: 18px;
     align-self: start;
     border: 0;
-    border-radius: 10px;
+    border-radius: var(--radius-mat);
     background: var(--color-mount);
   }
 
@@ -716,7 +716,7 @@ const {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 6px;
+    border-radius: var(--radius-inset);
   }
 
   .doc .capture-note {
@@ -771,6 +771,18 @@ const {
   .doc .ledger > li:nth-child(even),
   .doc .ratios tbody tr:nth-child(even) {
     background: var(--color-band-b);
+  }
+
+  /* A banded block is one object, so it is rounded like one: the outer corners
+     take the mat radius and the rows between them stay square. Joins the same
+     selector list as the colours — a new banded pattern inherits both or
+     neither. */
+  .doc .loop,
+  .doc .principles,
+  .doc .ledger,
+  .doc .ratios {
+    border-radius: var(--radius-mat);
+    overflow: hidden;
   }
 
   .doc .loop-actor {
@@ -897,7 +909,7 @@ const {
 
     /* Card, not outline: radius, no rule, no shadow. */
     border: 0;
-    border-radius: 10px;
+    border-radius: var(--radius-mat);
     overflow: hidden;
   }
 
@@ -954,7 +966,7 @@ const {
     position: relative;
     overflow: hidden;
     margin: 10px;
-    border-radius: 4px;
+    border-radius: var(--radius-inset);
     background: var(--color-paper-sunk);
   }
 
@@ -1083,6 +1095,7 @@ const {
   .doc .disclosure {
     margin: 40px 0 0;
     padding: 22px 20px 6px;
+    border-radius: var(--radius-mat);
     background: var(--color-note);
   }
 

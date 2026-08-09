@@ -1,48 +1,49 @@
 ---
 import SystemLayout from '../layouts/SystemLayout.astro';
-import { surfaces, inks, type, space, marks, rules } from '../data/system.mjs';
+import { surfaces, inks, lines, machine, type, space, radii, marks, rules, documented } from '../data/system.mjs';
 
 /**
- * The system this site is built from, documented by the rule it was derived
- * from: a family is a set of members answering one question, and it only
- * becomes visible once there is enough real output to compare.
+ * A specification, written as one.
  *
- * So this is organised by family, and every family says what went wrong that
- * made it necessary. A component catalogue documents the output. The defect is
- * what documents the decision.
+ * The previous version opened with three paragraphs arguing that a design
+ * system cannot be written before the work — an essay opening on a reference
+ * page, where a reader looking for a value had to get past the thesis to reach
+ * the first token. Each family led with a rhetorical question rather than a
+ * definition, and each rule was two untitled paragraphs, so none of them could
+ * be scanned or quoted.
  *
- * Every value is read from global.css at build time. Nothing here is typed
- * twice.
+ * One sentence of thesis survives, and it sits with the rules, because the
+ * defect behind each rule is the only part of this page that could not have
+ * been copied off any other site.
+ *
+ * Every value is read from global.css at build time, and scripts/tokens.mjs
+ * fails the build if a token exists there and is not documented here.
  */
 const swatch = (v) => `background:${v}`;
 ---
 
 <SystemLayout
-  title="The system TYD is built from"
+  title="The system used by tyleryoung.design"
   metaTitle="Design system — tokens, marks and rules | Tyler Young"
-  description="The tokens, marks and rules tyleryoung.design is built from, read out of the stylesheet that defines them, and organised by family rather than by component."
+  description="The eight token families tyleryoung.design is built from — surface, ink, line, type, space, radius, mark and machine — read from the stylesheet that defines them, with the rules they resolve to."
   kicker="Design system"
 >
   <p class="sys-lede">
-    This is not a component catalogue. It is the set of families that site is
-    made of, and for each one, the defect that made it necessary.
+    TYD uses eight token families: surface, ink, line, type, space, radius,
+    mark, and machine. Each family standardises a pattern found across the
+    published site.
   </p>
   <p>
-    A design system cannot be written before the work. A family — of surface,
-    of ink, of mark — only becomes visible once there is enough real output to
-    compare, and until it is visible there is nothing to standardise. Everything
-    below started as a single wrong thing on a single page.
-  </p>
-  <p>
-    Every value here is read out of <code>global.css</code> at build time. A
-    hand-copied value would be a claim about the system; this has to be the
-    system.
+    The values below are generated from <code>global.css</code> at build time, so
+    this specification always matches the implementation. A check runs before the
+    build and fails it if a colour token exists in the stylesheet and is not
+    documented here. All {documented.length} are.
   </p>
 
   <h2>Surface</h2>
   <p>
-    One question: what is this thing sitting on? The page, something lifted off
-    it, a banded row, or a mat under evidence.
+    Surface tokens distinguish the page, raised content, sunk panels, alternating
+    rows, mounted evidence, reference headers, and notes.
   </p>
 
   <ul class="sys-grid">
@@ -60,7 +61,7 @@ const swatch = (v) => `background:${v}`;
   </ul>
 
   <h2>Ink</h2>
-  <p>Three weights of text and one link colour, and the link colour is spent nowhere else.</p>
+  <p>Ink tokens establish text hierarchy. The signal colour is reserved for links.</p>
 
   <ul class="sys-grid">
     {
@@ -75,8 +76,24 @@ const swatch = (v) => `background:${v}`;
     }
   </ul>
 
+  <h2>Line</h2>
+  <p>Two hairline weights, because a divider and a boundary are not the same thing.</p>
+
+  <ul class="sys-grid">
+    {
+      lines.map((l) => (
+        <li>
+          <span class="sys-swatch" style={swatch(l.value)} aria-hidden="true" />
+          <span class="sys-name">{l.name}</span>
+          <span class="sys-value">{l.value}</span>
+          <span class="sys-use">{l.use}</span>
+        </li>
+      ))
+    }
+  </ul>
+
   <h2>Type</h2>
-  <p>Nine steps, each rendered here at its own size.</p>
+  <p>Type tokens define nine text roles, each shown here at its own size.</p>
 
   <ul class="sys-type">
     {
@@ -84,6 +101,7 @@ const swatch = (v) => `background:${v}`;
         <li>
           <span class="sys-name">{t.name.replace('text-', '')}</span>
           <span class="sys-value">{t.value}</span>
+          <span class="sys-use">{t.use}</span>
           <span class="sys-specimen" style={`font-size:${t.value}`}>Aa</span>
         </li>
       ))
@@ -91,15 +109,38 @@ const swatch = (v) => `background:${v}`;
   </ul>
 
   <h2>Space</h2>
-  <p>Six steps, each drawn at its own height.</p>
+  <p>
+    Space tokens define the vertical intervals between major page elements, each
+    drawn here at its own height.
+  </p>
 
   <ul class="sys-space">
     {
       space.map((s) => (
         <li>
           <span class="sys-name">{s.name.replace('space-', '')}</span>
-          <span class="sys-bar" style={`height:${s.value}`} aria-hidden="true" />
           <span class="sys-value">{s.value}</span>
+          <span class="sys-use">{s.use}</span>
+          <span class="sys-bar" style={`height:${s.value}`} aria-hidden="true" />
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Radius</h2>
+  <p>
+    Two corner radii, each drawn here at its own value. Every mat on the site
+    takes the first; anything sitting on a mat takes the second.
+  </p>
+
+  <ul class="sys-grid">
+    {
+      radii.map((r) => (
+        <li>
+          <span class="sys-swatch" style={`background:var(--color-machine-ink);opacity:.14;border-radius:${r.value}`} aria-hidden="true" />
+          <span class="sys-name">{r.name.replace('radius-', '')}</span>
+          <span class="sys-value">{r.value}</span>
+          <span class="sys-use">{r.use}</span>
         </li>
       ))
     }
@@ -107,8 +148,8 @@ const swatch = (v) => `background:${v}`;
 
   <h2>Mark</h2>
   <p>
-    Seven glyphs from the Alucify pattern file, drawn as masks so each one takes
-    its colour from the text it belongs to.
+    Mark tokens identify list items and sequence states. Each mark inherits the
+    colour of its surrounding text.
   </p>
 
   <ul class="sys-marks">
@@ -123,17 +164,38 @@ const swatch = (v) => `background:${v}`;
     }
   </ul>
 
-  <h2>The rules, and what produced them</h2>
+  <h2>Machine</h2>
   <p>
-    A token can be looked up. A rule is what stops the same decision being made
-    twice, and every one of these exists because it was already made twice.
+    The dark counterpart, for terminals, code, and receipts — and for this page,
+    which is why it is documented rather than treated as a local exception.
+  </p>
+
+  <ul class="sys-grid">
+    {
+      machine.map((m) => (
+        <li>
+          <span class="sys-swatch" style={swatch(m.value)} aria-hidden="true" />
+          <span class="sys-name">{m.name}</span>
+          <span class="sys-value">{m.value}</span>
+          <span class="sys-use">{m.use}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2>Rules</h2>
+  <p>
+    These rules replace repeated or conflicting implementations. Each one exists
+    because the same decision was made twice, and the defect that produced it is
+    the part of this page that could not have been copied from anywhere else.
   </p>
 
   <ol class="sys-rules">
     {
       rules.map((r) => (
         <li>
-          <p class="sys-rule">{r.rule}</p>
+          <h3 class="sys-rule">{r.title}</h3>
+          <p class="sys-statement">{r.statement}</p>
           <p class="sys-why">{r.why}</p>
         </li>
       ))
@@ -155,11 +217,20 @@ const swatch = (v) => `background:${v}`;
     gap: 2px;
     margin: 30px 0 var(--space-block);
     padding: 0;
+    border-radius: var(--radius-mat);
+    overflow: hidden;
+  }
+
+  /* The rules are separate cards rather than one banded block, so the block
+     radius would clip their own. */
+  .sys-rules {
+    border-radius: 0;
+    overflow: visible;
   }
 
   .sys-grid > li {
     display: grid;
-    grid-template-columns: 34px minmax(0, 8rem) minmax(0, 6rem) minmax(0, 1fr);
+    grid-template-columns: 34px minmax(0, 10rem) minmax(0, 6rem) minmax(0, 1fr);
     align-items: center;
     gap: 6px 16px;
     margin: 0;
@@ -174,7 +245,7 @@ const swatch = (v) => `background:${v}`;
   .sys-swatch {
     width: 34px;
     height: 34px;
-    border-radius: 6px;
+    border-radius: var(--radius-inset);
     box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
   }
 
@@ -204,11 +275,12 @@ const swatch = (v) => `background:${v}`;
     color: var(--color-machine-ink-2);
   }
 
-  /* Type is shown at its own size rather than described, which is the only way
-     a step is judgeable against its neighbours. */
+  /* Type and space are the two families a label cannot document. Both rows
+     carry the description as well, but the specimen is the specification — a
+     step is only judgeable against the step above it. */
   .sys-type > li {
     display: grid;
-    grid-template-columns: minmax(0, 8rem) minmax(0, 6rem) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 10rem) minmax(0, 6rem) minmax(0, 1fr) minmax(0, 6rem);
     align-items: center;
     gap: 16px;
     margin: 0;
@@ -224,17 +296,17 @@ const swatch = (v) => `background:${v}`;
   .sys-specimen {
     font-family: var(--font-prose);
     line-height: 1;
+    text-align: right;
     color: var(--color-machine-ink);
   }
 
-  /* Space is the one family you cannot show with a label, so it is drawn. */
   .sys-space > li {
     display: grid;
-    grid-template-columns: minmax(0, 8rem) minmax(0, 1fr) auto;
-    align-items: end;
-    gap: 16px;
+    grid-template-columns: minmax(0, 10rem) minmax(0, 6rem) minmax(0, 1fr);
+    align-items: baseline;
+    gap: 6px 16px;
     margin: 0;
-    padding: 10px 14px;
+    padding: 12px 14px;
     background: var(--color-machine-raised);
   }
 
@@ -244,14 +316,16 @@ const swatch = (v) => `background:${v}`;
 
   .sys-bar {
     display: block;
+    grid-column: 1 / -1;
     width: 100%;
+    margin-top: 8px;
     background: var(--color-machine-ink);
     opacity: 0.14;
   }
 
   .sys-marks > li {
     display: grid;
-    grid-template-columns: 34px minmax(0, 8rem) minmax(0, 1fr);
+    grid-template-columns: 34px minmax(0, 10rem) minmax(0, 1fr);
     align-items: center;
     gap: 16px;
     margin: 0;
@@ -277,7 +351,8 @@ const swatch = (v) => `background:${v}`;
     mask-repeat: no-repeat;
   }
 
-  /* The rules get the mount, because they are the evidence on this page. */
+  /* A rule you can cite: an imperative title, the rule itself, then what went
+     wrong that made it necessary. */
   .sys-rules {
     gap: 14px;
   }
@@ -285,16 +360,27 @@ const swatch = (v) => `background:${v}`;
   .sys-rules > li {
     margin: 0;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: var(--radius-mat);
     background: var(--color-machine-raised);
   }
 
-  .sys-rule {
-    margin: 0 !important;
+  body.sys .sys-rule {
+    margin: 0;
+    font-family: var(--font-code);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-machine-ink-2);
+  }
+
+  .sys-statement {
+    margin: 12px 0 0 !important;
     font-size: 17px;
     font-weight: 600;
     line-height: 1.45 !important;
     color: var(--color-machine-ink) !important;
+    text-wrap: pretty;
   }
 
   .sys-why {
@@ -311,10 +397,20 @@ const swatch = (v) => `background:${v}`;
       grid-template-columns: 34px minmax(0, 1fr);
     }
 
-    .sys-value,
-    .sys-use,
+    .sys-type > li,
+    .sys-space > li {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .sys-grid .sys-value,
+    .sys-grid .sys-use,
+    .sys-marks .sys-use,
     .sys-meta {
       grid-column: 2 / -1;
+    }
+
+    .sys-specimen {
+      text-align: left;
     }
   }
 </style>
