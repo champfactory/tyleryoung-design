@@ -51,13 +51,13 @@ export const stories: Story[] = [
     eyebrow: 'Frontline operations',
     claim: 'I designed an enterprise operations product and the system to build it.',
     outcome:
-      'A data-dense operations product built around the job already underway, and the component system behind it. The published library documents 69 component states across 11 families plus 6 token references — the empty, dense and missing-content ones, not just the clean screen.',
+      'Technicians see today\u2019s work, what comes next, and what could block it. Each job connects to the equipment, procedures, certifications, and people needed to complete it.',
     artifacts: [
       { label: 'Product', href: 'https://atheer-next.fly.dev/' },
       { label: 'Library', href: 'https://atheer-next-storybook.fly.dev/' },
       { label: 'Story', href: '/ops-manager' },
     ],
-    draft: true,
+    /* Tyler wrote the claim and the summary. */
   },
   {
     num: '03',
