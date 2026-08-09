@@ -36,7 +36,7 @@ export const stories: Story[] = [
     num: '01',
     slug: '/alucify',
     eyebrow: 'Codebase intelligence',
-    credit: 'Alucify — codebase intelligence',
+    credit: 'Alucify. Codebase intelligence.',
     claim: 'I designed a control layer for agentic software development.',
     outcome:
       'Agents write code faster than teams can absorb it. I designed the surfaces that show what the system knows, what it inferred, and where a person still has to decide.',
@@ -57,7 +57,7 @@ export const stories: Story[] = [
     num: '02',
     slug: '/ops-manager',
     eyebrow: 'Frontline operations',
-    credit: 'Atheer — frontline operations',
+    credit: 'Atheer. Frontline operations.',
     claim: 'I designed an enterprise operations product and the system to build it.',
     outcome:
       'Technicians see the job in front of them, what comes next, and what could block it. I built the product and the component system behind it, so the team could keep building without me.',
@@ -72,7 +72,7 @@ export const stories: Story[] = [
     num: '03',
     slug: '/review-loop',
     eyebrow: 'Human-in-the-loop design',
-    credit: 'Atheer — human-in-the-loop design',
+    credit: 'Atheer. Human-in-the-loop design.',
     claim: 'I own the collaboration between stakeholders and agents.',
     outcome:
       'I turned 48 stakeholder notes\u2014some vague, some inaccurate\u2014into clear requirements an agent could act on. That meant checking each against the product, separating the problem from the proposed solution, and deciding what belonged in the next build.',
