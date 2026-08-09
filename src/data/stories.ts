@@ -29,7 +29,7 @@ export const stories: Story[] = [
     num: '01',
     slug: '/alucify',
     eyebrow: 'Codebase intelligence',
-    claim: 'I designed the control layer for agentic software development.',
+    claim: 'I designed a control layer for agentic software development.',
     outcome:
       'Agents generate faster than teams can specify and absorb change. Alucify models what a brownfield codebase means, then shows where context is missing, what a change would reach, and where human judgement is still required.',
     /*
