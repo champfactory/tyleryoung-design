@@ -103,6 +103,14 @@
      alternating with the bare page made half the rows look absent; two make
      the block a single object. band-a is the same value as --color-row, so the
      ledger and the older banded surfaces agree. */
+  /* The mat that evidence is mounted on: the compare block and the capture
+     cards. It is its own token because it does a different job from the
+     alternating rows — those separate items in a list, this one lifts a
+     screenshot off the page. Both were reading from --color-band-b, so
+     changing one would have moved the other, and the mat sat four units from
+     the page background and disappeared. */
+  --color-mount: #e6e6eb;
+
   --color-band-a: #e9e9ed;
   --color-band-b: #f1f1f5;
 

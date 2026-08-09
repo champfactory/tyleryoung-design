@@ -68,6 +68,7 @@ const total = items.length;
   links={[
     { label: 'Reviewed build', href: REVIEWED },
     { label: 'Resulting build', href: NEXT },
+    { label: 'All 48 notes', href: '#all-notes' },
   ]}
 >
   <p class="lede">
@@ -217,11 +218,6 @@ const total = items.length;
     resulting build. It does not mean that every sentence became one literal
     code change. The following examples show why that distinction matters.
   </p>
-
-  <details class="all-pairs">
-    <summary>Read the complete {total}-note review</summary>
-    <FeedbackTable />
-  </details>
 
   <h2>Three notes required three kinds of judgment</h2>
   <p>
@@ -407,4 +403,9 @@ const total = items.length;
     Neither creates shared understanding on its own. The faster implementation
     becomes, the more deliberately the review process must preserve meaning.
   </p>
+
+  <details class="all-pairs" id="all-notes">
+    <summary>Read the complete {total}-note review</summary>
+    <FeedbackTable />
+  </details>
 </DocumentLayout>
