@@ -20,7 +20,10 @@ const { related = storyLinks } = Astro.props;
 
 /** The links this site carries on every page. */
 const site: [string, string, boolean][] = [
-  ['/how-i-design-with-ai#this-site', 'How this site is built', false],
+  // Was /how-i-design-with-ai#this-site. That section is gone, and the design
+  // system is what answers this label now — same destination and same new-tab
+  // behaviour as the rail link that points at it.
+  ['/design-system', 'How this site is built', true],
   [REPO, 'Source', true],
   [`mailto:${EMAIL}`, EMAIL, false],
 ];
