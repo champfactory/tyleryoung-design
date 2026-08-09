@@ -29,23 +29,27 @@ const questions = [
 ];
 
 /**
- * Surfaces, counts and files — read from the ledger rather than typed out, so
- * the summary and the notes underneath it cannot drift apart. They did once.
+ * Surfaces and counts, read from the ledger rather than typed out, so the
+ * summary and the notes underneath it cannot drift apart. They did once.
+ *
+ * The filenames are gone. They sat in the same slot as the word "held", so one
+ * column carried a file for four rows and a status for the other two, and
+ * App.jsx appeared twice — a name that identifies the root component and
+ * therefore nothing. What the list is actually evidence for is the split
+ * between what changed and what did not, so that is what it shows. The rail
+ * still reports four files and 394 lines.
  */
-const FILES: Record<string, string> = {
-  Home: 'App.jsx',
-  Jobs: 'JobsPage.jsx',
-  'AiR Sessions': 'SessionsPage · PastSessionsPage',
-  'Overall Body': 'App.jsx',
-  'Ask OASES': 'held in this round',
-  'Top Nav': 'held in this round',
-};
+const HELD = new Set(['Ask OASES', 'Top Nav']);
 const ORDER = ['Home', 'Jobs', 'AiR Sessions', 'Overall Body', 'Ask OASES', 'Top Nav'];
 const surfaces = ORDER.map((name) => ({
   name,
-  file: FILES[name],
+  held: HELD.has(name),
   count: items.filter((i: { surface: string }) => i.surface === name).length,
 }));
+
+/** Derived, so the sentence under the list cannot drift from the list. */
+const addressed = surfaces.filter((s) => !s.held).reduce((n, s) => n + s.count, 0);
+const held = surfaces.filter((s) => s.held).reduce((n, s) => n + s.count, 0);
 
 const total = items.length;
 
@@ -60,7 +64,7 @@ const total = items.length;
   meta={[
     ['Shared artifact', 'Two running versions'],
     ['Review', `${total} notes · 6 product surfaces`],
-    ['Human decision', '36 addressed · 12 held'],
+    ['Human decision', `${addressed} addressed · ${held} held`],
     ['Implementation', 'Claude Code · 4 files · 394 lines'],
   ]}
 >
@@ -188,14 +192,15 @@ const total = items.length;
     {
       surfaces.map((s) => (
         <li>
-          {s.name} — {s.count} {s.count === 1 ? 'note' : 'notes'} · {s.file}
+          {s.name} — {s.count} {s.count === 1 ? 'note' : 'notes'}
+          {s.held && ', held this round'}
         </li>
       ))
     }
   </ul>
 
   <p>
-    The ledger records thirty-six notes as addressed and twelve as not this
+    The ledger records {addressed} notes as addressed and {held} as not this
     round. These classifications describe the documented response across the six
     surfaces. They do not mean every note mapped literally or completely to one
     code change.
