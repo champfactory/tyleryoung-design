@@ -22,10 +22,30 @@ const loop = [
 ];
 
 /** The question each note had to answer before it could become a change. */
+/**
+ * Three gates in order, not three considerations in a list.
+ *
+ * The sequence matters and the page already proves it: the three worked
+ * examples below are the three outcomes. Answering the third before the second
+ * is how a literal change lands on the wrong element and gets reported
+ * complete, which is exactly what the second example describes.
+ *
+ * Each carries what failing it costs, because that is what makes it a gate
+ * rather than a checklist.
+ */
 const questions = [
-  ['What did the reviewer notice?', 'Identify the underlying friction or inconsistency.'],
-  ['Does the note describe it accurately?', 'Compare the written request with the running interface.'],
-  ['What belongs in this version?', 'Accept, reshape, separate, or hold the proposed change.'],
+  [
+    'What did the reviewer notice?',
+    'The underlying friction, which is not always the thing the note names.',
+  ],
+  [
+    'Does the note describe it accurately?',
+    'Compare the written request with the running interface. A note that fails here cannot be built as written; the shared context has to be repaired first.',
+  ],
+  [
+    'What belongs in this version?',
+    'Accept, reshape, separate, or hold. A note can be right about the problem and still carry a proposal worth declining.',
+  ],
 ];
 
 /**
@@ -174,7 +194,11 @@ const total = items.length;
     repository. It did not mean every proposed response should be implemented
     literally.
   </p>
-  <p>Each note still required three questions.</p>
+  <p>
+    Each note had to clear three questions, in order. The order is the point: a
+    note that fails the second cannot be implemented as written, and one that
+    reaches the third can still be split or held.
+  </p>
 
   <ol>
     {
@@ -215,7 +239,11 @@ const total = items.length;
     The most useful evidence is not the number of notes processed. It is the
     distance between what was written and what the next version needed.
   </p>
-  <p>These three notes produced three different decisions.</p>
+  <p>
+    These three notes produced three different decisions because they stopped at
+    different questions. The first passed all three. The second failed the
+    second. The third reached the third and was split there.
+  </p>
 
   <h3>The note accurately described the problem</h3>
   <p>
