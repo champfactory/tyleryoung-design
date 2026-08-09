@@ -3,6 +3,7 @@ import { storyEyebrow, storyTitle } from '../data/stories';
 import DocumentLayout from '../layouts/DocumentLayout.astro';
 import LiveFrame from '../components/LiveFrame.astro';
 import FeedbackTable from '../components/FeedbackTable.astro';
+import Sheet from '../components/Sheet.astro';
 import Compare from '../components/Compare.astro';
 import items from '../data/feedback.json';
 
@@ -67,7 +68,7 @@ const total = items.length;
   ]}
   links={[
     { label: 'Reviewed build', href: REVIEWED },
-    { label: 'All 48 notes', href: '#all-notes' },
+    { label: 'All 48 notes', href: '#all-notes', sheet: 'all-notes' },
     { label: 'Resulting build', href: NEXT },
   ]}
 >
@@ -404,8 +405,11 @@ const total = items.length;
     becomes, the more deliberately the review process must preserve meaning.
   </p>
 
-  <details class="all-pairs" id="all-notes">
-    <summary>Read the complete {total}-note review</summary>
+  <Sheet
+    id="all-notes"
+    title={`The complete ${total}-note review`}
+    note="Verbatim, grouped by the surface each note was written against."
+  >
     <FeedbackTable />
-  </details>
+  </Sheet>
 </DocumentLayout>

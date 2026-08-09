@@ -241,6 +241,11 @@ export const rules = [
     why: 'The reference names wore it, which made a person\u2019s name the only thing on the site that was shouted. A name is content. It takes the prose face at sentence case, and the hierarchy against the role comes from weight and ink like everywhere else.',
   },
   {
+    title: 'Use a real dialog for a modal',
+    statement: 'A sheet is a <dialog> opened with showModal(), and it is the only client-side script on the site.',
+    why: 'It buys what a styled div has to reimplement and usually gets wrong: focus moves into the panel and is trapped, Escape closes it, the page behind goes inert, and the backdrop is a real ::backdrop rather than a sibling stacked underneath. The forty-eight notes were a <details> before — a disclosure, which announces itself as one and cannot be dismissed with a key — and a :target overlay has no focus management at all.',
+  },
+  {
     title: 'Test every colour pair that is used',
     statement: 'Each foreground and background pair is checked at the smallest size it appears at.',
     why: 'The check runs before the build and fails it. When a pair fails, the shared token changes rather than the component, so the correction applies everywhere. A second check fails the build if a token exists in the stylesheet and is not documented on this page — the page claimed to be the system while carrying eleven of twenty-four.',

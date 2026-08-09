@@ -1,0 +1,176 @@
+---
+/**
+ * A modal sheet: a titled panel that scrolls vertically over the page.
+ *
+ * A real <dialog> opened with showModal(), not a styled div. That buys the
+ * things a hand-rolled overlay has to reimplement and usually gets wrong —
+ * focus moves into the panel and is trapped there, Escape closes it, the page
+ * behind is inert, and the backdrop is a real ::backdrop rather than a sibling
+ * element stacked underneath.
+ *
+ * This is the site's only client-side script. It is here because the
+ * alternatives are worse: :target has no focus management, and <details> is a
+ * disclosure, not a dialog, so it announces itself wrongly and cannot be
+ * dismissed with a key.
+ */
+interface Props {
+  /** The id a trigger points at with data-sheet. */
+  id: string;
+  title: string;
+  /** Optional line under the title — a count, a caveat. */
+  note?: string;
+}
+
+const { id, title, note } = Astro.props;
+---
+
+<dialog class="sheet" id={id} aria-labelledby={`${id}-title`}>
+  <header class="sheet-head">
+    <div class="sheet-titles">
+      <h2 class="sheet-title" id={`${id}-title`}>{title}</h2>
+      {note && <p class="sheet-note">{note}</p>}
+    </div>
+    <button class="sheet-close" type="button" data-close aria-label="Close">Close</button>
+  </header>
+
+  <div class="sheet-body">
+    <slot />
+  </div>
+</dialog>
+
+<style is:global>
+  .sheet {
+    width: min(92vw, 820px);
+    max-height: min(84vh, 900px);
+    margin: auto;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-mat);
+    background: var(--color-paper-raised);
+    color: var(--color-ink);
+    overflow: hidden;
+  }
+
+  .sheet[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Mixed from ink rather than a flat black, so the scrim belongs to the same
+     palette as everything it covers. */
+  .sheet::backdrop {
+    background: color-mix(in srgb, var(--color-ink) 62%, transparent);
+  }
+
+  /* The page behind a modal must not scroll under it. */
+  body:has(.sheet[open]) {
+    overflow: hidden;
+  }
+
+  .sheet-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    flex: none;
+    padding: 22px 24px 18px;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .sheet-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    line-height: 1.2;
+    color: var(--color-ink);
+  }
+
+  .sheet-note {
+    margin: 6px 0 0;
+    font-size: var(--text-caption);
+    line-height: 1.45;
+    color: var(--color-ink-2);
+  }
+
+  .sheet-close {
+    flex: none;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0;
+    color: var(--color-signal);
+    cursor: pointer;
+  }
+
+  .sheet-close:hover,
+  .sheet-close:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .sheet-body {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 22px 24px 26px;
+  }
+
+  /* A trigger is a button, because it opens something rather than going
+     somewhere. It wears the link style so it reads as one. */
+  .sheet-open {
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: left;
+    color: var(--color-signal);
+    cursor: pointer;
+  }
+
+  .sheet-open:hover,
+  .sheet-open:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 600px) {
+    .sheet {
+      width: 100vw;
+      max-width: 100vw;
+      max-height: 92vh;
+      border-radius: var(--radius-mat) var(--radius-mat) 0 0;
+      margin-bottom: 0;
+    }
+
+    .sheet-head {
+      padding: 18px 18px 14px;
+    }
+
+    .sheet-body {
+      padding: 18px 18px 24px;
+    }
+  }
+</style>
+
+<script>
+  for (const t of document.querySelectorAll<HTMLElement>('[data-sheet]')) {
+    t.addEventListener('click', () => {
+      const d = document.getElementById(t.dataset.sheet!) as HTMLDialogElement | null;
+      d?.showModal();
+    });
+  }
+
+  for (const d of document.querySelectorAll<HTMLDialogElement>('dialog.sheet')) {
+    /* Clicking the backdrop closes it. The check is on the target being the
+       dialog itself: the panel's own click events stop at their element, so a
+       click inside never reads as a click on the box. */
+    d.addEventListener('click', (e) => {
+      if (e.target === d) d.close();
+    });
+    d.querySelector('[data-close]')?.addEventListener('click', () => d.close());
+  }
+</script>

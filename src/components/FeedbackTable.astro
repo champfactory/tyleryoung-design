@@ -73,22 +73,20 @@ const done = items.filter((i: { surface: string }) => REWORKED.has(i.surface)).l
 </figure>
 
 <style>
+  /* No card. This lives inside a Sheet, which is the card — an outlined,
+     rounded, white box inside an outlined, rounded, white box was two frames
+     saying one thing. */
   .table {
-    margin: 0 0 40px;
-    border: 1px solid var(--color-rule);
-    background: var(--color-paper-raised);
-    border-radius: var(--radius-mat);
-    overflow: hidden;
+    margin: 0;
   }
 
   .head {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 24px;
-    padding: 13px 16px;
-    border-bottom: 1px solid var(--color-rule);
-    /* The page's banded row. This was --color-paper-sunk, a warm beige left
-       over from the earlier palette, which read as a different site. */
+    gap: 10px 22px;
+    margin: 0 0 6px;
+    padding: 10px 12px;
+    border-radius: var(--radius-inset);
     background: var(--color-band-a);
   }
 
@@ -128,15 +126,21 @@ const done = items.filter((i: { surface: string }) => REWORKED.has(i.surface)).l
   }
 
   .group + .group {
-    border-top: 1px solid var(--color-rule);
+    margin-top: 22px;
   }
 
+  /* Sticky, so the surface a note belongs to is still on screen when its
+     seventeenth note is. The white behind it is the sheet's own. */
   .surface {
+    position: sticky;
+    top: -1px;
+    z-index: 1;
     display: flex;
     align-items: baseline;
     gap: 12px;
     margin: 0 !important;
-    padding: 14px 16px 8px;
+    padding: 14px 0 10px;
+    background: var(--color-paper-raised);
     font-family: var(--font-mono) !important;
     font-size: 11px !important;
     letter-spacing: 0;
@@ -158,21 +162,36 @@ const done = items.filter((i: { surface: string }) => REWORKED.has(i.surface)).l
 
   ul {
     list-style: none;
+    display: grid;
+    gap: 2px;
     margin: 0 !important;
-    padding: 0 0 12px !important;
+    padding: 0 !important;
   }
 
+  /* Banded, like every other row list on the site, so forty-eight lines of
+     similar length stay countable. */
   li {
     display: grid;
     grid-template-columns: 16px minmax(0, 1fr);
     gap: 10px;
     align-items: start;
-    padding: 5px 16px;
+    padding: 9px 12px;
+    background: var(--color-band-b);
     font-family: var(--font-mono) !important;
-    font-size: 12px !important;
-    line-height: 1.6 !important;
-    letter-spacing: 0.01em;
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+    letter-spacing: 0;
     color: var(--color-ink) !important;
+    text-wrap: pretty;
+  }
+
+  li:nth-child(odd) {
+    background: var(--color-band-a);
+  }
+
+  .group ul {
+    border-radius: var(--radius-inset);
+    overflow: hidden;
   }
 
   li::before {
@@ -182,7 +201,7 @@ const done = items.filter((i: { surface: string }) => REWORKED.has(i.surface)).l
   .dot {
     width: 9px;
     height: 9px;
-    margin-top: 5px;
+    margin-top: 6px;
     color: var(--color-ink);
   }
 
@@ -203,7 +222,7 @@ const done = items.filter((i: { surface: string }) => REWORKED.has(i.surface)).l
     line-height: 1.7;
     letter-spacing: 0;
     color: var(--color-ink-3);
-    padding: 14px 16px;
-    border-top: 1px solid var(--color-rule);
+    margin: 22px 0 0;
+    padding: 0;
   }
 </style>

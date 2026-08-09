@@ -22,7 +22,14 @@ export type MetaPair = [label: string, value: string];
  * `external` opens in a new tab. The design system is on this domain but is its
  * own property, so it behaves like the Storybook and the repo, not like a page.
  */
-export type RailLink = { label: string; href: string; current?: boolean; external?: boolean };
+export type RailLink = {
+  label: string;
+  href: string;
+  current?: boolean;
+  external?: boolean;
+  /** id of a <Sheet> this opens instead of navigating */
+  sheet?: string;
+};
 
 interface Props {
   title: string;
@@ -106,7 +113,12 @@ const {
               {linksTitle && <p class="rail-links-title">{linksTitle}</p>}
               <ul>
                 {links.map((l) =>
-                  l.current ? (
+                  l.sheet ? (
+                    <li>
+                      <button class="link sheet-open" type="button" data-sheet={l.sheet}>
+                        {l.label}<Chevron weight="light" /></button>
+                    </li>
+                  ) : l.current ? (
                     <li class="is-current" aria-current="page">
                       {l.label}
                     </li>
