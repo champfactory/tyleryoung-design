@@ -63,7 +63,7 @@ export const stories: Story[] = [
     num: '03',
     slug: '/review-loop',
     eyebrow: 'Human-in-the-loop design',
-    claim: 'I turned 48 stakeholder notes into a reviewed, running release.',
+    claim: 'I own the collaboration between stakeholders and agents.',
     outcome:
       'I turned 48 stakeholder notes\u2014some vague, some inaccurate\u2014into clear requirements an agent could act on. That meant checking each against the product, separating the problem from the proposed solution, and deciding what belonged in the next build.',
     artifacts: [
