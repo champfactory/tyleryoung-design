@@ -162,7 +162,14 @@ const dimY = `calc(${pct} + ${OVERSCAN_Y}px)`;
        own canvas while it loads, not for a site surface. */
     margin: 10px;
     border-radius: var(--radius-inset);
-    background: var(--color-art);
+    /* The mat, not the artwork's paper. The embedded content is a fraction of a
+       pixel narrower than the box that holds it, and the box has rounded
+       corners, so one column of this backstop survives antialiasing along each
+       edge. On white that hairline read as a bright rim around every embed.
+       Matching the envelope makes the leftover pixel invisible, and it also
+       gives the frame a dark backstop while it loads rather than a white flash.
+       The embedded page keeps its own white — that belongs to the app. */
+    background: var(--color-mount);
   }
 
   iframe {

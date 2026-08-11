@@ -290,14 +290,19 @@ const sections = essayGroups.map((g) => ({
   }
 
 
-  /* The result: paragraph-sized, full ink where the summary is ink-2, leading
-     straight into the blue link that completes it. */
+  /* The result: paragraph-sized, and the same ink as the summary above it.
+     It used to step up to full ink, which worked while the link below it was
+     blue — colour marked the link, so a brighter closing line above it read as
+     emphasis rather than as competition. With the link on a near-neutral
+     signal, the bright statement and the link were two similar lines in a row
+     and the chevron was doing all the work of telling them apart. The story
+     reads as one voice now and the link is the only thing that steps out. */
   .evidence {
     text-wrap: pretty;
     margin: 10px 0 0;
     font-size: var(--text-note);
     line-height: 1.55;
-    color: var(--color-ink);
+    color: var(--color-ink-2);
   }
 
   /* inline-block, because the margin below did nothing without it. .artifact is
@@ -308,7 +313,11 @@ const sections = essayGroups.map((g) => ({
      was doing the separating and the spacing only looked sufficient. */
   .link-gap {
     display: inline-block;
-    margin-top: 14px;
+    /* Between the two: the landing page gives the same move 26px, and a card in
+       a two-up grid does not need that much. 14px was too tight once the link
+       stopped being blue — the space is what separates the story from the thing
+       that leaves it. */
+    margin-top: 20px;
   }
 
   @media (min-width: 860px) {
