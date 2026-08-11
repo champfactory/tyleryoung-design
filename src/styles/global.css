@@ -273,6 +273,21 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
   }
 
+  /* The page that ends on the references band closes tighter than the rest.
+     Every other page ends on prose, where the full 88px is the gap between the
+     last line and the footer. Here the footer's own 64px of padding stacks on
+     it, so the references sat 158px off the first footer link while the band
+     itself sat 108px below the last story — bottom-heavy by fifty. 38px puts
+     the space under the references within a pixel of the space above them.
+
+     This rule used to zero the padding entirely, back when the band painted its
+     own colour and ended the page on its own edge. It earns its place again for
+     the opposite reason: the band has no edge now, so the space has to be
+     measured rather than eliminated. */
+  main:has(> .refs-band:last-child) {
+    padding-bottom: 38px;
+  }
+
   ::selection {
     background: var(--color-signal);
     color: var(--color-signal-ink);
