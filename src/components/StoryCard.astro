@@ -7,7 +7,7 @@ interface Props {
   story: Story;
 }
 const { story } = Astro.props;
-const { eyebrow, claim, outcome, artifacts, draft } = story;
+const { slug, eyebrow, claim, outcome, artifacts, draft } = story;
 ---
 
 <article class="story">
@@ -17,7 +17,7 @@ const { eyebrow, claim, outcome, artifacts, draft } = story;
 
   <div class="body">
     <h3 class="heading claim">
-      {draft ? <Draft>{claim}</Draft> : claim}
+      <a class="claim-link" href={slug}>{draft ? <Draft>{claim}</Draft> : claim}</a>
     </h3>
     <p class="outcome">
       {draft ? <Draft>{outcome}</Draft> : outcome}
@@ -52,6 +52,19 @@ const { eyebrow, claim, outcome, artifacts, draft } = story;
 </article>
 
 <style>
+  /* The claim links to its story, and does not say so. No underline, no colour,
+     no hover change: the card already carries explicit artifact links below,
+     and this is a convenience for people who aim at the headline rather than a
+     second affordance competing with them.
+
+     Keyboard focus is the exception and stays visible. An affordance may be
+     invisible; it may not also be unreachable. The global :focus-visible ring
+     handles it, so there is nothing to declare here. */
+  .claim-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
   .story {
     display: grid;
     gap: 24px;
