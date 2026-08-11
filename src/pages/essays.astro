@@ -300,7 +300,14 @@ const sections = essayGroups.map((g) => ({
     color: var(--color-ink);
   }
 
+  /* inline-block, because the margin below did nothing without it. .artifact is
+     deliberately `display: inline` — the chevron and the underline depend on it
+     — and vertical margins do not apply to an inline box, so this 14px had
+     never rendered. The gap was 5.9px of line leading, which read as deliberate
+     while the link was blue and the prose was dark; on one palette the colour
+     was doing the separating and the spacing only looked sufficient. */
   .link-gap {
+    display: inline-block;
     margin-top: 14px;
   }
 
