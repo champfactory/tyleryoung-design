@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Tyler Young">
-  <!-- Site tokens, not the retired palette: ink ground, paper mark, signal dot. -->
+  <!-- Held at the values from the light palette: this is a mark, and a favicon
+       that changes with the site reads as a different site in a tab strip. The
+       blue dot is the one place the retired accent survives — the graphite
+       palette has no accent hue to replace it with. -->
   <rect width="32" height="32" fill="#1a1a18"/>
   <path d="M6 10h11M11.5 10v14" stroke="#ffffff" stroke-width="2.6" fill="none"/>
   <circle cx="23.5" cy="22.5" r="3.5" fill="#0066CC"/>

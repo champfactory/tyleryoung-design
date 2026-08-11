@@ -63,11 +63,12 @@ const deepLink = `${SB}/?path=/story/${id}`;
        paragraph introducing it while the reconstructions had room on both
        sides. */
     margin: var(--space-embed) 0 calc(var(--space-embed) + 12px);
-    /* The mat, not the card surface. The page is #f5f5f7 and these embeds are
-       screenshots of near-white applications, so on paper-raised the art met
-       the page at 1.03:1 and its edge disappeared. mount exists for exactly
-       this — it is the token that was introduced when the compare blocks had
-       the same defect — and the inset below is what makes it visible. */
+    /* The mat, not the card surface. These embeds are screenshots of near-white
+       applications. On the light palette they met paper-raised at 1.03:1 and
+       their edges disappeared, which is why mount exists. The dark palette does
+       not have that problem — white art on mount is a hard edge either way —
+       but mount is still the right surface: it is the token that says "framed
+       evidence", and the inset below is what gives the frame its margin. */
     background: var(--color-mount);
   
     /* A card, not an outlined panel: small radius, no border, the radius alone. */
@@ -97,7 +98,9 @@ const deepLink = `${SB}/?path=/story/${id}`;
   }
 
   .source {
-    /* ink-2. ink-3 is tuned for white and falls under the floor on the mat. */
+    /* ink-2. On the light palette ink-3 fell under the floor on the mat; it
+       clears there now at 6.71, so this is preference rather than constraint —
+       the source line reads as a label, not as metadata. */
     color: var(--color-ink-2);
   }
 
@@ -130,7 +133,7 @@ const deepLink = `${SB}/?path=/story/${id}`;
        running to the card edge. */
     margin: 10px;
     border-radius: var(--radius-inset);
-    background: #ffffff;
+    background: var(--color-art);
   }
 
   iframe {

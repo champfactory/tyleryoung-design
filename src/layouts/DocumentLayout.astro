@@ -487,7 +487,7 @@ const {
     height: auto;
     padding: 20px;
     border-radius: var(--radius-inset);
-    background: var(--color-paper-raised);
+    background: var(--color-art);
   }
 
 
@@ -960,9 +960,10 @@ const {
     color: var(--color-ink);
   }
 
-  /* ink-2, not ink-3. ink-3 is tuned for white and measures 4.47 against the
+  /* ink-2, not ink-3. On the light palette ink-3 measured 4.47 against the
      mount — under the floor, and not a pair anything had declared, so the
-     contrast script never looked at it. axe reads what renders. */
+     contrast script never looked at it and axe caught it instead. It clears at
+     6.71 now; ink-2 stays because the host line is a label, not metadata. */
   .doc .recon-host {
     color: var(--color-ink-2);
     text-transform: none;
@@ -996,10 +997,10 @@ const {
     overflow: hidden;
     margin: 10px;
     border-radius: var(--radius-inset);
-    /* White, like the other two embed viewports. This one was on paper-sunk —
-       three embeds, two backstops, for a surface only visible while the frame
-       loads. */
-    background: var(--color-paper-raised);
+    /* The artwork's own paper, like the other two embed viewports. This one
+       was on paper-sunk — three embeds, two backstops, for a surface only
+       visible while the frame loads. */
+    background: var(--color-art);
   }
 
   /* Sits under the iframe: visible while it loads, and all that is left if it
@@ -1024,7 +1025,7 @@ const {
     transform-origin: top left;
     /* Decorative preview — the header link is the real affordance. */
     pointer-events: none;
-    background: #ffffff;
+    background: var(--color-art);
   }
 
 
@@ -1116,18 +1117,21 @@ const {
 
   /* ---- disclosure ---------------------------------------------------------- */
 
-  /* Canary rather than grey. A disclosure is a caveat about what is real and
-     what is representative; in the site's neutral grey it read as one more
-     quiet panel among several and could be scrolled past. */
+  /* The same card the cells wear. This was a canary tint, on the argument that
+     a caveat about what is real and what is representative should not read as
+     one more quiet panel. On the dark palette the tint stopped earning that:
+     an olive panel was the only warm surface on the site and read as a stray
+     colour rather than as emphasis. A card on the page's own scale carries it,
+     and the heading does the work the colour was doing. */
   .doc .disclosure {
     margin: 40px 0 0;
     padding: 22px 20px 6px;
     border-radius: var(--radius-mat);
-    background: var(--color-note);
+    background: var(--color-paper-raised);
   }
 
-  /* ink-3 is tuned for white. On the tint it goes muddy, so the eyebrow steps
-     up one to ink-2 — 7.14 against the background rather than 5.09. */
+  /* The eyebrow steps up one to ink-2 — 6.13 on the card. It keeps the eyebrow
+     from reading as quieter than the body it introduces. */
   .doc .disclosure .sec-eyebrow {
     margin-top: 0;
     color: var(--color-ink-2);

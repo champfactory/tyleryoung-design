@@ -9,32 +9,26 @@
  * Computing it from the same module the check runs against makes it evidence.
  */
 
-export const TOKENS = {
-  paper: '#f5f5f7', // was #f6f4ef
-  'paper-raised': '#ffffff',
-  'paper-sunk': '#edeae1',
-  row: '#e9e9ed',
-  ink: '#3B2923',
-  'ink-2': '#55534b',
-  'ink-3': '#6b6961',
-  rule: '#d0ccbe',
-  'rule-strong': '#b9b4a6',
-  machine: '#16161a',
-  'machine-raised': '#202027',
-  'machine-band': '#1b1b21',
-  'machine-ink': '#e6e4dc',
-  'machine-ink-2': '#9d9a90',
-  'machine-signal': '#4da3ff',
-  signal: '#0066CC',
-  'signal-ink': '#ffffff',
-  header: '#e2eefb',
-  mount: '#e6e6eb',
-  'band-a': '#e9e9ed',
-  'band-b': '#f1f1f5',
-  /* The disclosure tint. A caveat should look like a caveat — grey read as
-     another quiet panel among several. */
-  note: '#fefbe4',
-};
+/**
+ * The token values, read out of the stylesheet that declares them.
+ *
+ * This used to be a hand-written copy of every hex. It drifted: the neutrals
+ * were retuned to hue 210 in global.css and this table kept the old 240s, so
+ * the contrast gate spent that time checking five colours the site no longer
+ * shipped. A check that tests a stale copy of the thing is worse than no check,
+ * because it reports confidence it has not earned.
+ */
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+const css = readFileSync(join(process.cwd(), 'src/styles/global.css'), 'utf8');
+
+export const TOKENS = Object.fromEntries(
+  [...css.matchAll(/--color-([a-z0-9-]+)\s*:\s*(#[0-9a-fA-F]{3,8})\s*;/g)].map((m) => [
+    m[1],
+    m[2],
+  ]),
+);
 
 /** Pairs that must pass, at the smallest size each is actually used. */
 export const PAIRS = [
@@ -63,12 +57,10 @@ export const PAIRS = [
   ['machine-ink-2', 'machine', 'AA', 'terminal dim text'],
   ['machine-ink', 'machine-raised', 'AA', 'raised panel text'],
   ['signal-ink', 'signal', 'AA', 'inverted signal label'],
-  ['ink', 'header', 'AA', 'wordmark on the header'],
-  ['ink', 'note', 'AA', 'disclosure body text'],
-  ['ink-2', 'note', 'AA', 'disclosure eyebrow @ 11px'],
-  ['ink-2', 'header', 'AA', 'reference attribution @ 11px on the band'],
-  ['ink-2', 'header', 'AA', 'header sentence @ 11px'],
-  ['signal', 'header', 'AA', 'current-page marker on the header'],
+  ['ink', 'paper', 'AA', 'wordmark on the nav'],
+  ['ink-2', 'paper-raised', 'AA', 'disclosure eyebrow @ 11px'],
+  ['ink-2', 'paper', 'AA', 'reference attribution @ 11px on the band'],
+  ['signal', 'paper', 'AA', 'nav links on the nav'],
   ['rule-strong', 'paper', 'UI', 'hairline rules'],
   ['rule', 'paper', 'UI', 'hairline rules (subtle)'],
 ];
@@ -91,6 +83,9 @@ export function ratio(a, b) {
 
 export function audit() {
   return PAIRS.map(([fg, bg, level, use]) => {
+    for (const t of [fg, bg]) {
+      if (!TOKENS[t]) throw new Error(`palette: pair "${fg} on ${bg}" (${use}) names --color-${t}, which global.css does not define`);
+    }
     const r = ratio(TOKENS[fg], TOKENS[bg]);
     const need = THRESHOLD[level];
     return {

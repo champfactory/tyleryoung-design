@@ -71,15 +71,16 @@ const rows = Array.from({ length: Math.max(related.length, site.length) }, (_, i
   /* Element selectors, not `.inner`. A scoped class rule on this wrapper did not
      apply — the same thing happened to the header's `.statement` — and the links
      fell back to inline flow, running together on one line at the left edge. */
-  /* No background. body is white and so is the canvas, so the footer, the gap
-     above it and the bottom overscroll are all one colour — the apple.com
-     arrangement, where nothing has to be matched because nothing differs. The
-     grey belongs to <main> and ends where the content ends.
+  /* No background. The footer takes body's colour, and so does the canvas, so
+     the footer, the gap above it and the bottom overscroll are all one colour —
+     the apple.com arrangement, where nothing has to be matched because nothing
+     differs. <main> wears its own surface and ends where the content ends.
 
      That also retires the refs-band exception this rule used to carry. It
      existed because a dark baseplate butting a full-bleed band looked right
-     while a grey gap between them did not; with the footer white, the space
-     above it is white either way and there is nothing left to special-case. */
+     while a bare gap between them did not; with the footer on body's colour,
+     the space above it is that colour either way and there is nothing left to
+     special-case. */
   footer {
     /* Balanced, and the margin is why it was not. body and the footer are both
        white, so a 72px margin above it was not a gap between two things — it

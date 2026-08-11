@@ -49,9 +49,13 @@ const { id, title, note } = Astro.props;
     background: var(--color-paper-raised);
     color: var(--color-ink);
     overflow: hidden;
+    /* Black, not ink. These were mixed from ink because ink was a dark brown
+       and a shadow is ink diluted — true on the light palette and false now:
+       ink is near-white, so the panel cast a glow instead of a shadow. A
+       shadow is an absence of light regardless of what the text is made of. */
     box-shadow:
-      0 2px 8px color-mix(in srgb, var(--color-ink) 10%, transparent),
-      0 18px 50px color-mix(in srgb, var(--color-ink) 22%, transparent);
+      0 2px 8px rgb(0 0 0 / 0.24),
+      0 18px 50px rgb(0 0 0 / 0.44);
   }
 
   .sheet[open] {
@@ -67,10 +71,11 @@ const { id, title, note } = Astro.props;
     outline: none;
   }
 
-  /* No scrim. A tinted curtain over the page turned every surface behind it
-     brown, because ink is a warm brown and 62% of it over paper is mud. The
-     panel lifts off the page with a shadow instead — the page stays the colour
-     it is, and depth does the separating. */
+  /* No scrim. The original reason was that a curtain mixed from ink turned
+     every surface behind it brown; that reason expired with the warm ink. It
+     stays off because the arrangement still works without one: the panel is
+     darker than the page and casts a real shadow, so depth does the separating
+     and the page keeps the colour it has. */
   .sheet::backdrop {
     background: none;
   }

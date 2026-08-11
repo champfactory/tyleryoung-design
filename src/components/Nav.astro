@@ -32,12 +32,11 @@ const { current } = Astro.props as { current?: string };
        even field, which is why every implementation of this ships the two
        together and none ships the tint alone.
 
-       Derived from paper-raised rather than given its own value, so the nav
-       cannot drift from the card surface it matches when nothing is under it.
-       The canvas above the nav is still solid paper-raised, set on <html>, so
-       rubber-banding at the top of the page reveals the nav's own colour and
-       not the page grey. */
-    background: color-mix(in srgb, var(--color-paper-raised) 72%, transparent);
+       Derived from paper — the page ground — rather than given its own value.
+       That is what makes the top overscroll invisible: the canvas on <html> is
+       the same token, so 72% of the ground blurred over the ground is the
+       ground, and the strip revealed above the nav matches the nav exactly. */
+    background: color-mix(in srgb, var(--color-paper) 72%, transparent);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
     position: sticky;
@@ -49,7 +48,7 @@ const { current } = Astro.props as { current?: string };
      surface rather than a see-through bar over live text. */
   @supports not (backdrop-filter: blur(1px)) {
     .nav {
-      background: var(--color-paper-raised);
+      background: var(--color-paper);
     }
   }
 
@@ -125,18 +124,16 @@ const { current } = Astro.props as { current?: string };
   nav a {
     font: inherit;
     letter-spacing: inherit;
-    text-decoration: none;
-    color: var(--color-ink);
-    padding-bottom: 2px;
-    /* Links are blue and unadorned; the page you are on reads in ink. */
-    color: var(--color-signal);
-    transition: opacity 120ms ease;
-  }
-
-  nav a:hover,
-  nav a:focus-visible {
+    /* Underlined at rest, not only on hover. These are the only links on the
+       site that live outside prose, so they have no surrounding sentence to
+       mark them as links — hover-only meant a reader had to point at the
+       sentence to find out which words were live. */
     text-decoration: underline;
     text-underline-offset: 3px;
+    padding-bottom: 2px;
+    /* The page you are on reads in plain ink. */
+    color: var(--color-signal);
+    transition: opacity 120ms ease;
   }
 
   nav a[aria-current='page'] {

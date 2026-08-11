@@ -42,7 +42,7 @@ const swatch = (v) => `background:${v}`;
   <h2>Surface</h2>
   <p>
     Surface tokens distinguish the page, raised content, sunk panels, alternating
-    rows, mounted evidence, reference headers, and notes.
+    rows, mounted evidence, and the paper artwork is printed on.
   </p>
 
   <ul class="sys-grid">
@@ -54,7 +54,8 @@ const swatch = (v) => `background:${v}`;
           <span class="sys-value">{s.value}</span>
           <span class="sys-use">{s.use}</span>
           <span class="sys-meta">
-            {Math.round(s.h)}° · {s.s.toFixed(0)}% · {s.l.toFixed(0)}% — {s.onInk.toFixed(2)}:1 against ink
+            {Math.round(s.h)}° · {s.s.toFixed(0)}% · {s.l.toFixed(0)}%
+            {s.onInk !== null && <> — {s.onInk.toFixed(2)}:1 against ink</>}
           </span>
         </li>
       ))

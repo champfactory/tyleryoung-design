@@ -17,3 +17,6 @@ node_modules/
 CLAUDE.md
 docs/
 reference/
+
+# Local rollback copies. The light palette lives in history at a091ce46.
+.rollback/

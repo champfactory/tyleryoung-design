@@ -60,18 +60,19 @@ const value = (name) => colour.find((c) => c.name === name)?.value ?? '';
 /** What a thing sits on. */
 export const surfaces = [
   ['paper', 'Page background.'],
-  ['paper-raised', 'Raised cards, figures, and navigation.'],
+  ['paper-raised', 'Raised cards and panels.'],
   ['paper-sunk', 'A panel set into the page rather than lifted off it.'],
   ['band-a', 'Darker row in an alternating list.'],
   ['band-b', 'Lighter row in an alternating list.'],
   ['mount', 'Background for screenshots and other visual evidence.'],
-  ['header', 'Background for reference headers.'],
-  ['note', 'Background for caveats and disclosures.'],
-].map(([name, use]) => ({
+  ['art', 'The paper a drawing or screenshot is printed on. Belongs to the artwork, not the palette.', false],
+].map(([name, use, carriesText = true]) => ({
   name,
   use,
   value: value(`color-${name}`),
-  onInk: ratio(value('color-ink'), value(`color-${name}`)),
+  /* null where the site never sets text on it, so the page does not print a
+     ratio that reads as a failing one for a surface nothing has to pass on. */
+  onInk: carriesText ? ratio(value('color-ink'), value(`color-${name}`)) : null,
   ...hsl(value(`color-${name}`)),
 }));
 

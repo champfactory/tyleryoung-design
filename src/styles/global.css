@@ -49,23 +49,27 @@
     Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-code: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
 
-  /* paper — warm, not white. white is a browser default; this is a choice. */
-  /* Was #f6f4ef — a warm off-white — with paper-raised #fcfbf8 and paper-sunk
-     #edeae1 tuned against it. Kept here so the warm palette can be restored in
-     one line if white turns out to be too cold for the type. */
-  /* A light, light gray page; the cards on it are the white. */
-  --color-paper: #f5f6f7;
-  --color-paper-raised: #ffffff;
-  --color-paper-sunk: #edeae1;
-  /* Zebra tint for banded rows. Neutral rather than warm, because the page is
-     white now and the warm sunk token reads as beige against it. */
+  /* The graphite ground, taken from the Paper exploration. Two palettes came
+     before it and are recorded here so either can be restored in a few lines:
+     a warm off-white (#f6f4ef, with paper-raised #fcfbf8 and paper-sunk
+     #edeae1), then a cool near-white (#f5f6f7, cards in white).
+
+     Depth runs the other way now. On both light palettes a card sat lighter
+     than the page; here the mats are darker than the ground, so raised and
+     sunk are both below paper. Every surface sits at or under the ground's
+     lightness, which leaves one worst case for text instead of six. */
+  --color-paper: #505053;
+  --color-paper-raised: #454548;
+  --color-paper-sunk: #3F3F42;
+  /* Zebra tint for banded rows. Neutral rather than warm: the page carries no
+     warmth for it to agree with. */
   /* One step darker than the page, so a banded cell reads as a surface set
      into it rather than a card lifted off it. */
 
   /* ink */
-  --color-ink: #3B2923;
-  --color-ink-2: #55534b;
-  --color-ink-3: #6b6961;
+  --color-ink: #EEEEEE;
+  --color-ink-2: #CFCFCF;
+  --color-ink-3: #C7C7C7;
 
   /* rules — the visible grid */
   /* The header is the one flat field of colour on the site, so it has to hold
@@ -126,16 +130,23 @@
      screenshot off the page. Both were reading from --color-band-b, so
      changing one would have moved the other, and the mat sat four units from
      the page background and disappeared. */
-  --color-mount: #e5e8eb;
+  --color-mount: #3A3A3C;
 
-  --color-band-a: #e9ebed;
-  --color-band-b: #f1f3f5;
+  /* The paper a drawing or a screenshot is printed on — not a site surface.
+     The light palette hid this role by making the card surface and the
+     artwork's ground the same white, so seven places reached for paper-raised
+     or hardcoded #ffffff to mean this. They are different things: a card
+     follows the palette, and this belongs to the artwork. The diagrams are
+     drawn in dark ink and the product screenshots are of light applications,
+     so both stay on white however dark the site around them gets. */
+  --color-art: #ffffff;
 
-  --color-header: #e7eef6;
-  --color-note: #fefbe4;
+  --color-band-a: #48484B;
+  --color-band-b: #4E4E51;
 
-  --color-rule: #d0ccbe;
-  --color-rule-strong: #b9b4a6;
+
+  --color-rule: #6C6C71;
+  --color-rule-strong: #82828A;
 
   /* machine — dark instrument panels: terminals, code, receipts */
   --color-machine: #16161a;
@@ -151,8 +162,8 @@
   --color-machine-signal: #4da3ff;
 
   /* signal — one accent, used only for things that are live or interactive */
-  --color-signal: #0066CC;
-  --color-signal-ink: #ffffff;
+  --color-signal: #DDDDDD;
+  --color-signal-ink: #1E1E20;
 
 
   /* ---- list markers ------------------------------------------------------
@@ -222,21 +233,23 @@
        their canvas is white, their nav is white, and the rubber band cannot
        expose a mismatch because there isn't one.
 
-       Ours puts the grey on body, which is what sent the canvas grey while
-       the nav stayed white. A plain white here is the same fix without
-       restructuring every page: one colour, no gradient, no fixed
-       attachment — the two things Safari was least likely to honour in the
-       overscroll. The cost is that the bottom overscroll is white too, under
-       a grey footer; Apple has exactly that and lives with it. */
-    background-color: var(--color-paper-raised);
+       Ours is the same arrangement pointed at the other end of the scale. On
+       the light palette the canvas, the nav and the footer were all one white
+       and the darker grey was the island in the middle. Here the ground is the
+       common colour and the cards are the islands — the nav is derived from
+       this same token, so 72% of it over a page of it is exactly it, and
+       neither end of the scroll can reveal a colour that is not already there.
+       One colour, no gradient, no fixed attachment: the two things Safari was
+       least likely to honour in the overscroll. */
+    background-color: var(--color-paper);
   }
 
-  /* Apple's arrangement. The page grey does not live here — body is the same
-     white as the nav, so the canvas it propagates is white and rubber-banding
-     at the top cannot reveal a colour the nav does not have. The grey belongs
-     to the content, and moves to <main> below. */
+  /* Apple's arrangement. body is the same ground as the nav and the footer, so
+     the canvas it propagates matches both ends of the scroll and rubber-banding
+     cannot reveal a colour that is not already at the edge. <main> repeats the
+     value below because it carries the grain, not because it differs. */
   body {
-    background-color: var(--color-paper-raised);
+    background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-prose);
     font-size: 19px;
@@ -258,10 +271,6 @@
        inherits the right one without being told. */
     padding-bottom: var(--space-page-bottom);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
-  }
-
-  main:has(> .refs-band:last-child) {
-    padding-bottom: 0;
   }
 
   ::selection {
